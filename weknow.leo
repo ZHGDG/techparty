@@ -41,14 +41,6 @@
 <v t="zoomq.20120727213305.14696"><vh>GetCRXAppID4upload</vh></v>
 <v t="zoomq.20120727213305.14697"><vh>main</vh></v>
 </v>
-<v t="zoomq.20120820121523.7432"><vh>lb4crx2cli.py</vh>
-<v t="zoomq.20120820121523.7433" a="E"><vh>&lt;&lt;declarations&gt;&gt;</vh>
-<v t="zoomq.20120820121523.7438"><vh>cfg. Borg</vh></v>
-</v>
-<v t="zoomq.20120820121523.7437"><vh>__genRESTargs</vh></v>
-<v t="zoomq.20120820121523.7442"><vh>__genRESTsign</vh></v>
-<v t="zoomq.20120820121523.7439"><vh>call2sae</vh></v>
-</v>
 <v t="zoomq.20120811092308.5970"><vh>@nosent data_uri.py</vh></v>
 <v t="zoomq.20120820121523.7422"><vh>@nosent auth.py</vh>
 <v t="zoomq.20120820121523.7423"><vh>&lt;&lt;declarations&gt;&gt;</vh></v>
@@ -77,6 +69,14 @@
 <v t="zoomq.20120802192540.5468"><vh>GENID()</vh></v>
 <v t="zoomq.20120727213305.14699"><vh>INCR4KV()</vh></v>
 <v t="zoomq.20120727213305.14701"><vh>INCR4MM()</vh></v>
+</v>
+<v t="zoomq.20120820121523.7432"><vh>@nosent lb4crx2cli.py</vh>
+<v t="zoomq.20120820121523.7433" a="E"><vh>&lt;&lt;declarations&gt;&gt;</vh>
+<v t="zoomq.20120820121523.7438"><vh>cfg. Borg</vh></v>
+</v>
+<v t="zoomq.20120820121523.7437"><vh>__genRESTargs</vh></v>
+<v t="zoomq.20120820121523.7442"><vh>__genRESTsign</vh></v>
+<v t="zoomq.20120820121523.7439"><vh>call2sae</vh></v>
 </v>
 <v t="zoomq.20130918155053.7058"><vh>lbTC:L:: utility.py</vh>
 <v t="zoomq.20130918155053.7059"><vh>&lt;&lt;declarations&gt;&gt;</vh></v>
@@ -2040,6 +2040,7 @@ if __name__ == '__main__':
         #print mod, act, uribase
         #print dir(CFG)
         call2sae(mod, act, uribase)
+
 
 
 </t>
