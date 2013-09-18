@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Created by Leo (http://webpages.charter.net/edreamleo/front.html) -->
-<?xml-stylesheet ekr_test?>
+<?xml-stylesheet ekr_stylesheet?>
 <leo_file xmlns:leo="http://www.leo-editor.org/2011/leo" >
 <leo_header file_format="2" tnodes="0" max_tnode_index="0" clone_windows="0"/>
 <globals body_outline_ratio="0.5" body_secondary_ratio="0.5">
@@ -19,37 +19,17 @@
 <v t="zoomq.20120720204727.3913"><vh>URL mapping</vh></v>
 <v t="zoomq.20120720204727.3914"><vh>KV mapping</vh></v>
 </v>
-<v t="zoomq.20120723102156.5544" a="E"><vh>@nosent config.py</vh>
+<v t="zoomq.20120723102156.5544"><vh>@nosent config.py</vh>
 <v t="zoomq.20120727213305.14750"><vh>组件引用</vh></v>
-<v t="zoomq.20120710140424.5456"><vh>&lt;&lt;cfg4Borg&gt;&gt;</vh>
+<v t="zoomq.20120710140424.5456" a="E"><vh>&lt;&lt;cfg4Borg&gt;&gt;</vh>
 <v t="zoomq.20120820121523.7443"><vh>4API+authentication</vh></v>
+<v t="zoomq.20130918155053.7084"><vh>4wechat</vh></v>
 </v>
 </v>
-<v t="zoomq.20120723102156.5541"><vh>module</vh>
-<v t="zoomq.20120723102156.5544" a="E"></v>
+<v t="zoomq.20130918155053.5758"><vh>@nosent xsettings.py</vh></v>
+<v t="zoomq.20120723102156.5541" a="E"><vh>module</vh>
+<v t="zoomq.20120723102156.5544"></v>
 <v t="zoomq.20120802192540.5461"><vh>MANIFEST4CRX()</vh></v>
-<v t="zoomq.20120717112543.5481"><vh>@nosent utility.py</vh>
-<v t="zoomq.20120727213305.14698"><vh>&lt;&lt;declarations&gt;&gt;</vh></v>
-<v t="zoomq.20120727213305.14751"><vh>KV4CRX()</vh></v>
-<v t="zoomq.20120805183037.4193"><vh>KV4GRP()</vh>
-<v t="zoomq.20120805183037.5897"><vh>&lt;&lt;set crc grp 相关值列表&gt;&gt;</vh></v>
-</v>
-<v t="zoomq.20120804110957.4478"><vh>ST4CRX()</vh></v>
-<v t="zoomq.20120802192540.8726"><vh>PUTHIS()</vh></v>
-<v t="zoomq.20120804110957.4146"><vh>PUT2SS()</vh></v>
-<v t="zoomq.20120804110957.4489"><vh>PUT_PIC4CRX()</vh></v>
-<v t="zoomq.20120727213305.14756"><vh>INIobjSYS()</vh></v>
-<v t="zoomq.20120802192540.5463"><vh>IDX4LIST()</vh></v>
-<v t="zoomq.20120804110957.4144"><vh>POP4KV()</vh></v>
-<v t="zoomq.20120802192540.8728"><vh>INS2KV()</vh></v>
-<v t="zoomq.20120804110957.4485"><vh>POP4LIST()</vh></v>
-<v t="zoomq.20120805183037.4187"><vh>INS2LIST()</vh></v>
-<v t="zoomq.20120805183037.5896"><vh>INS2DICT4LIST()</vh></v>
-<v t="zoomq.20120802192540.7100"><vh>TSTAMP()</vh></v>
-<v t="zoomq.20120802192540.5468"><vh>GENID()</vh></v>
-<v t="zoomq.20120727213305.14699"><vh>INCR4KV()</vh></v>
-<v t="zoomq.20120727213305.14701"><vh>INCR4MM()</vh></v>
-</v>
 <v t="zoomq.20120727213305.14687"><vh>@nosent crx_id.py</vh>
 <v t="zoomq.20120727213305.14688"><vh>crx_id declarations</vh></v>
 <v t="zoomq.20120727213305.14689"><vh>usage</vh></v>
@@ -77,6 +57,49 @@
 <v t="zoomq.20120820121523.7442"><vh>__genRESTsign</vh></v>
 <v t="zoomq.20120820121523.7439"><vh>call2sae</vh></v>
 </v>
+<v t="zoomq.20120717112543.5481" a="E"><vh>@nosent utility.py</vh>
+<v t="zoomq.20120727213305.14698"><vh>&lt;&lt;declarations&gt;&gt;</vh></v>
+<v t="zoomq.20120727213305.14751"><vh>KV4CRX()</vh></v>
+<v t="zoomq.20120805183037.4193"><vh>KV4GRP()</vh>
+<v t="zoomq.20120805183037.5897"><vh>&lt;&lt;set crc grp 相关值列表&gt;&gt;</vh></v>
+</v>
+<v t="zoomq.20120804110957.4478"><vh>ST4CRX()</vh></v>
+<v t="zoomq.20120802192540.8726"><vh>PUTHIS()</vh></v>
+<v t="zoomq.20120804110957.4146"><vh>PUT2SS()</vh></v>
+<v t="zoomq.20120804110957.4489"><vh>PUT_PIC4CRX()</vh></v>
+<v t="zoomq.20120727213305.14756"><vh>INIobjSYS()</vh></v>
+<v t="zoomq.20120802192540.5463"><vh>IDX4LIST()</vh></v>
+<v t="zoomq.20120804110957.4144"><vh>POP4KV()</vh></v>
+<v t="zoomq.20120802192540.8728"><vh>INS2KV()</vh></v>
+<v t="zoomq.20120804110957.4485"><vh>POP4LIST()</vh></v>
+<v t="zoomq.20120805183037.4187"><vh>INS2LIST()</vh></v>
+<v t="zoomq.20120805183037.5896"><vh>INS2DICT4LIST()</vh></v>
+<v t="zoomq.20120802192540.7100"><vh>TSTAMP()</vh></v>
+<v t="zoomq.20120802192540.5468"><vh>GENID()</vh></v>
+<v t="zoomq.20120727213305.14699"><vh>INCR4KV()</vh></v>
+<v t="zoomq.20120727213305.14701"><vh>INCR4MM()</vh></v>
+</v>
+<v t="zoomq.20130918155053.7058"><vh>lbTC:L:: utility.py</vh>
+<v t="zoomq.20130918155053.7059"><vh>&lt;&lt;declarations&gt;&gt;</vh></v>
+<v t="zoomq.20130918155053.7060"><vh>__popen</vh></v>
+<v t="zoomq.20130918155053.7061"><vh>TSTAMP()</vh></v>
+<v t="zoomq.20130918155053.7062"><vh>INCR4MO</vh></v>
+<v t="zoomq.20130918155053.7063"><vh>GENID()</vh></v>
+<v t="zoomq.20130918155053.7064"><vh>CHK4MANIFEST</vh></v>
+<v t="zoomq.20130918155053.7065"><vh>HEX2RGB</vh></v>
+<v t="zoomq.20130918155053.7066"><vh>FIX_manifest</vh></v>
+<v t="zoomq.20130918155053.7067"><vh>LOAD4JSON</vh></v>
+<v t="zoomq.20130918155053.7068"><vh>LOAD2JSON</vh></v>
+<v t="zoomq.20130918155053.7069"><vh>_genArgsStr</vh></v>
+<v t="zoomq.20130918155053.7070"><vh>_genQueryArgs</vh></v>
+<v t="zoomq.20130918155053.7071"><vh>_chkQueryArgs</vh></v>
+<v t="zoomq.20130918155053.7072"><vh>_query2dict</vh></v>
+<v t="zoomq.20130918155053.7073"><vh>HISIT()</vh></v>
+<v t="zoomq.20130918155053.7074"><vh>EXP2PNG</vh></v>
+<v t="zoomq.20130918155053.7075"><vh>EXP4IMG</vh></v>
+<v t="zoomq.20130918155053.7076"><vh>COLOR2CHK</vh></v>
+<v t="zoomq.20130918155053.7077"><vh>__USE4COLOR</vh></v>
+</v>
 </v>
 <v t="zoomq.20120723102156.5543" a="E"><vh>web</vh>
 <v t="zoomq.20120723102156.5545"><vh>@nosent __init__.py</vh>
@@ -87,13 +110,16 @@
 </v>
 <v t="zoomq.20120723102156.5561" a="E"><vh>@nosent mana4api.py</vh>
 <v t="zoomq.20120723102156.5562"><vh>&lt;&lt;declarations&gt;&gt;</vh></v>
-<v t="zoomq.20120723102156.5568"><vh>/api</vh></v>
+<v t="zoomq.20120723102156.5568"><vh>/api</vh>
 <v t="zoomq.20120820121523.7421"><vh>/api/dc</vh></v>
 <v t="zoomq.20121015120918.6115"><vh>/api/dc/add</vh></v>
-<v t="zoomq.20121015120918.7801"><vh>pep265sd</vh></v>
 <v t="zoomq.20121015120918.6117"><vh>/api/dc/dlrank</vh></v>
 <v t="zoomq.20121015120918.7800"><vh>/api/cron/dlrank</vh></v>
-<v t="zoomq.20120820121523.7444" a="E"><vh>4CLI</vh>
+</v>
+<v t="zoomq.20130918155053.5760"><vh>echo</vh></v>
+<v t="zoomq.20130918155053.7083"><vh>POS Techo</vh></v>
+<v t="zoomq.20121015120918.7801"><vh>pep265sd</vh></v>
+<v t="zoomq.20120820121523.7444"><vh>4CLI</vh>
 <v t="zoomq.20120820121523.7441"><vh>/api/cli</vh>
 <v t="zoomq.20120821205456.4730"><vh>&lt;&lt;CRX matters&gt;&gt;</vh>
 <v t="zoomq.20120821205456.4736"><vh>&lt;&lt;crx单独信息&gt;&gt;</vh></v>
@@ -198,10 +224,10 @@
 </v>
 </v>
 </v>
-<v t="zoomq.20120727213305.14715" a="E"><vh>templates</vh>
+<v t="zoomq.20120727213305.14715"><vh>templates</vh>
 <v t="zoomq.20120812115324.4334"><vh>&lt;&lt;sspathdefine&gt;&gt;</vh></v>
-<v t="zoomq.20120727213305.14728"><vh>BASE组件</vh>
-<v t="zoomq.20120710140424.5449" a="E"><vh>@nosent base.html</vh>
+<v t="zoomq.20120727213305.14728" a="E"><vh>BASE组件</vh>
+<v t="zoomq.20120710140424.5449"><vh>@nosent base.html</vh>
 <v t="zoomq.20120812115324.4334"></v>
 <v t="zoomq.20120710140424.5453"><vh>CSS</vh>
 <v t="zoomq.20120804110957.4149"><vh>esp. 警告...</vh></v>
@@ -411,7 +437,7 @@
 
   &lt;title&gt;
 {% block title4act %}
-{% endblock%}- lb4crx2pub ~猎豹扩展商店后台 v12.10.16.2&lt;/title&gt;
+{% endblock%}- weknow v13.09.18.2&lt;/title&gt;
 
 {% block headJS %}
 {% endblock%}
@@ -442,7 +468,6 @@
         ,&lt;a href="http://bottle.paws.de/"&gt;Bottle&lt;/a&gt;
         ,&lt;a href="http://webpages.charter.net/edreamleo/front.html"&gt;Leo&lt;/a&gt;
         ,&lt;a href="http://sae.sina.com.cn"&gt;SAE&lt;/a&gt;
-        ,&lt;a href="https://www.upyun.com/"&gt;UpYun&lt;/a&gt;
         ,&lt;a href="http://www.catb.org/hacker-emblem/"&gt;Hacker&lt;/a&gt;
      &lt;/a&gt;
     &lt;/div&gt;
@@ -1107,6 +1132,7 @@ import sae
 import sae.storage
 import sae.kvdb
 import pylibmc
+import xml.etree.ElementTree as etree
 
 from bottle import Bottle
 from bottle import __version__ as bottleVer
@@ -1114,6 +1140,8 @@ from bottle import __version__ as bottleVer
 from bottle import debug, run
 from bottle import redirect, abort
 from bottle import request, response, local
+from bottle import get, post, put, delete
+from bottle import BaseRequest
 from bottle import static_file
 #from bottle import template
 #from bottle import jinja2_view as view
@@ -1528,47 +1556,11 @@ index
 {% endblock %}
 
 {% block mainbody %}
-&lt;h1&gt;扩展商店后台(Bottle版) =&lt;/h1&gt;
+&lt;h1&gt;webchat 响应后台(Bottle版) =&lt;/h1&gt;
 
 是也乎;-)
 
-&lt;h2&gt;服务作者&lt;/h2&gt;
 
-&lt;a href="/up"&gt;扩展上传&lt;/a&gt;
-;&lt;a href="/up/team"&gt;团队维护&lt;/a&gt;
-
-&lt;h2&gt;商店管理&lt;/h2&gt;
-
-&lt;a href="/mana"&gt;管理索引&lt;/a&gt;;
-包含以下管理控制:
-&lt;pre&gt;
-+ 商店管理
-|   +- 页面生成
-|   +- 状态统计
-+ 页面管理
-|   +- 标签管理
-|   +- 推荐位编辑
-+ 团队管理
-|   +- 团队初始化
-|   +- 团队信息修订
-` 扩展管理
-    +- 审发扩展
-&lt;/pre&gt;
-
-&lt;h2&gt;接口服务&lt;/h2&gt;
-
-&lt;a href="/api"&gt;接口索引&lt;/a&gt; ;
-包含以下管理控制:
-&lt;pre&gt;
-+ 查询
-|   +- 下载统计
-+ 更新
-|   +- 下载计数
-|   +- 扩展信息
-|   +- 团队信息
-` 控制
-    +- 编辑之选
-&lt;/pre&gt;
 {% endblock %}
 
 {% block footernav %}
@@ -7140,5 +7132,442 @@ def pep265sd(d,doreverse=False):
     '''
     return sorted(d.iteritems(), key=itemgetter(1), reverse=doreverse)
 </t>
+<t tx="zoomq.20130918155053.5758">@language py
+# -*- coding: utf-8 -*-
+
+</t>
+<t tx="zoomq.20130918155053.5760">#@APP.get('/echo/?&lt;qstr&gt;')
+#@APP.get('/echo/&lt;qstr&gt;')
+@APP.get('/echo')
+@APP.get('/echo/')
+def echo_wechat():
+    print request.query.keys()
+    print request.query.echostr
+    #print request.query_string
+    #print dir(BaseRequest.query_string)
+    return request.query.echostr
+</t>
+<t tx="zoomq.20130918155053.7058">@language python
+@tabwidth -4
+# -*- coding: utf-8 -*-
+&lt;&lt;declarations&gt;&gt;
+
+@others
+
+if __name__ == '__main__':
+    if 2 != len(sys.argv) :
+        print '''Usage:
+            utility.py test
+        '''
+    else:
+        print "hand testing ..."
+        #MANIFEST4CRX(open('../../elf.crx', "rb").read())
+        #print GENID('sae',"sdfsdfsd")
+        #print GENID('crx')
+        #print INIobjSYS('cc')
+        #print 'increase by KVDB: %s' % INCR4KV()
+        #print 'increase by Memcache: %s' % INCR4MM()
+    
+
+
+</t>
+<t tx="zoomq.20130918155053.7059">import os
+import sys
+import shutil
+
+import traceback
+from copy import deepcopy
+from time import time, gmtime, strftime, localtime
+#print os.path
+import base64
+import marshal
+import cPickle
+#from base64 import b64encode as bencode
+from hashlib import md5
+import json as JSON
+
+import pprint
+pp = pprint.PrettyPrinter(indent=4)
+
+from config import CFG
+# KVDB or Memcache global sys. event count KEY
+#_k4incr = CFG.K4D['incr']
+# import PyMongo
+from pymongo import MongoClient as Connection
+from pymongo import errors as ERR
+#import gridfs
+
+#import sae.storage
+#import sae.kvdb
+#KV = sae.kvdb.KVClient()
+
+
+</t>
+<t tx="zoomq.20130918155053.7060">def __popen(cmdline):
+    p =  subprocess.Popen(cmdline
+        ,shell=True
+        ,stdin=subprocess.PIPE
+        ,stdout=subprocess.PIPE
+        ,stderr=subprocess.PIPE)
+    lisERR = p.stderr.readlines()
+    strERR = "".join(lisERR)
+    lisOUT = p.stdout.readlines()
+    strOUT = "".join(lisOUT)
+    return lisERR,strERR,lisOUT,strOUT
+    #return strERR,lisOUT,strOUT
+
+
+
+
+    
+</t>
+<t tx="zoomq.20130918155053.7061">def TSTAMP():
+    '''通用时间戳生成器:
+        yymmddHHMMSS+5位微秒
+        e.g.
+        12080110561431076
+    '''
+    date = strftime("%y%m%d%H%M%S", localtime())
+    mms = "%.5f"% time()
+    ms = mms[-5:]
+    return "%s%s"% (date, ms)
+
+
+
+
+</t>
+<t tx="zoomq.20130918155053.7062">def INCR4MO():
+    '''BASE MongoDB make GLOBAL increaser
+    '''
+    #print CFG.TOT
+    if CFG.TOT.find_one():
+        CFG.TOT.update({}, {"$inc": {"TOT": 1}})
+    else:
+        CFG.TOT.insert({"TOT":0})
+        CFG.TOT.update({}, {"$inc": {"TOT": 1}})
+    #t = CFG.TOT.find_one()
+    #print t['TOT']
+    return CFG.TOT.find_one()['TOT']
+
+
+
+
+</t>
+<t tx="zoomq.20130918155053.7063">def GENID(obj,name=""):
+    '''通用ID生成器:
+        x+yymmddHHMMSS+5位微秒+对象鍵3位+全局序号 (名称 md5[:5] .%(dname)s)
+        e.g.
+        x12080110561431076CRX1111
+    '''
+    timestamp = TSTAMP()
+    tot = INCR4MO()
+    #dname = ""#md5.new(name).hexdigest()[:5]
+    GOBJMAP = {'his':'h%(timestamp)sHIS%(tot)d'
+        ,'crx':'x%(timestamp)sCRX%(tot)d'
+        ,'tag':'t%(timestamp)sTAG%(tot)d'
+        ,'author':'a%(timestamp)sUSR%(tot)d'
+        ,'sess':'s%(timestamp)sSESS%(tot)d'
+        ,'comment':'c%(timestamp)sCOMM%(tot)d'
+        ,'grp':'g%(timestamp)sGRP%(tot)d'
+        ,'pic':'p%(timestamp)sSAE%(tot)d'
+        }
+    if obj in GOBJMAP.keys():
+        return GOBJMAP[obj]% locals()
+    else:
+        print "UUID's templet is non-exist!!!"
+        return None
+
+
+
+
+</t>
+<t tx="zoomq.20130918155053.7064">def CHK4MANIFEST(t_manifest):
+    '''base json.loads() test manifest.json is good?
+    '''
+    try:
+        js_manifest = JSON.loads(t_manifest)
+        #pp.pprint(js_manifest['theme']['images'])
+    except ValueError:
+        exc_type, exc_value, exc_traceback = sys.exc_info()
+        print "&gt;&gt;&gt;JSON err. \n\t", traceback.print_exc()
+        return template('ERROR.html'
+            , err_code = "JSON ERROR!"
+            , err_mess = "\n".join(traceback.format_exc().splitlines())
+            )
+
+</t>
+<t tx="zoomq.20130918155053.7065">def HEX2RGB(hexColor):
+    """Convert a hex color string (e.g. "#05ff66") 
+        into an rgb triplet 5 ranging from 0:255 
+    """ 
+    if hexColor[0] == '#': hexColor = hexColor[1:] 
+    elif hexColor[0:2].lower() == '0x':  hexColor = hexColor[2:] 
+    if len(hexColor)==3: hexColor = hexColor[0]+'0'+hexColor[1]+'0'+hexColor[2]+'0' 
+    return int(hexColor[0:2], 16), int(hexColor[2:4], 16), int(hexColor[4:6], 16) 
+
+</t>
+<t tx="zoomq.20130918155053.7066">def FIX_MANIFEST(json, node, key, val):
+    '''fix manifest node val
+    
+    node -- which node is begain, ('theme','images')
+    '''
+    #print node,len(node)
+    if 2 ==  len(node):
+        #print "deep nodes"
+        crt_nodes = json[node[0]][node[1]]
+        #pp.pprint(crt_nodes)
+        crt_nodes[key] = val
+    else:
+        #print "root nodes" 
+        crt_nodes = json.keys()
+        json[key] = val
+    return json
+
+
+
+
+
+
+</t>
+<t tx="zoomq.20130918155053.7067">def LOAD4JSON(p2json):
+    #print p2json
+    smjson = open(p2json,"r").read()
+    #print smjson
+    ojson = eval(smjson)
+    crt_manifest = JSON.loads(JSON.dumps(ojson))
+    return crt_manifest
+    
+</t>
+<t tx="zoomq.20130918155053.7068">def LOAD2JSON(jsonstr):
+    #print p2json
+    smjson = jsonstr    # open(p2json,"r").read()
+    #print smjson
+    ojson = eval(smjson)
+    crt_manifest = JSON.loads(JSON.dumps(ojson))
+    return crt_manifest
+    
+</t>
+<t tx="zoomq.20130918155053.7069">def _genArgsStr(api_path, args):
+    key_values = ["%s=%s"% (arg[0], arg[1]) for arg in args]
+    base_string = api_path + "/" + "&amp;".join(key_values)
+    return base_string
+
+</t>
+<t tx="zoomq.20130918155053.7070">def _genQueryArgs(api_matter, q="", rest_method="GET"):
+    '''单向加密服务端核查:
+        - [MatterURI] ~= cli/usr/info/&lt;uuid&gt; 不必包含http 域名部分
+        - sign 制作:
+            - GET 时将[MatterURI]/appkey_值--ts_值 参数字串缀上密文 md5 成 
+            - POST 时 [MatterURI]为uri 提交时数据拼为仿GET字串 md5 成
+        - 服务端使用相同算法,生成 sign 对比,并明确请求在 CFG.STLIMI 秒之内发生        
+        - 注意! 参数的次序必须固定: 
+            - appkey-&gt;ts-&gt;[q]-&gt;sign
+            - appkey=***&amp;ts=***&amp;sign=***
+            - 整体作base64.urlsafe_b64encode()包裹
+        - GET/DELETE 时将参数拼为统一联合字串
+        - PUT/POST 时提交唯一数据,同 GET 时的参数字串结构
+    '''
+    matter = "%s/%s"% (CFG.APIPRE, api_matter)
+    #print "matter", matter
+    args = []
+    args.append(("appkey", CFG.APPKEY ))
+    args.append(("ts", "%.3f" % (time()) ))
+    if rest_method in ['GET', 'DELETE']:
+        #print rest_method
+        sign_base_string = _genArgsStr(matter, args)
+        args.append(("sign", md5(sign_base_string + CFG.SECRET).hexdigest()))
+        #print args, "\n", sign_base_string
+    else:
+        # POST PUT
+        if not q:
+            print "缺少 set=*** 设定值"
+            return None
+        #print q
+        q_args = q.split("=")
+        args.append((q_args[0], base64.urlsafe_b64encode(q_args[1])))
+        sign_base_string = _genArgsStr(matter, args)
+        args.append(("sign", md5(sign_base_string + CFG.SECRET).hexdigest()))
+        #print args, "\n", sign_base_string
+    return args
+
+</t>
+<t tx="zoomq.20130918155053.7071">def _chkQueryArgs(api_matter, q, rest_method="GET"):
+    '''单向加密服务端核查:
+        - [MatterURI] ~= cli/usr/info/&lt;uuid&gt; 不必包含http 域名部分
+        - sign 制作:
+            - GET 时将[MatterURI]/appkey_值--ts_值 参数字串缀上密文 md5 成 
+            - POST 时 [MatterURI]为uri 提交时数据拼为仿GET字串 md5 成
+        - 服务端使用相同算法,生成 sign 对比,并明确请求在 CFG.STLIMI 秒之内发生        
+        - 注意! 参数的次序必须固定: 
+            - appkey-&gt;ts-&gt;[q]-&gt;sign
+            - appkey=***&amp;ts=***&amp;sign=***
+            - 整体作base64.urlsafe_b64encode()包裹
+        - GET/DELETE 时将参数拼为统一联合字串
+        - PUT/POST 时提交唯一数据,同 GET 时的参数字串结构
+    '''
+    matter = api_matter #"%s/%s"% (CFG.APIPRE, api_matter)
+    #print "matter", matter
+    args = []
+    args.append(("appkey", q['appkey'] ))
+    args.append(("ts", q['ts'] ))
+    #args.append(("sign", q['sign'] ))
+    if rest_method in ['GET', 'DELETE']:
+        re_sign = md5(_genArgsStr(matter, args) + CFG.SECRET).hexdigest()
+        chk_sign = (re_sign == q['sign'])
+        chk_time = (CFG.STLIMI&gt;float("%.3f" % (time())) - float(q['ts']))
+        #print chk_time&amp;chk_sign
+        #print api_matter, q
+    else:
+        # POST PUT
+        for k in q.keys():
+            if k not in ['appkey', 'ts', 'sign']:
+                args.append((k, q[k] ))
+        re_sign = md5(_genArgsStr(matter, args) + CFG.SECRET).hexdigest()
+        #print "getsign\t", q['sign']
+        #print "re_sign\t", re_sign
+        chk_sign = (re_sign == q['sign'])
+        chk_time = (CFG.STLIMI&gt;float("%.3f" % (time())) - float(q['ts']))
+        #print api_matter, q
+    return chk_time&amp;chk_sign
+    #return "debug"
+</t>
+<t tx="zoomq.20130918155053.7072">def _query2dict(qstr):
+    q_dict = {}
+    for q in base64.urlsafe_b64decode(qstr).split("&amp;"):
+        item = q.split("=")
+        q_dict[item[0]] = item[1]
+    return q_dict
+</t>
+<t tx="zoomq.20130918155053.7073">def HISIT(collectioname, uuid, actype, usrid="lbTCLI"):
+    '''通用操作历史填写器:
+        - 对 hstoric 进行标准写入
+        - 记录被操作节点的 uuid/数据dump
+    '''
+    collect = CFG.TCDB[collectioname]
+    #print collect
+    obj = collect.find_one({'uuid': uuid})
+    #print type(obj)
+    dump = cPickle.dumps(obj)
+    #print type(dump)
+    #print cPickle.loads(dump)
+    his_id = GENID('his')
+    MONGO_NODE = {'uuid': his_id
+        , 'hisobj':uuid
+        , 'usrid':usrid
+        ,'actype':actype
+        ,'dump': dump
+        }
+    #return None
+    CFG.HIS.insert(MONGO_NODE)
+    return his_id
+
+
+</t>
+<t tx="zoomq.20130918155053.7074">def EXP2PNG(data, path, png):
+    dataimg =  data.split(',')[1]
+    open('%s/%s'% (path, png)
+            ,'wb').write(base64.b64decode(dataimg)
+        )
+</t>
+<t tx="zoomq.20130918155053.7075">def EXP4IMG(data, path, fname):
+    '''chk base form img data, and:
+        + write into path as img file
+        + return error,ex
+    '''
+    #print CFG.ALLOWED_EXTENSIONS
+    img_code = data.split(',')
+    img_ext = img_code[0].split(";")[0].split("/")[1]
+    if img_ext in CFG.ALLOWED_EXTENSIONS:
+        #print img_ext, "\n\tdata.split(',')[0]"
+        img_data = img_code[1]
+        #print "img_data\t", len(img_data)
+        exp_file = '%s/%s.%s'% (path, fname, img_ext)
+        #print exp_file
+        #return None
+        open('%s/%s.%s'% (path, fname, img_ext)
+                ,'wb').write(base64.b64decode(img_data)
+            )
+        return (True, img_ext)
+    else:
+        return (False, None)
+</t>
+<t tx="zoomq.20130918155053.7076">def COLOR2CHK(ttype, item, color, save_path, part=0):
+    '''base part matter, gen the right pre. gen. colored img.
+        - part=='' just self colored
+        - part!='' just gen. offsets collored img.
+        - return (item_name, colored img. name)
+    '''
+    offsets = ["left", "center", "right"]
+    #print ttype, item, color, save_path
+    jfix = {}
+    if 0 == part:
+        # just colored self
+        res_path = "%s/%s/%s"% (ttype, item, color)
+        aim_img = "%s-%s.png"% (item, color)
+        __USE4COLOR(res_path, aim_img, save_path)
+        jfix[item] = aim_img
+        # pre ttype/item/color
+        # aim itme[_part]-color
+    else:
+        for point in offsets:
+            crt_item = "%s_%s"% (item, point)
+            res_path = "%s/%s/%s"% (ttype, crt_item, color)
+            aim_img = "%s_%s-%s.png"% (item, point, color)
+            __USE4COLOR(res_path, aim_img, save_path)
+            jfix[crt_item] = aim_img
+    return jfix
+
+
+</t>
+<t tx="zoomq.20130918155053.7077">def __USE4COLOR(res_path, aim_img, save_path):
+    #print res_path, aim_img, save_path
+    scr_pre_img =  "%s/%s.png"% (CFG._PREGRN_PATH
+        , res_path
+        )
+    #print "scr_pre_img\t", scr_pre_img
+    aim_tab_img = "%s/%s"% (save_path, aim_img)
+    #print "aim_tab_img\t", aim_tab_img
+    #return None
+    try:
+        shutil.copy(scr_pre_img, aim_tab_img)
+    except:
+        #print "*** print_exc:"
+        traceback.print_exc()
+    #return aim_img
+
+
+</t>
+<t tx="zoomq.20130918155053.7083">@APP.post('/echo')
+@APP.post('/echo/')
+def wechat_post():
+    #print request.forms.keys()[0]
+    xml = etree.XML(request.forms.keys()[0])
+    toUser = xml.findtext("ToUserName")
+    fromUser = xml.findtext("FromUserName")
+    #print xml.findtext("CreateTime")
+    #__MsgId = xml.findtext("MsgId")
+    __MsgType = xml.findtext("MsgType")
+    __Content = xml.findtext("Content")
+    if "text" == __MsgType:
+        if "h" == __Content:
+            tStamp = TSTAMP()
+            content = "是也乎"
+            print CFG.TPL_TEXT% locals()
+            return CFG.TPL_TEXT% locals()
+    return None 
+
+
+
+
+
+
+</t>
+<t tx="zoomq.20130918155053.7084">TPL_TEXT=''' &lt;xml&gt;
+ &lt;ToUserName&gt;&lt;![CDATA[%(toUser)s]]&gt;&lt;/ToUserName&gt;
+ &lt;FromUserName&gt;&lt;![CDATA[%(fromUser)s]]&gt;&lt;/FromUserName&gt;
+ &lt;CreateTime&gt;%(tStamp)s&lt;/CreateTime&gt;
+ &lt;MsgType&gt;&lt;![CDATA[text]]&gt;&lt;/MsgType&gt;
+ &lt;Content&gt;&lt;![CDATA[%(content)s]]&gt;&lt;/Content&gt;
+ &lt;/xml&gt;'''</t>
 </tnodes>
 </leo_file>

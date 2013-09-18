@@ -66,6 +66,13 @@ class Borg():
         , "up":1
         , "api":2
         }
+    TPL_TEXT=''' <xml>
+     <ToUserName><![CDATA[%(toUser)s]]></ToUserName>
+     <FromUserName><![CDATA[%(fromUser)s]]></FromUserName>
+     <CreateTime>%(tStamp)s</CreateTime>
+     <MsgType><![CDATA[text]]></MsgType>
+     <Content><![CDATA[%(content)s]]></Content>
+     </xml>'''
 
     #   Storage domain name 约定
     D2X = 'crx4lb'

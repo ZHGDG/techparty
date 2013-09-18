@@ -15,6 +15,7 @@ import sae
 import sae.storage
 import sae.kvdb
 import pylibmc
+import xml.etree.ElementTree as etree
 
 from bottle import Bottle
 from bottle import __version__ as bottleVer
@@ -22,6 +23,8 @@ from bottle import __version__ as bottleVer
 from bottle import debug, run
 from bottle import redirect, abort
 from bottle import request, response, local
+from bottle import get, post, put, delete
+from bottle import BaseRequest
 from bottle import static_file
 #from bottle import template
 #from bottle import jinja2_view as view
@@ -120,11 +123,6 @@ def addc(uuid):
     #return "callback($scope,['%s','%s'])"%('GET',AJS)
 
 
-from operator import itemgetter
-def pep265sd(d,doreverse=False):
-    '''proposed in PEP 265, using  the itemgetter
-    '''
-    return sorted(d.iteritems(), key=itemgetter(1), reverse=doreverse)
 @APP.route('/dc/dlrank/<order>', method='GET')
 def dlrank(order):
     '''return all UUID by dlrank from memcache!
@@ -168,6 +166,45 @@ def cron4dlrank():
     #print "DESCdlorder cronED::", mc.get("DESCdlorder")
 
 
+#@APP.get('/echo/?<qstr>')
+#@APP.get('/echo/<qstr>')
+@APP.get('/echo')
+@APP.get('/echo/')
+def echo_wechat():
+    print request.query.keys()
+    print request.query.echostr
+    #print request.query_string
+    #print dir(BaseRequest.query_string)
+    return request.query.echostr
+@APP.post('/echo')
+@APP.post('/echo/')
+def wechat_post():
+    #print request.forms.keys()[0]
+    xml = etree.XML(request.forms.keys()[0])
+    toUser = xml.findtext("ToUserName")
+    fromUser = xml.findtext("FromUserName")
+    #print xml.findtext("CreateTime")
+    #__MsgId = xml.findtext("MsgId")
+    __MsgType = xml.findtext("MsgType")
+    __Content = xml.findtext("Content")
+    if "text" == __MsgType:
+        if "h" == __Content:
+            tStamp = TSTAMP()
+            content = "是也乎"
+            print CFG.TPL_TEXT% locals()
+            return CFG.TPL_TEXT% locals()
+    return None 
+
+
+
+
+
+
+from operator import itemgetter
+def pep265sd(d,doreverse=False):
+    '''proposed in PEP 265, using  the itemgetter
+    '''
+    return sorted(d.iteritems(), key=itemgetter(1), reverse=doreverse)
 #各种 命令行工具的响应支持!
 
 @APP.route('/cli/<actype>/<usract>/<APPKEY>/<tstamp>/<ssing>')
