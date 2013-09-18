@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title4act %}
+CRX's pic
+    {% endblock title4act %}
+{% block headJS %} 
+    {% include 'validatious.html' %} 
+{% endblock%}
+
+{% block mainbody %}
+<fieldset>
+<legend>扩展附图, 编辑</legend>
+<form action="/up/{{ gid }}/crx/{{ uuid }}/pic/{{ sid }}/see" method="post"
+    class="validate">
+<img src="{{ sspath4pic }}/{{ sid }}"/>
+    <br/>
+
+<span class="label">描述:</span>
+<input type="text" name="note" id="note" value="{{ pic.note }} "
+    class="required min-length_4" title="扩展 描述必填!且长过4字!"/>
+
+<label>
+</label>
+    <br/>
+
+<span id="reply_submit" class="btnw">
+    <button type="submit" name="submit" >就酱</button>
+</span>
+
+<span id="back_submit" class="btnw">
+    <a href="/up/{{ gid }}/crx/{{ uuid }}" >返回</a>
+</span>
+    <br/>
+<i>
+</i>
+
+
+</form>
+</fieldset>
+
+{% endblock mainbody %}
+
+
+
+{% block footernav %}
+<b>[导航]</b><a href="/up/{{ gid }}">首页</a>
+    {% endblock footernav %}
+

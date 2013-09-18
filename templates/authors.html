@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title4act %}
+GROUPs
+    {% endblock title4act %}
+
+{% block headJS %}
+{% endblock%}
+
+{% block mainbody %}
+    {% if usrs is none %}
+    {% else %}
+            <h1>当前权限帐号s::</h1>
+                <ul>
+                {% for u in usrs %}
+                <li id="iterm" class="{{ loop.cycle('odd', 'even') }}">
+                {{ u.name }}
+                    <sub>
+                    level:{{ u.level }};
+                    isdel:{{ u.isdel }};
+                    </sub>
+                    </li>
+                {% endfor %}
+                </ul>
+<br/><br/><br/>
+<pre>
+当前只能通过 CLI 工具,远程进行维护
+$ python lb4crx2cli.py 
+Usage:
+    $ lb4crx2cli.py usr[add|del|mod|chk] 用户名:口令:级别 http://XX.XX.XX
+</pre>
+    {% endif %}
+
+{% endblock mainbody %}
+
+{% block footernav %}
+    {% include 'manav.html' %} 
+    {% endblock footernav %}
+

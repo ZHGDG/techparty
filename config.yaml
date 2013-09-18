@@ -1,11 +1,4 @@
-name: techparty
+---
+name: weknow
 version: 2
-libraries:
-- name: "django"
-  version: "1.4"
-- name: "wechat"
-  version: "0.2"
-- name: "django-social-auth"
-  version: "0.7.10"
-- name: "jsonfield"
-  version: "0.9.13"
+

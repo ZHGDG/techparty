@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block title4act %}
+TAGs
+    {% endblock title4act %}
+
+{% block headJS %}
+    {% include 'validatious.html' %} 
+{% endblock%}
+
+{% block mainbody %}
+    {% if tags is none %}
+            <b>还未有任何标签!</b>
+            <fieldset>
+            <legend>初始化个;-}</legend>
+            <form action="/mana/tag/ini" method="post"  
+                id="initagform" name="initagform" class="validate">
+            名称:<input type="text" name="name" id="name" 
+                class="required min-length_4" title="标签名称必填!且长过4字!"/>
+              <br/>
+            描述:<input type="text" name="desc" id="desc" value="......"/>
+              <br/>
+            <span id="reply_submit" class="btnw right">
+                <button type="submit" name="submit" class="action" >就酱</button>
+            </span>
+            </form>
+            </fieldset>
+    {% else %}
+            <h2>商店标签s::</h2>
+                <ul>
+                {% for t in tags %}
+                <li id="iterm" class="{{ loop.cycle('odd', 'even') }}"><a href="/mana/tag/{{ t.id }}" title="{{ t.desc }}">{{ t.name }}</a>
+                    <sub>
+                    <span class="btnwa">
+                        <a href="/mana/tag/{{ t.id }}/ed" >改</a>
+                    </span>
+                    <span class="btnwa">
+                        <a href="/mana/tag/{{ t.id }}/del" >删</a>
+                    </span>
+                    </sub>
+                    </li>
+                {% endfor %}
+                </ul>
+                <hr/>
+            <fieldset>
+            <legend>追加;-}</legend>
+            <form action="/mana/tag/ini" method="post"  
+                id="initagform" name="initagform" class="validate">
+            名称:<input type="text" name="name" id="name" 
+                class="required min-length_4" title="标签名称必填!且长过4字!"/>
+              <br/>
+            描述:<input type="text" name="desc" id="desc" value="......"/>
+              <br/>
+            <span id="reply_submit" class="btnw right">
+                <button type="submit" name="submit" class="action" >就酱</button>
+            </span>
+            </form>
+            </fieldset>
+    {% endif %}
+        
+{% endblock mainbody %}
+
+
+
+{% block footernav %}
+    {% include 'manav.html' %} 
+    {% endblock footernav %}
+

@@ -1,0 +1,219 @@
+{% extends "base.html" %}
+{% block title4act %}
+CRXinfo.
+    {% endblock title4act %}
+{% block headJS %} 
+{% endblock%}
+
+{% block mainbody %}
+<fieldset>
+<legend>扩展详情::</legend>
+
+
+<span class="btnw right">
+    <a href="/mana/crx/{{ crx.uuid }}/ed" >编辑</a>
+</span>
+<!--
+        - 对扩展的所有状态对应的组合映射到一批列表中
+    status\KV|crx try out arch api4cx 
+        待发  0   1   0   0    0       
+        架上  1   0   0   0    1       
+        下架  0   0   1   0    0       
+        归档  0   0   0   1    0       
+{{ incrx, intry, inout, inarch }}
+-->
+{% if inarch %}
+    <span class="btnw right">
+        <a href="/mana/crx/{{ crx.uuid }}/try/recover" >回收</a>
+    </span>
+{% else %}
+    {% if incrx %}
+        <span id="out_submit" class="btnw right">
+            <a href="/mana/crx/{{ crx.uuid }}/try/out" >下架</a>
+        </span>
+    {% elif intry %}
+        <span id="bak_submit" class="btnw right">
+            <a href="/mana/crx/{{ crx.uuid }}/try/bak" >退回</a>
+        </span>
+        <span id="pub_submit" class="btnw right">
+            <a href="/mana/crx/{{ crx.uuid }}/try/pub" >上架</a>
+        </span>
+    {% elif inout %}
+        <span id="pub_submit" class="btnw right">
+            <a href="/mana/crx/{{ crx.uuid }}/try/pub" >上架</a>
+        </span>
+    {% endif %}
+    
+    <span id="bak_submit" class="btnw right">
+        <a href="/mana/crx/{{ crx.uuid }}/try/arch" >归档</a>
+    </span>
+{% endif %}
+    
+    
+    
+<span id="back_submit" class="btnw right">
+    <a href="/mana/crxs" >返回总表</a>
+</span>
+
+    <br/>
+<i>
+</i>
+
+
+<br/><hr/>
+<span class="label">名称:</span>{{ crx.name }}
+    <br/>
+<span class="label">描述:</span><pre class="desc">{{ crx.desc }}
+</pre>
+    <br/>
+<span class="label">版本:</span>{{ crx.version }}
+    <br/>
+
+<span class="label">推荐?</span>
+     {% if crx.isreco == 1 %}
+    <b class="alert">是;-)</b>
+     {% else %}
+    <i>否;-|</i>
+     {% endif %}
+    <br/>
+    
+<span class="label">详情:</span><pre class="desc">
+{{ crx.detail }}
+</pre>
+    <br/>
+<span class="label">下载量:</span>{{ crx.dlrank }}
+    <br/>
+
+<span class="label">下载crx:</span>
+<a href="{{ sspath4crx }}/{{ crx.sid }}">
+{{ crx.sid }}
+</a>
+    <br/>
+
+<span class="label">标签:</span>
+{% if tags is none %}
+    <b class="alert">未绑定!</b>
+    <br/>
+{% else %}
+    {% for t in tags %}
+    <a href="/mana/tag/{{ t.id }}">{{ t.name }}</a> ; 
+    {% endfor %}
+    <br/>
+{% endif %}
+
+<span class="label">团队:</span>
+{% if grp is none %}
+    <b class="alert">未指定!</b>
+    <br/>
+{% else %}
+    <a href="/mana/grp/{{ grp.id }}">{{ grp.name }}</a> ;
+    <br/>
+{% endif %}
+
+
+<span class="label">G.下载:</span>{{ crx.gsdl }}
+    <br/>
+<span class="label">G.活跃用户数:</span>{{ crx.gsusr }}
+    <br/>
+<span class="label">G.Rank:</span>{{ crx.gsrank }}
+    <br/>
+    
+
+
+
+
+<br/><hr/>
+<span class="btnw right">
+    <a href="/mana/crx/{{ crx.uuid }}/ed" >编辑</a>
+</span>
+<!--
+        - 对扩展的所有状态对应的组合映射到一批列表中
+    status\KV|crx try out arch api4cx 
+        待发  0   1   0   0    0       
+        架上  1   0   0   0    1       
+        下架  0   0   1   0    0       
+        归档  0   0   0   1    0       
+{{ incrx, intry, inout, inarch }}
+-->
+{% if inarch %}
+    <span class="btnw right">
+        <a href="/mana/crx/{{ crx.uuid }}/try/recover" >回收</a>
+    </span>
+{% else %}
+    {% if incrx %}
+        <span id="out_submit" class="btnw right">
+            <a href="/mana/crx/{{ crx.uuid }}/try/out" >下架</a>
+        </span>
+    {% elif intry %}
+        <span id="bak_submit" class="btnw right">
+            <a href="/mana/crx/{{ crx.uuid }}/try/bak" >退回</a>
+        </span>
+        <span id="pub_submit" class="btnw right">
+            <a href="/mana/crx/{{ crx.uuid }}/try/pub" >上架</a>
+        </span>
+    {% elif inout %}
+        <span id="pub_submit" class="btnw right">
+            <a href="/mana/crx/{{ crx.uuid }}/try/pub" >上架</a>
+        </span>
+    {% endif %}
+    
+    <span id="bak_submit" class="btnw right">
+        <a href="/mana/crx/{{ crx.uuid }}/try/arch" >归档</a>
+    </span>
+{% endif %}
+    
+    
+    
+<span id="back_submit" class="btnw right">
+    <a href="/mana/crxs" >返回总表</a>
+</span>
+
+    <br/>
+<i>
+</i>
+
+
+<br/>
+<fieldset>
+    <legend>配图::</legend>
+
+    <ul>
+    {% for pid in crx.pic %}
+    <li id="iterm" class="{{ loop.cycle('odd', 'even') }}">
+    <img src="{{ sspath4pic }}/{{ pid }}"/>
+
+    <sub>
+    {% if pid == crx.icon %}
+    <b class="alert">icon</b>
+    {% endif %}
+    
+        <span class="btnwa">
+            <a href="/mana/crx/{{ crx.uuid }}/pic/{{ pid }}/ed">调整</a>
+        </span>    
+    
+        <span class="btnwa">
+            <a href="/mana/crx/{{ crx.uuid }}/pic/{{ pid }}/del">删除</a>
+        </span>
+    </sub>
+    </li>
+{% endfor %}
+</ul>
+
+</fieldset>
+
+
+
+
+
+    <hr/>
+<span class="label">前次退回信息:</span><pre class="desc">
+{{ crx.reply }}
+</pre>
+</fieldset>
+
+{% endblock mainbody %}
+
+{% block footernav %}
+    {% include 'manav.html' %} 
+    {% endblock footernav %}
+

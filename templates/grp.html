@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% block title4act %}
+GROUPinfo.
+    {% endblock title4act %}
+{% block headJS %} 
+{% endblock%}
+
+{% block mainbody %}
+<fieldset>
+<legend>原创团队, 信息</legend>
+
+
+<span class="label">名称:</span>{{ grp['name'] }}
+    <br/>
+<span class="label">描述:</span><pre class="desc">{{ grp.desc }}
+</pre>
+    <br/>
+<span class="label">leader:</span>{{ grp.lead }}
+    <br/>
+<span class="label">weibo:</span>{{ grp.weibo }}
+    <br/>
+<span class="label">e-mail:</span>{{ grp.mail }}
+    <br/>
+{% if crxs is not none %}
+<span class="label">已发布.crx:</span>
+{% for crx in crxs %}
+    <a href="/mana/crx/{{ crx.uuid }}">{{ crx.name }}</a> ; 
+{% endfor %}
+    <br/>
+{% endif %}
+
+{% if trys is not none %}
+<span class="label">待发布.crx:</span>
+{% for crx in trys %}
+    <a href="/mana/crx/{{ crx.uuid }}">{{ crx.name }}</a> ; 
+{% endfor %}
+    <br/>
+{% endif %}
+
+{% if outs is not none %}
+<span class="label">被下架.crx:</span>
+{% for crx in outs %}
+    <a href="/mana/crx/{{ crx.uuid }}">{{ crx.name }}</a> ; 
+{% endfor %}
+    <br/>
+{% endif %}
+<br/><hr/>
+
+<span id="reply_submit" class="btnw">
+    <a href="/mana/grp/{{ grp.id }}/ed" >编辑</a>
+</span>
+<span id="del_submit" class="btnw">
+    <a href="/mana/grp/{{ grp.id }}/del" >删除</a>
+</span>
+<span id="back_submit" class="btnw">
+    <a href="/mana/grps" >返回</a>
+</span>
+
+    <br/>
+<i>
+id: {{ grp['id'] }} 
+;order: {{ grp['order'] }} 
+</i>
+
+</fieldset>
+
+{% endblock mainbody %}
+
+
+
+{% block footernav %}
+    {% include 'manav.html' %} 
+    {% endblock footernav %}
+

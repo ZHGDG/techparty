@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block title4act %}
+GROUPs
+    {% endblock title4act %}
+
+{% block headJS %}
+    {% include 'validatious.html' %} 
+{% endblock%}
+
+{% block mainbody %}
+    {% if grps is none %}
+            <b>还未有任何原创团队!</b>
+            <fieldset>
+            <legend>初始化个;-}</legend>
+            <form action="/mana/grp/ini" method="post"  
+                id="inigrpform" name="inigrpform" class="validate">
+            名称:<input type="text" name="name" id="name" 
+                class="required min-length_4" title="团队名称必填!且长过4字!"/>
+              <br/>
+            描述:<textarea name="desc" id="desc" 
+                class="required min-length_7" title="团队描述 必填!且长过7字!"
+                rows="3"/>......</textarea>
+
+              <br/>
+            <span id="reply_submit" class="btnw right">
+                <button type="submit" name="submit" class="action" >就酱</button>
+            </span>
+            </form>
+            </fieldset>
+    {% else %}
+            <h2>原创团队s::</h2>
+                <ul>
+                {% for g in grps %}
+                <li id="iterm" class="{{ loop.cycle('odd', 'even') }}"><a href="/mana/grp/{{ g.id }}" title="{{ g.desc }}">{{ g.name }}</a>
+                    <sub>
+                    <span class="btnwa">
+                        <a href="/mana/grp/{{ g.id }}/ed" >改</a>
+                    </span>
+                    <span class="btnwa">
+                        <a href="/mana/grp/{{ g.id }}/del" >删</a>
+                    </span>
+                    </sub>
+                    </li>
+                {% endfor %}
+                </ul>
+                <hr/>
+            <fieldset>
+            <legend>追加;-}</legend>
+            <form action="/mana/grp/ini" method="post"  
+                id="inigrpform" name="inigrpform" class="validate">
+            名称:<input type="text" name="name" id="name" 
+                class="required min-length_4" title="团队名称必填!且长过4字!"/>
+              <br/>
+            描述:<textarea name="desc" id="desc" 
+                class="required min-length_7" title="团队描述 必填!且长过7字!"
+                rows="3"/>......</textarea>
+
+              <br/>
+            <span id="reply_submit" class="btnw right">
+                <button type="submit" name="submit" class="action" >就酱</button>
+            </span>
+            </form>
+            </fieldset>
+    {% endif %}
+        
+{% endblock mainbody %}
+
+
+
+{% block footernav %}
+    {% include 'manav.html' %} 
+    {% endblock footernav %}
+

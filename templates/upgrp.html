@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+{% block title4act %}
+GROUPinfo.
+    {% endblock title4act %}
+{% block headJS %} 
+    {% include 'validatious.html' %} 
+{% endblock%}
+
+{% block mainbody %}
+<fieldset>
+<legend>原创团队, 信息</legend>
+    <label>
+    <span class="label">名称:</span>{{ grp['name'] }}
+        <br/>
+    <span class="label">描述:</span>{{ grp['desc'] }}
+        <br/>
+
+
+    <span id="reply_submit" class="btnw">
+        <a href="/up/{{ grp.id }}/ed" >编辑</a>
+    </span>
+    </label>
+</fieldset>
+<fieldset>
+<legend>原创扩展, 信息</legend>
+    <label>
+    {% if crxs is not none %}
+    <span class="label">已发布.crx:</span>
+    {% for crx in crxs %}
+        <a href="/up/{{ grp.id }}/crx/{{ crx.uuid }}">{{ crx.name }}</a> ; 
+    {% endfor %}
+        <br/>
+    {% endif %}
+
+    {% if trys is not none %}
+    <span class="label">待发布.crx:</span>
+    {% for crx in trys %}
+        <a href="/up/{{ grp.id }}/crx/{{ crx.uuid }}">{{ crx.name }}</a> ; 
+    {% endfor %}
+        <br/>
+    {% endif %}
+
+    {% if baks is not none %}
+    <span class="label">被退回.crx:</span>
+    {% for crx in baks %}
+        <a href="/up/{{ grp.id }}/crx/{{ crx.uuid }}">{{ crx.name }}</a> ; 
+    {% endfor %}
+        <br/>
+    {% endif %}
+
+    {% if outs is not none %}
+    <span class="label">被下架.crx:</span>
+    {% for crx in outs %}
+        <a href="/up/{{ grp.id }}/crx/{{ crx.uuid }}">{{ crx.name }}</a> ; 
+    {% endfor %}
+        <br/>
+    {% endif %}
+    </label>
+    <br/>
+<fieldset>
+<legend>增加/升级, 扩展</legend>
+    <label>
+    <form action="/up/{{ gid }}/crx/add" method="post"  
+        enctype="multipart/form-data"
+        id="inicrxform" name="inicrxform" class="validate">
+
+    .cxr <input type="file" name="crxfile" id="crxfile" 
+        class="required"  title="扩展文件必选!"/>
+      <br/>
+      <br/>
+
+    <span id="reply_submit" class="btnw right">
+        <button type="submit" name="submit" class="action" >就酱</button>
+    </span>
+
+    </form>
+
+    <!--
+    <form action="/up/{{ gid }}/crx/add" method="post"  
+
+    -->
+
+    </label>
+    </fieldset>
+
+
+<i>
+id: {{ grp['id'] }} 
+;order: {{ grp['order'] }} 
+</i>
+</fieldset>
+    <br/>
+
+{% endblock mainbody %}
+
+
+
+{% block footernav %}
+<b>[导航]</b><a href="/up/{{ gid }}">首页</a>
+    {% endblock footernav %}
+

@@ -1,10 +1,10 @@
+.ropeproject
+media
+site-packages
 *.pyc
 *.db
 *.log
 .svn
-media
 .DS_Store
 *.wsgic
 xsettings.py
-.ropeproject
-site-packages

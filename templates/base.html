@@ -1,0 +1,431 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" lang="zh-CN">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
+
+{% set sspath4pic = "http://lb4crx-pic2lb.stor.sinaapp.com" %}
+{% set sspath4crx = "http://lb4crx-crx4lb.stor.sinaapp.com" %}
+
+  <title>
+{% block title4act %}
+{% endblock%}- lb4crx2pub ~猎豹扩展商店后台 v12.10.16.2</title>
+
+{% block headJS %}
+{% endblock%}
+
+    <style type="text/css">
+body{overflow-x:hidden}
+body,img,a,div,span,h1,h2,h3,h4,h5,h6,hr,p,blockquote,dl,dt,dd,ul,ol,li,pre,form,fieldset,legend,button,textarea,th,td,tr,input{
+    margin:0;padding:0
+}
+body { 
+    background: #fefefe; color: #343434; 
+    margin: 1em; padding: 0; font-size:105%;
+}
+h1,h2,h3,h4,h5,h6{
+    margin:20px 0 10px 0;
+    border-radius:5px;
+    padding-left: 15px;
+}
+h1{
+    background: #EBFAFF;
+}
+h2{
+    background: #D1F4FF;
+}
+h3{
+    background: #B8EEFF;
+}
+h4{
+    background: #9EE8FF;
+}
+
+input,pre,body,button,select,textarea{
+    font:14px/28px Segoe UI,Tahoma,Verdana,Arial,Helvetica,sans-serif
+}
+
+
+img { border: none }
+hr {
+  width : 100%;
+  height : 2px;
+  background : #efefef;
+  border : 1px solid #ddd;
+  clear : both;
+}
+div#poweredby{
+  float : right;
+}
+
+a {color:#333;}
+a:hover {color:blue;}
+
+del {font-size:95%; color:#555;}
+
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ .btnw */
+span.right{
+    float:right;
+}
+.btnw{
+    border:1px solid #ccc;
+    height:42px;
+    display:inline-block;
+}
+.btn::-moz-focus-inner{border:0}
+
+
+b.alert{
+    font-size: 150%;
+    color: #930;
+}
+
+
+pre {
+    font-weight：lighter;
+    font-size: 80%;
+    border: 4px dotted #fefefe;
+    background : #ededed;
+    padding: 5px;
+    border-radius: 0px 15px 0px 15px;
+    box-shadow: 3px 3px 4px #ddd;
+}
+
+pre.desc {
+    font-size: 14px;
+    border: 2px dotted #ddd;
+    background : #fefefe;
+    padding: 10px;
+    border-radius: 15px 0px 15px 0px;
+    width:70%;
+    display:inline-block;
+}
+ul li {font-size:120%;
+    line-height: 36px;
+    border-top:1px dotted #aaa;
+    width:98%;
+    list-style-type:none;
+    padding: 5px 0px 0px 10px;
+}
+ul li.textarea3 {
+    height: 108px;
+    border: 0px dotted #930;
+}
+ul li.textarea1 {
+    height: 50px;
+    border: 0px dotted #930;
+}
+.even{
+    background: #FFF4DB;
+}
+ul.asform li{
+    display:inline-block; 
+    vertical-align:top; 
+    border-top:0px dotted #aaa;
+}
+.leftlabel{
+    float: left;
+}
+.rightinput{
+    float: right;
+}
+span.label{
+    display:inline-block; 
+    border: 1px solid #777;
+    width:7em;
+    padding: 5px;
+    text-align:right;
+}
+
+ol li {font-size:120%;
+    line-height: 24px;
+    border-bottom:1px dotted #aaa;
+    width:90%;
+    list-style-type:none;
+    margin-left: 20px;
+}
+
+sub,sup {font-size:10px; }
+fieldset sub{
+    color:#999;
+}
+
+
+fieldset{
+    margin-top: 10px;
+    padding: 20px;
+    border-radius: 0px 15px 0px 15px;
+    box-shadow: 3px 3px 4px #ddd;
+}
+fieldset i{
+    font-size: 70%;
+    color: #787;
+    margin-top: 10px;
+    line-height:36px;
+}
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ by 42qu.com 
+input,button,select,textarea{font-size:16px;line-height:28px}
+
+*/
+input,button,select,textarea{
+    font-size:14px;line-height:28px
+}
+div{cursor:default}
+
+input{  
+    font-size:22px;
+    line-height:36px;
+    height:42px;
+    padding:4px 3px;
+    border:1px solid #ddd;
+    width:27em;
+}
+input.checkbox{
+    font-size:22px;
+    line-height:24px;
+    height:24px;
+    width:auto;
+
+}  
+
+#optradios input{
+    font-size:18px;line-height:22px;height:26px;
+    padding:0px;
+    border:1px solid #ddd;
+    width:1em;
+}
+    
+select{
+    font-size:16px;line-height:18px;
+    padding:8px;
+    text-align:center;border:1px solid #ccc;
+    margin-right:8px;
+    width:120px;
+}
+
+textarea{
+    font-size:22px;
+    overflow:auto;resize:none;
+    border:1px solid #ccc;
+    padding:4px 3px;
+    margin:0;
+    width:27em;
+}
+.btnw button {
+    font-size:16px;
+    text-align:center;
+    overflow:visible;
+    height:42px;
+    padding:0 28px;
+    line-height:41px;
+    padding-bottom:2px;
+    vertical-align:text-bottom;
+    
+    z-index:1;
+    overflow:visible;
+    display:inline-block;
+    border:0;
+    margin:0;
+    text-align:center;
+    white-space:nowrap;
+    cursor:pointer;
+    color:#555;
+    background-color:#fff;
+    background-image:-webkit-gradient(linear,0 0,0 100%,from(#fff),to(#f3f3f3));
+    background-image:-moz-linear-gradient(#fff,#f3f3f3);
+    background-image:-o-linear-gradient(#fff,#f3f3f3);
+    background-image:linear-gradient(#fff,#f3f3f3);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorStr='#ffffff',EndColorStr='#f3f3f3');
+    zoom:1;
+}
+
+.btnw button:hover{
+    border-color: #3072b3;
+    border-bottom-color: #2a65a0;
+    text-decoration: none;
+    text-shadow: -1px -1px 0 rgba(0,0,0,0.3);
+    color: #fff;
+    background-color: #3c8dde;
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#599bdc), to(#3072b3));
+    background-image: -moz-linear-gradient(#599bdc, #3072b3);
+    background-image: -o-linear-gradient(#599bdc, #3072b3);
+    background-image: linear-gradient(#599bdc, #3072b3);
+    }
+
+.btnw button:active{
+    color:#666;
+    background-color:#f3f3f3;
+    background-image:-webkit-gradient(linear,0 0,0 100%,from(#f3f3f3),to(#fff));
+    background-image:-moz-linear-gradient(#f3f3f3,#fff);
+    background-image:-o-linear-gradient(#f3f3f3,#fff);background-image:linear-gradient(#f3f3f3,#fff);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorStr='#f3f3f3',EndColorStr='#ffffff')
+}
+
+.btnw a {
+    text-decoration: none;
+    font-size:16px;
+    text-align:center;
+    overflow:visible;
+    padding:0 28px;
+    height:40px;
+    line-height:41px;
+    padding-bottom:2px;
+    vertical-align:text-bottom;
+    
+    z-index:1;
+    overflow:visible;
+    display:inline-block;
+    border:0;
+    margin:0;
+    text-align:center;
+    white-space:nowrap;
+    cursor:pointer;
+    color:#555;
+    background-color:#fff;
+    background-image:-webkit-gradient(linear,0 0,0 100%,from(#fff),to(#f3f3f3));
+    background-image:-moz-linear-gradient(#fff,#f3f3f3);
+    background-image:-o-linear-gradient(#fff,#f3f3f3);
+    background-image:linear-gradient(#fff,#f3f3f3);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorStr='#ffffff',EndColorStr='#f3f3f3');
+    zoom:1;
+}
+
+.btnw a:hover{
+    border-color: #3072b3;
+    border-bottom-color: #2a65a0;
+    text-decoration: none;
+    text-shadow: -1px -1px 0 rgba(0,0,0,0.3);
+    color: #fff;
+    background-color: #3c8dde;
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#599bdc), to(#3072b3));
+    background-image: -moz-linear-gradient(#599bdc, #3072b3);
+    background-image: -o-linear-gradient(#599bdc, #3072b3);
+    background-image: linear-gradient(#599bdc, #3072b3);
+    }
+
+.btnw a:active{
+    color:#666;
+    background-color:#f3f3f3;
+    background-image:-webkit-gradient(linear,0 0,0 100%,from(#f3f3f3),to(#fff));
+    background-image:-moz-linear-gradient(#f3f3f3,#fff);
+    background-image:-o-linear-gradient(#f3f3f3,#fff);background-image:linear-gradient(#f3f3f3,#fff);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorStr='#f3f3f3',EndColorStr='#ffffff')
+}
+#iterm sub{
+    float: right; padding: 0; margin: 5px 0 0 0; 
+    border-bottom: 1px dotted #ccc;
+    height:22px; line-height:22px; 
+    overflow:hidden;
+}
+
+#iterm .btnwa{
+    display:inline-block;
+    border:1px solid #ccc;
+    height:22px;
+}
+#iterm .btnwa a {
+    text-decoration: none;
+    font-size:12px;
+    text-align:center;
+    overflow:visible;
+    padding:0 18px;
+    height:22px;
+    line-height:22px;
+    vertical-align:text-bottom;
+
+    z-index:1;
+    display:inline-block;
+    border:0;
+    text-align:center;
+    white-space:nowrap;
+    cursor:pointer;
+    color:#555;
+    background-color:#fff;
+    background-image:-webkit-gradient(linear,0 0,0 100%,from(#fff),to(#f3f3f3));
+    background-image:-moz-linear-gradient(#fff,#f3f3f3);
+    background-image:-o-linear-gradient(#fff,#f3f3f3);
+    background-image:linear-gradient(#fff,#f3f3f3);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorStr='#ffffff',EndColorStr='#f3f3f3');
+    zoom:1;
+}
+
+#iterm .btnwa a:hover{
+    border-color: #3072b3;
+    border-bottom-color: #2a65a0;
+    text-decoration: none;
+    text-shadow: -1px -1px 0 rgba(0,0,0,0.3);
+    color: #fff;
+    background-color: #3c8dde;
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#599bdc), to(#3072b3));
+    background-image: -moz-linear-gradient(#599bdc, #3072b3);
+    background-image: -o-linear-gradient(#599bdc, #3072b3);
+    background-image: linear-gradient(#599bdc, #3072b3);
+    }
+
+#iterm .btnwa a:active{
+    color:#666;
+    background-color:#f3f3f3;
+    background-image:-webkit-gradient(linear,0 0,0 100%,from(#f3f3f3),to(#fff));
+    background-image:-moz-linear-gradient(#f3f3f3,#fff);
+    background-image:-o-linear-gradient(#f3f3f3,#fff);background-image:linear-gradient(#f3f3f3,#fff);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorStr='#f3f3f3',EndColorStr='#ffffff')
+}
+
+
+
+@-moz-document domain(){
+    .btnw button{padding:0 27px 0 27px}
+    }
+
+
+
+
+
+
+
+
+
+/**
+ * TERMS OF USE - Validatious 2.0
+ * Open source under the BSD License.
+ * Copyright 2008 Christian Johansen.
+ * All rights reserved.
+ */
+.error{color:#900;background:#f8f8f8;}
+.error .messages,.error .messages li{list-style:none;}
+.error .messages{font-size:1em;padding:.6667em 0 0 1em;}
+    </style>
+</head>
+
+{% block body %}
+<body>
+{% endblock%}
+
+<div id="mainbody">
+    {% block mainbody %}
+    {% endblock%}
+<br/><br/><br/><br/><br/>
+    <hr/>
+    </div>
+<div id="footbar">
+    {% block footernav %}
+    {% endblock%}
+    |<a href="http://crxdoczh.readthedocs.org/en/latest/5-more/lb4crx/index.html">帮助</a>
+
+    <div id="poweredby">
+    <b>powered by:</b>
+        <a href="http://www.python.org/">Python</a>
+        ,<a href="http://bottle.paws.de/">Bottle</a>
+        ,<a href="http://webpages.charter.net/edreamleo/front.html">Leo</a>
+        ,<a href="http://sae.sina.com.cn">SAE</a>
+        ,<a href="https://www.upyun.com/">UpYun</a>
+        ,<a href="http://www.catb.org/hacker-emblem/">Hacker</a>
+     </a>
+    </div>
+</div>
+
+{% block footerJS %}
+{% endblock%}
+</body>
+</html>

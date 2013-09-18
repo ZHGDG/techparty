@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block title4act %}
+CRX try PUB/BAK
+    {% endblock title4act %}
+
+{% block headJS %}
+    {% include 'validatious.html' %} 
+{% endblock%}
+
+{% block mainbody %}
+<h1>确认发布/退回::</h1>
+<fieldset>
+<legend>处置扩展::</legend>
+
+{% if jump == "pub" %}
+<form action="/mana/crx/{{ crx.uuid }}/pub" method="post">
+
+{% elif jump == "bak" %}
+<form action="/mana/crx/{{ crx.uuid }}/bak" method="post">
+
+{% elif jump == "out" %}
+<form action="/mana/crx/{{ crx.uuid }}/out" method="post">
+
+{% elif jump == "arch" %}
+<form action="/mana/crx/{{ crx.uuid }}/arch" method="post">
+
+{% elif jump == "recover" %}
+<form action="/mana/crx/{{ crx.uuid }}/recover" method="post">
+
+{% endif %}
+
+<span class="label">名称:</span>
+{{ crx['name'] }}
+    <br/>
+
+<span class="label">描述:</span><pre class="desc">
+{{ crx.desc }}
+</pre>
+    <br/>
+
+<span class="label">回执:</span>
+<textarea name="reply" id="reply" 
+    placeholder="填写为毛回退不给发布的理由,至少4字吼..."
+    class="required min-length_4" title="扩展处置回执 必填!且长过4字!"
+    rows="3" />{{ crx['reply'] }}</textarea>
+    <br/>
+
+    <br/>
+    <br/>
+<span id="kinds_submit" class="btnw">
+    <button type="submit" name="submit" >就酱</button>
+</span>
+
+<span id="back_submit" class="btnw">
+    <a href="/mana/crxs" >返回</a>
+</span>
+
+    <br/>
+<i>
+id: {{ crx['id'] }} 
+; uuid: {{ crx['uuid'] }} 
+</i>
+
+</form>
+</fieldset>
+
+{% endblock mainbody %}
+
+
+{% block footernav %}
+    {% include 'manav.html' %} 
+    {% endblock footernav %}
+

@@ -1,8 +1,8 @@
 import sae
-from techparty import wsgi
-import os
-import sys
+import config
+from bottle import debug, run
+from web import APP
 
-application = sae.create_wsgi_app(wsgi.application)
-root = os.path.dirname(__file__)
-sys.path.insert(0, os.path.join(root, 'site-packages'))
+application = sae.create_wsgi_app(APP)
+
+

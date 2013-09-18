@@ -1,0 +1,174 @@
+{% extends "base.html" %}
+{% block title4act %}
+CRXs
+    {% endblock title4act %}
+{% block headJS %}
+    {% include 'validatious.html' %} 
+{% endblock%}
+{% block mainbody %}
+    {% if obj4crx is none %}
+        <h1>还未发布任何扩展s::</h1>
+        <fieldset>
+        <legend>上传个,先;-)</legend>
+        <table>
+        <tr><td>
+        <form action="/mana/crx/ini" method="post"  
+            enctype="multipart/form-data"
+            id="inicrxform" name="inicrxform" class="validate">
+        .crx <input type="file" name="crxfile" id="crxfile" 
+            class="required"  title="扩展文件必选!"/>
+        <span id="reply_submit" class="btnw right">
+            <button type="submit" name="submit" class="action" >就酱</button>
+        </span>
+        </form>
+        </td><td>
+        <b><a href="/mana/crx/jsini">追加/升级 UserScript 进入>>></a></b>
+        <br/><br/><br/>
+        </td>
+        </tr>
+        </table>
+        </fieldset>
+            <hr/>
+    {% else %}
+        <h1>发布ed杰出扩展s::</h1>
+        <fieldset>
+        <legend>追加;-}</legend>
+        <table>
+        <tr><td>
+        <form action="/mana/crx/ini" method="post"  
+            enctype="multipart/form-data"
+            id="inicrxform" name="inicrxform" class="validate">
+        .crx <input type="file" name="crxfile" id="crxfile" 
+            class="required"  title="扩展文件必选!"/>
+        <span id="reply_submit" class="btnw right">
+            <button type="submit" name="submit" class="action" >就酱</button>
+        </span>
+        </form>
+        </td><td>
+        <b><a href="/mana/crx/jsini">追加/升级 UserScript 进入>>></a></b>
+        <br/><br/><br/>
+        </td>
+        </tr>
+        </table>
+        </fieldset>
+            <hr/>
+            <ul>
+            {% for x in obj4crx %}
+            <li id="iterm" class="{{ loop.cycle('odd', 'even') }}"><a href="/mana/crx/{{ x.uuid }}" title="{{ x.desc }}">{{ x.name }}</a>
+                <sub>
+                <sup>v{{ x.version }} [dl={{ x.dlrank }}] {{ x.uuid }}</sup>
+                
+                <span class="btnwa">
+                    <a href="/mana/crx/{{ x.uuid }}/try/out" >下架</a>
+                </span>
+                
+                <span class="btnwa">
+                    <a href="/mana/crx/{{ x.uuid }}/ed" >增补</a>
+                </span>
+                
+                </sub>
+                </li>
+            {% endfor %}
+            </ul>
+            <hr/>
+    {% endif %}
+    
+    {% if obj4try is not none %}
+        <h1>待发布扩展s::</h1>
+            <ul>
+            {% for x in obj4try %}
+            <li id="iterm" class="{{ loop.cycle('odd', 'even') }}"><a href="/mana/crx/{{ x.uuid }}" title="{{ x.desc }}">{{ x.name }}</a>
+                <sub>
+                <sup>v{{ x.version }} [dl={{ x.dlrank }}] {{ x.uuid }}</sup>
+                
+                <span id="pub_submit" class="btnwa">
+                    <a href="/mana/crx/{{ x.uuid }}/try/pub" >上架</a>
+                </span>
+                <span id="bak_submit" class="btnwa">
+                    <a href="/mana/crx/{{ x.uuid }}/try/bak" >退回</a>
+                </span>
+                
+                <span class="btnwa">
+                    <a href="/mana/crx/{{ x.uuid }}/ed" >增补</a>
+                </span>
+                
+                </sub>
+                </li>
+            {% endfor %}
+            </ul>
+    {% endif %}
+    
+    {% if obj4bak is not none %}
+        <h1>己退回扩展s::</h1>
+            <ul>
+            {% for x in obj4bak %}
+            <li id="iterm" class="{{ loop.cycle('odd', 'even') }}"><a href="/mana/crx/{{ x.uuid }}" title="{{ x.desc }}">{{ x.name }}</a>
+                <sub>
+                <sup>v{{ x.version }} [dl={{ x.dlrank }}] {{ x.uuid }}</sup>
+                
+                <span id="pub_submit" class="btnwa">
+                    <a href="/mana/crx/{{ x.uuid }}/try/pub" >上架</a>
+                </span>
+                
+                <span class="btnwa">
+                    <a href="/mana/crx/{{ x.uuid }}/ed" >增补</a>
+                </span>
+                
+                </sub>
+                </li>
+            {% endfor %}
+            </ul>
+    {% endif %}
+    
+    {% if obj4out is not none %}
+        <h3>已下架扩展s::</h3>
+            <ul>
+            {% for x in obj4out %}
+            <li id="iterm" class="{{ loop.cycle('odd', 'even') }}"><a href="/mana/crx/{{ x.uuid }}" title="{{ x.desc }}">{{ x.name }}</a>
+                <sub>
+                <sup>v{{ x.version }} [dl={{ x.dlrank }}] {{ x.uuid }}</sup>
+                
+                <span class="btnwa">
+                    <a href="/mana/crx/{{ x.uuid }}/try/pub" >上架</a>
+                </span>
+                <span class="btnwa">
+                    <a href="/mana/crx/{{ x.uuid }}/try/arch" >归档</a>
+                </span>
+                
+                <span class="btnwa">
+                    <a href="/mana/crx/{{ x.uuid }}/ed" >增补</a>
+                </span>
+                
+                
+                </sub>
+                </li>
+            {% endfor %}
+            </ul>
+    {% endif %}
+    
+    {% if obj4arch is not none %}
+        <h3>已归档扩展s::</h3>
+            <ul>
+            {% for x in obj4arch %}
+            <li id="iterm" class="{{ loop.cycle('odd', 'even') }}"><a href="/mana/crx/{{ x.uuid }}" title="{{ x.desc }}">{{ x.name }}</a>
+                <sub>
+                <sup>v{{ x.version }} [dl={{ x.dlrank }}] {{ x.uuid }}</sup>
+                
+                <span class="btnwa">
+                    <a href="/mana/crx/{{ x.uuid }}/try/recover" >回收</a>
+                </span>
+                
+                
+                </sub>
+                </li>
+            {% endfor %}
+            </ul>
+    {% endif %}
+    
+    
+            
+{% endblock mainbody %}
+
+{% block footernav %}
+    {% include 'manav.html' %} 
+    {% endblock footernav %}
