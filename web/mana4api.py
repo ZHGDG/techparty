@@ -181,8 +181,8 @@ def echo_wechat():
 def wechat_post():
     #print request.forms.keys()[0]
     xml = etree.XML(request.forms.keys()[0])
-    toUser = xml.findtext("ToUserName")
-    fromUser = xml.findtext("FromUserName")
+    fromUser = xml.findtext("ToUserName")
+    toUser = xml.findtext("FromUserName")
     #print xml.findtext("CreateTime")
     #__MsgId = xml.findtext("MsgId")
     __MsgType = xml.findtext("MsgType")
