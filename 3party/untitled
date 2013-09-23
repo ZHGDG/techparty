@@ -1,0 +1,22 @@
+fsm = Fysom({
+  'initial': 'green',
+  'events': [
+    {'name': 'startup', 'src': 'none',  'dst': 'green'},
+    {'name': 'panic',   'src': 'green', 'dst': 'red'},
+    {'name': 'calm',    'src': 'red',   'dst': 'green'},
+  ],
+  'callbacks': {
+    'onstartup':   onstartup,
+    'oncalm':   oncalm,
+    'ongreen':  ongreen,
+  }
+})
+
+fsm = Fysom({
+  'events': [
+    {'name': 'set', 'src': 'none',  'dst': 'reg'},
+    {'name': 'confirm',   'src': 'reg', 'dst': 'end'},
+    {'name': 'end',    'src': 'end',   'dst': 'none'},
+  ]
+})
+
