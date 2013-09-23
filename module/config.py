@@ -1,40 +1,18 @@
 # -*- coding: utf-8 -*-
-VERSION = "mana4lbcrx v12.10.15"
-
 import sys
 import os.path
-#from os.path import abspath, dirname, join
-#import logging
 app_root = os.path.dirname(__file__)
 sys.path.insert(0, os.path.join(app_root, "3party/"))
 sys.path.insert(0, os.path.join(app_root, "module/"))
 sys.path.insert(0, os.path.join(app_root, "web/"))
-
-'''
-sys.path.insert(0, abspath(dirname(__file__)))
-sys.path.insert(0, abspath(join(dirname(__file__), "3party/")))
-sys.path.insert(0, abspath(join(dirname(__file__), "module/")))
-sys.path.insert(0, abspath(join(dirname(__file__), "web/")))
-CUSTOM_TPL_PATH = os.path.abspath(
-    os.path.join(
-        os.path.dirname(__file__)
-        , "views/")
-    )
-'''
-
 #   指定的模板路径
 JINJA2TPL_PATH = os.path.abspath(
     os.path.join(
         os.path.dirname(__file__)
         , "templates/")
     )
-#   静态文件
-#STATIC_FILE_PATH = abspath(join(dirname(__file__), "static/"))
-#   网站根域名
-#ROOT_DOMAIN = 'test.com'
-#   session相关
-#SECRET_KEY = 'secret_key_for_test'
-#SESSION_MAX_AGE = 7200
+
+#import hashlib
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 全局值
 class Borg():
@@ -44,28 +22,80 @@ class Borg():
     __collective_mind = {}
     def __init__(self):
         self.__dict__ = self.__collective_mind
-        
+    
     #管理员邮箱列表
-    ADMIN_EMAIL_LIST = ['zoomquiet+lb@gmail.com']
-    APPKEY = "5t4r3e2w1q"
-    SECRET = "99fc9fdbc6761f7d898ad25762407373"
-    APITYPE = "api/cli"
-    PREUID = "usr:"
-    MSG4PW = {'add':"created new usr"
-        , 'del':"deleted new usr"
-        , 'mod':"modified usr info."
-        , 'chk':"listing all usr"
+    ADMIN_EMAIL_LIST = ['zoomquiet+gdg@gmail.com']
+
+    import sae.kvdb
+    KV = sae.kvdb.KVClient()
+
+    #KVDB 对象模板
+    KEY4_incr = 'gincr'
+    TOT = KV.get(KEY4_incr)    # 全局自增序号
+    if None == TOT:
+        KV.add(KEY4_incr, 0)
+    else:
+        print "TOT", KV.get(KEY4_incr)
+
+    objUSR={"his_id":""   # 更新戮
+        , "del":0
+        , "fsm":""      # 有限状态机 当前状态
+        , "acl":1       # ban:0 usr:1 staff:10 api:42 admin:100
+        , "desc":""     # 解释
+        , "pp":''       # Passport 
+        , "nm":""       # NickName "Zoom.Quiet"
+        , 'em':''       #'zhouqi@ijinshan.com',
+        , "lasttm": ''  #"2013-07-05 19:01:33",
         }
-    MSG4CRX = {'mod':"fixed .crx info."
-        , 'chk':"listing all .crx"
-        , 'info':"all info. of one .crx"
-        , 'err':"something is ERROR!"
+        
+
+
+
+    # 大妈们的联系方式
+    K4DM = {"his_id":""   # 更新戮
+        , "del":0
+        , "desc":""     # 解释
+        , "pp":''       # Passport "kswl662773786"
+        , "nm":""       # NickName "Zoom.Quiet"
+        , 'em':''       #'zhouqi@ijinshan.com',
         }
 
-    LEVEL4USR = {"mana":0
-        , "up":1
-        , "api":2
+
+
+    ESSAY_TAG = {'ot':"其它"
+        , 'gb':"G术图书 (推荐好书,书无中外)"
+        , 'dd':"D码点评 (麻辣评点,善意满盈)"
+        , 'gt':"G说公论 (时评杂文,新旧不拘)"
+        , 'hd':"海选文章 (得要相信,大妈法眼)"
         }
+        
+    # 文章索引
+    K4DM = {"his_id":""   # 更新戮
+        , "del":0
+        , "tag":"ot"
+        , 'tiele':''
+        , "desc":""     # 解释
+        , "picurl":''
+        , "url":""
+        }
+        
+
+
+
+    #   历史操作 键-名字典
+    K4H = {'C':"Create"
+        ,'D':"Delete"
+        ,'U':"Update"
+        }
+    #'uuid':""     # 历史版本扩展ID
+    objHis = {'hisobj':""
+        ,'actype':"..."     # 操作类型C|D|U~ Create|Delet|Update = 创建|删除|更新
+        ,'dump':''        # 数据集
+        }
+
+
+
+
     TPL_TEXT=''' <xml>
      <ToUserName><![CDATA[%(toUser)s]]></ToUserName>
      <FromUserName><![CDATA[%(fromUser)s]]></FromUserName>
@@ -74,105 +104,98 @@ class Borg():
      <Content><![CDATA[%(content)s]]></Content>
      </xml>'''
 
-    #   Storage domain name 约定
-    D2X = 'crx4lb'
-    D2P = 'pic2lb'
-    D4P = 'page4crx'
-    #KVDB 对象模板
-    #   系统索引键-名字典
-    K4D = {'incr':"TOT"
-        ,'his':"SYS:his"        # 指向被复制的过往各种对象
-        ,'crx':"SYS:crxs"       # 所有己发布的CRX
-        ,'try':"SYS:trys"       # 所有待审核的CRX 
-        ,'bak':"SYS:bak"        # 所有被退回的CRX 
-        ,'out':"SYS:outs"       # 所有己下架的CRX 
-        ,'arch':"SYS:arch"      # 所有己归档的CRX 
-        ,'api4cx':"SYS:ctcrx"   # API可请求下载统计的 uuid 
-        ,'grp':"SYS:grps"
-        ,'tag':"SYS:tags"
-        ,'pic':"SYS:pics"
-        ,'usr':"SYS:users"      # 所有用户(包含已经 del 的)
-        ,'stuff':"SYS:stuff"
-    }
-    #   历史操作 键-名字典
-    K4H = {'C':"Create"
-        ,'D':"Delete"
-        ,'U':"Update"
-    }
-    objHis = {'id':None     # 历史版本扩展ID
-        ,'hisobj':None
-        ,'hisact':"..."     # 操作类型C|D|U~ Create|Delet|Update = 创建|删除|更新
-        ,'tstamp':''        # yymmddHHMMSS+5位微秒
-    }
-    #   所有扩展 uuid->x:id 值对 单独收集?
-    objCRX = {'uuid':None    # 扩展ID 为唯一
-        ,'id':None      # 上次 历史版本ID
-        ,'hisid':[]     # 所有操作历史
-        ,'sid':None     # 存储ID
-        ,'tagid':[]     #   可以属于多种标签
-        ,'grpid':None   # 只能有一个作者拥有!
-        ,'pic':[]
-        ,'icon':None    # only one icon?!
-        ,'name':""
-        ,'desc':"是也乎"
-        ,'version':'0.1'
-        ,'dlrank':1024  #   下载总数量
-        ,'detail':"..."
-        ,'reply':"..."  # 审发回执(不显示在外部页面)
-        ,'ispub':0      # 是否审发
-        ,'isdel':0      # 是否删除
-        ,'isreco':0     # 是否推荐
-        ,'isbd':0       # 是否商务
-        ,'gsdl':9442
-        ,'gsusr':9442
-        ,'gsrank':3     # google web store abt.
-    }
-    #   'sid':None         # 存储ID
-    objPIC = {'size':"M"         # XXXL|XXL|XL|L|M
-        ,'icon':0           # 是否icon SIZE
-        ,'reco':0           # 是否推荐
-        ,'isdel':0          # 是否删除
-        ,'note':"是也乎"
-        ,'order':0
-    }
-    #'id':None
-    objGRP = {'id':None
-        ,'hisid':[]     # 所有操作历史
-        ,'crxs':[]      # 已发布的
-        ,'trys':[]      # 待发布的
-        ,'outs':[]      # 被下架的
-        ,'baks':[]      # 被回退的
-        ,'pic':[]
-        ,'name':""
-        ,'weibo':""
-        ,'mail':""
-        ,'desc':"..."
-        ,'lead':""
-        ,'isdel':0      # 是否删除
-        ,'icon':0       # 是否icon SIZE
-        ,'reco':0       # 是否推荐
-        ,'order':0
-    }
+    TPL_URIS='''<xml>
+     <ToUserName><![CDATA[%(toUser)s]]></ToUserName>
+     <FromUserName><![CDATA[%(fromUser)s]]></FromUserName>
+     <CreateTime>%(tStamp)s</CreateTime>
+     <MsgType><![CDATA[news]]></MsgType>
+     <ArticleCount>%(item_count)d</ArticleCount>
+     <Articles>
+     %(items)s
+     </Articles>
+     </xml> 
+    '''
 
-    objTAG = {'id':None
-        ,'hisid':[]     # 所有操作历史
-        ,'crxs':[]
-        ,'name':""
-        ,'desc':"..."
-        ,'isdel':0      # 是否删除
-        ,'order':0
-    }
+    TPL_ITEM='''<item>
+     <Title><![CDATA[%(title)s]]></Title> 
+     <Description><![CDATA[%(description)s]]></Description>
+     <PicUrl><![CDATA[%(picurl)s]]></PicUrl>
+     <Url><![CDATA[%(url)s]]></Url>
+     </item>
+    '''
+    CMD_ALIAS={"help": ['h', 'H', 'Help', 'help', '?', u'？']
+        , "version": ['v', 'V', 'ver', 'Version', 'version', 'Ver']
+        , "info": ['i', 'I', 'Info', 'info', 'info.', 'information']
+        , "search": ['s', 'S', 'see', 'See', 'search', 'Search', 'seek']
+        , "event": ['e', 'E', 'event', 'Event', 'events', 'act']
+        , "dm": ['dm', 'DM', 'Dm', 'dd']
+        , "sayeahoo": ['syh', 'kvdb', 'stat', 'status']
+        }
 
-    objUSR = {'id':None # "usr:"+unicode(sha256(用户名).hexdigest())
-        ,'crxs':[]
-        ,'name':""
-        ,'passwd':""    # unicode(sha256(口令).hexdigest())
-        ,'isdel':0      # 是否删除
-        ,'level':9      # 0|1 管理|团队
-    }
+    DM_ALIAS = {"bonnie": ['Bonnie', 'lxc', 'LXC', u'刘星辰']
+        , "zoomquiet": ['zq', 'zoomq', 'ZQ', u'ZQ大妈', u'大妈', u'周琦']
+        , "spawnris": ['Spawnris', u'老高', u'高骏腾']
+        , "langqixu": ['lqx', 'LQX', u'小郎', u'郎启旭']
+        }
+
+    TXT_WELCOME='''GDG珠海 公众号的应答范畴:
+    - GDG活动报名、签到、直播
+    - GDG大妈联系查询
+    - GDG发表文章查阅
+    功能正在完善中，欢迎反馈。
+    更多细节,请惯性地输入 h 继续吧 :)
+    '''
+
+    TXT_HELP='''GDG珠海 公众号目前支持以下命令:
+    h   ~ 打印本帮助
+    V   ~ 查看系统版本
+    s   ~ 查阅过往文章
+    i   ~ 查看自己的资料
+    ie  ~ 修改个人资料
+    e   ~ 查看将要举行的活动
+    re  ~ 报名参加活动
+    ir  ~ 查看自己已经报名的活动
+    cr  ~ 确认出席已报名的活动
+    dm [组委的名字] 可了解TA更多
+    '''
+
+    TXT_NEW_USR='''还未注册 亲 的信息,请输入邮箱先;
+    形如:
+    em:foo.bar@gmail.com
+
+    更多细节,请惯性地输入 h 继续吧 :)
+    '''
+
+    TXT_PLS_EM='''请输入你的邮箱!形如:
+    em:foo.bar@gmail.com
+
+    更多细节,请惯性地输入 h 继续吧 :)
+    '''
+
+    TXT_CRT_EM='''亲! 当前的邮箱是:
+    %s
+
+    更多细节,请惯性地输入 h 继续吧 :)
+    '''
 
 
+    '''
+    2013/09/23 12:13:56] -  <xml>
+         <ToUserName><![CDATA[oFNShjiOhclfJ-CtOO81p2sPrBfs]]></ToUserName>
+         <FromUserName><![CDATA[gh_5e32c47b5b23]]></FromUserName>
+         <CreateTime>13092312135634476</CreateTime>
+         <MsgType><![CDATA[text]]></MsgType>
+         <Content><![CDATA[本公众号的自动回答范畴：
+        - GDG活动报名、签到、直播
+        - GDG大妈联系查询
+        - GDG发表文章查阅
+        功能正在完善中，欢迎反馈。
+        更多请惯性地输入 h 继续吧 :)
+        ]]></Content>
+         </xml> yq34 
+    '''
 
-
+    VERSION = "weknow v13.09.18"
+    
 CFG = Borg()
 

@@ -14,21 +14,29 @@
 <v t="zoomq.20120710140424.5447"><vh>@nosent README.md</vh></v>
 <v t="zoomq.20120710140424.5454"><vh>@nosent config.yaml</vh></v>
 <v t="zoomq.20120710140424.5455"><vh>@nosent index.wsgi</vh></v>
+<v t="zoomq.20120723102156.5544" a="E"><vh>@nosent config.py</vh>
+<v t="zoomq.20120727213305.14750"><vh>&lt;&lt;declarations&gt;&gt;</vh></v>
+<v t="zoomq.20120710140424.5456" a="E"><vh>&lt;&lt;cfg4Borg&gt;&gt;</vh>
+<v t="zoomq.20130923093950.3647" a="E"><vh>KVDB</vh>
+<v t="zoomq.20130923093950.5397"><vh>&lt;&lt;MEMBER&gt;&gt;</vh></v>
+<v t="zoomq.20130923093950.5395"><vh>&lt;&lt;CONTENT&gt;&gt;</vh></v>
+<v t="zoomq.20130923093950.8569"><vh>&lt;&lt;大妈们&gt;&gt;</vh></v>
+<v t="zoomq.20130923093950.5396"><vh>&lt;&lt;HISTORIC&gt;&gt;</vh></v>
+</v>
+<v t="zoomq.20130918155053.7084" a="E"><vh>4wechat</vh>
+<v t="zoomq.20130923093950.8818"><vh>&lt;&lt;ALIAS&gt;&gt;</vh></v>
+<v t="zoomq.20130923093950.7285"><vh>&lt;&lt;XML模板&gt;&gt;</vh></v>
+</v>
+</v>
+</v>
+<v t="zoomq.20130918155053.5758"><vh>@nosent xsettings.py</vh></v>
 <v t="zoomq.20120727213305.3937"><vh>功能/数据mapping</vh>
 <v t="zoomq.20120727213305.14708"><vh>TODO</vh></v>
 <v t="zoomq.20120720204727.3913"><vh>URL mapping</vh></v>
 <v t="zoomq.20120720204727.3914"><vh>KV mapping</vh></v>
 </v>
-<v t="zoomq.20120723102156.5544"><vh>@nosent config.py</vh>
-<v t="zoomq.20120727213305.14750"><vh>组件引用</vh></v>
-<v t="zoomq.20120710140424.5456" a="E"><vh>&lt;&lt;cfg4Borg&gt;&gt;</vh>
-<v t="zoomq.20120820121523.7443"><vh>4API+authentication</vh></v>
-<v t="zoomq.20130918155053.7084"><vh>4wechat</vh></v>
-</v>
-</v>
-<v t="zoomq.20130918155053.5758"><vh>@nosent xsettings.py</vh></v>
 <v t="zoomq.20120723102156.5541" a="E"><vh>module</vh>
-<v t="zoomq.20120723102156.5544"></v>
+<v t="zoomq.20120723102156.5544" a="E"></v>
 <v t="zoomq.20120727213305.14687"><vh>crx_id.py</vh>
 <v t="zoomq.20120727213305.14688"><vh>crx_id declarations</vh></v>
 <v t="zoomq.20120727213305.14689"><vh>usage</vh></v>
@@ -102,23 +110,30 @@
 </v>
 <v t="zoomq.20120723102156.5543" a="E"><vh>web</vh>
 <v t="zoomq.20120723102156.5545"><vh>@nosent __init__.py</vh>
-<v t="zoomq.20120723102156.5546"><vh>__init__ declarations</vh></v>
+<v t="zoomq.20120723102156.5546"><vh>&lt;&lt;declarations&gt;&gt;</vh></v>
 <v t="zoomq.20120723102156.5548"><vh>/</vh></v>
 <v t="zoomq.20120727213305.14707"><vh>404+各种默认处理</vh></v>
-<v t="zoomq.20120723102156.5547"><vh>handel_redirect</vh></v>
 </v>
 <v t="zoomq.20120723102156.5561" a="E"><vh>@nosent mana4api.py</vh>
 <v t="zoomq.20120723102156.5562"><vh>&lt;&lt;declarations&gt;&gt;</vh></v>
-<v t="zoomq.20130918155053.5760"><vh>echo</vh></v>
-<v t="zoomq.20130918155053.7083"><vh>POS Techo</vh></v>
-<v t="zoomq.20121015120918.7801"><vh>pep265sd</vh></v>
+<v t="zoomq.20130918155053.5760"><vh>GET  /echo</vh></v>
+<v t="zoomq.20130923093950.8570"><vh>__echo_txt()</vh></v>
+<v t="zoomq.20130918155053.7083" a="E"><vh>POST /echo</vh>
+<v t="zoomq.20130923093950.8817"><vh>&lt;&lt;sayeahoo&gt;&gt;</vh></v>
+<v t="zoomq.20130923093950.8816"><vh>&lt;&lt;InfoMemberEM&gt;&gt;</vh></v>
+<v t="zoomq.20130923093950.8567"><vh>&lt;&lt;InfoMember&gt;&gt;</vh></v>
+<v t="zoomq.20130923093950.8563"><vh>&lt;&lt;HELP&gt;&gt;</vh></v>
+<v t="zoomq.20130923093950.8564"><vh>&lt;&lt;VERSION&gt;&gt;</vh></v>
+<v t="zoomq.20130923093950.8565"><vh>&lt;&lt;SEARCH&gt;&gt;</vh></v>
+<v t="zoomq.20130923093950.8566"><vh>&lt;&lt;THANKS&gt;&gt;</vh></v>
+</v>
 <v t="zoomq.20120727213305.13050"><vh>/api/sysincr</vh></v>
 <v t="zoomq.20120727213305.14707"></v>
 </v>
 </v>
-<v t="zoomq.20120727213305.14715" a="E"><vh>templates</vh>
+<v t="zoomq.20120727213305.14715"><vh>templates</vh>
 <v t="zoomq.20120812115324.4334"><vh>&lt;&lt;sspathdefine&gt;&gt;</vh></v>
-<v t="zoomq.20120727213305.14728" a="E"><vh>BASE组件</vh>
+<v t="zoomq.20120727213305.14728"><vh>BASE组件</vh>
 <v t="zoomq.20120710140424.5449"><vh>@nosent base.html</vh>
 <v t="zoomq.20120812115324.4334"></v>
 <v t="zoomq.20120710140424.5453"><vh>CSS</vh>
@@ -143,7 +158,9 @@
 <v t="zoomq.20120727213305.14723"><vh>crxup.html</vh></v>
 </v>
 </v>
-<v t="zoomq.20120723102156.5539"><vh>3party</vh></v>
+<v t="zoomq.20120723102156.5539"><vh>3party</vh>
+<v t="zoomq.20130918155053.8973"><vh>@nosent __init__.py</vh></v>
+</v>
 </v>
 </vnodes>
 <tnodes>
@@ -300,10 +317,20 @@ span.right{
 <t tx="zoomq.20120710140424.5454">@language yaml
 ---
 name: weknow
-version: 2
+version: 3
 
 </t>
-<t tx="zoomq.20120710140424.5455">@language py
+<t tx="zoomq.20120710140424.5455">@language python
+@tabwidth -4
+# -*- coding: utf-8 -*-
+import sae
+import config
+from bottle import debug, run
+from web import APP
+
+application = sae.create_wsgi_app(APP)
+
+'''
 import sae
 import config
 from bottle import debug, run
@@ -312,109 +339,25 @@ from web import APP
 application = sae.create_wsgi_app(APP)
 
 
+from bottle import *
+import sae
+
+APP = Bottle()
+application = sae.create_wsgi_app(APP)
+
+@APP.get('/echo')
+@APP.get('/echo/')
+def echo_wechat():
+    print request.query.keys()
+    print request.query.echostr
+    return request.query.echostr
+
+'''
 </t>
 <t tx="zoomq.20120710140424.5456">#管理员邮箱列表
-ADMIN_EMAIL_LIST = ['zoomquiet+lb@gmail.com']
+ADMIN_EMAIL_LIST = ['zoomquiet+gdg@gmail.com']
+
 @others
-
-#   Storage domain name 约定
-D2X = 'crx4lb'
-D2P = 'pic2lb'
-D4P = 'page4crx'
-#KVDB 对象模板
-#   系统索引键-名字典
-K4D = {'incr':"TOT"
-    ,'his':"SYS:his"        # 指向被复制的过往各种对象
-    ,'crx':"SYS:crxs"       # 所有己发布的CRX
-    ,'try':"SYS:trys"       # 所有待审核的CRX 
-    ,'bak':"SYS:bak"        # 所有被退回的CRX 
-    ,'out':"SYS:outs"       # 所有己下架的CRX 
-    ,'arch':"SYS:arch"      # 所有己归档的CRX 
-    ,'api4cx':"SYS:ctcrx"   # API可请求下载统计的 uuid 
-    ,'grp':"SYS:grps"
-    ,'tag':"SYS:tags"
-    ,'pic':"SYS:pics"
-    ,'usr':"SYS:users"      # 所有用户(包含已经 del 的)
-    ,'stuff':"SYS:stuff"
-}
-#   历史操作 键-名字典
-K4H = {'C':"Create"
-    ,'D':"Delete"
-    ,'U':"Update"
-}
-objHis = {'id':None     # 历史版本扩展ID
-    ,'hisobj':None
-    ,'hisact':"..."     # 操作类型C|D|U~ Create|Delet|Update = 创建|删除|更新
-    ,'tstamp':''        # yymmddHHMMSS+5位微秒
-}
-#   所有扩展 uuid-&gt;x:id 值对 单独收集?
-objCRX = {'uuid':None    # 扩展ID 为唯一
-    ,'id':None      # 上次 历史版本ID
-    ,'hisid':[]     # 所有操作历史
-    ,'sid':None     # 存储ID
-    ,'tagid':[]     #   可以属于多种标签
-    ,'grpid':None   # 只能有一个作者拥有!
-    ,'pic':[]
-    ,'icon':None    # only one icon?!
-    ,'name':""
-    ,'desc':"是也乎"
-    ,'version':'0.1'
-    ,'dlrank':1024  #   下载总数量
-    ,'detail':"..."
-    ,'reply':"..."  # 审发回执(不显示在外部页面)
-    ,'ispub':0      # 是否审发
-    ,'isdel':0      # 是否删除
-    ,'isreco':0     # 是否推荐
-    ,'isbd':0       # 是否商务
-    ,'gsdl':9442
-    ,'gsusr':9442
-    ,'gsrank':3     # google web store abt.
-}
-#   'sid':None         # 存储ID
-objPIC = {'size':"M"         # XXXL|XXL|XL|L|M
-    ,'icon':0           # 是否icon SIZE
-    ,'reco':0           # 是否推荐
-    ,'isdel':0          # 是否删除
-    ,'note':"是也乎"
-    ,'order':0
-}
-#'id':None
-objGRP = {'id':None
-    ,'hisid':[]     # 所有操作历史
-    ,'crxs':[]      # 已发布的
-    ,'trys':[]      # 待发布的
-    ,'outs':[]      # 被下架的
-    ,'baks':[]      # 被回退的
-    ,'pic':[]
-    ,'name':""
-    ,'weibo':""
-    ,'mail':""
-    ,'desc':"..."
-    ,'lead':""
-    ,'isdel':0      # 是否删除
-    ,'icon':0       # 是否icon SIZE
-    ,'reco':0       # 是否推荐
-    ,'order':0
-}
-
-objTAG = {'id':None
-    ,'hisid':[]     # 所有操作历史
-    ,'crxs':[]
-    ,'name':""
-    ,'desc':"..."
-    ,'isdel':0      # 是否删除
-    ,'order':0
-}
-
-objUSR = {'id':None # "usr:"+unicode(sha256(用户名).hexdigest())
-    ,'crxs':[]
-    ,'name':""
-    ,'passwd':""    # unicode(sha256(口令).hexdigest())
-    ,'isdel':0      # 是否删除
-    ,'level':9      # 0|1 管理|团队
-}
-
-
 
 </t>
 <t tx="zoomq.20120717112543.5481">@language python
@@ -623,9 +566,7 @@ abt. TAG:
 </t>
 <t tx="zoomq.20120723102156.5544">@language py
 # -*- coding: utf-8 -*-
-VERSION = "mana4lbcrx v12.10.15"
-
-@others
+&lt;&lt;declarations&gt;&gt;
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 全局值
 class Borg():
@@ -635,15 +576,21 @@ class Borg():
     __collective_mind = {}
     def __init__(self):
         self.__dict__ = self.__collective_mind
-        
+    
     &lt;&lt;cfg4Borg&gt;&gt;
-
+    VERSION = "weknow v13.09.18"
+    
 CFG = Borg()
 
 </t>
 <t tx="zoomq.20120723102156.5545">@language python
 @tabwidth -4
 # -*- coding: utf-8 -*-
+&lt;&lt;declarations&gt;&gt;
+APP = Bottle()
+#APP.mount('/up', __import__('mana4up').APP)
+APP.mount('/api', __import__('mana4api').APP)
+#APP.mount('/mana', __import__('mana4sys').APP)
 
 @others
 
@@ -655,50 +602,13 @@ if __name__ == '__main__':
 <t tx="zoomq.20120723102156.5546">#!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-from bottle import Bottle
+from bottle import *
 from bottle import __version__ as bottleVer
-from bottle import debug, run
-from bottle import redirect, abort, error
-from bottle import request, response, local
-from bottle import static_file
-#from bottle import template
-#from bottle import jinja2_view as view
 from bottle import jinja2_template as template
-from bottle import TEMPLATE_PATH
-
-#from mysession import get_session_info, set_session_info
-#from mysession import deco_session_check
-
 from config import JINJA2TPL_PATH
 TEMPLATE_PATH.insert(0, JINJA2TPL_PATH)
-#from config import CUSTOM_TPL_PATH
-#TEMPLATE_PATH.insert(0, CUSTOM_TPL_PATH)
 
 
-APP = Bottle()
-
-#APP.mount('/up', __import__('mana4up').APP)
-APP.mount('/api', __import__('mana4api').APP)
-#APP.mount('/mana', __import__('mana4sys').APP)
-
-#run(host='10.33.6.22', port=8080)
-
-'''
-from bottle import install
-from cors_plugin import RequestPreflightPlugin
-request_preflight_plugin = RequestPreflightPlugin( allow_origin = '*'
-    ,preflight_methods = [ 'GET', 'POST', 'PUT', 'DELETE', 'OPTION' ]
-    ,ttl = 3600 )
-APP.install( request_preflight_plugin )
-'''
-
-
-
-
-</t>
-<t tx="zoomq.20120723102156.5547">@APP.route('/center')
-def handel_redirect():
-    return redirect(request.path+'/')
 
 </t>
 <t tx="zoomq.20120723102156.5548">@APP.route('/')
@@ -715,7 +625,7 @@ from config import CFG
 debug(True)
 APP = Bottle()
 
-KV = sae.kvdb.KVClient(debug=1)
+KV = CFG.KV #sae.kvdb.KVClient(debug=1)
 #SG = sae.storage.Client()
 
 @others
@@ -724,48 +634,32 @@ KV = sae.kvdb.KVClient(debug=1)
 
 
 </t>
-<t tx="zoomq.20120723102156.5562">#import os
-import time
+<t tx="zoomq.20120723102156.5562">import time
+from datetime import datetime
 import traceback
-#import json
-import urllib2 as urilib
+import hashlib
 from copy import deepcopy
-#from tempfile import TemporaryFile
-#from StringIO import StringIO
-#from shutil import copyfileobj
-import pprint
-pp = pprint.PrettyPrinter(indent=4)
-
-import sae
-import sae.storage
-import sae.kvdb
-import pylibmc
 import xml.etree.ElementTree as etree
 
-from bottle import Bottle
+#import sae
+#import sae.storage
+#import sae.kvdb
+
+#from wechat.official import WxNewsResponse
+#from wechat.official import WxTextResponse
+
+from bottle import *
 from bottle import __version__ as bottleVer
-
-from bottle import debug, run
-from bottle import redirect, abort
-from bottle import request, response, local
-from bottle import get, post, put, delete
-from bottle import BaseRequest
-from bottle import static_file
-#from bottle import template
-#from bottle import jinja2_view as view
 from bottle import jinja2_template as template
-from bottle import TEMPLATE_PATH
 
-#import urllib2 as urilib
-from auth import auth_required, sha256_uhex
-from lb4crx2cli import __genRESTsign
-
+#from auth import auth_required, sha256_uhex
+#from lb4crx2cli import __genRESTsign
 
 from utility import INCR4KV as __incr
 from utility import TSTAMP, GENID
-from utility import POP4KV, POP4LIST, INS2LIST, INS2DICT4LIST, IDX4LIST
-from utility import ST4CRX, KV4CRX, KV4GRP
-from utility import INIobjSYS, PUTHIS, PUT2SS, PUT_PIC4CRX
+#from utility import POP4KV, POP4LIST, INS2LIST, INS2DICT4LIST, IDX4LIST
+#from utility import ST4CRX, KV4CRX, KV4GRP
+#from utility import INIobjSYS, PUTHIS, PUT2SS, PUT_PIC4CRX
 </t>
 <t tx="zoomq.20120727213305.13050">@APP.route('/sysincr')
 #@APP.route('/&lt;ddd&gt;/sysincr')
@@ -921,29 +815,34 @@ import sys
 import traceback
 from copy import deepcopy
 from time import time, gmtime, strftime, localtime
-#print os.path
+import hashlib
 
 from config import CFG
-# KVDB or Memcache global sys. event count KEY
-_k4incr = CFG.K4D['incr']
+_k4incr = CFG.TOT
+#import sae.storage
+#import sae.kvdb
+KV = CFG.KV #sae.kvdb.KVClient()
 
-import sae.storage
-import sae.kvdb
-KV = sae.kvdb.KVClient()
+# KVDB or Memcache global sys. event count KEY
+
+
+
 
 
 </t>
 <t tx="zoomq.20120727213305.14699">def INCR4KV():
     '''BASE KVDB make GLOBAL increaser
     '''
-    if not KV.get(_k4incr):
+    #print CFG.KEY4_incr
+    #print None == CFG.KV.get(CFG.KEY4_incr)
+    if None == KV.get(CFG.KEY4_incr):
         #print "\t EMPTY?!"
-        KV.add(_k4incr, 1111)
+        KV.add(CFG.KEY4_incr, 0)
     else:
         #print "\t incr. BASE HISTORIC"
-        KV.replace(_k4incr,KV.get(_k4incr)+1)
-    
-    return KV.get(_k4incr)
+        KV.set(CFG.KEY4_incr, KV.get(CFG.KEY4_incr)+1)
+    return KV.get(CFG.KEY4_incr)
+
 
 
 
@@ -1155,39 +1054,18 @@ new FormValidator('upcrxform', [{
 </t>
 <t tx="zoomq.20120727213305.14750">import sys
 import os.path
-#from os.path import abspath, dirname, join
-#import logging
 app_root = os.path.dirname(__file__)
 sys.path.insert(0, os.path.join(app_root, "3party/"))
 sys.path.insert(0, os.path.join(app_root, "module/"))
 sys.path.insert(0, os.path.join(app_root, "web/"))
-
-'''
-sys.path.insert(0, abspath(dirname(__file__)))
-sys.path.insert(0, abspath(join(dirname(__file__), "3party/")))
-sys.path.insert(0, abspath(join(dirname(__file__), "module/")))
-sys.path.insert(0, abspath(join(dirname(__file__), "web/")))
-CUSTOM_TPL_PATH = os.path.abspath(
-    os.path.join(
-        os.path.dirname(__file__)
-        , "views/")
-    )
-'''
-
 #   指定的模板路径
 JINJA2TPL_PATH = os.path.abspath(
     os.path.join(
         os.path.dirname(__file__)
         , "templates/")
     )
-#   静态文件
-#STATIC_FILE_PATH = abspath(join(dirname(__file__), "static/"))
-#   网站根域名
-#ROOT_DOMAIN = 'test.com'
-#   session相关
-#SECRET_KEY = 'secret_key_for_test'
-#SESSION_MAX_AGE = 7200
-</t>
+
+#import hashlib</t>
 <t tx="zoomq.20120727213305.14751">def KV4CRX(uuid, action):
     '''.crx 状态 KV 列表统一切换器:
         - 对扩展的所有状态对应的组合映射到一批列表中
@@ -1469,20 +1347,19 @@ mana/upcrx
 
 
 </t>
-<t tx="zoomq.20120802192540.5468">def GENID(obj,name=""):
+<t tx="zoomq.20120802192540.5468">def GENID(obj, name=""):
     '''通用ID生成器:
         yymmddHHMMSS+5位微秒+对象鍵3位+全局序号
         e.g.
-        x:12080110561431076CRX1111
+        x:12080110561431076:CRX1111
     '''
     timestamp = TSTAMP()
     tot = INCR4KV()
-    GOBJMAP = {'his':'h:%(date)s%(ms)sHIS%(tot)d'
-        ,'crx':'x:%(timestamp)sCRX%(tot)d%(name)s'
-        ,'pic':'p%(timestamp)sSAE%(tot)d%(name)s'
-        ,'tag':'t:%(timestamp)sTAG%(tot)d%(name)s'
-        ,'grp':'g:%(timestamp)sGRP%(tot)d%(name)s'
-        ,'sae':'%(name)s_%(timestamp)sSAE%(tot)d'
+    #sha1name = hashlib.sha1(name).hexdigest()
+    GOBJMAP = {'his':'h:%(timestamp)s:HIS%(tot)d'
+        ,'tag':'t:%(timestamp)s:TAG%(tot)d'
+        ,'event':'e:%(timestamp)s:EVE%(tot)d'
+        ,'usr':'u:%(name)s:USR%(tot)d'
         }
     if obj in GOBJMAP.keys():
         return GOBJMAP[obj]% locals()
@@ -2099,38 +1976,11 @@ from config import CFG
 <t tx="zoomq.20120820121523.7442">def __genRESTsign(args):
     sign_base_string = "%s/%s"% (CFG.APITYPE, args)
     return md5(sign_base_string + CFG.SECRET).hexdigest()</t>
-<t tx="zoomq.20120820121523.7443">APPKEY = "5t4r3e2w1q"
-SECRET = "99fc9fdbc6761f7d898ad25762407373"
-APITYPE = "api/cli"
-PREUID = "usr:"
-MSG4PW = {'add':"created new usr"
-    , 'del':"deleted new usr"
-    , 'mod':"modified usr info."
-    , 'chk':"listing all usr"
-    }
-MSG4CRX = {'mod':"fixed .crx info."
-    , 'chk':"listing all .crx"
-    , 'info':"all info. of one .crx"
-    , 'err':"something is ERROR!"
-    }
-
-LEVEL4USR = {"mana":0
-    , "up":1
-    , "api":2
-    }</t>
-<t tx="zoomq.20121015120918.7801">from operator import itemgetter
-def pep265sd(d,doreverse=False):
-    '''proposed in PEP 265, using  the itemgetter
-    '''
-    return sorted(d.iteritems(), key=itemgetter(1), reverse=doreverse)
-</t>
 <t tx="zoomq.20130918155053.5758">@language py
 # -*- coding: utf-8 -*-
 
 </t>
-<t tx="zoomq.20130918155053.5760">#@APP.get('/echo/?&lt;qstr&gt;')
-#@APP.get('/echo/&lt;qstr&gt;')
-@APP.get('/echo')
+<t tx="zoomq.20130918155053.5760">@APP.get('/echo')
 @APP.get('/echo/')
 def echo_wechat():
     print request.query.keys()
@@ -2536,17 +2386,37 @@ def wechat_post():
     xml = etree.XML(request.forms.keys()[0])
     fromUser = xml.findtext("ToUserName")
     toUser = xml.findtext("FromUserName")
-    #print xml.findtext("CreateTime")
-    #__MsgId = xml.findtext("MsgId")
+    sha1_name = hashlib.sha1(toUser).hexdigest()
+    pre_uuid = "u:%s"% sha1_name
     __MsgType = xml.findtext("MsgType")
-    __Content = xml.findtext("Content")
-    if "text" == __MsgType:
-        if "h" == __Content:
-            tStamp = TSTAMP()
-            content = "是也乎"
-            print CFG.TPL_TEXT% locals()
-            return CFG.TPL_TEXT% locals()
-    return None 
+    
+    Content = xml.findtext("Content")#.encode('utf8')
+    if isinstance(Content, unicode):
+        print "可能是中文"
+        #__Content = Content.encode('utf-8')
+    else:
+        __Content = Content
+        print __Content #.encode('utf8')
+
+        if "text" == __MsgType:
+            #print CFG.CMD_ALIAS['help']
+            if __Content in CFG.CMD_ALIAS['help'] :
+                &lt;&lt;HELP&gt;&gt;
+            elif __Content in CFG.CMD_ALIAS['version']:
+                &lt;&lt;VERSION&gt;&gt;
+            elif __Content in CFG.CMD_ALIAS['info']:
+                &lt;&lt;InfoMember&gt;&gt;
+            elif "em" in __Content.split(":"):
+                &lt;&lt;InfoMemberEM&gt;&gt;
+            elif __Content in CFG.CMD_ALIAS['search']:
+                &lt;&lt;SEARCH&gt;&gt;
+            elif __Content in CFG.CMD_ALIAS['sayeahoo']:
+                &lt;&lt;sayeahoo&gt;&gt;
+            else:
+                &lt;&lt;THANKS&gt;&gt;
+        
+    
+
 
 
 
@@ -2554,12 +2424,303 @@ def wechat_post():
 
 
 </t>
-<t tx="zoomq.20130918155053.7084">TPL_TEXT=''' &lt;xml&gt;
+<t tx="zoomq.20130918155053.7084">&lt;&lt;XML模板&gt;&gt;
+&lt;&lt;ALIAS&gt;&gt;
+
+TXT_WELCOME='''GDG珠海 公众号的应答范畴:
+- GDG活动报名、签到、直播
+- GDG大妈联系查询
+- GDG发表文章查阅
+功能正在完善中，欢迎反馈。
+更多细节,请惯性地输入 h 继续吧 :)
+'''
+
+TXT_HELP='''GDG珠海 公众号目前支持以下命令:
+h   ~ 打印本帮助
+V   ~ 查看系统版本
+s   ~ 查阅过往文章
+i   ~ 查看自己的资料
+ie  ~ 修改个人资料
+e   ~ 查看将要举行的活动
+re  ~ 报名参加活动
+ir  ~ 查看自己已经报名的活动
+cr  ~ 确认出席已报名的活动
+dm [组委的名字] 可了解TA更多
+'''
+
+TXT_NEW_USR='''还未注册 亲 的信息,请输入邮箱先;
+形如:
+em:foo.bar@gmail.com
+
+更多细节,请惯性地输入 h 继续吧 :)
+'''
+
+TXT_PLS_EM='''请输入你的邮箱!形如:
+em:foo.bar@gmail.com
+
+更多细节,请惯性地输入 h 继续吧 :)
+'''
+
+TXT_CRT_EM='''亲! 当前的邮箱是:
+%s
+
+更多细节,请惯性地输入 h 继续吧 :)
+'''
+
+
+'''
+2013/09/23 12:13:56] -  &lt;xml&gt;
+     &lt;ToUserName&gt;&lt;![CDATA[oFNShjiOhclfJ-CtOO81p2sPrBfs]]&gt;&lt;/ToUserName&gt;
+     &lt;FromUserName&gt;&lt;![CDATA[gh_5e32c47b5b23]]&gt;&lt;/FromUserName&gt;
+     &lt;CreateTime&gt;13092312135634476&lt;/CreateTime&gt;
+     &lt;MsgType&gt;&lt;![CDATA[text]]&gt;&lt;/MsgType&gt;
+     &lt;Content&gt;&lt;![CDATA[本公众号的自动回答范畴：
+    - GDG活动报名、签到、直播
+    - GDG大妈联系查询
+    - GDG发表文章查阅
+    功能正在完善中，欢迎反馈。
+    更多请惯性地输入 h 继续吧 :)
+    ]]&gt;&lt;/Content&gt;
+     &lt;/xml&gt; yq34 
+'''
+</t>
+<t tx="zoomq.20130918155053.8973">@language python
+@tabwidth -4
+
+
+</t>
+<t tx="zoomq.20130923093950.3647">import sae.kvdb
+KV = sae.kvdb.KVClient()
+
+#KVDB 对象模板
+KEY4_incr = 'gincr'
+TOT = KV.get(KEY4_incr)    # 全局自增序号
+if None == TOT:
+    KV.add(KEY4_incr, 0)
+else:
+    print "TOT", KV.get(KEY4_incr)
+
+&lt;&lt;MEMBER&gt;&gt;
+
+&lt;&lt;大妈们&gt;&gt;
+
+&lt;&lt;CONTENT&gt;&gt;
+
+&lt;&lt;HISTORIC&gt;&gt;
+
+
+</t>
+<t tx="zoomq.20130923093950.5395">ESSAY_TAG = {'ot':"其它"
+    , 'gb':"G术图书 (推荐好书,书无中外)"
+    , 'dd':"D码点评 (麻辣评点,善意满盈)"
+    , 'gt':"G说公论 (时评杂文,新旧不拘)"
+    , 'hd':"海选文章 (得要相信,大妈法眼)"
+    }
+    
+# 文章索引
+K4DM = {"his_id":""   # 更新戮
+    , "del":0
+    , "tag":"ot"
+    , 'tiele':''
+    , "desc":""     # 解释
+    , "picurl":''
+    , "url":""
+    }
+    
+
+
+</t>
+<t tx="zoomq.20130923093950.5396">#   历史操作 键-名字典
+K4H = {'C':"Create"
+    ,'D':"Delete"
+    ,'U':"Update"
+    }
+#'uuid':""     # 历史版本扩展ID
+objHis = {'hisobj':""
+    ,'actype':"..."     # 操作类型C|D|U~ Create|Delet|Update = 创建|删除|更新
+    ,'dump':''        # 数据集
+    }
+
+
+</t>
+<t tx="zoomq.20130923093950.5397">objUSR={"his_id":""   # 更新戮
+    , "del":0
+    , "fsm":""      # 有限状态机 当前状态
+    , "acl":1       # ban:0 usr:1 staff:10 api:42 admin:100
+    , "desc":""     # 解释
+    , "pp":''       # Passport 
+    , "nm":""       # NickName "Zoom.Quiet"
+    , 'em':''       #'zhouqi@ijinshan.com',
+    , "lasttm": ''  #"2013-07-05 19:01:33",
+    }
+    
+
+
+</t>
+<t tx="zoomq.20130923093950.7285">TPL_TEXT=''' &lt;xml&gt;
  &lt;ToUserName&gt;&lt;![CDATA[%(toUser)s]]&gt;&lt;/ToUserName&gt;
  &lt;FromUserName&gt;&lt;![CDATA[%(fromUser)s]]&gt;&lt;/FromUserName&gt;
  &lt;CreateTime&gt;%(tStamp)s&lt;/CreateTime&gt;
  &lt;MsgType&gt;&lt;![CDATA[text]]&gt;&lt;/MsgType&gt;
  &lt;Content&gt;&lt;![CDATA[%(content)s]]&gt;&lt;/Content&gt;
- &lt;/xml&gt;'''</t>
+ &lt;/xml&gt;'''
+
+TPL_URIS='''&lt;xml&gt;
+ &lt;ToUserName&gt;&lt;![CDATA[%(toUser)s]]&gt;&lt;/ToUserName&gt;
+ &lt;FromUserName&gt;&lt;![CDATA[%(fromUser)s]]&gt;&lt;/FromUserName&gt;
+ &lt;CreateTime&gt;%(tStamp)s&lt;/CreateTime&gt;
+ &lt;MsgType&gt;&lt;![CDATA[news]]&gt;&lt;/MsgType&gt;
+ &lt;ArticleCount&gt;%(item_count)d&lt;/ArticleCount&gt;
+ &lt;Articles&gt;
+ %(items)s
+ &lt;/Articles&gt;
+ &lt;/xml&gt; 
+'''
+
+TPL_ITEM='''&lt;item&gt;
+ &lt;Title&gt;&lt;![CDATA[%(title)s]]&gt;&lt;/Title&gt; 
+ &lt;Description&gt;&lt;![CDATA[%(description)s]]&gt;&lt;/Description&gt;
+ &lt;PicUrl&gt;&lt;![CDATA[%(picurl)s]]&gt;&lt;/PicUrl&gt;
+ &lt;Url&gt;&lt;![CDATA[%(url)s]]&gt;&lt;/Url&gt;
+ &lt;/item&gt;
+'''
+</t>
+<t tx="zoomq.20130923093950.8563">
+return __echo_txt(fromUser, toUser, CFG.TXT_HELP)
+
+return None
+</t>
+<t tx="zoomq.20130923093950.8564">return __echo_txt(fromUser, toUser, CFG.VERSION)
+
+return None
+</t>
+<t tx="zoomq.20130923093950.8565">item_count = 1
+title = "是也乎"
+description = "G术图书:5 超级聊天术"
+picurl = "http://mmsns.qpic.cn/mmsns/LkTfzZ1ialTo0ibaAicYJwQkqXyEJXEdhnhpZOD2PlnX69w3ESxibQ3vfw/0"
+url = "http://mp.weixin.qq.com/mp/appmsg/show?__biz=MjM5Mjk3MDI2MA==&amp;appmsgid=10000132&amp;itemidx=1&amp;sign=dcb49b00b0773aee85c67810385a1b19#wechat_redirect"
+items = CFG.TPL_ITEM% locals()
+print CFG.TPL_URIS% locals()
+return CFG.TPL_URIS% locals()
+
+
+return None
+</t>
+<t tx="zoomq.20130923093950.8566">pass
+#return __echo_txt(fromUser, toUser, CFG.TXT_WELCOME)
+
+return None
+</t>
+<t tx="zoomq.20130923093950.8567">usrs = [(u[0], u[1]) for u in KV.get_by_prefix(pre_uuid)]
+print usrs
+print "CFG.TOT ", CFG.TOT
+if 0 == len(usrs):
+    # 1st ping
+    print "sha1_name: ", sha1_name
+    uuid = GENID('usr', name = sha1_name)
+    new_usr = deepcopy(CFG.objUSR)
+    new_usr['his_id'] = GENID('his')
+    new_usr['pp'] = toUser
+    new_usr['lasttm'] = time.time()
+    print uuid, new_usr
+    KV.add(uuid, new_usr)
+    return __echo_txt(fromUser, toUser, CFG.TXT_NEW_USR)
+else:
+    # had reg.
+    member = usrs[0][1]
+    if "" == member['em']:
+        return __echo_txt(fromUser, toUser, CFG.TXT_PLS_EM)
+    else:
+        return __echo_txt(fromUser, toUser, CFG.TXT_CRT_EM% member['em'])
+
+
+return None
+
+'''Traceback (most recent call last):
+  File "/data1/www/htdocs/466/weknow/2/bottle.py", line 764, in _handle
+    return route.call(**args)
+  File "/data1/www/htdocs/466/weknow/2/bottle.py", line 1575, in wrapper
+    rv = callback(*a, **ka)
+  File "/data1/www/htdocs/466/weknow/2/web/mana4api.py", line 68, in wechat_post
+    if 0 == len(usr):
+TypeError: object of type 'generator' has no len() yq34 
+'''
+'''
+objUSR={"uuid":""            
+    , "his_id":""   # 更新戮
+    , "del":0
+    , "fsm":""      # 有限状态机 当前状态
+    , "acl":1       # ban:0 usr:1 staff:10 api:42 admin:100
+    , "desc":""     # 解释
+    , "pp":''       # Passport 
+    , "nm":""       # NickName "Zoom.Quiet"
+    , 'em':''       #'zhouqi@ijinshan.com',
+    , "lasttm": ''  #"2013-07-05 19:01:33",
+    }    
+'''
+
+
+</t>
+<t tx="zoomq.20130923093950.8569"># 大妈们的联系方式
+K4DM = {"his_id":""   # 更新戮
+    , "del":0
+    , "desc":""     # 解释
+    , "pp":''       # Passport "kswl662773786"
+    , "nm":""       # NickName "Zoom.Quiet"
+    , 'em':''       #'zhouqi@ijinshan.com',
+    }
+
+
+</t>
+<t tx="zoomq.20130923093950.8570">def __echo_txt(fromUsr, toUsr, text):
+    tStamp = TSTAMP()
+    fromUser = fromUsr
+    toUser = toUsr
+    content = text
+    print CFG.TPL_TEXT% locals()
+    return CFG.TPL_TEXT% locals()
+
+</t>
+<t tx="zoomq.20130923093950.8816">em = __Content[3:]
+print em
+if " " in em:
+    print "canceled +"
+    em = "+".join(em.split())
+#return None
+usrs = [(u[0], u[1]) for u in KV.get_by_prefix(pre_uuid)]
+member = usrs[0][1] 
+member['em'] = em
+KV.replace(usrs[0][0] , member)
+print KV.get(usrs[0][0])
+
+return __echo_txt(fromUser, toUser, CFG.TXT_CRT_EM% em)
+
+return None
+
+
+</t>
+<t tx="zoomq.20130923093950.8817">print KV.get_info()
+return __echo_txt(fromUser, toUser, KV.get_info())
+
+
+#return None
+
+
+</t>
+<t tx="zoomq.20130923093950.8818">CMD_ALIAS={"help": ['h', 'H', 'Help', 'help', '?', u'？']
+    , "version": ['v', 'V', 'ver', 'Version', 'version', 'Ver']
+    , "info": ['i', 'I', 'Info', 'info', 'info.', 'information']
+    , "search": ['s', 'S', 'see', 'See', 'search', 'Search', 'seek']
+    , "event": ['e', 'E', 'event', 'Event', 'events', 'act']
+    , "dm": ['dm', 'DM', 'Dm', 'dd']
+    , "sayeahoo": ['syh', 'kvdb', 'stat', 'status']
+    }
+
+DM_ALIAS = {"bonnie": ['Bonnie', 'lxc', 'LXC', u'刘星辰']
+    , "zoomquiet": ['zq', 'zoomq', 'ZQ', u'ZQ大妈', u'大妈', u'周琦']
+    , "spawnris": ['Spawnris', u'老高', u'高骏腾']
+    , "langqixu": ['lqx', 'LQX', u'小郎', u'郎启旭']
+    }
+</t>
 </tnodes>
 </leo_file>

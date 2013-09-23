@@ -4,15 +4,18 @@ import sys
 import traceback
 from copy import deepcopy
 from time import time, gmtime, strftime, localtime
-#print os.path
+import hashlib
 
 from config import CFG
-# KVDB or Memcache global sys. event count KEY
-_k4incr = CFG.K4D['incr']
+_k4incr = CFG.TOT
+#import sae.storage
+#import sae.kvdb
+KV = CFG.KV #sae.kvdb.KVClient()
 
-import sae.storage
-import sae.kvdb
-KV = sae.kvdb.KVClient()
+# KVDB or Memcache global sys. event count KEY
+
+
+
 
 
 
@@ -386,20 +389,19 @@ def TSTAMP():
 
 
 
-def GENID(obj,name=""):
+def GENID(obj, name=""):
     '''通用ID生成器:
         yymmddHHMMSS+5位微秒+对象鍵3位+全局序号
         e.g.
-        x:12080110561431076CRX1111
+        x:12080110561431076:CRX1111
     '''
     timestamp = TSTAMP()
     tot = INCR4KV()
-    GOBJMAP = {'his':'h:%(date)s%(ms)sHIS%(tot)d'
-        ,'crx':'x:%(timestamp)sCRX%(tot)d%(name)s'
-        ,'pic':'p%(timestamp)sSAE%(tot)d%(name)s'
-        ,'tag':'t:%(timestamp)sTAG%(tot)d%(name)s'
-        ,'grp':'g:%(timestamp)sGRP%(tot)d%(name)s'
-        ,'sae':'%(name)s_%(timestamp)sSAE%(tot)d'
+    #sha1name = hashlib.sha1(name).hexdigest()
+    GOBJMAP = {'his':'h:%(timestamp)s:HIS%(tot)d'
+        ,'tag':'t:%(timestamp)s:TAG%(tot)d'
+        ,'event':'e:%(timestamp)s:EVE%(tot)d'
+        ,'usr':'u:%(name)s:USR%(tot)d'
         }
     if obj in GOBJMAP.keys():
         return GOBJMAP[obj]% locals()
@@ -411,14 +413,16 @@ def GENID(obj,name=""):
 def INCR4KV():
     '''BASE KVDB make GLOBAL increaser
     '''
-    if not KV.get(_k4incr):
+    #print CFG.KEY4_incr
+    #print None == CFG.KV.get(CFG.KEY4_incr)
+    if None == KV.get(CFG.KEY4_incr):
         #print "\t EMPTY?!"
-        KV.add(_k4incr, 1111)
+        KV.add(CFG.KEY4_incr, 0)
     else:
         #print "\t incr. BASE HISTORIC"
-        KV.replace(_k4incr,KV.get(_k4incr)+1)
-    
-    return KV.get(_k4incr)
+        KV.set(CFG.KEY4_incr, KV.get(CFG.KEY4_incr)+1)
+    return KV.get(CFG.KEY4_incr)
+
 
 
 
