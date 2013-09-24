@@ -17,7 +17,7 @@
 <v t="zoomq.20120723102156.5544" a="E"><vh>@nosent config.py</vh>
 <v t="zoomq.20120727213305.14750"><vh>&lt;&lt;declarations&gt;&gt;</vh></v>
 <v t="zoomq.20120710140424.5456" a="E"><vh>&lt;&lt;cfg4Borg&gt;&gt;</vh>
-<v t="zoomq.20130923093950.3647" a="E"><vh>KVDB</vh>
+<v t="zoomq.20130923093950.3647"><vh>KVDB</vh>
 <v t="zoomq.20130923093950.5397"><vh>&lt;&lt;MEMBER&gt;&gt;</vh></v>
 <v t="zoomq.20130923093950.5395"><vh>&lt;&lt;CONTENT&gt;&gt;</vh></v>
 <v t="zoomq.20130923093950.8569"><vh>&lt;&lt;大妈们&gt;&gt;</vh></v>
@@ -1359,7 +1359,7 @@ mana/upcrx
     GOBJMAP = {'his':'h:%(timestamp)s:HIS%(tot)d'
         ,'tag':'t:%(timestamp)s:TAG%(tot)d'
         ,'event':'e:%(timestamp)s:EVE%(tot)d'
-        ,'usr':'u:%(name)s:USR%(tot)d'
+        ,'usr':'u:%(name)s'
         }
     if obj in GOBJMAP.keys():
         return GOBJMAP[obj]% locals()
@@ -2389,8 +2389,7 @@ def wechat_post():
     sha1_name = hashlib.sha1(toUser).hexdigest()
     pre_uuid = "u:%s"% sha1_name
     __MsgType = xml.findtext("MsgType")
-    
-    Content = xml.findtext("Content")#.encode('utf8')
+    Content = xml.findtext("Content") #.encode('utf8')
     if isinstance(Content, unicode):
         print "可能是中文"
         #__Content = Content.encode('utf-8')
@@ -2440,11 +2439,9 @@ h   ~ 打印本帮助
 V   ~ 查看系统版本
 s   ~ 查阅过往文章
 i   ~ 查看自己的资料
-ie  ~ 修改个人资料
 e   ~ 查看将要举行的活动
 re  ~ 报名参加活动
 ir  ~ 查看自己已经报名的活动
-cr  ~ 确认出席已报名的活动
 dm [组委的名字] 可了解TA更多
 '''
 

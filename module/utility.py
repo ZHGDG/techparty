@@ -401,7 +401,7 @@ def GENID(obj, name=""):
     GOBJMAP = {'his':'h:%(timestamp)s:HIS%(tot)d'
         ,'tag':'t:%(timestamp)s:TAG%(tot)d'
         ,'event':'e:%(timestamp)s:EVE%(tot)d'
-        ,'usr':'u:%(name)s:USR%(tot)d'
+        ,'usr':'u:%(name)s'
         }
     if obj in GOBJMAP.keys():
         return GOBJMAP[obj]% locals()

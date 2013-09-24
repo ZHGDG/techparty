@@ -59,8 +59,7 @@ def wechat_post():
     sha1_name = hashlib.sha1(toUser).hexdigest()
     pre_uuid = "u:%s"% sha1_name
     __MsgType = xml.findtext("MsgType")
-    
-    Content = xml.findtext("Content")#.encode('utf8')
+    Content = xml.findtext("Content") #.encode('utf8')
     if isinstance(Content, unicode):
         print "可能是中文"
         #__Content = Content.encode('utf-8')
