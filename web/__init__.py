@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
+import sys   
+#sys.path.append("..")  
 
 from bottle import *
 from bottle import __version__ as bottleVer
@@ -10,7 +10,9 @@ TEMPLATE_PATH.insert(0, JINJA2TPL_PATH)
 
 
 
+
 APP = Bottle()
+
 #APP.mount('/up', __import__('mana4up').APP)
 APP.mount('/api', __import__('mana4api').APP)
 #APP.mount('/mana', __import__('mana4sys').APP)

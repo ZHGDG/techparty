@@ -266,6 +266,57 @@ class task(object):
         if trans:
             self.start(trans)
 
+    def start2(self, name, obj):
+        """
+        Starts the task with the given state name.
+
+        @param name: state name.
+        @param obj: data obj. for func.
+        @type name: C{str}
+        """
+        for x in self.exit:
+            x(self, obj)
+
+        self.current_state = self.states[name]
+        self.callbacks = {}
+        self.exit = []
+        self._locals = {}
+        self.current_state.enter2(self, obj)
+
+    def send2(self, event, obj):
+        """
+        Sends an event to this task.
+
+        It determines what key to use to identify the event by
+        calling the appropriate getattr function.
+
+        If any callbacks are registered for this event, then they are
+        invoked first.
+
+        If any transitions are registered for this event, a state transition
+        is invoked after completing the callbacks.
+
+        @param event: event to send to the state machine
+        @param obj: data obj. for func.
+        """
+        assert self.current_state, 'state machine is not running'
+
+        # recover the key for this event
+        for getattr in (self.getattr, Registry.getattr, lambda x: x):
+            try: key = getattr(event)
+            except: pass
+            else: break
+
+        # check callbacks first
+        callback = self.callbacks.get(key, [])
+        for x in callback:
+            x(event, obj)
+
+        # if a transition exists, change the state
+        trans = self.current_state.transitions.get(key, None)
+        if trans:
+            self.start2(trans ,obj)
+
     def add_state(self, name, state):
         """
         Adds a state to this task.
@@ -376,3 +427,13 @@ class state(object):
         @type task: L{pyfsm.task}
         """
         return self.func(task)
+
+    def enter2(self, task, obj):
+        """
+        Entrance function to this state.
+
+        @param task: task this state is contained within
+        @param obj: data obj. for func.
+        @type task: L{pyfsm.task}
+        """
+        return self.func(task, obj)

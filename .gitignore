@@ -8,3 +8,4 @@ site-packages
 .DS_Store
 *.wsgic
 xsettings.py
+module/xsettings.py

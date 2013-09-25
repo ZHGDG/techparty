@@ -23,29 +23,38 @@ class Borg():
     def __init__(self):
         self.__dict__ = self.__collective_mind
     
+    VERSION = "weknow v13.09.18"
     #管理员邮箱列表
     ADMIN_EMAIL_LIST = ['zoomquiet+gdg@gmail.com']
 
     import sae.kvdb
     KV = sae.kvdb.KVClient()
-
-    #KVDB 对象模板
-    KEY4_incr = 'gincr'
-    TOT = KV.get(KEY4_incr)    # 全局自增序号
-    if None == TOT:
-        KV.add(KEY4_incr, 0)
-    else:
-        print "TOT", KV.get(KEY4_incr)
+    #   系统索引键-名字典
+    K4D = {'incr':"SYS:TOT"         # int
+        ,'member':"SYS:usrs:ALL"    # [] 所有用户  (包含已经 del 的)
+        ,'events':"SYS:eves:ALL"    # [] 所有活动索引 (包含已经 del 的)
+        ,'papers':"SYS:pubs:ALL"    # [] 所有文章索引 (包含已经 del 的)
+    }
+    #KEY4_incr = K4D['incr']
+    for k in K4D:
+        if None == KV.get(K4D[k]):
+            if 'incr' == k:
+                KV.add(K4D[k], 0)
+            else:
+                KV.add(K4D[k], [])
+        else:
+            print K4D[k], KV.get(K4D[k])
 
     objUSR={"his_id":""   # 更新戮
+        , "lasttm": ''  # time.time()
         , "del":0
-        , "fsm":""      # 有限状态机 当前状态
         , "acl":1       # ban:0 usr:1 staff:10 api:42 admin:100
         , "desc":""     # 解释
+
+        , "fsm":""      # 有限状态机 当前状态
         , "pp":''       # Passport 
         , "nm":""       # NickName "Zoom.Quiet"
         , 'em':''       #'zhouqi@ijinshan.com',
-        , "lasttm": ''  #"2013-07-05 19:01:33",
         }
         
 
@@ -54,9 +63,9 @@ class Borg():
     # 大妈们的联系方式
     K4DM = {"his_id":""   # 更新戮
         , "del":0
+        , "nm":""       # NickName "Zoom.Quiet"
         , "desc":""     # 解释
         , "pp":''       # Passport "kswl662773786"
-        , "nm":""       # NickName "Zoom.Quiet"
         , 'em':''       #'zhouqi@ijinshan.com',
         }
 
@@ -70,8 +79,9 @@ class Borg():
         }
         
     # 文章索引
-    K4DM = {"his_id":""   # 更新戮
+    K4WD = {"his_id":""   # 更新戮
         , "del":0
+        , "type":"txt"  # 信息类型 txt|uri|pic
         , "tag":"ot"
         , 'tiele':''
         , "desc":""     # 解释
@@ -132,11 +142,37 @@ class Borg():
         , "sayeahoo": ['syh', 'kvdb', 'stat', 'status']
         }
 
-    DM_ALIAS = {"bonnie": ['Bonnie', 'lxc', 'LXC', u'刘星辰']
-        , "zoomquiet": ['zq', 'zoomq', 'ZQ', u'ZQ大妈', u'大妈', u'周琦']
-        , "spawnris": ['Spawnris', u'老高', u'高骏腾']
-        , "langqixu": ['lqx', 'LQX', u'小郎', u'郎启旭']
+    DM_ALIAS = {"LXC": ['Bonnie', 'liuxinchen', 'lxc', 'LXC', u'刘星辰']
+        , "ZQ": ['zq', 'zoomq', 'ZQ', u'ZQ大妈', u'大妈', u'周琦']
+        , "LG": ['GJT', 'gaojunten', 'LG', 'lg', 'spawnris', 'Spawnris', u'老高', u'高骏腾']
+        , "LQX": ['lqx', 'LQX', 'langqixu', u'小郎', u'郎启旭']
         }
+
+
+    TXT_VER='''珠海GDG 公众号应答系统当前版本:
+    %s
+    Changelog:
+    - 130923 完成初始可用, 并发布 42分钟乱入 wechat 手册!-)
+    - 130918 启动开发
+
+    更多细节,请惯性地输入 h 继续吧 :)'''% VERSION
+
+    TXT_THANX='''亲! 感谢反馈信息, 大妈们得空就回复 ;-)
+    '''
+    TXT_HELP='''GDG珠海 公众号目前支持以下命令:
+    h   ~ 使用帮助
+    V   ~ 系统版本
+    s   ~ 查阅文章
+    i   ~ 查阅成员资料
+    ei  ~ 修订成员资料
+
+    e   ~ 活动查询
+    re  ~ 活动报名
+    rc  ~ 放弃报名
+    ri  ~ 确认报名
+
+    dm [组委的名字] 可了解TA更多
+    '''
 
     TXT_WELCOME='''GDG珠海 公众号的应答范畴:
     - GDG活动报名、签到、直播
@@ -145,33 +181,57 @@ class Borg():
     功能正在完善中，欢迎反馈。
     更多细节,请惯性地输入 h 继续吧 :)
     '''
+    TXT_CRT_ME='''亲! 你当前注册的成员信息如下:
+    妮称: %s
+    邮箱: %s
 
-    TXT_HELP='''GDG珠海 公众号目前支持以下命令:
-    h   ~ 打印本帮助
-    V   ~ 查看系统版本
-    s   ~ 查阅过往文章
-    i   ~ 查看自己的资料
-    e   ~ 查看将要举行的活动
-    re  ~ 报名参加活动
-    ir  ~ 查看自己已经报名的活动
-    dm [组委的名字] 可了解TA更多
+    更多细节,请惯性地输入 h 继续吧 :)
+    '''
+    TXT_NO_INIT='''亲! 目测首次使用 俺们的应答服务?
+    请输入 ei 开始增补妮称以及邮箱卟!-) 
+
+    更多细节,请输入 h 继续吧 :)
+    '''
+    TXT_PLS_ALIAS='''请输入亲想用的妮称:
+    (成员信息增补流程 1/2)
+
+    更多细节,请惯性地输入 h 继续吧 :)
+    '''
+    TXT_PLS_EN4NM='''亲! 为输入方便,使用E文作为妮称吧!
+    (成员信息增补流程 1/2)
+
+    更多细节,请惯性地输入 h 继续吧 :)
+    '''
+    TXT_PLS_EM='''请输入亲常用邮箱:
+    (成员信息增补流程 2/2)
+
+    更多细节,请惯性地输入 h 继续吧 :)
+    '''
+    TXT_REALY_EM = '''亲! 要请输入邮箱格式吼!
+    (成员信息增补流程 2/2)
+
+    也可以输入 * 退出成员信息增补流程;-)
+
+    更多细节,请惯性地输入 h 继续吧 :)
+    '''
+    TXT_DONE_EI='''谢谢,亲! 成员信息增补完成:
+    妮称: %s
+    邮箱: %s
+
+    (成员信息增补流程 完成!-)
+
+    更多细节,请惯性地输入 h 继续吧 :)
     '''
 
-    TXT_NEW_USR='''还未注册 亲 的信息,请输入邮箱先;
+    TXT_NEW_USR='''亲!信息还曾注册, 请输入邮箱先;
     形如:
     em:foo.bar@gmail.com
 
     更多细节,请惯性地输入 h 继续吧 :)
     '''
+    TXT_PLS_INT = '''亲! 请输入类型文章的编号,仅数字就好:
 
-    TXT_PLS_EM='''请输入你的邮箱!形如:
-    em:foo.bar@gmail.com
-
-    更多细节,请惯性地输入 h 继续吧 :)
-    '''
-
-    TXT_CRT_EM='''亲! 当前的邮箱是:
-    %s
+    也可以输入 * 退出文章查阅流程;-)
 
     更多细节,请惯性地输入 h 继续吧 :)
     '''
@@ -192,8 +252,40 @@ class Borg():
         ]]></Content>
          </xml> yq34 
     '''
+    APIPRE = "/cli" #% _API_ROOT
+    STLIMI = 4.2    # 请求安全时限(秒)
+    CLI_MATTERS = {     # 命令行响应方式速查字典
+        "sum/usr":"GET"             # 统计用户现状
+        , "info/usr":   "GET"       # 查阅用户信息
+        , "find/usr":   "GET"       # 搜索用户
+        , "list/usr":   "GET"       # 列出指定级别用户
+        , "del/usr":    "DELETE"    # 软删除所有用户 (包含tag 信息)
+        , "reliv/usr":  "PUT"       # 恢复指定用户
+        , "acl/usr":    "PUT"       # 设置用户权限
+        , "fix/usr":    "PUT"       # 修订用户信息
 
-    VERSION = "weknow v13.09.18"
+        , "echo":       "GET"       # 模拟wechat 问答
+        
+        , "st/kv":      "GET"       # 查阅 KVDB 信息
+        
+        , "bkup/db":    "GET"       # 备份整个 KVDB
+        , "bkup/m":    "GET"        # 备份所有 成员
+        , "bkup/e":    "GET"        # 备份所有 活动
+        , "bkup/p":    "GET"        # 备份所有 文章
+
+        , "revert/db":  "POST"      # 恢复整个 KVDB
+        
+        , "sum/his":    "GET"       # 节点(任意)修订次数
+        , "his/last":   "GET"       # 最后一次节点(任意)修订
+        }
+
+
+    LEVEL4USR = {"mana":0
+        , "up":1
+        , "api":2
+        }
+
+
     
 CFG = Borg()
 
