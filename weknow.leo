@@ -475,7 +475,7 @@ class Borg():
     def __init__(self):
         self.__dict__ = self.__collective_mind
     
-    VERSION = "weknow v13.09.18"
+    VERSION = "weknow v13.09.25-42"
     &lt;&lt;cfg4Borg&gt;&gt;
     
 CFG = Borg()
