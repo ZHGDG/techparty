@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 import sys
+from os import uname
+
 import os.path
 app_root = os.path.dirname(__file__)
 sys.path.insert(0, os.path.join(app_root, "3party/"))
@@ -23,17 +25,24 @@ class Borg():
     def __init__(self):
         self.__dict__ = self.__collective_mind
     
-    VERSION = "weknow v13.09.25-42"
+    VERSION = "weknow v13.09.26-24"
     #管理员邮箱列表
     ADMIN_EMAIL_LIST = ['zoomquiet+gdg@gmail.com']
 
+    if 'SERVER_SOFTWARE' in os.environ:
+        # SAE
+        AS_SAE = True
+    else:
+        # Local
+        AS_SAE = False
     import sae.kvdb
     KV = sae.kvdb.KVClient()
     #   系统索引键-名字典
-    K4D = {'incr':"SYS:TOT"         # int
-        ,'member':"SYS:usrs:ALL"    # [] 所有用户  (包含已经 del 的)
-        ,'events':"SYS:eves:ALL"    # [] 所有活动索引 (包含已经 del 的)
-        ,'papers':"SYS:pubs:ALL"    # [] 所有文章索引 (包含已经 del 的)
+    K4D = {'incr':"SYS_TOT"         # int
+        ,'member':"SYS_usrs_ALL"    # [] 所有用户  (包含已经 del 的)
+        ,'dama':"SYS_dama_ALL"      # [] 所有 组委  (包含已经 del 的)
+        ,'events':"SYS_eves_ALL"    # [] 所有活动索引 (包含已经 del 的)
+        ,'papers':"SYS_pubs_ALL"    # [] 所有文章索引 (包含已经 del 的)
     }
     #KEY4_incr = K4D['incr']
     for k in K4D:
@@ -67,6 +76,7 @@ class Borg():
         , "desc":""     # 解释
         , "pp":''       # Passport "kswl662773786"
         , 'em':''       #'zhouqi@ijinshan.com',
+        , 'mo':''       #Mobile
         }
 
 
@@ -83,7 +93,7 @@ class Borg():
         , "del":0
         , "type":"txt"  # 信息类型 txt|uri|pic
         , "tag":"ot"
-        , 'tiele':''
+        , 'title':''
         , "desc":""     # 解释
         , "picurl":''
         , "url":""
@@ -105,61 +115,37 @@ class Borg():
 
 
 
-
-    TPL_TEXT=''' <xml>
-     <ToUserName><![CDATA[%(toUser)s]]></ToUserName>
-     <FromUserName><![CDATA[%(fromUser)s]]></FromUserName>
-     <CreateTime>%(tStamp)s</CreateTime>
-     <MsgType><![CDATA[text]]></MsgType>
-     <Content><![CDATA[%(content)s]]></Content>
-     </xml>'''
-
-    TPL_URIS='''<xml>
-     <ToUserName><![CDATA[%(toUser)s]]></ToUserName>
-     <FromUserName><![CDATA[%(fromUser)s]]></FromUserName>
-     <CreateTime>%(tStamp)s</CreateTime>
-     <MsgType><![CDATA[news]]></MsgType>
-     <ArticleCount>%(item_count)d</ArticleCount>
-     <Articles>
-     %(items)s
-     </Articles>
-     </xml> 
-    '''
-
-    TPL_ITEM='''<item>
-     <Title><![CDATA[%(title)s]]></Title> 
-     <Description><![CDATA[%(description)s]]></Description>
-     <PicUrl><![CDATA[%(picurl)s]]></PicUrl>
-     <Url><![CDATA[%(url)s]]></Url>
-     </item>
-    '''
-    CMD_ALIAS={"help": ['h', 'H', 'Help', 'help', '?', u'？']
-        , "version": ['v', 'V', 'ver', 'Version', 'version', 'Ver']
-        , "info": ['i', 'I', 'Info', 'info', 'info.', 'information']
-        , "search": ['s', 'S', 'see', 'See', 'search', 'Search', 'seek']
-        , "event": ['e', 'E', 'event', 'Event', 'events', 'act']
-        , "dm": ['dm', 'DM', 'Dm', 'dd']
-        , "sayeahoo": ['syh', 'kvdb', 'stat', 'status']
-        }
+    CMD_ALIAS=('h', 'H', 'help', '?'
+        , 'v', 'V', 'version', 'log'
+        , 'i', 'I', 'me', 'ei'
+        , 'e', 'E'
+        , 're', 'rc', 'ri'
+        , 's', 'S'
+        , 'st', 'stat'
+        )
 
     DM_ALIAS = {"LXC": ['Bonnie', 'liuxinchen', 'lxc', 'LXC', u'刘星辰']
-        , "ZQ": ['zq', 'zoomq', 'ZQ', u'ZQ大妈', u'大妈', u'周琦']
-        , "LG": ['GJT', 'gaojunten', 'LG', 'lg', 'spawnris', 'Spawnris', u'老高', u'高骏腾']
-        , "LQX": ['lqx', 'LQX', 'langqixu', u'小郎', u'郎启旭']
+        , "ZQ": ['Zoom.Quiet','zq', 'zoomq', 'ZQ', u'ZQ大妈', u'大妈', u'周琦']
+        , "LG": ['Spawnris','GJT', 'gaojunten', 'LG', 'lg', 'spawnris', u'老高', u'高骏腾']
+        , "LQX": ['LQX', 'lqx', 'langqixu', u'小郎', u'郎启旭']
         }
 
+    TXT_EVENT_NULL = u'''亲! 目测近期没有活动规划!
 
-    TXT_VER='''珠海GDG 公众号应答系统当前版本:
+    更多细节,请惯性地输入 h 继续吧 :)
+    '''
+    TXT_VER = u'''珠海GDG 公众号应答系统当前版本:
     %s
     Changelog:
+    - 130926 改造并使用 Jeff 的SDK,配合运营CLI 工具
     - 130923 完成初始可用, 并发布 42分钟乱入 wechat 手册!-)
     - 130918 启动开发
 
     更多细节,请惯性地输入 h 继续吧 :)'''% VERSION
 
-    TXT_THANX='''亲! 感谢反馈信息, 大妈们得空就回复 ;-)
+    TXT_THANX = u'''亲! 感谢反馈信息, 大妈们得空就回复 ;-)
     '''
-    TXT_HELP='''GDG珠海 公众号目前支持以下命令:
+    TXT_HELP = u'''GDG珠海 公众号目前支持以下命令:
     h   ~ 使用帮助
     V   ~ 系统版本
     s   ~ 查阅文章
@@ -167,53 +153,77 @@ class Borg():
     ei  ~ 修订成员资料
 
     e   ~ 活动查询
+    '''
+    '''
     re  ~ 活动报名
     rc  ~ 放弃报名
     ri  ~ 确认报名
-    '''
-    #dm [组委的名字] 可了解TA更多
 
-    TXT_WELCOME='''GDG珠海 公众号的应答范畴:
+    dm [组委的名字] 可了解TA更多
+    '''
+    TXT_WELCOME = u'''GDG珠海 公众号的应答范畴:
     - GDG活动报名、签到、直播
     - GDG大妈联系查询
     - GDG发表文章查阅
     功能正在完善中，欢迎反馈。
     更多细节,请惯性地输入 h 继续吧 :)
     '''
-    TXT_CRT_ME='''亲! 你当前注册的成员信息如下:
+
+
+    TXT_CRT_DM = u'''亲! 知道嘛?
+    %s : 
+      %s
+
+    更多细节,请惯性地输入 h 继续吧 :)
+    '''
+
+    TXT_CRT_ME = u'''亲! 你当前注册的成员信息如下:
     妮称: %s
     邮箱: %s
 
     更多细节,请惯性地输入 h 继续吧 :)
     '''
-    TXT_NO_INIT='''亲! 目测首次使用 俺们的应答服务?
+
+    TXT_NO_INIT = u'''亲! 目测首次使用 俺们的应答服务?
     请输入 ei 开始增补妮称以及邮箱卟!-) 
 
     更多细节,请输入 h 继续吧 :)
     '''
-    TXT_PLS_ALIAS='''请输入亲想用的妮称:
+
+    TXT_PLS_ALIAS = u'''请输入亲想用的妮称:
     (成员信息增补流程 1/2)
 
     更多细节,请惯性地输入 h 继续吧 :)
     '''
-    TXT_PLS_EN4NM='''亲! 为输入方便,使用E文作为妮称吧!
+
+    TXT_PLS_EN4NM = u'''亲! 为输入方便,使用E文作为妮称吧!
     (成员信息增补流程 1/2)
 
     更多细节,请惯性地输入 h 继续吧 :)
     '''
-    TXT_PLS_EM='''请输入亲常用邮箱:
+
+    TXT_PLS_EM = u'''请输入亲常用邮箱:
     (成员信息增补流程 2/2)
 
     更多细节,请惯性地输入 h 继续吧 :)
     '''
-    TXT_REALY_EM = '''亲! 要请输入邮箱格式吼!
+    TXT_REALY_EM = u'''亲! 得给邮箱哪!
+    (成员信息增补流程 2/2)
+
+    也可以输入 * 退出 ;-)
+
+    更多细节,请惯性地输入 h 继续吧 :)
+    '''
+
+    CN_TXT_REALY_EM = u'''亲! 要请输入邮箱格式吼!
     (成员信息增补流程 2/2)
 
     也可以输入 * 退出成员信息增补流程;-)
 
     更多细节,请惯性地输入 h 继续吧 :)
     '''
-    TXT_DONE_EI='''谢谢,亲! 成员信息增补完成:
+
+    TXT_DONE_EI = u'''谢谢,亲! 成员信息增补完成:
     妮称: %s
     邮箱: %s
 
@@ -222,18 +232,68 @@ class Borg():
     更多细节,请惯性地输入 h 继续吧 :)
     '''
 
-    TXT_NEW_USR='''亲!信息还曾注册, 请输入邮箱先;
+    TXT_NEW_USR = u'''亲!信息还曾注册, 请输入邮箱先;
     形如:
     em:foo.bar@gmail.com
 
     更多细节,请惯性地输入 h 继续吧 :)
     '''
-    TXT_PLS_INT = '''亲! 请输入类型文章的编号,仅数字就好:
+
+
+    PAPER_TAGS = ('gb', 'dd', 'gt', 'dm', 'hd', 'et', 'ot') 
+    TXT_TAG_DEFINE = u'''
+    gb ~G术图书 (推荐好书,书无中外)
+    dd ~D码点评 (麻辣评点,善意满盈)
+    gt ~G说公论 (时评杂文,新旧不拘)
+    dm ~珠的自白(大妈自述,每周一篇)
+    hd ~海选文章(得要相信,大妈法眼)
+
+    et ~活动报道(快乐大趴,给力小会)
+
+    ot ~其它 (系统更新,新旧不拘)
+    '''
+    TXT_PLS_TAG = u'''亲! 请输入文章类别编码(类似 dm 的2字母):
+    然后,俺才能给出该类别的文章索引...
+    %s
+    也可以输入 * 退出文章查阅流程;-)
+
+    更多细节,请惯性地输入 h 继续吧 :)
+    '''% TXT_TAG_DEFINE
+
+    TXT_OUT_TAG = u'''亲! 目测输错了类别编码,再试?
+    (类似 dm 的2字母):
+
+    %s
+
+    也可以输入 * 退出文章查阅流程;-)
+
+    更多细节,请惯性地输入 h 继续吧 :)
+    '''% TXT_TAG_DEFINE
+
+    TXT_PLS_INT = u'''亲! 请输入类型文章的编号,仅数字就好:
 
     也可以输入 * 退出文章查阅流程;-)
 
     更多细节,请惯性地输入 h 继续吧 :)
     '''
+
+    TXT_PUB_LIST = u'''%s ::
+    %s
+
+    也可以输入 * 退出文章查阅流程;-)
+
+    更多细节,请惯性地输入 h 继续吧 :)
+    '''
+
+    TXT_PUB_WAIT = u'''对不起亲!
+    过往文章的信息,大妈们还没来的及增补进来,
+    放轻松,等等先... (~.~)
+
+    也可以输入 * 退出文章查阅流程;-)
+
+    更多细节,请惯性地输入 h 继续吧 :)
+    '''
+
 
 
     '''
@@ -251,8 +311,39 @@ class Borg():
         ]]></Content>
          </xml> yq34 
     '''
+    TPL_TEXT='''<xml>
+    <ToUserName><![CDATA[%(toUser)s]]></ToUserName>
+    <FromUserName><![CDATA[%(fromUser)s]]></FromUserName>
+    <CreateTime>%(tStamp)s</CreateTime>
+    <MsgType><![CDATA[text]]></MsgType>
+    <Content><![CDATA[%(content)s]]></Content>
+    </xml>'''
+
+    TPL_URIS='''<xml>
+    <ToUserName><![CDATA[%(toUser)s]]></ToUserName>
+    <FromUserName><![CDATA[%(fromUser)s]]></FromUserName>
+    <CreateTime>%(tStamp)s</CreateTime>
+    <MsgType><![CDATA[news]]></MsgType>
+    <ArticleCount>%(item_count)d</ArticleCount>
+    <Articles>
+    %(items)s
+    </Articles>
+    </xml> 
+    '''
+
+    TPL_ITEM='''<item>
+    <Title><![CDATA[%(title)s]]></Title> 
+    <Description><![CDATA[%(description)s]]></Description>
+    <PicUrl><![CDATA[%(picurl)s]]></PicUrl>
+    <Url><![CDATA[%(url)s]]></Url>
+    </item>
+    '''
+
+
+
     APIPRE = "/cli" #% _API_ROOT
     STLIMI = 4.2    # 请求安全时限(秒)
+    SECURE_ARGS = ('appkey', 'ts', 'sign')
     CLI_MATTERS = {     # 命令行响应方式速查字典
         "sum/usr":"GET"             # 统计用户现状
         , "info/usr":   "GET"       # 查阅用户信息
@@ -261,14 +352,18 @@ class Borg():
         , "del/usr":    "DELETE"    # 软删除所有用户 (包含tag 信息)
         , "reliv/usr":  "PUT"       # 恢复指定用户
         , "acl/usr":    "PUT"       # 设置用户权限
+
         , "fix/usr":    "PUT"       # 修订用户信息
+        , "fix/dm":     "PUT"       # 修订 大妈 信息
+        , "fix/pub":    "PUT"       # 增补 文章 信息
 
         , "echo":       "GET"       # 模拟wechat 问答
         
         , "st/kv":      "GET"       # 查阅 KVDB 信息
-        
+
         , "bkup/db":    "GET"       # 备份整个 KVDB
         , "bkup/m":    "GET"        # 备份所有 成员
+        , "bkup/dm":   "GET"        # 备份所有 大妈
         , "bkup/e":    "GET"        # 备份所有 活动
         , "bkup/p":    "GET"        # 备份所有 文章
 

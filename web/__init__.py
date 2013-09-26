@@ -9,8 +9,6 @@ from config import JINJA2TPL_PATH
 TEMPLATE_PATH.insert(0, JINJA2TPL_PATH)
 
 
-
-
 APP = Bottle()
 
 #APP.mount('/up', __import__('mana4up').APP)
@@ -25,6 +23,34 @@ def index():
 #@view('404.html')
 @APP.error(404)
 def error404(error):
+    return '''
+
+
+\          SORRY            /
+ \                         /
+  \    This page does     /
+   ]   not exist yet.    [    ,'|
+   ]                     [   /  |
+   ]___               ___[ ,'   |
+   ]  ]\             /[  [ |:   |
+   ]  ] \           / [  [ |:   |
+   ]  ]  ]         [  [  [ |:   |
+   ]  ]  ]__     __[  [  [ |:   |
+   ]  ]  ] ]\ _ /[ [  [  [ |:   |
+   ]  ]  ] ] (#) [ [  [  [ :===='
+   ]  ]  ]_].nHn.[_[  [  [
+   ]  ]  ]  HHHHH. [  [  [
+   ]  ] /   `HH("N  \ [  [
+   ]__]/     HHH  "  \[__[
+   ]         NNN         [
+   ]         N/"         [
+   ]         N H         [
+  /          N            \
+
+/                           \
+
+roaring zoomquiet+404@gmail.com
+'''
     return template('404.html')
 
 @APP.route('/favicon.ico')

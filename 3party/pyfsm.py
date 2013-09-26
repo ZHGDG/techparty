@@ -281,7 +281,7 @@ class task(object):
         self.callbacks = {}
         self.exit = []
         self._locals = {}
-        self.current_state.enter2(self, obj)
+        return self.current_state.enter2(self, obj)
 
     def send2(self, event, obj):
         """
@@ -315,7 +315,10 @@ class task(object):
         # if a transition exists, change the state
         trans = self.current_state.transitions.get(key, None)
         if trans:
-            self.start2(trans ,obj)
+            return self.start2(trans ,obj)
+        else:
+            # when state transited, call old  current_state func again!
+            return self.current_state.enter2(self, obj)
 
     def add_state(self, name, state):
         """
@@ -414,11 +417,13 @@ class state(object):
     def __init__(self, name):
         self.task = Registry.get_task(name)
         self.transitions = {}
+
     def __call__(self, func):
         self.func = func
         self.transitions.update(getattr(func, 'transitions', {}))
         self.task.add_state(func.__name__, self)
         return self
+
     def enter(self, task):
         """
         Entrance function to this state.
@@ -437,3 +442,5 @@ class state(object):
         @type task: L{pyfsm.task}
         """
         return self.func(task, obj)
+
+

@@ -17,6 +17,7 @@
 <v t="zoomq.20120723102156.5544" a="E"><vh>@nosent config.py</vh>
 <v t="zoomq.20120727213305.14750"><vh>&lt;&lt;declarations&gt;&gt;</vh></v>
 <v t="zoomq.20120710140424.5456" a="E"><vh>&lt;&lt;cfg4Borg&gt;&gt;</vh>
+<v t="zoomq.20130926092950.5432"><vh>环境切换</vh></v>
 <v t="zoomq.20130923093950.3647"><vh>KVDB</vh>
 <v t="zoomq.20130923093950.5397"><vh>&lt;&lt;MEMBER&gt;&gt;</vh></v>
 <v t="zoomq.20130923093950.5395"><vh>&lt;&lt;CONTENT&gt;&gt;</vh></v>
@@ -24,11 +25,11 @@
 <v t="zoomq.20130923093950.5396"><vh>&lt;&lt;HISTORIC&gt;&gt;</vh></v>
 </v>
 <v t="zoomq.20130918155053.7084" a="E"><vh>4wechat</vh>
-<v t="zoomq.20130923093950.8818"><vh>&lt;&lt;ALIAS&gt;&gt;</vh></v>
 <v t="zoomq.20130923093950.7285"><vh>&lt;&lt;XML模板&gt;&gt;</vh></v>
 <v t="zoomq.20130925103854.6457"><vh>活动报名</vh></v>
 <v t="zoomq.20130925103854.6455"><vh>礼节/帮助</vh></v>
 <v t="zoomq.20130925103854.6456"><vh>用户信息</vh></v>
+<v t="zoomq.20130923093950.8818"><vh>&lt;&lt;ALIAS&gt;&gt;</vh></v>
 <v t="zoomq.20130925103854.6458"><vh>文章查询</vh></v>
 </v>
 <v t="zoomq.20130925103854.4951"><vh>RESTful</vh></v>
@@ -37,14 +38,14 @@
 <v t="zoomq.20130925103854.4957"><vh>@nosent CLI.py</vh>
 <v t="zoomq.20130925103854.4958"><vh>&lt;&lt;docopt&gt;&gt;</vh></v>
 <v t="zoomq.20130925103854.4959"><vh>&lt;&lt;declarations&gt;&gt;</vh></v>
-<v t="zoomq.20130925103854.4960" a="E"><vh>_rest_main()</vh>
+<v t="zoomq.20130925103854.4960"><vh>_rest_main()</vh>
 <v t="zoomq.20130925103854.6450"><vh>&lt;&lt;echo matters&gt;&gt;</vh></v>
 <v t="zoomq.20130925103854.6452"><vh>&lt;&lt;GET DEL&gt;&gt;</vh></v>
 <v t="zoomq.20130925103854.6451"><vh>&lt;&lt;POST PUT&gt;&gt;</vh></v>
 </v>
 <v t="zoomq.20130925103854.4961"><vh>smart_rest()</vh></v>
 </v>
-<v t="zoomq.20120723102156.5541"><vh>module</vh>
+<v t="zoomq.20120723102156.5541" a="E"><vh>module</vh>
 <v t="zoomq.20130925103854.6406"><vh>@nosent __init__.py</vh></v>
 <v t="zoomq.20120820121523.7422"><vh>@nosent auth.py</vh>
 <v t="zoomq.20120820121523.7423"><vh>&lt;&lt;declarations&gt;&gt;</vh></v>
@@ -84,30 +85,14 @@
 <v t="zoomq.20120723102156.5561" a="E"><vh>@nosent mana4api.py</vh>
 <v t="zoomq.20120723102156.5562"><vh>&lt;&lt;declarations&gt;&gt;</vh></v>
 <v t="zoomq.20130918155053.5760"><vh>GET  /echo</vh></v>
-<v t="zoomq.20130918155053.7083"><vh>POST /echo</vh>
-<v t="zoomq.20130923093950.8817"><vh>&lt;&lt;sayeahoo&gt;&gt;</vh></v>
-<v t="zoomq.20130923093950.8816"><vh>&lt;&lt;InfoMemberEM&gt;&gt;</vh></v>
-<v t="zoomq.20130923093950.8567"><vh>&lt;&lt;InfoMember&gt;&gt;</vh></v>
-<v t="zoomq.20130923093950.8563"><vh>&lt;&lt;HELP&gt;&gt;</vh></v>
-<v t="zoomq.20130923093950.8564"><vh>&lt;&lt;VERSION&gt;&gt;</vh></v>
-<v t="zoomq.20130923093950.8565"><vh>&lt;&lt;SEARCH&gt;&gt;</vh></v>
-<v t="zoomq.20130923093950.8566"><vh>&lt;&lt;THANKS&gt;&gt;</vh></v>
-</v>
-<v t="zoomq.20130925103854.6430"><vh>FSM</vh>
-<v t="zoomq.20130925103854.6461"><vh>&lt;&lt;大妈联系&gt;&gt;</vh></v>
-<v t="zoomq.20130925103854.6460"><vh>dm 大妈联系</vh></v>
-<v t="zoomq.20130925103854.6433"><vh>i 成员信息</vh></v>
-<v t="zoomq.20130925103854.6437"><vh>e 活动查询</vh></v>
-<v t="zoomq.20130925103854.6435"><vh>活动报名</vh></v>
-<v t="zoomq.20130925103854.6441"><vh>系统信息</vh></v>
-<v t="zoomq.20130925103854.6431"><vh>s 查阅文章</vh></v>
-</v>
-<v t="zoomq.20130925103854.6426"><vh>__chkRegUsr()</vh></v>
-<v t="zoomq.20130925103854.6427"><vh>__update_usr()</vh></v>
-<v t="zoomq.20130923093950.8570"><vh>__echo_txt()</vh></v>
 <v t="zoomq.20130925103854.5007"><vh>cli/ 工具</vh>
 <v t="zoomq.20130925103854.5049"><vh>GET cli/st/kv</vh></v>
-<v t="zoomq.20130925103854.5041" a="E"><vh>用户管理</vh>
+<v t="zoomq.20130926092950.5438"><vh>PUT /cli/fix/dm/:NM</vh></v>
+<v t="zoomq.20130926092950.5440"><vh>__chkDMID()</vh></v>
+<v t="zoomq.20130926092950.5442"><vh>__chkDAMA()</vh></v>
+<v t="zoomq.20130926092950.5447"><vh>PUT /cli/fix/pub/:UUID</vh></v>
+<v t="zoomq.20130926092950.5449"><vh>__chkPAPER()</vh></v>
+<v t="zoomq.20130925103854.5041"><vh>用户管理</vh>
 <v t="zoomq.20130925103854.6454"><vh>GET cli/sum/usr</vh></v>
 <v t="zoomq.20130925103854.5042"><vh>PUT cli/acl/usr/&lt;uuid&gt;</vh>
 <v t="zoomq.20130925103854.5043"><vh>&lt;&lt;acl bind&gt;&gt;</vh></v>
@@ -127,13 +112,42 @@
 <v t="zoomq.20130925103854.5035"><vh>GET his/last</vh></v>
 </v>
 </v>
+<v t="zoomq.20130918155053.7083"><vh>POST /echo</vh>
+<v t="zoomq.20130923093950.8817"><vh>&lt;&lt;sayeahoo&gt;&gt;</vh></v>
+<v t="zoomq.20130923093950.8816"><vh>&lt;&lt;InfoMemberEM&gt;&gt;</vh></v>
+<v t="zoomq.20130923093950.8567"><vh>&lt;&lt;InfoMember&gt;&gt;</vh></v>
+<v t="zoomq.20130923093950.8563"><vh>&lt;&lt;HELP&gt;&gt;</vh></v>
+<v t="zoomq.20130923093950.8564"><vh>&lt;&lt;VERSION&gt;&gt;</vh></v>
+<v t="zoomq.20130923093950.8565"><vh>&lt;&lt;SEARCH&gt;&gt;</vh></v>
+<v t="zoomq.20130923093950.8566"><vh>&lt;&lt;THANKS&gt;&gt;</vh></v>
+</v>
+<v t="zoomq.20130925103854.6430" a="E"><vh>FSM</vh>
+<v t="zoomq.20130925103854.6461"><vh>&lt;&lt;大妈联系&gt;&gt;</vh></v>
+<v t="zoomq.20130925103854.6431" a="E"><vh>s 查阅文章</vh>
+<v t="zoomq.20130926092950.5443"><vh>&lt;&lt;seek&gt;&gt;</vh></v>
+<v t="zoomq.20130926092950.5444"><vh>&lt;&lt;tags&gt;&gt;</vh></v>
+<v t="zoomq.20130926092950.5445"><vh>&lt;&lt;no_paper&gt;&gt;</vh></v>
+</v>
+<v t="zoomq.20130925103854.6433"><vh>i 成员信息</vh>
+<v t="zoomq.20130926092950.5433"><vh>&lt;&lt;info_me&gt;&gt;</vh></v>
+<v t="zoomq.20130926092950.5434"><vh>&lt;&lt;edit_info&gt;&gt;</vh></v>
+<v t="zoomq.20130926092950.5436"><vh>&lt;&lt;info_alias&gt;&gt;</vh></v>
+<v t="zoomq.20130926092950.5435"><vh>&lt;&lt;info_mail&gt;&gt;</vh></v>
+</v>
+<v t="zoomq.20130925103854.6441"><vh>系统信息</vh></v>
+<v t="zoomq.20130925103854.6437"><vh>e 活动查询</vh></v>
+<v t="zoomq.20130925103854.6435"><vh>活动报名</vh></v>
+</v>
+<v t="zoomq.20130925103854.6426"><vh>__chkRegUsr()</vh></v>
+<v t="zoomq.20130925103854.6427"><vh>__update_usr()</vh></v>
+<v t="zoomq.20130923093950.8570"><vh>__echo_txt()</vh></v>
 <v t="zoomq.20120727213305.13050"><vh>/api/sysincr</vh></v>
 <v t="zoomq.20120727213305.14707"></v>
 </v>
 </v>
 <v t="zoomq.20120727213305.14715"><vh>templates</vh>
 <v t="zoomq.20120812115324.4334"><vh>&lt;&lt;sspathdefine&gt;&gt;</vh></v>
-<v t="zoomq.20120727213305.14728"><vh>BASE组件</vh>
+<v t="zoomq.20120727213305.14728" a="E"><vh>BASE组件</vh>
 <v t="zoomq.20120710140424.5449"><vh>@nosent base.html</vh>
 <v t="zoomq.20120812115324.4334"></v>
 <v t="zoomq.20120710140424.5453"><vh>CSS</vh>
@@ -475,7 +489,7 @@ class Borg():
     def __init__(self):
         self.__dict__ = self.__collective_mind
     
-    VERSION = "weknow v13.09.25-42"
+    VERSION = "weknow v13.09.26-24"
     &lt;&lt;cfg4Borg&gt;&gt;
     
 CFG = Borg()
@@ -508,8 +522,6 @@ from bottle import jinja2_template as template
 from config import JINJA2TPL_PATH
 TEMPLATE_PATH.insert(0, JINJA2TPL_PATH)
 
-
-
 </t>
 <t tx="zoomq.20120723102156.5548">@APP.route('/')
 #@view('404.html')
@@ -539,10 +551,11 @@ APP = Bottle()
 </t>
 <t tx="zoomq.20120723102156.5562">import sys   
 #sys.path.append("..")  
-import time
+import time #import time, gmtime, strftime, localtime
 from datetime import datetime
 import traceback
 import hashlib
+import base64
 from copy import deepcopy
 import xml.etree.ElementTree as etree
 
@@ -553,7 +566,7 @@ import pyfsm
 from pyfsm import state, transition
 
 #from wechat.official import WxNewsResponse
-#from wechat.official import WxTextResponse
+from wechat.official import WxApplication, WxRequest, WxTextResponse, WxNewsResponse, WxArticle
 
 from bottle import *
 from bottle import __version__ as bottleVer
@@ -563,7 +576,7 @@ from auth import _query2dict, _chkQueryArgs
 #from lb4crx2cli import __genRESTsign
 
 from utility import INCR4KV as __incr
-from utility import TSTAMP, GENID, USRID
+from utility import TSTAMP, GENID, USRID, DAMAID
 from utility import ADD4SYS
 
 
@@ -669,6 +682,34 @@ zoomquiet+lb4crx2srv # gmail.com
 <t tx="zoomq.20120727213305.14707">#@view('404.html')
 @APP.error(404)
 def error404(error):
+    return '''
+
+
+\          SORRY            /
+ \                         /
+  \    This page does     /
+   ]   not exist yet.    [    ,'|
+   ]                     [   /  |
+   ]___               ___[ ,'   |
+   ]  ]\             /[  [ |:   |
+   ]  ] \           / [  [ |:   |
+   ]  ]  ]         [  [  [ |:   |
+   ]  ]  ]__     __[  [  [ |:   |
+   ]  ]  ] ]\ _ /[ [  [  [ |:   |
+   ]  ]  ] ] (#) [ [  [  [ :===='
+   ]  ]  ]_].nHn.[_[  [  [
+   ]  ]  ]  HHHHH. [  [  [
+   ]  ] /   `HH("N  \ [  [
+   ]__]/     HHH  "  \[__[
+   ]         NNN         [
+   ]         N/"         [
+   ]         N H         [
+  /          N            \
+
+/                           \
+
+roaring zoomquiet+404@gmail.com
+'''
     return template('404.html')
 
 @APP.route('/favicon.ico')
@@ -814,6 +855,8 @@ new FormValidator('upcrxform', [{
 .error .messages{font-size:1em;padding:.6667em 0 0 1em;}
 </t>
 <t tx="zoomq.20120727213305.14750">import sys
+from os import uname
+
 import os.path
 app_root = os.path.dirname(__file__)
 sys.path.insert(0, os.path.join(app_root, "3party/"))
@@ -1029,9 +1072,10 @@ JINJA2TPL_PATH = os.path.abspath(
     timestamp = TSTAMP()
     tot = INCR4KV()
     #sha1name = hashlib.sha1(name).hexdigest()
-    GOBJMAP = {'his':'h:%(timestamp)s:HIS%(tot)d'
-        ,'tag':'t:%(timestamp)s:TAG%(tot)d'
-        ,'event':'e:%(timestamp)s:EVE%(tot)d'
+    GOBJMAP = {'his':'h_%(timestamp)s_HIS%(tot)d'
+        ,'tag':'t_%(timestamp)s_TAG%(tot)d'
+        ,'event':'e_%(timestamp)s_EVE%(tot)d'
+        ,'paper':'p_%(timestamp)s_PUB%(tot)d'
         #,'dm':'m:%(timestamp)s:DM%(tot)d'
         }
     if obj in GOBJMAP.keys():
@@ -1406,11 +1450,45 @@ def echo_wechat():
     #print request.query_string
     #print dir(BaseRequest.query_string)
     return request.query.echostr
+'''
+def wechat(request):
+    app = EchoApp()
+    result = app.process(request.GET, request.body, token='your token')
+    return HttpResponse(result)
+'''
+
 </t>
 <t tx="zoomq.20130918155053.7083">@APP.post('/echo')
 @APP.post('/echo/')
 def wechat_post():
-    #print request.forms.keys()[0]
+    #print "wechat GET\n ",request.query.keys()
+    #print "wechat GET type\n ",type(request.query)
+    # usage jeff SDK for wechat...
+    if CFG.AS_SAE:
+        wxa = WxApplication(token=XCFG.TOKEN)
+        chkwx = wxa.is_valid_params(request.query)
+        if not chkwx:
+            return None
+    else:
+        print "Debugging localhost..."
+    wxreq = WxRequest(request.forms.keys()[0])
+    #print "WxTextResponse:\n", WxTextResponse("hello world", wxreq).as_xml()
+    G_CRT_USR = __chkRegUsr(wxreq.FromUserName)
+    wxreq.crt_usr = G_CRT_USR
+    # usage pyfsm as FSM echo all kinds of usr ask
+    weknow = pyfsm.Registry.get_task('weknow')
+    if G_CRT_USR['fsm']:
+        weknow.start2(G_CRT_USR['fsm'], wxreq)
+    else:
+        weknow.start2('setup', wxreq)
+        G_CRT_USR['fsm'] = "setup"
+        __update_usr(G_CRT_USR)
+    print "weknow.send2:\n"
+    return weknow.send2(wxreq.Content.strip(), wxreq)
+
+    return None
+
+    # base hard code for all 
     xml = etree.XML(request.forms.keys()[0])
     __MsgType = xml.findtext("MsgType")
     __Content = xml.findtext("Content") #.encode('utf8')
@@ -1429,9 +1507,10 @@ def wechat_post():
         weknow.start2('setup', G_CRT_USR)
         G_CRT_USR['fsm'] = "setup"
         __update_usr(G_CRT_USR)
-    weknow.send2(__Content, G_CRT_USR)
+    print "weknow.send2:\n", weknow.send2(__Content, G_CRT_USR)
     return None
     
+    # base choas if elif else
     if isinstance(Content, unicode):
         print "可能是中文"
         #__Content = Content.encode('utf-8')
@@ -1465,8 +1544,7 @@ def wechat_post():
 
 
 </t>
-<t tx="zoomq.20130918155053.7084">&lt;&lt;XML模板&gt;&gt;
-&lt;&lt;ALIAS&gt;&gt;
+<t tx="zoomq.20130918155053.7084">&lt;&lt;ALIAS&gt;&gt;
 @others
 
 
@@ -1485,6 +1563,8 @@ def wechat_post():
     ]]&gt;&lt;/Content&gt;
      &lt;/xml&gt; yq34 
 '''
+&lt;&lt;XML模板&gt;&gt;
+
 </t>
 <t tx="zoomq.20130918155053.8973">@language python
 @tabwidth -4
@@ -1494,10 +1574,11 @@ def wechat_post():
 <t tx="zoomq.20130923093950.3647">import sae.kvdb
 KV = sae.kvdb.KVClient()
 #   系统索引键-名字典
-K4D = {'incr':"SYS:TOT"         # int
-    ,'member':"SYS:usrs:ALL"    # [] 所有用户  (包含已经 del 的)
-    ,'events':"SYS:eves:ALL"    # [] 所有活动索引 (包含已经 del 的)
-    ,'papers':"SYS:pubs:ALL"    # [] 所有文章索引 (包含已经 del 的)
+K4D = {'incr':"SYS_TOT"         # int
+    ,'member':"SYS_usrs_ALL"    # [] 所有用户  (包含已经 del 的)
+    ,'dama':"SYS_dama_ALL"      # [] 所有 组委  (包含已经 del 的)
+    ,'events':"SYS_eves_ALL"    # [] 所有活动索引 (包含已经 del 的)
+    ,'papers':"SYS_pubs_ALL"    # [] 所有文章索引 (包含已经 del 的)
 }
 #KEY4_incr = K4D['incr']
 for k in K4D:
@@ -1517,7 +1598,6 @@ for k in K4D:
 
 &lt;&lt;HISTORIC&gt;&gt;
 
-
 </t>
 <t tx="zoomq.20130923093950.5395">ESSAY_TAG = {'ot':"其它"
     , 'gb':"G术图书 (推荐好书,书无中外)"
@@ -1531,7 +1611,7 @@ K4WD = {"his_id":""   # 更新戮
     , "del":0
     , "type":"txt"  # 信息类型 txt|uri|pic
     , "tag":"ot"
-    , 'tiele':''
+    , 'title':''
     , "desc":""     # 解释
     , "picurl":''
     , "url":""
@@ -1568,33 +1648,35 @@ objHis = {'hisobj':""
 
 
 </t>
-<t tx="zoomq.20130923093950.7285">TPL_TEXT=''' &lt;xml&gt;
- &lt;ToUserName&gt;&lt;![CDATA[%(toUser)s]]&gt;&lt;/ToUserName&gt;
- &lt;FromUserName&gt;&lt;![CDATA[%(fromUser)s]]&gt;&lt;/FromUserName&gt;
- &lt;CreateTime&gt;%(tStamp)s&lt;/CreateTime&gt;
- &lt;MsgType&gt;&lt;![CDATA[text]]&gt;&lt;/MsgType&gt;
- &lt;Content&gt;&lt;![CDATA[%(content)s]]&gt;&lt;/Content&gt;
- &lt;/xml&gt;'''
+<t tx="zoomq.20130923093950.7285">TPL_TEXT='''&lt;xml&gt;
+&lt;ToUserName&gt;&lt;![CDATA[%(toUser)s]]&gt;&lt;/ToUserName&gt;
+&lt;FromUserName&gt;&lt;![CDATA[%(fromUser)s]]&gt;&lt;/FromUserName&gt;
+&lt;CreateTime&gt;%(tStamp)s&lt;/CreateTime&gt;
+&lt;MsgType&gt;&lt;![CDATA[text]]&gt;&lt;/MsgType&gt;
+&lt;Content&gt;&lt;![CDATA[%(content)s]]&gt;&lt;/Content&gt;
+&lt;/xml&gt;'''
 
 TPL_URIS='''&lt;xml&gt;
- &lt;ToUserName&gt;&lt;![CDATA[%(toUser)s]]&gt;&lt;/ToUserName&gt;
- &lt;FromUserName&gt;&lt;![CDATA[%(fromUser)s]]&gt;&lt;/FromUserName&gt;
- &lt;CreateTime&gt;%(tStamp)s&lt;/CreateTime&gt;
- &lt;MsgType&gt;&lt;![CDATA[news]]&gt;&lt;/MsgType&gt;
- &lt;ArticleCount&gt;%(item_count)d&lt;/ArticleCount&gt;
- &lt;Articles&gt;
- %(items)s
- &lt;/Articles&gt;
- &lt;/xml&gt; 
+&lt;ToUserName&gt;&lt;![CDATA[%(toUser)s]]&gt;&lt;/ToUserName&gt;
+&lt;FromUserName&gt;&lt;![CDATA[%(fromUser)s]]&gt;&lt;/FromUserName&gt;
+&lt;CreateTime&gt;%(tStamp)s&lt;/CreateTime&gt;
+&lt;MsgType&gt;&lt;![CDATA[news]]&gt;&lt;/MsgType&gt;
+&lt;ArticleCount&gt;%(item_count)d&lt;/ArticleCount&gt;
+&lt;Articles&gt;
+%(items)s
+&lt;/Articles&gt;
+&lt;/xml&gt; 
 '''
 
 TPL_ITEM='''&lt;item&gt;
- &lt;Title&gt;&lt;![CDATA[%(title)s]]&gt;&lt;/Title&gt; 
- &lt;Description&gt;&lt;![CDATA[%(description)s]]&gt;&lt;/Description&gt;
- &lt;PicUrl&gt;&lt;![CDATA[%(picurl)s]]&gt;&lt;/PicUrl&gt;
- &lt;Url&gt;&lt;![CDATA[%(url)s]]&gt;&lt;/Url&gt;
- &lt;/item&gt;
+&lt;Title&gt;&lt;![CDATA[%(title)s]]&gt;&lt;/Title&gt; 
+&lt;Description&gt;&lt;![CDATA[%(description)s]]&gt;&lt;/Description&gt;
+&lt;PicUrl&gt;&lt;![CDATA[%(picurl)s]]&gt;&lt;/PicUrl&gt;
+&lt;Url&gt;&lt;![CDATA[%(url)s]]&gt;&lt;/Url&gt;
+&lt;/item&gt;
 '''
+
+
 </t>
 <t tx="zoomq.20130923093950.8563">
 return __echo_txt(fromUser, toUser, CFG.TXT_HELP)
@@ -1640,20 +1722,6 @@ return None
     if 0 == len(usr):
 TypeError: object of type 'generator' has no len() yq34 
 '''
-'''
-objUSR={"uuid":""            
-    , "his_id":""   # 更新戮
-    , "del":0
-    , "fsm":""      # 有限状态机 当前状态
-    , "acl":1       # ban:0 usr:1 staff:10 api:42 admin:100
-    , "desc":""     # 解释
-    , "pp":''       # Passport 
-    , "nm":""       # NickName "Zoom.Quiet"
-    , 'em':''       #'zhouqi@ijinshan.com',
-    , "lasttm": ''  #"2013-07-05 19:01:33",
-    }    
-'''
-
 
 </t>
 <t tx="zoomq.20130923093950.8569"># 大妈们的联系方式
@@ -1663,12 +1731,15 @@ K4DM = {"his_id":""   # 更新戮
     , "desc":""     # 解释
     , "pp":''       # Passport "kswl662773786"
     , 'em':''       #'zhouqi@ijinshan.com',
+    , 'mo':''       #Mobile
     }
 
 
 </t>
 <t tx="zoomq.20130923093950.8570">def __echo_txt(fromUsr, toUsr, text):
-    tStamp = TSTAMP()
+    '''zip xml exp.
+    '''
+    tStamp = int(time.time())    #TSTAMP()
     fromUser = fromUsr
     toUser = toUsr
     content = text
@@ -1700,25 +1771,25 @@ return __echo_txt(fromUser, toUser, KV.get_info())
 
 
 </t>
-<t tx="zoomq.20130923093950.8818">CMD_ALIAS={"help": ['h', 'H', 'Help', 'help', '?', u'？']
-    , "version": ['v', 'V', 'ver', 'Version', 'version', 'Ver']
-    , "info": ['i', 'I', 'Info', 'info', 'info.', 'information']
-    , "search": ['s', 'S', 'see', 'See', 'search', 'Search', 'seek']
-    , "event": ['e', 'E', 'event', 'Event', 'events', 'act']
-    , "dm": ['dm', 'DM', 'Dm', 'dd']
-    , "sayeahoo": ['syh', 'kvdb', 'stat', 'status']
-    }
+<t tx="zoomq.20130923093950.8818">CMD_ALIAS=('h', 'H', 'help', '?'
+    , 'v', 'V', 'version', 'log'
+    , 'i', 'I', 'me', 'ei'
+    , 'e', 'E'
+    , 're', 'rc', 'ri'
+    , 's', 'S'
+    , 'st', 'stat'
+    )
 
 DM_ALIAS = {"LXC": ['Bonnie', 'liuxinchen', 'lxc', 'LXC', u'刘星辰']
-    , "ZQ": ['zq', 'zoomq', 'ZQ', u'ZQ大妈', u'大妈', u'周琦']
-    , "LG": ['GJT', 'gaojunten', 'LG', 'lg', 'spawnris', 'Spawnris', u'老高', u'高骏腾']
-    , "LQX": ['lqx', 'LQX', 'langqixu', u'小郎', u'郎启旭']
+    , "ZQ": ['Zoom.Quiet','zq', 'zoomq', 'ZQ', u'ZQ大妈', u'大妈', u'周琦']
+    , "LG": ['Spawnris','GJT', 'gaojunten', 'LG', 'lg', 'spawnris', u'老高', u'高骏腾']
+    , "LQX": ['LQX', 'lqx', 'langqixu', u'小郎', u'郎启旭']
     }
-
 
 </t>
 <t tx="zoomq.20130925103854.4951">APIPRE = "/cli" #% _API_ROOT
 STLIMI = 4.2    # 请求安全时限(秒)
+SECURE_ARGS = ('appkey', 'ts', 'sign')
 CLI_MATTERS = {     # 命令行响应方式速查字典
     "sum/usr":"GET"             # 统计用户现状
     , "info/usr":   "GET"       # 查阅用户信息
@@ -1727,14 +1798,18 @@ CLI_MATTERS = {     # 命令行响应方式速查字典
     , "del/usr":    "DELETE"    # 软删除所有用户 (包含tag 信息)
     , "reliv/usr":  "PUT"       # 恢复指定用户
     , "acl/usr":    "PUT"       # 设置用户权限
+
     , "fix/usr":    "PUT"       # 修订用户信息
+    , "fix/dm":     "PUT"       # 修订 大妈 信息
+    , "fix/pub":    "PUT"       # 增补 文章 信息
 
     , "echo":       "GET"       # 模拟wechat 问答
     
     , "st/kv":      "GET"       # 查阅 KVDB 信息
-    
+
     , "bkup/db":    "GET"       # 备份整个 KVDB
     , "bkup/m":    "GET"        # 备份所有 成员
+    , "bkup/dm":   "GET"        # 备份所有 大妈
     , "bkup/e":    "GET"        # 备份所有 活动
     , "bkup/p":    "GET"        # 备份所有 文章
 
@@ -1812,19 +1887,33 @@ e.g:
 
   sum/usr                   查询 用户 整体现状
   info/usr/:UUID            查阅指定 用户 信息
-  find/usr/&lt;关键字&gt;    搜索用户 [对名称,描述 进行搜索]
-  fix/usr/:UUID nm=ZQ      修订指定 用户 信息
-    可设定字段: nm ~ nike name
+  find/usr/&lt;key word&gt;       搜索用户 [对名称,描述 进行搜索]
+  
+  fix/usr/:UUID nm=ZQ       修订指定 用户 信息
+  fix/dm/:NM nm=ZQ          修订指定 大妈 信息
+    可设定字段:
+        nm      ~ nike name
+        em      ~ 常用邮箱
+        mo      ~ Mobil
+        desc    ~ 说明
+  fix/pub/:UUID url=***     增补|指定 文章 信息
+    UUID 为 null 时,是指创建文章信息
+    可设定字段:
+        tag     ~ gb|dd|gt|dm|ot
+        title   ~ 标题
+        desc    ~ 说明
+        picurl  ~ 题图地址
+        url     ~ 访问地址
 
-  st/kv                   查询 KVDB 整体现状
+  st/kv                     查询 KVDB 整体现状
 
   !!! 小心:大规模数据删除操作 !!!
-  bkup/db set=all
-  bkup/m set=all
-  bkup/e set=all
-  bkup/p set=all
+  bkup/db   set=all
+  bkup/m    set=all
+  bkup/dm   set=all
+  bkup/e    set=all
+  bkup/p    set=all
   ...
-  
 """
 </t>
 <t tx="zoomq.20130925103854.4959">import sys
@@ -2288,7 +2377,7 @@ return None
     uuid = USRID(sha1_name)
     KV.replace(uuid, objUsr)</t>
 <t tx="zoomq.20130925103854.6429">def USRID(name):
-    return 'u:%s'% name
+    return 'u_%s'% name
 
 
 
@@ -2305,8 +2394,6 @@ return None
 @transition('ei', 'edit_info')
 @transition('s', 'seek')
 @transition('S', 'seek')
-#@transition('dm', 'dm_addr')
-#@transition('DM', 'dm_addr')
 @transition('h', 'helpme')
 @transition('?', 'helpme')
 @transition('help', 'helpme')
@@ -2316,164 +2403,44 @@ return None
 @transition('log', 'version')
 @transition('st', 'status')
 @transition('stat', 'status')
-def setup(self, crt_usr):
+def setup(self, wxreq):
     print 'setup-&gt;{h V e re rc ir i ei s}|大妈信息'
     &lt;&lt;大妈联系&gt;&gt;
 
 @state('weknow')
-def end(self, crt_usr):
-    crt_usr['fsm'] = "setup"
-    __update_usr(crt_usr)
+def end(self, wxreq):
     print '...-&gt;end'
-
-
-</t>
-<t tx="zoomq.20130925103854.6431">@state('weknow')
-@transition('gb', 'gbook')
-@transition('dd', 'dcode')
-@transition('gt', 'gtime')
-@transition('dm', 'dama')
-@transition('ot', 'others')
-def seek(self, crt_usr):
-    print "G_CRT_USR", crt_usr
-    crt_usr['fsm'] = "seek"
-    __update_usr(crt_usr)
-    print 'setup-&gt;seek-&gt;{gb dd gt dm ot}'
-
-@state('weknow')
-@transition('no', 'no_paper')
-@transition('*', 'end')
-def gbook(self, crt_usr):
-    print 'setup-&gt;seek-&gt;gb-&gt;no'
-    crt_usr['fsm'] = "no_paper"
-    __update_usr(crt_usr)
-
-@state('weknow')
-@transition('no', 'no_paper')
-@transition('*', 'end')
-def dcode(self, crt_usr):
-    print 'setup-&gt;seek-&gt;dd-&gt;no'
-    crt_usr['fsm'] = "no_paper"
-    __update_usr(crt_usr)
-
-@state('weknow')
-@transition('no', 'no_paper')
-@transition('*', 'end')
-def gtime(self, crt_usr):
-    print 'setup-&gt;seek-&gt;gt-&gt;no'
-    crt_usr['fsm'] = "no_paper"
-    __update_usr(crt_usr)
-
-@state('weknow')
-@transition('no', 'no_paper')
-@transition('*', 'end')
-def dama(self, crt_usr):
-    print 'setup-&gt;seek-&gt;dm-&gt;no'
-    crt_usr['fsm'] = "no_paper"
-    __update_usr(crt_usr)
-
-@state('weknow')
-@transition('no', 'no_paper')
-@transition('*', 'end')
-def others(self, crt_usr):
-    print 'setup-&gt;seek-&gt;ot-&gt;no'
-    crt_usr['fsm'] = "no_paper"
-    __update_usr(crt_usr)
-    
-@state('weknow')
-@transition('end', 'end')
-@transition('*', 'end')
-def no_paper(self, crt_usr):
-    print 'setup-&gt;seek-&gt;...-&gt;no-&gt;end'
-    print crt_usr['msg']
-    if crt_usr['msg'].isdigit():
-        print "exp URI xml..."
-        crt_usr['fsm'] = "setup"
-        __update_usr(crt_usr)
-    else:
-        crt_usr['fsm'] = "no_paper"
-        __update_usr(crt_usr)
-        return __echo_txt(crt_usr['fromUser']
-            , crt_usr['toUser']
-            , CFG.TXT_PLS_INT
-            )
-</t>
-<t tx="zoomq.20130925103854.6433">@state('weknow')
-@transition('end', 'end')
-def info_me(self, crt_usr):
-    print 'setup-&gt;info_me-&gt;end'
-    print crt_usr['fsm']
+    crt_usr = wxreq.crt_usr
     crt_usr['fsm'] = "setup"
     __update_usr(crt_usr)
-    if "" == crt_usr['em']:
-        # not set info. yet
-        return __echo_txt(crt_usr['fromUser']
-            , crt_usr['toUser']
-            , CFG.TXT_NO_INIT
-            )
-    else:
-        return __echo_txt(crt_usr['fromUser']
-            , crt_usr['toUser']
-            , CFG.TXT_CRT_ME% (crt_usr['nm'].encode('utf-8'), crt_usr['em'])
-            )
+    return None
 
-@state('weknow')
-@transition('*', 'end')
-@transition('ia', 'info_alias')
-def edit_info(self, crt_usr):
-    print "edit_info::",crt_usr['msg']
-    print 'setup-&gt;edit_info-&gt;info_alias 提醒输入妮称'
-    crt_usr['fsm'] = "info_alias"
-    __update_usr(crt_usr)
-    return __echo_txt(crt_usr['fromUser']
-        , crt_usr['toUser']
-        , CFG.TXT_PLS_ALIAS
-        )
-'''    if isinstance(crt_usr['msg'], unicode):
-        print "可能是中文"
-        crt_usr['fsm'] = "edit_info"
-        return __echo_txt(crt_usr['fromUser']
-            , crt_usr['toUser']
-            , CFG.TXT_PLS_EN4NM
-            )
-    else:
-'''    
-@state('weknow')
-@transition('*', 'end')
-@transition('im', 'info_mail')
-def info_alias(self, crt_usr):
-    print "info_alias::", crt_usr['msg']
-    print 'setup-&gt;edit_info-&gt;info_alias-&gt;info_mail 提醒输入邮箱'
-    crt_usr['fsm'] = "info_mail"
-    crt_usr['nm'] = crt_usr['msg']
-    __update_usr(crt_usr)
-    return __echo_txt(crt_usr['fromUser']
-        , crt_usr['toUser']
-        , CFG.TXT_PLS_EM
-        )
 
-@state('weknow')
-@transition('*', 'end')
-@transition('end', 'end')
-def info_mail(self, crt_usr):
-    print "info_mail::", crt_usr['msg']
-    if "@" in crt_usr['msg']:
-        crt_usr['em'] = crt_usr['msg']
-        crt_usr['fsm'] = "setup"
-        __update_usr(crt_usr)
-        return __echo_txt(crt_usr['fromUser']
-            , crt_usr['toUser']
-            , CFG.TXT_DONE_EI% (crt_usr['nm'].encode('utf-8'), crt_usr['em'])
-            )
-    else:
-        crt_usr['fsm'] = "info_mail"
-        __update_usr(crt_usr)
-        return __echo_txt(crt_usr['fromUser']
-            , crt_usr['toUser']
-            , CFG.TXT_REALY_EM
-            )
-    print 'setup-&gt;edit_info-&gt;info_alias-&gt;info_mail-&gt;end 回报收集的'
 
+
+
+</t>
+<t tx="zoomq.20130925103854.6431">&lt;&lt;seek&gt;&gt;
+&lt;&lt;tags&gt;&gt;
+&lt;&lt;no_paper&gt;&gt;
+
+'''
+WxNewsResponse, WxArticle
+resp = WxNewsResponse([WxArticle(Title="iPhone 6 is here!",
+                        Description="It is not a joke",
+                        Url="http://jeffkit.info",
+                        PicUrl="http://jeffkit.info/avatar.jpg")], wxreq).as_xml()
+'''
+
+    
+</t>
+<t tx="zoomq.20130925103854.6433">&lt;&lt;info_me&gt;&gt;
+
+&lt;&lt;edit_info&gt;&gt;
+
+&lt;&lt;info_alias&gt;&gt;
+
+&lt;&lt;info_mail&gt;&gt;
 
 </t>
 <t tx="zoomq.20130925103854.6435">@state('weknow')
@@ -2494,9 +2461,13 @@ def reg_info(self, crt_usr):
 </t>
 <t tx="zoomq.20130925103854.6437">@state('weknow')
 @transition('end', 'end')
-def events(self, crt_usr):
+def events(self, wxreq):
     print 'setup-&gt;events-&gt;end'
-    
+    crt_usr = wxreq.crt_usr
+    print "crt_usr['fsm']~~", crt_usr['fsm']
+    crt_usr['fsm'] = "setup"
+    __update_usr(crt_usr)
+    return WxTextResponse(CFG.TXT_EVENT_NULL, wxreq).as_xml()
 
 
 </t>
@@ -2505,7 +2476,7 @@ def events(self, crt_usr):
     only member|member|paper
     '''
     listobj = KV.get(CFG.K4D[k4sys])
-    #print "listobj:\t", listobj
+    print "listobj:\t", listobj
     # 防止意外重复
     listobj.append(cnt)
     appended = list(set(listobj))
@@ -2518,8 +2489,10 @@ def events(self, crt_usr):
 </t>
 <t tx="zoomq.20130925103854.6441">@state('weknow')
 @transition('end', 'end')
-def helpme(self, crt_usr):
+def helpme(self, wxreq):
     print 'setup-&gt;helpme-&gt;end'
+    return WxTextResponse(CFG.TXT_HELP, wxreq).as_xml()
+    
     return __echo_txt(crt_usr['fromUser']
         , crt_usr['toUser']
         , CFG.TXT_HELP
@@ -2527,17 +2500,21 @@ def helpme(self, crt_usr):
 
 @state('weknow')
 @transition('end', 'end')
-def version(self, crt_usr):
+def version(self, wxreq):
     print 'setup-&gt;version-&gt;end'
+    return WxTextResponse(CFG.TXT_VER, wxreq).as_xml()
+
     return __echo_txt(crt_usr['fromUser']
         , crt_usr['toUser']
-        , KV.get_info()
+        , CFG.TXT_VER
         )
 
 @state('weknow')
 @transition('end', 'end')
-def status(self, crt_usr):
+def status(self, wxreq):
     print 'setup-&gt;status-&gt;end'
+    return WxTextResponse(KV.get_info(), wxreq).as_xml()
+
     return __echo_txt(crt_usr['fromUser']
         , crt_usr['toUser']
         , KV.get_info()
@@ -2640,7 +2617,7 @@ tStamp = int(time())
 content = args.split("=")[-1].strip()
 xml = CFG.TPL_TEXT % locals()
 cmd = "curl -d '%s' %s/%s "% (xml, AS_LOCAL, uri)
-print cmd
+#print cmd
 
 #return None
 
@@ -2692,17 +2669,18 @@ def sum_usr(qstr):
         return "alert quary!-("
 
 </t>
-<t tx="zoomq.20130925103854.6455">TXT_VER='''珠海GDG 公众号应答系统当前版本:
+<t tx="zoomq.20130925103854.6455">TXT_VER = u'''珠海GDG 公众号应答系统当前版本:
 %s
 Changelog:
+- 130926 改造并使用 Jeff 的SDK,配合运营CLI 工具
 - 130923 完成初始可用, 并发布 42分钟乱入 wechat 手册!-)
 - 130918 启动开发
 
 更多细节,请惯性地输入 h 继续吧 :)'''% VERSION
 
-TXT_THANX='''亲! 感谢反馈信息, 大妈们得空就回复 ;-)
+TXT_THANX = u'''亲! 感谢反馈信息, 大妈们得空就回复 ;-)
 '''
-TXT_HELP='''GDG珠海 公众号目前支持以下命令:
+TXT_HELP = u'''GDG珠海 公众号目前支持以下命令:
 h   ~ 使用帮助
 V   ~ 系统版本
 s   ~ 查阅文章
@@ -2710,54 +2688,78 @@ i   ~ 查阅成员资料
 ei  ~ 修订成员资料
 
 e   ~ 活动查询
+'''
+'''
 re  ~ 活动报名
 rc  ~ 放弃报名
 ri  ~ 确认报名
-'''
-#dm [组委的名字] 可了解TA更多
 
-TXT_WELCOME='''GDG珠海 公众号的应答范畴:
+dm [组委的名字] 可了解TA更多
+'''
+TXT_WELCOME = u'''GDG珠海 公众号的应答范畴:
 - GDG活动报名、签到、直播
 - GDG大妈联系查询
 - GDG发表文章查阅
 功能正在完善中，欢迎反馈。
 更多细节,请惯性地输入 h 继续吧 :)
 '''
+
+
 </t>
-<t tx="zoomq.20130925103854.6456">TXT_CRT_ME='''亲! 你当前注册的成员信息如下:
+<t tx="zoomq.20130925103854.6456">TXT_CRT_DM = u'''亲! 知道嘛?
+%s : 
+  %s
+
+更多细节,请惯性地输入 h 继续吧 :)
+'''
+
+TXT_CRT_ME = u'''亲! 你当前注册的成员信息如下:
 妮称: %s
 邮箱: %s
 
 更多细节,请惯性地输入 h 继续吧 :)
 '''
-TXT_NO_INIT='''亲! 目测首次使用 俺们的应答服务?
+
+TXT_NO_INIT = u'''亲! 目测首次使用 俺们的应答服务?
 请输入 ei 开始增补妮称以及邮箱卟!-) 
 
 更多细节,请输入 h 继续吧 :)
 '''
-TXT_PLS_ALIAS='''请输入亲想用的妮称:
+
+TXT_PLS_ALIAS = u'''请输入亲想用的妮称:
 (成员信息增补流程 1/2)
 
 更多细节,请惯性地输入 h 继续吧 :)
 '''
-TXT_PLS_EN4NM='''亲! 为输入方便,使用E文作为妮称吧!
+
+TXT_PLS_EN4NM = u'''亲! 为输入方便,使用E文作为妮称吧!
 (成员信息增补流程 1/2)
 
 更多细节,请惯性地输入 h 继续吧 :)
 '''
-TXT_PLS_EM='''请输入亲常用邮箱:
+
+TXT_PLS_EM = u'''请输入亲常用邮箱:
 (成员信息增补流程 2/2)
 
 更多细节,请惯性地输入 h 继续吧 :)
 '''
-TXT_REALY_EM = '''亲! 要请输入邮箱格式吼!
+TXT_REALY_EM = u'''亲! 得给邮箱哪!
+(成员信息增补流程 2/2)
+
+也可以输入 * 退出 ;-)
+
+更多细节,请惯性地输入 h 继续吧 :)
+'''
+
+CN_TXT_REALY_EM = u'''亲! 要请输入邮箱格式吼!
 (成员信息增补流程 2/2)
 
 也可以输入 * 退出成员信息增补流程;-)
 
 更多细节,请惯性地输入 h 继续吧 :)
 '''
-TXT_DONE_EI='''谢谢,亲! 成员信息增补完成:
+
+TXT_DONE_EI = u'''谢谢,亲! 成员信息增补完成:
 妮称: %s
 邮箱: %s
 
@@ -2766,48 +2768,400 @@ TXT_DONE_EI='''谢谢,亲! 成员信息增补完成:
 更多细节,请惯性地输入 h 继续吧 :)
 '''
 
-TXT_NEW_USR='''亲!信息还曾注册, 请输入邮箱先;
+TXT_NEW_USR = u'''亲!信息还曾注册, 请输入邮箱先;
 形如:
 em:foo.bar@gmail.com
 
 更多细节,请惯性地输入 h 继续吧 :)
 '''
+
+
 </t>
-<t tx="zoomq.20130925103854.6457"></t>
-<t tx="zoomq.20130925103854.6458">TXT_PLS_INT = '''亲! 请输入类型文章的编号,仅数字就好:
+<t tx="zoomq.20130925103854.6457">TXT_EVENT_NULL = u'''亲! 目测近期没有活动规划!
+
+更多细节,请惯性地输入 h 继续吧 :)
+'''</t>
+<t tx="zoomq.20130925103854.6458">PAPER_TAGS = ('gb', 'dd', 'gt', 'dm', 'hd', 'et', 'ot') 
+TXT_TAG_DEFINE = u'''
+gb ~G术图书 (推荐好书,书无中外)
+dd ~D码点评 (麻辣评点,善意满盈)
+gt ~G说公论 (时评杂文,新旧不拘)
+dm ~珠的自白(大妈自述,每周一篇)
+hd ~海选文章(得要相信,大妈法眼)
+
+et ~活动报道(快乐大趴,给力小会)
+
+ot ~其它 (系统更新,新旧不拘)
+'''
+TXT_PLS_TAG = u'''亲! 请输入文章类别编码(类似 dm 的2字母):
+然后,俺才能给出该类别的文章索引...
+%s
+也可以输入 * 退出文章查阅流程;-)
+
+更多细节,请惯性地输入 h 继续吧 :)
+'''% TXT_TAG_DEFINE
+
+TXT_OUT_TAG = u'''亲! 目测输错了类别编码,再试?
+(类似 dm 的2字母):
+
+%s
 
 也可以输入 * 退出文章查阅流程;-)
 
 更多细节,请惯性地输入 h 继续吧 :)
-'''</t>
-<t tx="zoomq.20130925103854.6460">@state('weknow')
-@transition('end', 'end')
-def dm_addr(self, crt_usr):
-    print 'setup-&gt;dm_addr-&gt;end'
+'''% TXT_TAG_DEFINE
 
+TXT_PLS_INT = u'''亲! 请输入类型文章的编号,仅数字就好:
 
+也可以输入 * 退出文章查阅流程;-)
 
-    
+更多细节,请惯性地输入 h 继续吧 :)
+'''
+
+TXT_PUB_LIST = u'''%s ::
+%s
+
+也可以输入 * 退出文章查阅流程;-)
+
+更多细节,请惯性地输入 h 继续吧 :)
+'''
+
+TXT_PUB_WAIT = u'''对不起亲!
+过往文章的信息,大妈们还没来的及增补进来,
+放轻松,等等先... (~.~)
+
+也可以输入 * 退出文章查阅流程;-)
+
+更多细节,请惯性地输入 h 继续吧 :)
+'''
+
 </t>
-<t tx="zoomq.20130925103854.6461">print crt_usr['msg']
-if 8 &gt; len(crt_usr['msg']):
-    print "try march dama"
+<t tx="zoomq.20130925103854.6461">#print crt_usr['msg']
+print wxreq.Content
+cmd = wxreq.Content
+if cmd not in CFG.CMD_ALIAS:
+    #if 8 &gt; len(crt_usr['msg']):
+    if cmd.isdigit():
+        pass
+    elif 8 &gt; len(wxreq.Content):
+        print "try march dama"
+        uuid, dm = __chkDAMA(wxreq.Content)
+        if uuid:
+            print dm
+            msg = CFG.TXT_CRT_DM% (dm['nm'], dm['desc'])
+            return WxTextResponse(msg, wxreq).as_xml()
+</t>
+<t tx="zoomq.20130925103854.6463">def DAMAID(name):
+    return 'm_%s_DM'% name
+
+
+
+</t>
+<t tx="zoomq.20130926092950.5432">if 'SERVER_SOFTWARE' in os.environ:
+    # SAE
+    AS_SAE = True
+else:
+    # Local
+    AS_SAE = False
+</t>
+<t tx="zoomq.20130926092950.5433">@state('weknow')
+@transition('*', 'end')
+def info_me(self, wxreq):
+    print 'setup-&gt;info_me-&gt;end'
+    crt_usr = wxreq.crt_usr
+    #return None
+    print crt_usr['fsm']
+    crt_usr['fsm'] = "setup"
+    __update_usr(crt_usr)
+    if "" == crt_usr['em']:
+        # not set info. yet
+        return WxTextResponse(CFG.TXT_NO_INIT, wxreq).as_xml()
+        return __echo_txt(crt_usr['fromUser']
+            , crt_usr['toUser']
+            , CFG.TXT_NO_INIT
+            )
+    else:
+        msg = CFG.TXT_CRT_ME% (crt_usr['nm'], crt_usr['em'])
+        return WxTextResponse(msg, wxreq).as_xml()
+        return __echo_txt(crt_usr['fromUser']
+            , crt_usr['toUser']
+            , CFG.TXT_CRT_ME% (crt_usr['nm'].encode('utf-8'), crt_usr['em'])
+            )
+
+</t>
+<t tx="zoomq.20130926092950.5434">@state('weknow')
+@transition('*', 'end')
+@transition('ia', 'info_alias')
+def edit_info(self, wxreq):
+    print 'setup-&gt;edit_info-&gt;info_alias 提醒输入妮称'
+    crt_usr = wxreq.crt_usr
+    print "edit_info::", wxreq.Content   #crt_usr['msg']
+    crt_usr['fsm'] = "info_alias"
+    __update_usr(crt_usr)
+    return WxTextResponse(CFG.TXT_PLS_ALIAS, wxreq).as_xml()
+        
+    return __echo_txt(crt_usr['fromUser']
+        , crt_usr['toUser']
+        , CFG.TXT_PLS_ALIAS
+        )
+
+'''    if isinstance(crt_usr['msg'], unicode):
+        print "可能是中文"
+        crt_usr['fsm'] = "edit_info"
+        return __echo_txt(crt_usr['fromUser']
+            , crt_usr['toUser']
+            , CFG.TXT_PLS_EN4NM
+            )
+    else:
+'''    
+
+</t>
+<t tx="zoomq.20130926092950.5435">@state('weknow')
+@transition('*', 'end')
+def info_mail(self, wxreq):
+    print 'setup-&gt;edit_info-&gt;info_alias-&gt;info_mail-&gt;end 回报收集的'
+    crt_usr = wxreq.crt_usr
+    print "info_mail::", wxreq.Content  #crt_usr['msg']
+    #if "@" in crt_usr['msg']:
+    if "@" in wxreq.Content.strip():
+        print "get user em.."
+        crt_usr['em'] = "+".join(wxreq.Content.strip().split())   #crt_usr['msg']
+        crt_usr['fsm'] = "setup"
+        __update_usr(crt_usr)
+        
+        msg = CFG.TXT_DONE_EI% (crt_usr['nm'], crt_usr['em'])
+        return WxTextResponse(msg, wxreq).as_xml()
+    
+        return __echo_txt(crt_usr['fromUser']
+            , crt_usr['toUser']
+            , CFG.TXT_DONE_EI% (crt_usr['nm'].encode('utf-8'), crt_usr['em'])
+            )
+    else:
+        print "error emil format?"
+        crt_usr['fsm'] = "info_mail"
+        __update_usr(crt_usr)
+        #print WxTextResponse(CFG.TXT_REALY_EM, wxreq).as_xml()
+        return WxTextResponse(CFG.TXT_REALY_EM, wxreq).as_xml()
+    
+        return __echo_txt(crt_usr['fromUser']
+            , crt_usr['toUser']
+            , CFG.TXT_REALY_EM
+            )
+
+'''
+Traceback (most recent call last):
+  File "/data1/www/htdocs/466/weknow/3/bottle.py", line 764, in _handle
+    return route.call(**args)
+  File "/data1/www/htdocs/466/weknow/3/bottle.py", line 1575, in wrapper
+    rv = callback(*a, **ka)
+  File "/data1/www/htdocs/466/weknow/3/web/mana4api.py", line 76, in wechat_post
+    weknow.start2(G_CRT_USR['fsm'], wxreq)
+  File "/data1/www/htdocs/466/weknow/3/3party/pyfsm.py", line 284, in start2
+    return self.current_state.enter2(self, obj)
+  File "/data1/www/htdocs/466/weknow/3/3party/pyfsm.py", line 444, in enter2
+    return self.func(task, obj)
+  File "/data1/www/htdocs/466/weknow/3/web/mana4api.py", line 357, in info_mail
+    print WxTextResponse(CFG.TXT_REALY_EM, wxreq).as_xml()
+UnicodeEncodeError: 'ascii' codec can't encode character u'\u4eb2' in position 236: ordinal not in range(128) yq30 
+'''
+
+
+</t>
+<t tx="zoomq.20130926092950.5436">@state('weknow')
+@transition('*', 'end')
+@transition('im', 'info_mail')
+def info_alias(self, wxreq):
+    print 'setup-&gt;edit_info-&gt;info_alias-&gt;info_mail 提醒输入邮箱'
+    crt_usr = wxreq.crt_usr
+    crt_usr['fsm'] = "info_mail"
+    crt_usr['nm'] = wxreq.Content   #crt_usr['msg']
+    __update_usr(crt_usr)
+    return WxTextResponse(CFG.TXT_PLS_EM, wxreq).as_xml()
+    
+    return __echo_txt(crt_usr['fromUser']
+        , crt_usr['toUser']
+        , CFG.TXT_PLS_EM
+        )
+</t>
+<t tx="zoomq.20130926092950.5438">@APP.put('/cli/fix/dm/&lt;nm&gt;')
+def fix_dm(nm):
+    q_dict = request.forms
+    if _chkQueryArgs("/cli/fix/dm/%s"% nm, q_dict, "PUT"):
+        feed_back = {'data':[]}
+        set_key = list(set(q_dict.keys())-set(CFG.SECURE_ARGS))[0]
+        set_var = base64.urlsafe_b64decode(request.forms[set_key])
+        if set_key in CFG.K4DM.keys():
+            print set_key, set_var
+            uuid, dm = __chkDAMA(nm.strip())
+            dm[set_key] = set_var.decode('utf-8')
+            #print dm
+            KV.replace(uuid, dm)
+            feed_back['data'].append(dm)
+            feed_back['uuid'] = uuid
+        else:
+            feed_back['msg'] = "out keys, NULL fixed!" 
+            feed_back['can_fix_keys'] = CFG.K4DM.keys()
+        #data.append(KV.get_info())
+        return feed_back
+    else:
+        return "alert quary!-("
+
+</t>
+<t tx="zoomq.20130926092950.5440">def __chkDMID(text):
     for DM in CFG.DM_ALIAS.keys():
-        #print DM
-        if crt_usr['msg'] in CFG.DM_ALIAS[DM]:
-            print "found DM!", CFG.DM_ALIAS[DM][-1]
+        if text in CFG.DM_ALIAS[DM]:
+            print "found DAMA!", CFG.DM_ALIAS[DM][0]
+            return DM
+        else:
+            print "not march DAMA!"
+            return None
+</t>
+<t tx="zoomq.20130926092950.5442">def __chkDAMA(zipname):
+    '''chk or init. webchat usr.:
+        - gen KV uuid, try get
+        - if no-exited, init. DM node
+    '''
+    k4dm = __chkDMID(zipname)
+    if not k4dm:
+        return None, None
+        
+    uuid = DAMAID(k4dm)
+    usr = KV.get(uuid)
+    if usr:
+        print uuid, usr
+        return uuid, usr
+    else:
+        # inti.
+        new_usr = deepcopy(CFG.K4DM)
+        new_usr['his_id'] = GENID('his')
+        new_usr['lasttm'] = time.time()
+        new_usr['nm'] = CFG.DM_ALIAS[k4dm][0]
+        KV.add(uuid, new_usr)
+        ADD4SYS('dama', uuid)
+        print uuid, new_usr
+        return uuid, new_usr
+
 
 
         
-            
+        
+</t>
+<t tx="zoomq.20130926092950.5443">@state('weknow')
+@transition('gb', 'papers')
+@transition('dd', 'papers')
+@transition('gt', 'papers')
+@transition('dm', 'papers')
+@transition('hd', 'papers')
+@transition('et', 'papers')
+@transition('ot', 'papers')
+def seek(self, wxreq):
+    print 'setup-&gt;seek-&gt;{gb dd gt dm ot}'
+    crt_usr = wxreq.crt_usr
+    print "G_CRT_USR", crt_usr
+    if wxreq.Content in CFG.PAPER_TAGS:
+        crt_usr['fsm'] = "papers"
+        __update_usr(crt_usr)
+        return WxTextResponse(CFG.TXT_PLS_TAG, wxreq).as_xml()
+    else:
+        crt_usr['fsm'] = "seek"
+        __update_usr(crt_usr)
+        return WxTextResponse(CFG.TXT_OUT_TAG, wxreq).as_xml()
+
+</t>
+<t tx="zoomq.20130926092950.5444">@state('weknow')
+@transition('no', 'no_paper')
+@transition('*', 'end')
+def papers(self, wxreq):
+    print 'setup-&gt;seek-&gt;[papers]-&gt;no'
+    print "papers TAG?", wxreq.Content 
+    #return None
+    crt_usr = wxreq.crt_usr
+    
+    crt_usr['fsm'] = "setup"
+    __update_usr(crt_usr)
+    return WxTextResponse(CFG.TXT_PUB_WAIT, wxreq).as_xml()
+
+    crt_usr['fsm'] = "no_paper"
+    __update_usr(crt_usr)
+    return WxTextResponse(CFG.TXT_PUB_LIST, wxreq).as_xml()
 
 
 </t>
-<t tx="zoomq.20130925103854.6463">def DAMAID(name):
-    return 'm:%s:DM'% name
+<t tx="zoomq.20130926092950.5445">@state('weknow')
+@transition('end', 'end')
+@transition('*', 'end')
+def no_paper(self, wxreq):
+    print 'setup-&gt;seek-&gt;...-&gt;no-&gt;end'
+    crt_usr = wxreq.crt_usr
+    if wxreq.Content.isdigit():
+        print "exp URI xml..."
+        crt_usr['fsm'] = "setup"
+        __update_usr(crt_usr)
+        return WxTextResponse("will exp. 图文消息", wxreq).as_xml()
+    else:
+        crt_usr['fsm'] = "no_paper"
+        __update_usr(crt_usr)
+        return WxTextResponse(CFG.TXT_PLS_INT, wxreq).as_xml()
+        
+        return __echo_txt(crt_usr['fromUser']
+            , crt_usr['toUser']
+            , CFG.TXT_PLS_INT
+            )
+
+</t>
+<t tx="zoomq.20130926092950.5447">@APP.put('/cli/fix/pub/&lt;uuid&gt;')
+def fix_pub(uuid):
+    q_dict = request.forms
+    if _chkQueryArgs("/cli/fix/pub/%s"% uuid, q_dict, "PUT"):
+        feed_back = {'data':[]}
+        set_key = list(set(q_dict.keys())-set(CFG.SECURE_ARGS))[0]
+        set_var = base64.urlsafe_b64decode(request.forms[set_key])
+        if set_key in CFG.K4WD.keys():
+            print set_key, set_var
+            uuid, pub = __chkPAPER(uuid)
+            pub[set_key] = set_var.decode('utf-8')
+            KV.replace(uuid, pub)
+            #print pub
+            feed_back['data'].append(pub)
+            feed_back['uuid'] = uuid
+        else:
+            feed_back['msg'] = "out keys, NULL fixed!" 
+            feed_back['can_fix_keys'] = CFG.K4WD.keys()
+        #data.append(KV.get_info())
+        return feed_back
+    else:
+        return "alert quary!-("
 
 
 
+
+</t>
+<t tx="zoomq.20130926092950.5449">def __chkPAPER(uuid):
+    '''chk or init. webchat paper:
+        - if uuid == null init. node
+        - else try get it
+    '''
+    paper = KV.get(uuid)
+    if paper:
+        print uuid, paper
+        return uuid, paper
+    else:
+        # inti.
+        new_paper = deepcopy(CFG.K4DM)
+        uuid = GENID('paper')
+        new_paper['uuid'] = uuid
+        new_paper['his_id'] = GENID('his')
+        new_paper['lasttm'] = time.time()
+        new_paper['title'] = "waiting set..."
+        KV.add(uuid, new_paper)
+        ADD4SYS('papers', uuid)
+        print uuid, new_paper
+        return uuid, new_paper
+
+
+
+        
+        
 </t>
 </tnodes>
 </leo_file>

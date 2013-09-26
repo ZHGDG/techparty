@@ -128,7 +128,7 @@ def ADD4SYS(k4sys, cnt):
     only member|member|paper
     '''
     listobj = KV.get(CFG.K4D[k4sys])
-    #print "listobj:\t", listobj
+    print "listobj:\t", listobj
     # 防止意外重复
     listobj.append(cnt)
     appended = list(set(listobj))
@@ -182,9 +182,10 @@ def GENID(obj, name=""):
     timestamp = TSTAMP()
     tot = INCR4KV()
     #sha1name = hashlib.sha1(name).hexdigest()
-    GOBJMAP = {'his':'h:%(timestamp)s:HIS%(tot)d'
-        ,'tag':'t:%(timestamp)s:TAG%(tot)d'
-        ,'event':'e:%(timestamp)s:EVE%(tot)d'
+    GOBJMAP = {'his':'h_%(timestamp)s_HIS%(tot)d'
+        ,'tag':'t_%(timestamp)s_TAG%(tot)d'
+        ,'event':'e_%(timestamp)s_EVE%(tot)d'
+        ,'paper':'p_%(timestamp)s_PUB%(tot)d'
         #,'dm':'m:%(timestamp)s:DM%(tot)d'
         }
     if obj in GOBJMAP.keys():
@@ -195,12 +196,12 @@ def GENID(obj, name=""):
 
 
 def USRID(name):
-    return 'u:%s'% name
+    return 'u_%s'% name
 
 
 
 def DAMAID(name):
-    return 'm:%s:DM'% name
+    return 'm_%s_DM'% name
 
 
 

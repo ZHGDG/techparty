@@ -23,19 +23,33 @@ e.g:
 
   sum/usr                   查询 用户 整体现状
   info/usr/:UUID            查阅指定 用户 信息
-  find/usr/<关键字>    搜索用户 [对名称,描述 进行搜索]
-  fix/usr/:UUID nm=ZQ      修订指定 用户 信息
-    可设定字段: nm ~ nike name
+  find/usr/<key word>       搜索用户 [对名称,描述 进行搜索]
+  
+  fix/usr/:UUID nm=ZQ       修订指定 用户 信息
+  fix/dm/:NM nm=ZQ          修订指定 大妈 信息
+    可设定字段:
+        nm      ~ nike name
+        em      ~ 常用邮箱
+        mo      ~ Mobil
+        desc    ~ 说明
+  fix/pub/:UUID url=***     增补|指定 文章 信息
+    UUID 为 null 时,是指创建文章信息
+    可设定字段:
+        tag     ~ gb|dd|gt|dm|ot
+        title   ~ 标题
+        desc    ~ 说明
+        picurl  ~ 题图地址
+        url     ~ 访问地址
 
-  st/kv                   查询 KVDB 整体现状
+  st/kv                     查询 KVDB 整体现状
 
   !!! 小心:大规模数据删除操作 !!!
-  bkup/db set=all
-  bkup/m set=all
-  bkup/e set=all
-  bkup/p set=all
+  bkup/db   set=all
+  bkup/m    set=all
+  bkup/dm   set=all
+  bkup/e    set=all
+  bkup/p    set=all
   ...
-  
 """
 import sys
 import os
@@ -84,7 +98,7 @@ def _rest_main(method, uri, args, host=AS_LOCAL):
             content = args.split("=")[-1].strip()
             xml = CFG.TPL_TEXT % locals()
             cmd = "curl -d '%s' %s/%s "% (xml, AS_LOCAL, uri)
-            print cmd
+            #print cmd
 
             #return None
 
