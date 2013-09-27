@@ -35,6 +35,8 @@ class Borg():
     else:
         # Local
         AS_SAE = False
+    from sae.storage import Bucket
+    BK = Bucket('bkup')
     import sae.kvdb
     KV = sae.kvdb.KVClient()
     #   系统索引键-名字典
@@ -81,11 +83,13 @@ class Borg():
 
 
 
-    ESSAY_TAG = {'ot':"其它"
-        , 'gb':"G术图书 (推荐好书,书无中外)"
-        , 'dd':"D码点评 (麻辣评点,善意满盈)"
-        , 'gt':"G说公论 (时评杂文,新旧不拘)"
-        , 'hd':"海选文章 (得要相信,大妈法眼)"
+    ESSAY_TAG = {'ot':u" ~ 其它 (其余文章,AT也很好;)"
+        , 'gb':u" ~ G术图书 (推荐好书,书无中外)"
+        , 'dd':u" ~ D码点评 (麻辣评点,善意满盈)"
+        , 'gt':u" ~ G说公论 (时评杂文,新旧不拘)"
+        , 'dm':u" ~ 珠的自白 (大妈自述,每周一篇)"
+        , 'hd':u" ~ 海选文章 (得要相信,大妈法眼)"
+        , 're':u" ~ 活动报道 (快乐大趴,给力小会)"
         }
         
     # 文章索引
@@ -240,18 +244,9 @@ class Borg():
     '''
 
 
-    PAPER_TAGS = ('gb', 'dd', 'gt', 'dm', 'hd', 'et', 'ot') 
-    TXT_TAG_DEFINE = u'''
-    gb ~G术图书 (推荐好书,书无中外)
-    dd ~D码点评 (麻辣评点,善意满盈)
-    gt ~G说公论 (时评杂文,新旧不拘)
-    dm ~珠的自白(大妈自述,每周一篇)
-    hd ~海选文章(得要相信,大妈法眼)
+    PAPER_TAGS = ESSAY_TAG.keys()
+    TXT_TAG_DEFINE = "\n".join([u"%s %s"%(k, ESSAY_TAG[k]) for k in ESSAY_TAG.keys()])
 
-    et ~活动报道(快乐大趴,给力小会)
-
-    ot ~其它 (系统更新,新旧不拘)
-    '''
     TXT_PLS_TAG = u'''亲! 请输入文章类别编码(类似 dm 的2字母):
     然后,俺才能给出该类别的文章索引...
     %s
@@ -361,16 +356,22 @@ class Borg():
         
         , "st/kv":      "GET"       # 查阅 KVDB 信息
 
-        , "bkup/db":    "GET"       # 备份整个 KVDB
-        , "bkup/m":    "GET"        # 备份所有 成员
-        , "bkup/dm":   "GET"        # 备份所有 大妈
-        , "bkup/e":    "GET"        # 备份所有 活动
-        , "bkup/p":    "GET"        # 备份所有 文章
+        , "sum/db":     "GET"       # 统计 整体 信息现状
+        , "sum/dm":     "GET"       # 统计 大妈 信息现状
+        , "sum/m":      "GET"       # 统计 成员 信息现状
+        , "sum/e":      "GET"       # 统计 活动 信息现状
+        , "sum/p":      "GET"       # 统计 文章 信息现状
 
-        , "revert/db":  "POST"      # 恢复整个 KVDB
+        , "bkup/db":    "PUT"       # 备份整个 KVDB
+        , "bkup/dm":    "PUT"       # 备份所有 大妈
+        , "bkup/m":     "PUT"       # 备份所有 成员
+        , "bkup/e":     "PUT"       # 备份所有 活动
+        , "bkup/p":     "PUT"       # 备份所有 文章
+
+        , "revert/db": "POST"       # 恢复整个 KVDB
         
-        , "sum/his":    "GET"       # 节点(任意)修订次数
-        , "his/last":   "GET"       # 最后一次节点(任意)修订
+        , "sum/his":   "GET"        # 节点(任意)修订次数
+        , "his/last":  "GET"        # 最后一次节点(任意)修订
         }
 
 

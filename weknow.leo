@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Created by Leo (http://webpages.charter.net/edreamleo/front.html) -->
-<?xml-stylesheet ekr_stylesheet?>
+<?xml-stylesheet ekr_test?>
 <leo_file xmlns:leo="http://www.leo-editor.org/2011/leo" >
 <leo_header file_format="2" tnodes="0" max_tnode_index="0" clone_windows="0"/>
 <globals body_outline_ratio="0.5" body_secondary_ratio="0.5">
@@ -18,13 +18,14 @@
 <v t="zoomq.20120727213305.14750"><vh>&lt;&lt;declarations&gt;&gt;</vh></v>
 <v t="zoomq.20120710140424.5456" a="E"><vh>&lt;&lt;cfg4Borg&gt;&gt;</vh>
 <v t="zoomq.20130926092950.5432"><vh>环境切换</vh></v>
-<v t="zoomq.20130923093950.3647"><vh>KVDB</vh>
+<v t="zoomq.20130927104354.5456"><vh>storage</vh></v>
+<v t="zoomq.20130923093950.3647" a="E"><vh>KVDB</vh>
 <v t="zoomq.20130923093950.5397"><vh>&lt;&lt;MEMBER&gt;&gt;</vh></v>
 <v t="zoomq.20130923093950.5395"><vh>&lt;&lt;CONTENT&gt;&gt;</vh></v>
 <v t="zoomq.20130923093950.8569"><vh>&lt;&lt;大妈们&gt;&gt;</vh></v>
 <v t="zoomq.20130923093950.5396"><vh>&lt;&lt;HISTORIC&gt;&gt;</vh></v>
 </v>
-<v t="zoomq.20130918155053.7084" a="E"><vh>4wechat</vh>
+<v t="zoomq.20130918155053.7084"><vh>4wechat</vh>
 <v t="zoomq.20130923093950.7285"><vh>&lt;&lt;XML模板&gt;&gt;</vh></v>
 <v t="zoomq.20130925103854.6457"><vh>活动报名</vh></v>
 <v t="zoomq.20130925103854.6455"><vh>礼节/帮助</vh></v>
@@ -59,25 +60,18 @@
 </v>
 <v t="zoomq.20120717112543.5481"><vh>@nosent utility.py</vh>
 <v t="zoomq.20120727213305.14698"><vh>&lt;&lt;declarations&gt;&gt;</vh></v>
-<v t="zoomq.20120802192540.8726"><vh>PUTHIS()</vh></v>
+<v t="zoomq.20130927104354.6047"><vh>PUT2SS()</vh></v>
 <v t="zoomq.20120727213305.14756"><vh>INIobjSYS()</vh></v>
-<v t="zoomq.20120804110957.4144"><vh>POP4KV()</vh></v>
-<v t="zoomq.20120802192540.8728"><vh>INS2KV()</vh></v>
-<v t="zoomq.20120804110957.4485"><vh>POP4LIST()</vh></v>
-<v t="zoomq.20120802192540.5463"><vh>IDX4LIST()</vh></v>
-<v t="zoomq.20120805183037.4187"><vh>INS2LIST()</vh></v>
 <v t="zoomq.20130925103854.6439"><vh>ADD4SYS()</vh></v>
-<v t="zoomq.20120805183037.5896"><vh>INS2DICT4LIST()</vh></v>
 <v t="zoomq.20120802192540.7100"><vh>TSTAMP()</vh></v>
 <v t="zoomq.20120802192540.5468"><vh>GENID()</vh></v>
 <v t="zoomq.20130925103854.6429"><vh>USRID()</vh></v>
 <v t="zoomq.20130925103854.6463"><vh>DAMAID()</vh></v>
 <v t="zoomq.20120727213305.14699"><vh>INCR4KV()</vh></v>
-<v t="zoomq.20120727213305.14701"><vh>INCR4MM()</vh></v>
 </v>
 </v>
 <v t="zoomq.20120723102156.5543" a="E"><vh>web</vh>
-<v t="zoomq.20120723102156.5545"><vh>@nosent __init__.py</vh>
+<v t="zoomq.20120723102156.5545" a="E"><vh>@nosent __init__.py</vh>
 <v t="zoomq.20120723102156.5546"><vh>&lt;&lt;declarations&gt;&gt;</vh></v>
 <v t="zoomq.20120723102156.5548"><vh>/</vh></v>
 <v t="zoomq.20120727213305.14707"><vh>404+各种默认处理</vh></v>
@@ -85,12 +79,13 @@
 <v t="zoomq.20120723102156.5561" a="E"><vh>@nosent mana4api.py</vh>
 <v t="zoomq.20120723102156.5562"><vh>&lt;&lt;declarations&gt;&gt;</vh></v>
 <v t="zoomq.20130918155053.5760"><vh>GET  /echo</vh></v>
-<v t="zoomq.20130925103854.5007"><vh>cli/ 工具</vh>
-<v t="zoomq.20130925103854.5049"><vh>GET cli/st/kv</vh></v>
-<v t="zoomq.20130926092950.5438"><vh>PUT /cli/fix/dm/:NM</vh></v>
+<v t="zoomq.20130925103854.5007" a="E"><vh>cli/ 工具</vh>
+<v t="zoomq.20130925103854.5049"><vh>GET sum/db|dm|m|e|p</vh></v>
+<v t="zoomq.20130927104354.6049"><vh>GET st/kv</vh></v>
+<v t="zoomq.20130926092950.5438"><vh>PUT fix/dm/:NM</vh></v>
 <v t="zoomq.20130926092950.5440"><vh>__chkDMID()</vh></v>
 <v t="zoomq.20130926092950.5442"><vh>__chkDAMA()</vh></v>
-<v t="zoomq.20130926092950.5447"><vh>PUT /cli/fix/pub/:UUID</vh></v>
+<v t="zoomq.20130926092950.5447"><vh>PUT fix/pub/:UUID</vh></v>
 <v t="zoomq.20130926092950.5449"><vh>__chkPAPER()</vh></v>
 <v t="zoomq.20130925103854.5041"><vh>用户管理</vh>
 <v t="zoomq.20130925103854.6454"><vh>GET cli/sum/usr</vh></v>
@@ -391,6 +386,7 @@ from config import CFG
 #from xsettings import XCFG
 #_k4incr = CFG.TOT
 KV = CFG.KV #sae.kvdb.KVClient()
+BK = CFG.BK
 
 @others
 
@@ -499,6 +495,7 @@ CFG = Borg()
 @tabwidth -4
 # -*- coding: utf-8 -*-
 &lt;&lt;declarations&gt;&gt;
+from config import CFG
 
 APP = Bottle()
 
@@ -578,9 +575,7 @@ from auth import _query2dict, _chkQueryArgs
 from utility import INCR4KV as __incr
 from utility import TSTAMP, GENID, USRID, DAMAID
 from utility import ADD4SYS
-
-
-</t>
+from utility import PUT2SS</t>
 <t tx="zoomq.20120727213305.13050">@APP.route('/sysincr')
 #@APP.route('/&lt;ddd&gt;/sysincr')
 def sysincr():
@@ -635,21 +630,6 @@ import hashlib
     return KV.get(CFG.K4D['incr'])
 
 
-
-
-
-</t>
-<t tx="zoomq.20120727213305.14701">def INCR4MM():
-    '''BASE Memcache make GLOBAL increaser
-    '''
-    import pylibmc
-    
-    mc = pylibmc.Client()
-    if not mc.get(_k4incr):
-        mc.set(_k4incr, 1111)
-    else:
-        mc.incr(_k4incr)
-    return mc.get(_k4incr)
 
 
 
@@ -710,7 +690,7 @@ def error404(error):
 
 roaring zoomquiet+404@gmail.com
 '''
-    return template('404.html')
+#    return template('404.html')
 
 @APP.route('/favicon.ico')
 def favicon():
@@ -1047,22 +1027,6 @@ JINJA2TPL_PATH = os.path.abspath(
     filter:progid:DXImageTransform.Microsoft.gradient(startColorStr='#f3f3f3',EndColorStr='#ffffff')
 }
 </t>
-<t tx="zoomq.20120802192540.5463">def IDX4LIST(idx, KV):
-    '''BASE idx list collection all Obj. into List
-    '''
-    if 0 == len(idx):
-        return None
-    exp = []
-    for i in idx:
-        exp.append(KV.get(i))
-    if 0 == len(exp):
-        return None
-    else:
-        return exp
-
-
-
-</t>
 <t tx="zoomq.20120802192540.5468">def GENID(obj, name=""):
     '''通用ID生成器:
         yymmddHHMMSS+5位微秒+对象鍵3位+全局序号
@@ -1073,9 +1037,16 @@ JINJA2TPL_PATH = os.path.abspath(
     tot = INCR4KV()
     #sha1name = hashlib.sha1(name).hexdigest()
     GOBJMAP = {'his':'h_%(timestamp)s_HIS%(tot)d'
+        ,'bkup':'b_%(timestamp)s_SG%(tot)d'
         ,'tag':'t_%(timestamp)s_TAG%(tot)d'
         ,'event':'e_%(timestamp)s_EVE%(tot)d'
         ,'paper':'p_%(timestamp)s_PUB%(tot)d'
+        ,'gd':'gd_%(timestamp)s_PUB%(tot)d'
+        ,'dd':'dd_%(timestamp)s_PUB%(tot)d'
+        ,'dm':'dm_%(timestamp)s_PUB%(tot)d'
+        ,'gt':'gt_%(timestamp)s_PUB%(tot)d'
+        ,'ot':'ot_%(timestamp)s_PUB%(tot)d'
+        ,'re':'re_%(timestamp)s_PUB%(tot)d'
         #,'dm':'m:%(timestamp)s:DM%(tot)d'
         }
     if obj in GOBJMAP.keys():
@@ -1097,62 +1068,6 @@ JINJA2TPL_PATH = os.path.abspath(
     ms = mms[-5:]
     return "%s%s"% (date, ms)
 
-
-
-
-</t>
-<t tx="zoomq.20120802192540.8726">def PUTHIS(crobjs, act):
-    '''put any obj. into SYS:his
-        + copy obj. as new h:id KV
-        + return h:id
-    '''
-    his = deepcopy(CFG.objHis)
-    hid = GENID('his')
-    his['id'] = hid
-    his['hisobj'] = deepcopy(crobjs)
-    his['hisact'] = act
-    his['tstamp'] = TSTAMP()
-    #   appended into KVDB
-    KV.add(his['id'],his)
-    #   collected into SYS:his
-    k4his, crthis = INIobjSYS("his")
-    INS2KV(hid, k4his, crthis)
-    #print "\tSYS:his:", KV.get(k4his)
-    return hid
-
-
-
-</t>
-<t tx="zoomq.20120802192540.8728">def INS2KV(xid, k4obj, crobjs):
-    #k4obj, crobjs = INIobjSYS(sysk)
-    try:
-        if xid in crobjs:
-            pass
-        else:
-            crobjs.append(xid)
-            KV.set(k4obj, crobjs)
-    except:
-        print "&gt;&gt;&gt;INS2KV(xid, sysk)\n\t", traceback.print_exc()
-        #sys.exit(1)
-        return None
-    return True
-
-
-
-</t>
-<t tx="zoomq.20120804110957.4144">def POP4KV(xid, k4obj, crobjs):
-    try:
-        #k4obj, crobjs = INIobjSYS(sysk)
-        if xid in crobjs:
-            crobjs.pop(crobjs.index(xid))
-            KV.set(k4obj, crobjs)
-        else:
-            pass
-    except:
-        print "&gt;&gt;&gt;POP2KV(xid, sysk)\n\t", traceback.print_exc()
-        #sys.exit(1)
-        return None
-    return True
 
 
 
@@ -1296,56 +1211,6 @@ pre.desc {
     width:70%;
     display:inline-block;
 }
-</t>
-<t tx="zoomq.20120804110957.4485">def POP4LIST(cnt, listobj):
-    '''try safty pop SOMETHING from list
-    '''
-    try:
-        idxcnt = listobj.index(cnt)
-    except:
-        print "&gt;&gt;&gt;POP4LIST(cnt, listobj)\n\t", traceback.print_exc()
-        #sys.exit(1)
-        return None
-    listobj.pop(idxcnt)
-    return True
-
-
-
-
-
-
-</t>
-<t tx="zoomq.20120805183037.4187">def INS2LIST(cnt, listobj):
-    '''try safty insert SOMETHING to list
-    '''
-    #print "\t&gt;&gt;&gt;", cnt, listobj
-    listobj.append(cnt)
-    return list(set(listobj)) # 防止意外重复
-
-
-
-</t>
-<t tx="zoomq.20120805183037.5896">def INS2DICT4LIST(cnt, dictobj, keyname):
-    '''try safty insert SOMETHING to list
-    '''
-    #print "\t&gt;&gt;&gt;", cnt, listobj
-    if dictobj.has_key(keyname):
-        listobj = dictobj[keyname]
-        listobj.append(cnt)
-        listobj  = list(set(listobj))
-        #print "\t list(set(listobj))", listobj
-    else:
-        listobj = []
-        listobj.append(cnt)
-        dictobj[keyname] = listobj
-        #print "\t dictobj[keyname]~", dictobj[keyname]
-    return listobj, dictobj # 防止意外重复
-
-
-
-
-
-
 </t>
 <t tx="zoomq.20120812115324.4334">{% set sspath4pic = "http://lb4crx-pic2lb.stor.sinaapp.com" %}
 {% set sspath4crx = "http://lb4crx-crx4lb.stor.sinaapp.com" %}
@@ -1599,11 +1464,13 @@ for k in K4D:
 &lt;&lt;HISTORIC&gt;&gt;
 
 </t>
-<t tx="zoomq.20130923093950.5395">ESSAY_TAG = {'ot':"其它"
-    , 'gb':"G术图书 (推荐好书,书无中外)"
-    , 'dd':"D码点评 (麻辣评点,善意满盈)"
-    , 'gt':"G说公论 (时评杂文,新旧不拘)"
-    , 'hd':"海选文章 (得要相信,大妈法眼)"
+<t tx="zoomq.20130923093950.5395">ESSAY_TAG = {'ot':u" ~ 其它 (其余文章,AT也很好;)"
+    , 'gb':u" ~ G术图书 (推荐好书,书无中外)"
+    , 'dd':u" ~ D码点评 (麻辣评点,善意满盈)"
+    , 'gt':u" ~ G说公论 (时评杂文,新旧不拘)"
+    , 'dm':u" ~ 珠的自白 (大妈自述,每周一篇)"
+    , 'hd':u" ~ 海选文章 (得要相信,大妈法眼)"
+    , 're':u" ~ 活动报道 (快乐大趴,给力小会)"
     }
     
 # 文章索引
@@ -1807,16 +1674,22 @@ CLI_MATTERS = {     # 命令行响应方式速查字典
     
     , "st/kv":      "GET"       # 查阅 KVDB 信息
 
-    , "bkup/db":    "GET"       # 备份整个 KVDB
-    , "bkup/m":    "GET"        # 备份所有 成员
-    , "bkup/dm":   "GET"        # 备份所有 大妈
-    , "bkup/e":    "GET"        # 备份所有 活动
-    , "bkup/p":    "GET"        # 备份所有 文章
+    , "sum/db":     "GET"       # 统计 整体 信息现状
+    , "sum/dm":     "GET"       # 统计 大妈 信息现状
+    , "sum/m":      "GET"       # 统计 成员 信息现状
+    , "sum/e":      "GET"       # 统计 活动 信息现状
+    , "sum/p":      "GET"       # 统计 文章 信息现状
 
-    , "revert/db":  "POST"      # 恢复整个 KVDB
+    , "bkup/db":    "PUT"       # 备份整个 KVDB
+    , "bkup/dm":    "PUT"       # 备份所有 大妈
+    , "bkup/m":     "PUT"       # 备份所有 成员
+    , "bkup/e":     "PUT"       # 备份所有 活动
+    , "bkup/p":     "PUT"       # 备份所有 文章
+
+    , "revert/db": "POST"       # 恢复整个 KVDB
     
-    , "sum/his":    "GET"       # 节点(任意)修订次数
-    , "his/last":   "GET"       # 最后一次节点(任意)修订
+    , "sum/his":   "GET"        # 节点(任意)修订次数
+    , "his/last":  "GET"        # 最后一次节点(任意)修订
     }
 
 
@@ -1883,36 +1756,27 @@ e.g:
   一般形式:
   $ python lbTCLI.py 事务指令 [可能的值设定 set=** 形式]
 
-  echo set=i 
+  echo set=i        模拟微信的消息交互
 
   sum/usr                   查询 用户 整体现状
   info/usr/:UUID            查阅指定 用户 信息
   find/usr/&lt;key word&gt;       搜索用户 [对名称,描述 进行搜索]
   
-  fix/usr/:UUID nm=ZQ       修订指定 用户 信息
-  fix/dm/:NM nm=ZQ          修订指定 大妈 信息
-    可设定字段:
-        nm      ~ nike name
-        em      ~ 常用邮箱
-        mo      ~ Mobil
-        desc    ~ 说明
+  fix/usr/:UUID nm=ZQ       修订指定 用户 的相关信息
+  fix/dm/:NM nm=ZQ          修订/创建指定 大妈 的相关信息
   fix/pub/:UUID url=***     增补|指定 文章 信息
-    UUID 为 null 时,是指创建文章信息
+    UUID 为 null 时,指创建文章信息
     可设定字段:
         tag     ~ gb|dd|gt|dm|ot
-        title   ~ 标题
-        desc    ~ 说明
-        picurl  ~ 题图地址
-        url     ~ 访问地址
+        ...
 
-  st/kv                     查询 KVDB 整体现状
+  st/kv     查询 KVDB 整体现状
+  sum/db|dm|m|e|p
+      统计 整体|大妈|成员|活动|文章 信息现状
 
   !!! 小心:大规模数据删除操作 !!!
-  bkup/db   set=all
-  bkup/m    set=all
-  bkup/dm   set=all
-  bkup/e    set=all
-  bkup/p    set=all
+  bkup/db|dm|m|e|p
+     备份 KVDB|大妈|成员|活动|文章 数据到Storage
   ...
 """
 </t>
@@ -1951,25 +1815,30 @@ from module.auth import _genQueryArgs, _genArgsStr
     #print p.stderr
 
     </t>
-<t tx="zoomq.20130925103854.4961">def smart_rest(metter, sets):
+<t tx="zoomq.20130925103854.4961">def smart_rest(matter, sets):
     '''确保所有操作元语为 两节,其它作为附加参数...
     '''
-    print metter, sets
-    #print len(metter.split('/'))
-    if "echo" == metter:
-        _rest_main(CFG.CLI_MATTERS[metter], metter, sets)
+    #print matter, sets
+    #print len(matter.split('/'))
+    if "echo" == matter:
+        _rest_main(CFG.CLI_MATTERS[matter], matter, sets)
     else:
+        '''
         paths = metter.split('/')
         if 2 == len(paths):
             method = CFG.CLI_MATTERS["/".join(paths)]
         else:
             method = CFG.CLI_MATTERS["/".join(paths[:-1])]
-        #print "smart_rest:", method
-        if debug:
-            _rest_main(method, metter, sets)
+        '''
+        if matter in CFG.CLI_MATTERS.keys():  
+            method = CFG.CLI_MATTERS[matter]      
+            #print "smart_rest:", method
+            if debug:
+                _rest_main(method, matter, sets)
+            else:
+                _rest_main(method, matter, sets, host=AS_SAE)
         else:
-            _rest_main(method, metter, sets, host=AS_SAE)
-    
+            print "参数错误,请使用 -h 参阅手册..."
 
 </t>
 <t tx="zoomq.20130925103854.5007"># echo for RESTful remote actions
@@ -1979,6 +1848,7 @@ from module.auth import _genQueryArgs, _genArgsStr
     - 版本区隔为: `/api/v2/cli` 前缀
 - 签名检验
 - 时间检验(4.2秒以内, 并发不得超过 `N` 次)
+query_string 
 '''
 
 </t>
@@ -2127,16 +1997,24 @@ def get_usr_info(uuid, qstr):
         return "alert quary!-("
 
 </t>
-<t tx="zoomq.20130925103854.5049">@APP.get('/cli/st/kv/&lt;qstr&gt;')
-def st_kv(qstr):
+<t tx="zoomq.20130925103854.5049">@APP.get('/cli/sum/&lt;matter&gt;/&lt;qstr&gt;')
+def st_kv(matter, qstr):
     q_dict = _query2dict(qstr)
-    if _chkQueryArgs("/cli/st/kv", q_dict, "GET"):
-        data = []
-        #data.append(KV.get_info())
-        return KV.get_info()
-        return {'msg':"safe quary;-)"
-            , 'data':data
-            }
+    if _chkQueryArgs("/cli/sum/%s"% matter, q_dict, "GET"):
+        SYS4k = {'dm':'dama', 'm':'member', 'e':'events', 'p':'papers', }
+        feed_back = {'data':[]}
+        if 'db' == matter:
+            feed_back['msg'] = "all SYS_* status."
+            feed_back['data'] = ["%s hold %s node info."% (k
+                , len(KV.get(CFG.K4D[k] )) ) for k in CFG.K4D.keys() if "incr"!=k
+                ]
+        else:
+            feed_back['msg'] = "base %s data."% CFG.K4D[SYS4k[matter]]
+            feed_back['data'] = "%s hold %s node info."% (SYS4k[matter]
+                , len(KV.get(CFG.K4D[SYS4k[matter]] )) 
+                )
+        return feed_back
+        
     else:
         return "alert quary!-("
 
@@ -2781,18 +2659,9 @@ em:foo.bar@gmail.com
 
 更多细节,请惯性地输入 h 继续吧 :)
 '''</t>
-<t tx="zoomq.20130925103854.6458">PAPER_TAGS = ('gb', 'dd', 'gt', 'dm', 'hd', 'et', 'ot') 
-TXT_TAG_DEFINE = u'''
-gb ~G术图书 (推荐好书,书无中外)
-dd ~D码点评 (麻辣评点,善意满盈)
-gt ~G说公论 (时评杂文,新旧不拘)
-dm ~珠的自白(大妈自述,每周一篇)
-hd ~海选文章(得要相信,大妈法眼)
+<t tx="zoomq.20130925103854.6458">PAPER_TAGS = ESSAY_TAG.keys()
+TXT_TAG_DEFINE = "\n".join([u"%s %s"%(k, ESSAY_TAG[k]) for k in ESSAY_TAG.keys()])
 
-et ~活动报道(快乐大趴,给力小会)
-
-ot ~其它 (系统更新,新旧不拘)
-'''
 TXT_PLS_TAG = u'''亲! 请输入文章类别编码(类似 dm 的2字母):
 然后,俺才能给出该类别的文章索引...
 %s
@@ -2992,12 +2861,14 @@ def fix_dm(nm):
         set_var = base64.urlsafe_b64decode(request.forms[set_key])
         if set_key in CFG.K4DM.keys():
             print set_key, set_var
+            print "&lt;nm&gt;", nm
             uuid, dm = __chkDAMA(nm.strip())
-            dm[set_key] = set_var.decode('utf-8')
-            #print dm
-            KV.replace(uuid, dm)
-            feed_back['data'].append(dm)
-            feed_back['uuid'] = uuid
+            print uuid,dm
+            if uuid:
+                dm[set_key] = set_var.decode('utf-8')
+                KV.replace(uuid, dm)
+                feed_back['data'].append(dm)
+                feed_back['uuid'] = uuid
         else:
             feed_back['msg'] = "out keys, NULL fixed!" 
             feed_back['can_fix_keys'] = CFG.K4DM.keys()
@@ -3009,12 +2880,14 @@ def fix_dm(nm):
 </t>
 <t tx="zoomq.20130926092950.5440">def __chkDMID(text):
     for DM in CFG.DM_ALIAS.keys():
+        print CFG.DM_ALIAS[DM]
         if text in CFG.DM_ALIAS[DM]:
             print "found DAMA!", CFG.DM_ALIAS[DM][0]
             return DM
-        else:
-            print "not march DAMA!"
-            return None
+    
+    print "not march DAMA!"
+    return None
+
 </t>
 <t tx="zoomq.20130926092950.5442">def __chkDAMA(zipname):
     '''chk or init. webchat usr.:
@@ -3162,6 +3035,36 @@ def fix_pub(uuid):
 
         
         
+</t>
+<t tx="zoomq.20130927104354.5456">from sae.storage import Bucket
+BK = Bucket('bkup')</t>
+<t tx="zoomq.20130927104354.6047">def PUT2SS(raw, actype='bkup'):
+    if 'bkup' == actype:
+        sid = "%s.dump"% GENID('bkup')
+    print "\n PUT2SS:", sid
+    #   初始化一个Storage客户端。
+    BK.put_object(sid, raw)
+    uri = bucket.generate_url(sid)
+    return sid, uri
+
+
+
+
+
+</t>
+<t tx="zoomq.20130927104354.6049">@APP.get('/cli/st/kv/&lt;qstr&gt;')
+def st_kv(qstr):
+    q_dict = _query2dict(qstr)
+    if _chkQueryArgs("/cli/st/kv", q_dict, "GET"):
+        feed_back = {'data':[]}
+        #data.append(KV.get_info())
+        return KV.get_info()
+        feed_back['msg'] = "safe quary;-)"
+        feed_back['data'] = KV.get_info()
+        return feed_back
+    else:
+        return "alert quary!-("
+
 </t>
 </tnodes>
 </leo_file>

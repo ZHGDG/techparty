@@ -19,36 +19,27 @@ e.g:
   一般形式:
   $ python lbTCLI.py 事务指令 [可能的值设定 set=** 形式]
 
-  echo set=i 
+  echo set=i        模拟微信的消息交互
 
   sum/usr                   查询 用户 整体现状
   info/usr/:UUID            查阅指定 用户 信息
   find/usr/<key word>       搜索用户 [对名称,描述 进行搜索]
   
-  fix/usr/:UUID nm=ZQ       修订指定 用户 信息
-  fix/dm/:NM nm=ZQ          修订指定 大妈 信息
-    可设定字段:
-        nm      ~ nike name
-        em      ~ 常用邮箱
-        mo      ~ Mobil
-        desc    ~ 说明
+  fix/usr/:UUID nm=ZQ       修订指定 用户 的相关信息
+  fix/dm/:NM nm=ZQ          修订/创建指定 大妈 的相关信息
   fix/pub/:UUID url=***     增补|指定 文章 信息
-    UUID 为 null 时,是指创建文章信息
+    UUID 为 null 时,指创建文章信息
     可设定字段:
         tag     ~ gb|dd|gt|dm|ot
-        title   ~ 标题
-        desc    ~ 说明
-        picurl  ~ 题图地址
-        url     ~ 访问地址
+        ...
 
-  st/kv                     查询 KVDB 整体现状
+  st/kv     查询 KVDB 整体现状
+  sum/db|dm|m|e|p
+      统计 整体|大妈|成员|活动|文章 信息现状
 
   !!! 小心:大规模数据删除操作 !!!
-  bkup/db   set=all
-  bkup/m    set=all
-  bkup/dm   set=all
-  bkup/e    set=all
-  bkup/p    set=all
+  bkup/db|dm|m|e|p
+     备份 KVDB|大妈|成员|活动|文章 数据到Storage
   ...
 """
 import sys
@@ -123,25 +114,30 @@ def _rest_main(method, uri, args, host=AS_LOCAL):
     #print p.stderr
 
     
-def smart_rest(metter, sets):
+def smart_rest(matter, sets):
     '''确保所有操作元语为 两节,其它作为附加参数...
     '''
-    print metter, sets
-    #print len(metter.split('/'))
-    if "echo" == metter:
-        _rest_main(CFG.CLI_MATTERS[metter], metter, sets)
+    #print matter, sets
+    #print len(matter.split('/'))
+    if "echo" == matter:
+        _rest_main(CFG.CLI_MATTERS[matter], matter, sets)
     else:
+        '''
         paths = metter.split('/')
         if 2 == len(paths):
             method = CFG.CLI_MATTERS["/".join(paths)]
         else:
             method = CFG.CLI_MATTERS["/".join(paths[:-1])]
-        #print "smart_rest:", method
-        if debug:
-            _rest_main(method, metter, sets)
+        '''
+        if matter in CFG.CLI_MATTERS.keys():  
+            method = CFG.CLI_MATTERS[matter]      
+            #print "smart_rest:", method
+            if debug:
+                _rest_main(method, matter, sets)
+            else:
+                _rest_main(method, matter, sets, host=AS_SAE)
         else:
-            _rest_main(method, metter, sets, host=AS_SAE)
-    
+            print "参数错误,请使用 -h 参阅手册..."
 
 
 if __name__ == '__main__':

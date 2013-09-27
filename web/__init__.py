@@ -8,6 +8,7 @@ from bottle import jinja2_template as template
 from config import JINJA2TPL_PATH
 TEMPLATE_PATH.insert(0, JINJA2TPL_PATH)
 
+from config import CFG
 
 APP = Bottle()
 
@@ -51,7 +52,7 @@ def error404(error):
 
 roaring zoomquiet+404@gmail.com
 '''
-    return template('404.html')
+#    return template('404.html')
 
 @APP.route('/favicon.ico')
 def favicon():

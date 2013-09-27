@@ -28,8 +28,7 @@ from auth import _query2dict, _chkQueryArgs
 from utility import INCR4KV as __incr
 from utility import TSTAMP, GENID, USRID, DAMAID
 from utility import ADD4SYS
-
-
+from utility import PUT2SS
 #print sys.path
 from config import CFG
 from xsettings import XCFG
@@ -61,18 +60,40 @@ def wechat(request):
     - 版本区隔为: `/api/v2/cli` 前缀
 - 签名检验
 - 时间检验(4.2秒以内, 并发不得超过 `N` 次)
+query_string 
 '''
+
+@APP.get('/cli/sum/<matter>/<qstr>')
+def st_kv(matter, qstr):
+    q_dict = _query2dict(qstr)
+    if _chkQueryArgs("/cli/sum/%s"% matter, q_dict, "GET"):
+        SYS4k = {'dm':'dama', 'm':'member', 'e':'events', 'p':'papers', }
+        feed_back = {'data':[]}
+        if 'db' == matter:
+            feed_back['msg'] = "all SYS_* status."
+            feed_back['data'] = ["%s hold %s node info."% (k
+                , len(KV.get(CFG.K4D[k] )) ) for k in CFG.K4D.keys() if "incr"!=k
+                ]
+        else:
+            feed_back['msg'] = "base %s data."% CFG.K4D[SYS4k[matter]]
+            feed_back['data'] = "%s hold %s node info."% (SYS4k[matter]
+                , len(KV.get(CFG.K4D[SYS4k[matter]] )) 
+                )
+        return feed_back
+        
+    else:
+        return "alert quary!-("
 
 @APP.get('/cli/st/kv/<qstr>')
 def st_kv(qstr):
     q_dict = _query2dict(qstr)
     if _chkQueryArgs("/cli/st/kv", q_dict, "GET"):
-        data = []
+        feed_back = {'data':[]}
         #data.append(KV.get_info())
         return KV.get_info()
-        return {'msg':"safe quary;-)"
-            , 'data':data
-            }
+        feed_back['msg'] = "safe quary;-)"
+        feed_back['data'] = KV.get_info()
+        return feed_back
     else:
         return "alert quary!-("
 
@@ -85,12 +106,14 @@ def fix_dm(nm):
         set_var = base64.urlsafe_b64decode(request.forms[set_key])
         if set_key in CFG.K4DM.keys():
             print set_key, set_var
+            print "<nm>", nm
             uuid, dm = __chkDAMA(nm.strip())
-            dm[set_key] = set_var.decode('utf-8')
-            #print dm
-            KV.replace(uuid, dm)
-            feed_back['data'].append(dm)
-            feed_back['uuid'] = uuid
+            print uuid,dm
+            if uuid:
+                dm[set_key] = set_var.decode('utf-8')
+                KV.replace(uuid, dm)
+                feed_back['data'].append(dm)
+                feed_back['uuid'] = uuid
         else:
             feed_back['msg'] = "out keys, NULL fixed!" 
             feed_back['can_fix_keys'] = CFG.K4DM.keys()
@@ -101,12 +124,14 @@ def fix_dm(nm):
 
 def __chkDMID(text):
     for DM in CFG.DM_ALIAS.keys():
+        print CFG.DM_ALIAS[DM]
         if text in CFG.DM_ALIAS[DM]:
             print "found DAMA!", CFG.DM_ALIAS[DM][0]
             return DM
-        else:
-            print "not march DAMA!"
-            return None
+    
+    print "not march DAMA!"
+    return None
+
 def __chkDAMA(zipname):
     '''chk or init. webchat usr.:
         - gen KV uuid, try get
@@ -923,7 +948,7 @@ def error404(error):
 
 roaring zoomquiet+404@gmail.com
 '''
-    return template('404.html')
+#    return template('404.html')
 
 @APP.route('/favicon.ico')
 def favicon():
