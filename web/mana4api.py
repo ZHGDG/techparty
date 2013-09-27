@@ -1,29 +1,25 @@
 # -*- coding: utf-8 -*-
 import sys   
-#sys.path.append("..")  
 import time #import time, gmtime, strftime, localtime
 from datetime import datetime
 import traceback
 import hashlib
 import base64
+import cPickle
+
 from copy import deepcopy
 import xml.etree.ElementTree as etree
 
-#import sae
-#import sae.storage
-#import sae.kvdb
 import pyfsm
 from pyfsm import state, transition
 
-#from wechat.official import WxNewsResponse
 from wechat.official import WxApplication, WxRequest, WxTextResponse, WxNewsResponse, WxArticle
 
 from bottle import *
 from bottle import __version__ as bottleVer
-from bottle import jinja2_template as template
+#from bottle import jinja2_template as template
 
 from auth import _query2dict, _chkQueryArgs
-#from lb4crx2cli import __genRESTsign
 
 from utility import INCR4KV as __incr
 from utility import TSTAMP, GENID, USRID, DAMAID
@@ -33,7 +29,7 @@ from utility import PUT2SS
 from config import CFG
 from xsettings import XCFG
 KV = CFG.KV #sae.kvdb.KVClient(debug=1)
-#SG = sae.storage.Client()
+BK = CFG.BK
 debug(True)
 
 APP = Bottle()
@@ -67,20 +63,96 @@ query_string
 def st_kv(matter, qstr):
     q_dict = _query2dict(qstr)
     if _chkQueryArgs("/cli/sum/%s"% matter, q_dict, "GET"):
-        SYS4k = {'dm':'dama', 'm':'member', 'e':'events', 'p':'papers', }
         feed_back = {'data':[]}
         if 'db' == matter:
             feed_back['msg'] = "all SYS_* status."
             feed_back['data'] = ["%s hold %s node info."% (k
                 , len(KV.get(CFG.K4D[k] )) ) for k in CFG.K4D.keys() if "incr"!=k
                 ]
+        elif 'bk' == matter:
+            count = 0
+            for dump in BK.list():
+                count += 1
+                feed_back['data'].append("%s ~ %s"%(dump['name']
+                    , dump['bytes']
+                    ))
+            feed_back['msg'] = "all Storaged %s dumps"% count
         else:
-            feed_back['msg'] = "base %s data."% CFG.K4D[SYS4k[matter]]
-            feed_back['data'] = "%s hold %s node info."% (SYS4k[matter]
-                , len(KV.get(CFG.K4D[SYS4k[matter]] )) 
-                )
+            if matter in CFG.K4D.keys():
+                feed_back['msg'] = "base %s data."% CFG.K4D[matter]
+                feed_back['data'] = "%s hold %s node info."% (matter
+                    , len(KV.get(CFG.K4D[matter] )) 
+                    )
+            else:
+                feed_back['msg'] = "sum key is OUT CFG.K4D !-("
         return feed_back
         
+    else:
+        return "alert quary !-("
+
+@APP.post('/cli/bkup/<matter>')
+def bkup_dump(matter):
+    q_dict = request.forms
+    if _chkQueryArgs("/cli/bkup/%s"% matter, q_dict, "PUT"):
+        feed_back = {'data':[]}
+        if 'db' ==  matter:
+            print "try dumps all nodes from KVDB"
+        else:
+            kb_objs = {}
+            kb_objs[CFG.K4D[matter] ] = KV.get(CFG.K4D[matter])
+            if 0 != len(kb_objs[CFG.K4D[matter] ] ):
+                for k in kb_objs[CFG.K4D[matter] ]:
+                    kb_objs[k] = KV.get(k)
+            dumps = cPickle.dumps(kb_objs)
+            feed_back['data'].append("%s pointed %s nodes"%(CFG.K4D[matter] 
+                , len(kb_objs[CFG.K4D[matter] ] )))
+            #print kb_objs
+        sid, uri = PUT2SS(dumps, name=matter)
+        
+        feed_back['data'].append( BK.stat_object(sid) )
+        feed_back['msg'] = "bkup %s dump as %s"% (CFG.K4D[matter], uri)
+        #data.append(KV.get_info())
+        return feed_back
+    else:
+        return "alert quary!-("
+
+@APP.put('/cli/revert/<matter>')
+def revert_dump(matter):
+    q_dict = request.forms
+    if _chkQueryArgs("/cli/revert/%s"% matter, q_dict, "PUT"):
+        feed_back = {'data':[]}
+        set_key = list(set(q_dict.keys())-set(CFG.SECURE_ARGS))[0]
+        set_var = base64.urlsafe_b64decode(request.forms[set_key])
+        print set_key, set_var
+        if 'db' ==  matter:
+            print "try revert ALL date from KVDB"
+        else:
+            dumps = BK.get_object_contents(set_var)
+            re_obj = cPickle.loads(dumps)
+            KV.replace(CFG.K4D[matter], re_obj[CFG.K4D[matter]])
+            uuids = re_obj[CFG.K4D[matter]]
+            for uuid in uuids:
+                #print uuid, re_obj[uuid]
+                KV.replace(uuid, re_obj[uuid])
+            
+        feed_back['data'].append( BK.stat_object(set_var) )
+        feed_back['msg'] = "reverted %s nodes as %s "% (len(re_obj[CFG.K4D[matter]])
+            , CFG.K4D[matter]
+            )
+        #data.append(KV.get_info())
+        return feed_back
+    else:
+        return "alert quary!-("
+
+@APP.delete('/cli/del/bk/<uuid>/<qstr>')
+def del_bk(uuid, qstr):
+    q_dict = _query2dict(qstr)
+    if _chkQueryArgs("/cli/del/bk/%s"% uuid, q_dict, "DELETE"):
+        feed_back = {'data':[]}
+        feed_back['msg'] = "deleted: %s"% uuid
+        feed_back['data'].append( BK.stat_object(uuid) )
+        BK.delete_object(uuid)
+        return feed_back
     else:
         return "alert quary!-("
 
@@ -153,7 +225,7 @@ def __chkDAMA(zipname):
         new_usr['lasttm'] = time.time()
         new_usr['nm'] = CFG.DM_ALIAS[k4dm][0]
         KV.add(uuid, new_usr)
-        ADD4SYS('dama', uuid)
+        ADD4SYS('dm', uuid)
         print uuid, new_usr
         return uuid, new_usr
 
@@ -161,8 +233,8 @@ def __chkDAMA(zipname):
 
         
         
-@APP.put('/cli/fix/pub/<uuid>')
-def fix_pub(uuid):
+@APP.put('/cli/fix/pub/<tag>/<uuid>')
+def fix_pub(tag, uuid):
     q_dict = request.forms
     if _chkQueryArgs("/cli/fix/pub/%s"% uuid, q_dict, "PUT"):
         feed_back = {'data':[]}
@@ -170,7 +242,7 @@ def fix_pub(uuid):
         set_var = base64.urlsafe_b64decode(request.forms[set_key])
         if set_key in CFG.K4WD.keys():
             print set_key, set_var
-            uuid, pub = __chkPAPER(uuid)
+            uuid, pub = __chkPAPER(tag, uuid)
             pub[set_key] = set_var.decode('utf-8')
             KV.replace(uuid, pub)
             #print pub
@@ -187,7 +259,7 @@ def fix_pub(uuid):
 
 
 
-def __chkPAPER(uuid):
+def __chkPAPER(tag, uuid):
     '''chk or init. webchat paper:
         - if uuid == null init. node
         - else try get it
@@ -199,7 +271,7 @@ def __chkPAPER(uuid):
     else:
         # inti.
         new_paper = deepcopy(CFG.K4DM)
-        uuid = GENID('paper')
+        uuid = GENID(tag)
         new_paper['uuid'] = uuid
         new_paper['his_id'] = GENID('his')
         new_paper['lasttm'] = time.time()
@@ -216,13 +288,13 @@ def __chkPAPER(uuid):
 # collection usr ACL matter
 '''
 '''
-@APP.get('/cli/sum/usr/<qstr>')
+@APP.get('/cli/sum/m/<qstr>')
 def sum_usr(qstr):
     #print request.query_string #query.keys()#.appkey
     q_dict = _query2dict(qstr)
-    if _chkQueryArgs("/cli/sum/usr", q_dict, "GET"):
+    if _chkQueryArgs("/cli/sum/m", q_dict, "GET"):
         data = []
-        usrs = KV.get(CFG.K4D['member'])
+        usrs = KV.get(CFG.K4D['m'])
         print usrs
         for u in usrs[:3]:
             data.append(KV.get(u))
@@ -868,7 +940,7 @@ def __chkRegUsr(openid):
         new_usr['lasttm'] = time.time()
         new_usr['fsm'] = None
         KV.add(uuid, new_usr)
-        ADD4SYS('member', uuid)
+        ADD4SYS('m', uuid)
         print new_usr
         return new_usr
 

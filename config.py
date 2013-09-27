@@ -41,10 +41,10 @@ class Borg():
     KV = sae.kvdb.KVClient()
     #   系统索引键-名字典
     K4D = {'incr':"SYS_TOT"         # int
-        ,'member':"SYS_usrs_ALL"    # [] 所有用户  (包含已经 del 的)
-        ,'dama':"SYS_dama_ALL"      # [] 所有 组委  (包含已经 del 的)
-        ,'events':"SYS_eves_ALL"    # [] 所有活动索引 (包含已经 del 的)
-        ,'papers':"SYS_pubs_ALL"    # [] 所有文章索引 (包含已经 del 的)
+        ,'m':"SYS_usrs_ALL"    # [] 所有用户  (包含已经 del 的)
+        ,'dm':"SYS_dama_ALL"      # [] 所有 组委  (包含已经 del 的)
+        ,'e':"SYS_eves_ALL"    # [] 所有活动索引 (包含已经 del 的)
+        ,'p':"SYS_pubs_ALL"    # [] 所有文章索引 (包含已经 del 的)
     }
     #KEY4_incr = K4D['incr']
     for k in K4D:
@@ -338,19 +338,23 @@ class Borg():
 
     APIPRE = "/cli" #% _API_ROOT
     STLIMI = 4.2    # 请求安全时限(秒)
+
     SECURE_ARGS = ('appkey', 'ts', 'sign')
     CLI_MATTERS = {     # 命令行响应方式速查字典
-        "sum/usr":"GET"             # 统计用户现状
+          "sum/his":    "GET"       # 节点(任意)修订次数
+        , "his/last":   "GET"       # 最后一次节点(任意)修订
+        
         , "info/usr":   "GET"       # 查阅用户信息
         , "find/usr":   "GET"       # 搜索用户
-        , "list/usr":   "GET"       # 列出指定级别用户
         , "del/usr":    "DELETE"    # 软删除所有用户 (包含tag 信息)
         , "reliv/usr":  "PUT"       # 恢复指定用户
         , "acl/usr":    "PUT"       # 设置用户权限
-
-        , "fix/usr":    "PUT"       # 修订用户信息
+        , "list/usr":   "GET"       # 列出指定级别用户
+        
         , "fix/dm":     "PUT"       # 修订 大妈 信息
-        , "fix/pub":    "PUT"       # 增补 文章 信息
+        , "fix/m":      "PUT"       # 修订 成员 信息
+        , "fix/p":      "PUT"       # 增补 文章 信息
+        , "fix/e":      "PUT"       # 增补 活动 信息
 
         , "echo":       "GET"       # 模拟wechat 问答
         
@@ -361,17 +365,20 @@ class Borg():
         , "sum/m":      "GET"       # 统计 成员 信息现状
         , "sum/e":      "GET"       # 统计 活动 信息现状
         , "sum/p":      "GET"       # 统计 文章 信息现状
+        , "sum/bk":     "GET"       # 综合 备份 数据现状
+        , "del/bk":     "DELETE"    # 删除指定备份 dump
 
-        , "bkup/db":    "PUT"       # 备份整个 KVDB
-        , "bkup/dm":    "PUT"       # 备份所有 大妈
-        , "bkup/m":     "PUT"       # 备份所有 成员
-        , "bkup/e":     "PUT"       # 备份所有 活动
-        , "bkup/p":     "PUT"       # 备份所有 文章
+        , "bkup/db":    "POST"      # 备份整个 KVDB
+        , "bkup/dm":    "POST"      # 备份所有 大妈
+        , "bkup/m":     "POST"      # 备份所有 成员
+        , "bkup/e":     "POST"      # 备份所有 活动
+        , "bkup/p":     "POST"      # 备份所有 文章
 
-        , "revert/db": "POST"       # 恢复整个 KVDB
-        
-        , "sum/his":   "GET"        # 节点(任意)修订次数
-        , "his/last":  "GET"        # 最后一次节点(任意)修订
+        , "revert/db":  "PUT"      # 恢复整个 KVDB
+        , "revert/dm":  "PUT"      # 恢复 大妈 数据
+        , "revert/m":   "PUT"      # 恢复 大妈 数据
+        , "revert/e":   "PUT"      # 恢复 大妈 数据
+        , "revert/p":   "PUT"      # 恢复 大妈 数据
         }
 
 

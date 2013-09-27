@@ -19,7 +19,7 @@
 <v t="zoomq.20120710140424.5456" a="E"><vh>&lt;&lt;cfg4Borg&gt;&gt;</vh>
 <v t="zoomq.20130926092950.5432"><vh>环境切换</vh></v>
 <v t="zoomq.20130927104354.5456"><vh>storage</vh></v>
-<v t="zoomq.20130923093950.3647" a="E"><vh>KVDB</vh>
+<v t="zoomq.20130923093950.3647"><vh>KVDB</vh>
 <v t="zoomq.20130923093950.5397"><vh>&lt;&lt;MEMBER&gt;&gt;</vh></v>
 <v t="zoomq.20130923093950.5395"><vh>&lt;&lt;CONTENT&gt;&gt;</vh></v>
 <v t="zoomq.20130923093950.8569"><vh>&lt;&lt;大妈们&gt;&gt;</vh></v>
@@ -36,13 +36,14 @@
 <v t="zoomq.20130925103854.4951"><vh>RESTful</vh></v>
 </v>
 </v>
-<v t="zoomq.20130925103854.4957"><vh>@nosent CLI.py</vh>
+<v t="zoomq.20130925103854.4957" a="E"><vh>@nosent CLI.py</vh>
 <v t="zoomq.20130925103854.4958"><vh>&lt;&lt;docopt&gt;&gt;</vh></v>
 <v t="zoomq.20130925103854.4959"><vh>&lt;&lt;declarations&gt;&gt;</vh></v>
-<v t="zoomq.20130925103854.4960"><vh>_rest_main()</vh>
+<v t="zoomq.20130925103854.4960" a="E"><vh>_rest_main()</vh>
 <v t="zoomq.20130925103854.6450"><vh>&lt;&lt;echo matters&gt;&gt;</vh></v>
 <v t="zoomq.20130925103854.6452"><vh>&lt;&lt;GET DEL&gt;&gt;</vh></v>
-<v t="zoomq.20130925103854.6451"><vh>&lt;&lt;POST PUT&gt;&gt;</vh></v>
+<v t="zoomq.20130925103854.6451"><vh>&lt;&lt;PUT&gt;&gt;</vh></v>
+<v t="zoomq.20130927104354.6053"><vh>&lt;&lt;POST&gt;&gt;</vh></v>
 </v>
 <v t="zoomq.20130925103854.4961"><vh>smart_rest()</vh></v>
 </v>
@@ -71,7 +72,7 @@
 </v>
 </v>
 <v t="zoomq.20120723102156.5543" a="E"><vh>web</vh>
-<v t="zoomq.20120723102156.5545" a="E"><vh>@nosent __init__.py</vh>
+<v t="zoomq.20120723102156.5545"><vh>@nosent __init__.py</vh>
 <v t="zoomq.20120723102156.5546"><vh>&lt;&lt;declarations&gt;&gt;</vh></v>
 <v t="zoomq.20120723102156.5548"><vh>/</vh></v>
 <v t="zoomq.20120727213305.14707"><vh>404+各种默认处理</vh></v>
@@ -81,6 +82,9 @@
 <v t="zoomq.20130918155053.5760"><vh>GET  /echo</vh></v>
 <v t="zoomq.20130925103854.5007" a="E"><vh>cli/ 工具</vh>
 <v t="zoomq.20130925103854.5049"><vh>GET sum/db|dm|m|e|p</vh></v>
+<v t="zoomq.20130927104354.6051"><vh>POST bkup/db|dm|m|e|p</vh></v>
+<v t="zoomq.20130927104354.6062"><vh>PUT revert/db|dm|m|e|p</vh></v>
+<v t="zoomq.20130927104354.6055"><vh>DELETE del/bk/:UUID</vh></v>
 <v t="zoomq.20130927104354.6049"><vh>GET st/kv</vh></v>
 <v t="zoomq.20130926092950.5438"><vh>PUT fix/dm/:NM</vh></v>
 <v t="zoomq.20130926092950.5440"><vh>__chkDMID()</vh></v>
@@ -116,7 +120,7 @@
 <v t="zoomq.20130923093950.8565"><vh>&lt;&lt;SEARCH&gt;&gt;</vh></v>
 <v t="zoomq.20130923093950.8566"><vh>&lt;&lt;THANKS&gt;&gt;</vh></v>
 </v>
-<v t="zoomq.20130925103854.6430" a="E"><vh>FSM</vh>
+<v t="zoomq.20130925103854.6430"><vh>FSM</vh>
 <v t="zoomq.20130925103854.6461"><vh>&lt;&lt;大妈联系&gt;&gt;</vh></v>
 <v t="zoomq.20130925103854.6431" a="E"><vh>s 查阅文章</vh>
 <v t="zoomq.20130926092950.5443"><vh>&lt;&lt;seek&gt;&gt;</vh></v>
@@ -533,7 +537,7 @@ def index():
 from config import CFG
 from xsettings import XCFG
 KV = CFG.KV #sae.kvdb.KVClient(debug=1)
-#SG = sae.storage.Client()
+BK = CFG.BK
 debug(True)
 
 APP = Bottle()
@@ -547,30 +551,26 @@ APP = Bottle()
 
 </t>
 <t tx="zoomq.20120723102156.5562">import sys   
-#sys.path.append("..")  
 import time #import time, gmtime, strftime, localtime
 from datetime import datetime
 import traceback
 import hashlib
 import base64
+import cPickle
+
 from copy import deepcopy
 import xml.etree.ElementTree as etree
 
-#import sae
-#import sae.storage
-#import sae.kvdb
 import pyfsm
 from pyfsm import state, transition
 
-#from wechat.official import WxNewsResponse
 from wechat.official import WxApplication, WxRequest, WxTextResponse, WxNewsResponse, WxArticle
 
 from bottle import *
 from bottle import __version__ as bottleVer
-from bottle import jinja2_template as template
+#from bottle import jinja2_template as template
 
 from auth import _query2dict, _chkQueryArgs
-#from lb4crx2cli import __genRESTsign
 
 from utility import INCR4KV as __incr
 from utility import TSTAMP, GENID, USRID, DAMAID
@@ -1037,7 +1037,7 @@ JINJA2TPL_PATH = os.path.abspath(
     tot = INCR4KV()
     #sha1name = hashlib.sha1(name).hexdigest()
     GOBJMAP = {'his':'h_%(timestamp)s_HIS%(tot)d'
-        ,'bkup':'b_%(timestamp)s_SG%(tot)d'
+        ,'bkup':'bk_%(timestamp)s_SG%(tot)d_%(name)s'
         ,'tag':'t_%(timestamp)s_TAG%(tot)d'
         ,'event':'e_%(timestamp)s_EVE%(tot)d'
         ,'paper':'p_%(timestamp)s_PUB%(tot)d'
@@ -1440,10 +1440,10 @@ def wechat_post():
 KV = sae.kvdb.KVClient()
 #   系统索引键-名字典
 K4D = {'incr':"SYS_TOT"         # int
-    ,'member':"SYS_usrs_ALL"    # [] 所有用户  (包含已经 del 的)
-    ,'dama':"SYS_dama_ALL"      # [] 所有 组委  (包含已经 del 的)
-    ,'events':"SYS_eves_ALL"    # [] 所有活动索引 (包含已经 del 的)
-    ,'papers':"SYS_pubs_ALL"    # [] 所有文章索引 (包含已经 del 的)
+    ,'m':"SYS_usrs_ALL"    # [] 所有用户  (包含已经 del 的)
+    ,'dm':"SYS_dama_ALL"      # [] 所有 组委  (包含已经 del 的)
+    ,'e':"SYS_eves_ALL"    # [] 所有活动索引 (包含已经 del 的)
+    ,'p':"SYS_pubs_ALL"    # [] 所有文章索引 (包含已经 del 的)
 }
 #KEY4_incr = K4D['incr']
 for k in K4D:
@@ -1656,19 +1656,23 @@ DM_ALIAS = {"LXC": ['Bonnie', 'liuxinchen', 'lxc', 'LXC', u'刘星辰']
 </t>
 <t tx="zoomq.20130925103854.4951">APIPRE = "/cli" #% _API_ROOT
 STLIMI = 4.2    # 请求安全时限(秒)
+
 SECURE_ARGS = ('appkey', 'ts', 'sign')
 CLI_MATTERS = {     # 命令行响应方式速查字典
-    "sum/usr":"GET"             # 统计用户现状
+      "sum/his":    "GET"       # 节点(任意)修订次数
+    , "his/last":   "GET"       # 最后一次节点(任意)修订
+    
     , "info/usr":   "GET"       # 查阅用户信息
     , "find/usr":   "GET"       # 搜索用户
-    , "list/usr":   "GET"       # 列出指定级别用户
     , "del/usr":    "DELETE"    # 软删除所有用户 (包含tag 信息)
     , "reliv/usr":  "PUT"       # 恢复指定用户
     , "acl/usr":    "PUT"       # 设置用户权限
-
-    , "fix/usr":    "PUT"       # 修订用户信息
+    , "list/usr":   "GET"       # 列出指定级别用户
+    
     , "fix/dm":     "PUT"       # 修订 大妈 信息
-    , "fix/pub":    "PUT"       # 增补 文章 信息
+    , "fix/m":      "PUT"       # 修订 成员 信息
+    , "fix/p":      "PUT"       # 增补 文章 信息
+    , "fix/e":      "PUT"       # 增补 活动 信息
 
     , "echo":       "GET"       # 模拟wechat 问答
     
@@ -1679,17 +1683,20 @@ CLI_MATTERS = {     # 命令行响应方式速查字典
     , "sum/m":      "GET"       # 统计 成员 信息现状
     , "sum/e":      "GET"       # 统计 活动 信息现状
     , "sum/p":      "GET"       # 统计 文章 信息现状
+    , "sum/bk":     "GET"       # 综合 备份 数据现状
+    , "del/bk":     "DELETE"    # 删除指定备份 dump
 
-    , "bkup/db":    "PUT"       # 备份整个 KVDB
-    , "bkup/dm":    "PUT"       # 备份所有 大妈
-    , "bkup/m":     "PUT"       # 备份所有 成员
-    , "bkup/e":     "PUT"       # 备份所有 活动
-    , "bkup/p":     "PUT"       # 备份所有 文章
+    , "bkup/db":    "POST"      # 备份整个 KVDB
+    , "bkup/dm":    "POST"      # 备份所有 大妈
+    , "bkup/m":     "POST"      # 备份所有 成员
+    , "bkup/e":     "POST"      # 备份所有 活动
+    , "bkup/p":     "POST"      # 备份所有 文章
 
-    , "revert/db": "POST"       # 恢复整个 KVDB
-    
-    , "sum/his":   "GET"        # 节点(任意)修订次数
-    , "his/last":  "GET"        # 最后一次节点(任意)修订
+    , "revert/db":  "PUT"      # 恢复整个 KVDB
+    , "revert/dm":  "PUT"      # 恢复 大妈 数据
+    , "revert/m":   "PUT"      # 恢复 大妈 数据
+    , "revert/e":   "PUT"      # 恢复 大妈 数据
+    , "revert/p":   "PUT"      # 恢复 大妈 数据
     }
 
 
@@ -1705,10 +1712,7 @@ LEVEL4USR = {"mana":0
 #!/usr/bin/env python
 &lt;&lt;docopt&gt;&gt;
 &lt;&lt;declarations&gt;&gt;
-AS_USR = "oFNShjiOhclfJ-CtOO81p2sPrBfs"
-AS_SRV = "gh_5e32c47b5b23"
 AS_LOCAL = "http://localhost:8080/api"
-AS_SAE = "http://weknow.sinaapp.com/api"
 
 @others
 
@@ -1725,17 +1729,6 @@ if __name__ == '__main__':
     smart_rest(metter, sets)
     #_rest_main(method, uri, args)
 
-'''
- &lt;xml&gt;
-     &lt;ToUserName&gt;&lt;![CDATA[oFNShjiOhclfJ-CtOO81p2sPrBfs]]&gt;&lt;/ToUserName&gt;
-     &lt;FromUserName&gt;&lt;![CDATA[gh_5e32c47b5b23]]&gt;&lt;/FromUserName&gt;
-     &lt;CreateTime&gt;13092510285258005&lt;/CreateTime&gt;
-     &lt;MsgType&gt;&lt;![CDATA[text]]&gt;&lt;/MsgType&gt;
-     &lt;Content&gt;&lt;![CDATA[weknow v13.09.18]]&gt;&lt;/Content&gt;
-     &lt;/xml&gt; yq34 
-'''
-
-
 </t>
 <t tx="zoomq.20130925103854.4958">"""CLI for WeKnow.
 
@@ -1751,33 +1744,36 @@ Options:
   -D --debug    对本地系统测试时专用参数
   &lt;matter&gt;      事务URI
   &lt;sets&gt;        数据设定
-  
-e.g:
-  一般形式:
-  $ python lbTCLI.py 事务指令 [可能的值设定 set=** 形式]
 
+e.g:
+  一般形式::
+  $ python lbTCLI.py 事务指令 [可能的值设定 set=** 形式]
+  详细操作::
   echo set=i        模拟微信的消息交互
 
-  sum/usr                   查询 用户 整体现状
   info/usr/:UUID            查阅指定 用户 信息
   find/usr/&lt;key word&gt;       搜索用户 [对名称,描述 进行搜索]
-  
-  fix/usr/:UUID nm=ZQ       修订指定 用户 的相关信息
-  fix/dm/:NM nm=ZQ          修订/创建指定 大妈 的相关信息
-  fix/pub/:UUID url=***     增补|指定 文章 信息
+
+  st/kv     查询 KVDB 整体现状
+  sum/bk|db|dm|m|e|p
+      综合 备份|整体|大妈|成员|活动|文章 信息现状
+  fix/dm/:NM  nm=ZQ       修订/创建指定 大妈 的相关信息
+  fix/m/:UUID nm=ZQ       修订指定 成员 的相关信息
+  fix/e/:CODE pic=***     修订/创建指定 活动 的相关信息
+  fix/p/:UUID url=***     增补|指定 文章 信息
     UUID 为 null 时,指创建文章信息
     可设定字段:
         tag     ~ gb|dd|gt|dm|ot
         ...
 
-  st/kv     查询 KVDB 整体现状
-  sum/db|dm|m|e|p
-      统计 整体|大妈|成员|活动|文章 信息现状
-
-  !!! 小心:大规模数据删除操作 !!!
+  !!! 小心:大规模数据I/O操作 !!!
+  del/bk/:UUID          删除指定备份 dump
   bkup/db|dm|m|e|p
      备份 KVDB|大妈|成员|活动|文章 数据到Storage
-  ...
+
+  revert/db|dm|m|e|p    set=备份dump
+     恢复 KVDB|大妈|成员|活动|文章 数据到Storage
+益rz...
 """
 </t>
 <t tx="zoomq.20130925103854.4959">import sys
@@ -1801,11 +1797,11 @@ from module.auth import _genQueryArgs, _genArgsStr
             - appkey=***&amp;ts=***&amp;sign=***
             - 整体作base64.urlsafe_b64encode()包裹
     '''
-    if method in ['PUT', 'POST']:
-        #print "PUT/POST" 
-        &lt;&lt;POST PUT&gt;&gt;
+    if 'PUT' == method: 
+        &lt;&lt;PUT&gt;&gt;
+    elif 'POST' == method:
+        &lt;&lt;POST&gt;&gt;
     else:
-        # GET/DELETE
         if "echo" == uri:
             &lt;&lt;echo matters&gt;&gt;
         else:
@@ -1818,27 +1814,26 @@ from module.auth import _genQueryArgs, _genArgsStr
 <t tx="zoomq.20130925103854.4961">def smart_rest(matter, sets):
     '''确保所有操作元语为 两节,其它作为附加参数...
     '''
-    #print matter, sets
-    #print len(matter.split('/'))
     if "echo" == matter:
         _rest_main(CFG.CLI_MATTERS[matter], matter, sets)
     else:
-        '''
-        paths = metter.split('/')
-        if 2 == len(paths):
-            method = CFG.CLI_MATTERS["/".join(paths)]
-        else:
-            method = CFG.CLI_MATTERS["/".join(paths[:-1])]
-        '''
+        cmd = matter
+        mess = matter.split("/")
+        if 2 &lt; len(mess):
+            matter = "/".join(mess[:-1])
+        #print mess
+        #print matter
         if matter in CFG.CLI_MATTERS.keys():  
             method = CFG.CLI_MATTERS[matter]      
             #print "smart_rest:", method
             if debug:
-                _rest_main(method, matter, sets)
+                _rest_main(method, cmd, sets)
             else:
-                _rest_main(method, matter, sets, host=AS_SAE)
+                _rest_main(method, cmd, sets, host = XCFG.AS_SAE)
         else:
             print "参数错误,请使用 -h 参阅手册..."
+
+
 
 </t>
 <t tx="zoomq.20130925103854.5007"># echo for RESTful remote actions
@@ -2001,22 +1996,32 @@ def get_usr_info(uuid, qstr):
 def st_kv(matter, qstr):
     q_dict = _query2dict(qstr)
     if _chkQueryArgs("/cli/sum/%s"% matter, q_dict, "GET"):
-        SYS4k = {'dm':'dama', 'm':'member', 'e':'events', 'p':'papers', }
         feed_back = {'data':[]}
         if 'db' == matter:
             feed_back['msg'] = "all SYS_* status."
             feed_back['data'] = ["%s hold %s node info."% (k
                 , len(KV.get(CFG.K4D[k] )) ) for k in CFG.K4D.keys() if "incr"!=k
                 ]
+        elif 'bk' == matter:
+            count = 0
+            for dump in BK.list():
+                count += 1
+                feed_back['data'].append("%s ~ %s"%(dump['name']
+                    , dump['bytes']
+                    ))
+            feed_back['msg'] = "all Storaged %s dumps"% count
         else:
-            feed_back['msg'] = "base %s data."% CFG.K4D[SYS4k[matter]]
-            feed_back['data'] = "%s hold %s node info."% (SYS4k[matter]
-                , len(KV.get(CFG.K4D[SYS4k[matter]] )) 
-                )
+            if matter in CFG.K4D.keys():
+                feed_back['msg'] = "base %s data."% CFG.K4D[matter]
+                feed_back['data'] = "%s hold %s node info."% (matter
+                    , len(KV.get(CFG.K4D[matter] )) 
+                    )
+            else:
+                feed_back['msg'] = "sum key is OUT CFG.K4D !-("
         return feed_back
         
     else:
-        return "alert quary!-("
+        return "alert quary !-("
 
 </t>
 <t tx="zoomq.20130925103854.5050">@APP.get('/cli/list/usr/&lt;acl&gt;/&lt;qstr&gt;')
@@ -2241,7 +2246,7 @@ return None
         new_usr['lasttm'] = time.time()
         new_usr['fsm'] = None
         KV.add(uuid, new_usr)
-        ADD4SYS('member', uuid)
+        ADD4SYS('m', uuid)
         print new_usr
         return new_usr
 
@@ -2421,23 +2426,22 @@ def status(self, wxreq):
         - PUT/POST 时提交唯一数据,同 GET 时的参数字串结构
     '''
     matter = api_matter #"%s/%s"% (CFG.APIPRE, api_matter)
-    #print "matter", matter
     args = []
     args.append(("appkey", q['appkey'] ))
     args.append(("ts", q['ts'] ))
-    #args.append(("sign", q['sign'] ))
+    #print rest_method
     if rest_method in ['GET', 'DELETE']:
-        re_sign = md5(_genArgsStr(matter, args) + XCFG.SECRET).hexdigest()
+        sign_base_string = _genArgsStr(matter, args)
+        re_sign = md5(sign_base_string + XCFG.SECRET).hexdigest()
         chk_sign = (re_sign == q['sign'])
         chk_time = (CFG.STLIMI&gt;float("%.3f" % (time())) - float(q['ts']))
-        #print chk_time&amp;chk_sign
-        #print api_matter, q
     else:
         # POST PUT
         for k in q.keys():
             if k not in ['appkey', 'ts', 'sign']:
                 args.append((k, q[k] ))
-        re_sign = md5(_genArgsStr(matter, args) + XCFG.SECRET).hexdigest()
+        sign_base_string = _genArgsStr(matter, args)
+        re_sign = md5(sign_base_string + XCFG.SECRET).hexdigest()
         #print "getsign\t", q['sign']
         #print "re_sign\t", re_sign
         chk_sign = (re_sign == q['sign'])
@@ -2445,6 +2449,7 @@ def status(self, wxreq):
         #print api_matter, q
     return chk_time&amp;chk_sign
     #return "debug"
+
 </t>
 <t tx="zoomq.20130925103854.6447">def _genArgsStr(api_path, args):
     key_values = ["%s=%s"% (arg[0], arg[1]) for arg in args]
@@ -2467,30 +2472,51 @@ def status(self, wxreq):
         - PUT/POST 时提交唯一数据,同 GET 时的参数字串结构
     '''
     matter = "%s/%s"% (CFG.APIPRE, api_matter)
-    print matter
     args = []
     args.append(("appkey", XCFG.APPKEY ))
     args.append(("ts", "%.3f" % (time()) ))
-
-    if rest_method in ['GET', 'DELETE']:
-        sign_base_string = _genArgsStr(matter, args)
-        args.append(("sign"
-            , md5(sign_base_string + XCFG.SECRET).hexdigest()))
-    else:
-        # POST PUT
+    if 'PUT' == rest_method:
         if not q:
             print "缺少 set=*** 设定值"
             return None
         q_args = q.split("=")
         args.append((q_args[0], base64.urlsafe_b64encode(q_args[1])))
-        sign_base_string = _genArgsStr(matter, args)
-        args.append(("sign"
-            , md5(sign_base_string + XCFG.SECRET).hexdigest()))
+
+    sign_base_string = _genArgsStr(matter, args)
+    args.append(("sign"
+        , md5(sign_base_string + XCFG.SECRET).hexdigest()))
     return args
 
+
+'''
+    if rest_method in ['GET', 'DELETE']:
+        pass
+        args.append(("sign"
+            , md5(sign_base_string + XCFG.SECRET).hexdigest()))
+    elif 'PUT' == rest_method:
+        if not q:
+            print "缺少 set=*** 设定值"
+            return None
+        q_args = q.split("=")
+        args.append((q_args[0], base64.urlsafe_b64encode(q_args[1])))
+        print args
+    else:
+        # POST cat not set=***
+        pass
+        #sign_base_string = _genArgsStr(matter, args)
+        args.append(("sign"
+            , md5(sign_base_string + XCFG.SECRET).hexdigest()))
+    args.append(("sign"
+        , md5(sign_base_string + XCFG.SECRET).hexdigest()))
+    print args
+    return args
+
+'''
+
+
 </t>
-<t tx="zoomq.20130925103854.6450">toUser = AS_SRV
-fromUser = AS_USR
+<t tx="zoomq.20130925103854.6450">toUser = XCFG.AS_SRV
+fromUser = XCFG.AS_USR
 tStamp = int(time())
 content = args.split("=")[-1].strip()
 xml = CFG.TPL_TEXT % locals()
@@ -2528,13 +2554,13 @@ cmd = "http -b %s %s "% (method, uri)
 
 
 </t>
-<t tx="zoomq.20130925103854.6454">@APP.get('/cli/sum/usr/&lt;qstr&gt;')
+<t tx="zoomq.20130925103854.6454">@APP.get('/cli/sum/m/&lt;qstr&gt;')
 def sum_usr(qstr):
     #print request.query_string #query.keys()#.appkey
     q_dict = _query2dict(qstr)
-    if _chkQueryArgs("/cli/sum/usr", q_dict, "GET"):
+    if _chkQueryArgs("/cli/sum/m", q_dict, "GET"):
         data = []
-        usrs = KV.get(CFG.K4D['member'])
+        usrs = KV.get(CFG.K4D['m'])
         print usrs
         for u in usrs[:3]:
             data.append(KV.get(u))
@@ -2910,7 +2936,7 @@ def fix_dm(nm):
         new_usr['lasttm'] = time.time()
         new_usr['nm'] = CFG.DM_ALIAS[k4dm][0]
         KV.add(uuid, new_usr)
-        ADD4SYS('dama', uuid)
+        ADD4SYS('dm', uuid)
         print uuid, new_usr
         return uuid, new_usr
 
@@ -2982,8 +3008,8 @@ def no_paper(self, wxreq):
             )
 
 </t>
-<t tx="zoomq.20130926092950.5447">@APP.put('/cli/fix/pub/&lt;uuid&gt;')
-def fix_pub(uuid):
+<t tx="zoomq.20130926092950.5447">@APP.put('/cli/fix/pub/&lt;tag&gt;/&lt;uuid&gt;')
+def fix_pub(tag, uuid):
     q_dict = request.forms
     if _chkQueryArgs("/cli/fix/pub/%s"% uuid, q_dict, "PUT"):
         feed_back = {'data':[]}
@@ -2991,7 +3017,7 @@ def fix_pub(uuid):
         set_var = base64.urlsafe_b64decode(request.forms[set_key])
         if set_key in CFG.K4WD.keys():
             print set_key, set_var
-            uuid, pub = __chkPAPER(uuid)
+            uuid, pub = __chkPAPER(tag, uuid)
             pub[set_key] = set_var.decode('utf-8')
             KV.replace(uuid, pub)
             #print pub
@@ -3009,7 +3035,7 @@ def fix_pub(uuid):
 
 
 </t>
-<t tx="zoomq.20130926092950.5449">def __chkPAPER(uuid):
+<t tx="zoomq.20130926092950.5449">def __chkPAPER(tag, uuid):
     '''chk or init. webchat paper:
         - if uuid == null init. node
         - else try get it
@@ -3021,7 +3047,7 @@ def fix_pub(uuid):
     else:
         # inti.
         new_paper = deepcopy(CFG.K4DM)
-        uuid = GENID('paper')
+        uuid = GENID(tag)
         new_paper['uuid'] = uuid
         new_paper['his_id'] = GENID('his')
         new_paper['lasttm'] = time.time()
@@ -3038,13 +3064,13 @@ def fix_pub(uuid):
 </t>
 <t tx="zoomq.20130927104354.5456">from sae.storage import Bucket
 BK = Bucket('bkup')</t>
-<t tx="zoomq.20130927104354.6047">def PUT2SS(raw, actype='bkup'):
+<t tx="zoomq.20130927104354.6047">def PUT2SS(raw, actype='bkup', name='db'):
     if 'bkup' == actype:
-        sid = "%s.dump"% GENID('bkup')
+        sid = "%s.dump"% GENID('bkup', name)
     print "\n PUT2SS:", sid
     #   初始化一个Storage客户端。
     BK.put_object(sid, raw)
-    uri = bucket.generate_url(sid)
+    uri = BK.generate_url(sid)
     return sid, uri
 
 
@@ -3061,6 +3087,84 @@ def st_kv(qstr):
         return KV.get_info()
         feed_back['msg'] = "safe quary;-)"
         feed_back['data'] = KV.get_info()
+        return feed_back
+    else:
+        return "alert quary!-("
+
+</t>
+<t tx="zoomq.20130927104354.6051">@APP.post('/cli/bkup/&lt;matter&gt;')
+def bkup_dump(matter):
+    q_dict = request.forms
+    if _chkQueryArgs("/cli/bkup/%s"% matter, q_dict, "PUT"):
+        feed_back = {'data':[]}
+        if 'db' ==  matter:
+            print "try dumps all nodes from KVDB"
+        else:
+            kb_objs = {}
+            kb_objs[CFG.K4D[matter] ] = KV.get(CFG.K4D[matter])
+            if 0 != len(kb_objs[CFG.K4D[matter] ] ):
+                for k in kb_objs[CFG.K4D[matter] ]:
+                    kb_objs[k] = KV.get(k)
+            dumps = cPickle.dumps(kb_objs)
+            feed_back['data'].append("%s pointed %s nodes"%(CFG.K4D[matter] 
+                , len(kb_objs[CFG.K4D[matter] ] )))
+            #print kb_objs
+        sid, uri = PUT2SS(dumps, name=matter)
+        
+        feed_back['data'].append( BK.stat_object(sid) )
+        feed_back['msg'] = "bkup %s dump as %s"% (CFG.K4D[matter], uri)
+        #data.append(KV.get_info())
+        return feed_back
+    else:
+        return "alert quary!-("
+
+</t>
+<t tx="zoomq.20130927104354.6053">#print args
+put_args = _genQueryArgs(uri, q=args, rest_method=method)
+#print "put_args\n\t", put_args
+pur_vars = " ".join(["%s=%s"% (p[0], p[1]) for p in put_args])
+#print pur_vars
+uri = "%s%s/%s %s"% (host, CFG.APIPRE, uri, pur_vars)
+cmd = "http -f -b %s %s "% (method, uri)
+
+</t>
+<t tx="zoomq.20130927104354.6055">@APP.delete('/cli/del/bk/&lt;uuid&gt;/&lt;qstr&gt;')
+def del_bk(uuid, qstr):
+    q_dict = _query2dict(qstr)
+    if _chkQueryArgs("/cli/del/bk/%s"% uuid, q_dict, "DELETE"):
+        feed_back = {'data':[]}
+        feed_back['msg'] = "deleted: %s"% uuid
+        feed_back['data'].append( BK.stat_object(uuid) )
+        BK.delete_object(uuid)
+        return feed_back
+    else:
+        return "alert quary!-("
+
+</t>
+<t tx="zoomq.20130927104354.6062">@APP.put('/cli/revert/&lt;matter&gt;')
+def revert_dump(matter):
+    q_dict = request.forms
+    if _chkQueryArgs("/cli/revert/%s"% matter, q_dict, "PUT"):
+        feed_back = {'data':[]}
+        set_key = list(set(q_dict.keys())-set(CFG.SECURE_ARGS))[0]
+        set_var = base64.urlsafe_b64decode(request.forms[set_key])
+        print set_key, set_var
+        if 'db' ==  matter:
+            print "try revert ALL date from KVDB"
+        else:
+            dumps = BK.get_object_contents(set_var)
+            re_obj = cPickle.loads(dumps)
+            KV.replace(CFG.K4D[matter], re_obj[CFG.K4D[matter]])
+            uuids = re_obj[CFG.K4D[matter]]
+            for uuid in uuids:
+                #print uuid, re_obj[uuid]
+                KV.replace(uuid, re_obj[uuid])
+            
+        feed_back['data'].append( BK.stat_object(set_var) )
+        feed_back['msg'] = "reverted %s nodes as %s "% (len(re_obj[CFG.K4D[matter]])
+            , CFG.K4D[matter]
+            )
+        #data.append(KV.get_info())
         return feed_back
     else:
         return "alert quary!-("

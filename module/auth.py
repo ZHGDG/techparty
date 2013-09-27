@@ -100,26 +100,47 @@ def _genQueryArgs(api_matter, q="", rest_method="GET"):
         - PUT/POST 时提交唯一数据,同 GET 时的参数字串结构
     '''
     matter = "%s/%s"% (CFG.APIPRE, api_matter)
-    print matter
     args = []
     args.append(("appkey", XCFG.APPKEY ))
     args.append(("ts", "%.3f" % (time()) ))
-
-    if rest_method in ['GET', 'DELETE']:
-        sign_base_string = _genArgsStr(matter, args)
-        args.append(("sign"
-            , md5(sign_base_string + XCFG.SECRET).hexdigest()))
-    else:
-        # POST PUT
+    if 'PUT' == rest_method:
         if not q:
             print "缺少 set=*** 设定值"
             return None
         q_args = q.split("=")
         args.append((q_args[0], base64.urlsafe_b64encode(q_args[1])))
-        sign_base_string = _genArgsStr(matter, args)
+
+    sign_base_string = _genArgsStr(matter, args)
+    args.append(("sign"
+        , md5(sign_base_string + XCFG.SECRET).hexdigest()))
+    return args
+
+
+'''
+    if rest_method in ['GET', 'DELETE']:
+        pass
         args.append(("sign"
             , md5(sign_base_string + XCFG.SECRET).hexdigest()))
+    elif 'PUT' == rest_method:
+        if not q:
+            print "缺少 set=*** 设定值"
+            return None
+        q_args = q.split("=")
+        args.append((q_args[0], base64.urlsafe_b64encode(q_args[1])))
+        print args
+    else:
+        # POST cat not set=***
+        pass
+        #sign_base_string = _genArgsStr(matter, args)
+        args.append(("sign"
+            , md5(sign_base_string + XCFG.SECRET).hexdigest()))
+    args.append(("sign"
+        , md5(sign_base_string + XCFG.SECRET).hexdigest()))
+    print args
     return args
+
+'''
+
 
 def _query2dict(qstr):
     q_dict = {}
@@ -142,23 +163,22 @@ def _chkQueryArgs(api_matter, q, rest_method="GET"):
         - PUT/POST 时提交唯一数据,同 GET 时的参数字串结构
     '''
     matter = api_matter #"%s/%s"% (CFG.APIPRE, api_matter)
-    #print "matter", matter
     args = []
     args.append(("appkey", q['appkey'] ))
     args.append(("ts", q['ts'] ))
-    #args.append(("sign", q['sign'] ))
+    #print rest_method
     if rest_method in ['GET', 'DELETE']:
-        re_sign = md5(_genArgsStr(matter, args) + XCFG.SECRET).hexdigest()
+        sign_base_string = _genArgsStr(matter, args)
+        re_sign = md5(sign_base_string + XCFG.SECRET).hexdigest()
         chk_sign = (re_sign == q['sign'])
         chk_time = (CFG.STLIMI>float("%.3f" % (time())) - float(q['ts']))
-        #print chk_time&chk_sign
-        #print api_matter, q
     else:
         # POST PUT
         for k in q.keys():
             if k not in ['appkey', 'ts', 'sign']:
                 args.append((k, q[k] ))
-        re_sign = md5(_genArgsStr(matter, args) + XCFG.SECRET).hexdigest()
+        sign_base_string = _genArgsStr(matter, args)
+        re_sign = md5(sign_base_string + XCFG.SECRET).hexdigest()
         #print "getsign\t", q['sign']
         #print "re_sign\t", re_sign
         chk_sign = (re_sign == q['sign'])
@@ -166,4 +186,5 @@ def _chkQueryArgs(api_matter, q, rest_method="GET"):
         #print api_matter, q
     return chk_time&chk_sign
     #return "debug"
+
 

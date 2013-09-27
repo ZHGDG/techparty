@@ -16,13 +16,13 @@ from config import CFG
 KV = CFG.KV #sae.kvdb.KVClient()
 BK = CFG.BK
 
-def PUT2SS(raw, actype='bkup'):
+def PUT2SS(raw, actype='bkup', name='db'):
     if 'bkup' == actype:
-        sid = "%s.dump"% GENID('bkup')
+        sid = "%s.dump"% GENID('bkup', name)
     print "\n PUT2SS:", sid
     #   初始化一个Storage客户端。
     BK.put_object(sid, raw)
-    uri = bucket.generate_url(sid)
+    uri = BK.generate_url(sid)
     return sid, uri
 
 
@@ -82,7 +82,7 @@ def GENID(obj, name=""):
     tot = INCR4KV()
     #sha1name = hashlib.sha1(name).hexdigest()
     GOBJMAP = {'his':'h_%(timestamp)s_HIS%(tot)d'
-        ,'bkup':'b_%(timestamp)s_SG%(tot)d'
+        ,'bkup':'bk_%(timestamp)s_SG%(tot)d_%(name)s'
         ,'tag':'t_%(timestamp)s_TAG%(tot)d'
         ,'event':'e_%(timestamp)s_EVE%(tot)d'
         ,'paper':'p_%(timestamp)s_PUB%(tot)d'
