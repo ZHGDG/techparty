@@ -12,11 +12,11 @@ digraph G4gdg_fsm_map {
         ,fontname="WenQuanYi Micro Hei"
         ,fontcolor="#555555"
         ,labeljust="l",labelloc="t",center=1
-        ,ranksep=0.3,center=1,ratio=compress
+        ,ranksep=0.2,center=1,ratio=compress
         ,rankdir=LR
         ];
 
-    node[fontsize=11.0,height=0.3
+    node[fontsize=11.0,height=0.2
         ,fontname="WenQuanYi Micro Hei"
         ,shape=component 
         ];
@@ -82,7 +82,7 @@ digraph G4gdg_fsm_map {
     srvPUB->installer [label="2.0",style="dotted"];
             ME_EM->ME_CONFIRM;
     */
-    start->setup;
+    start->setup [color="#555555",style="dashed,setlinewidth(4)"];
     
     setup->{EVENT REG_EVEN ME ME_INFO INFO_REG REG_CANCEL SEEK HELP VERSION} [style="setlinewidth(2)"];
         {INFO_REG REG_EVEN ME REG_CANCEL}->isINFO;
@@ -90,9 +90,12 @@ digraph G4gdg_fsm_map {
             isINFO->ECHO_INFO [label="Y"];
         ME_INFO->ME_ALIAS->ME_EM;
         SEEK->{GB DD GT DM}->NO;
-    {EVENT ME_EM NO ECHO_INFO HELP VERSION}->end;
+    {EVENT ME_EM NO ECHO_INFO VERSION}->end;
 
     {ME_ALIAS ME_EM GB DD GT DM }->CANCEL->end [color=red,style="dotted"];
+        CANCEL->end [color=red];
+    {ME_ALIAS ME_EM GB DD GT DM }->HELP [color=blue,style="dotted"];
+        HELP->end [color=blue];
 
 
 

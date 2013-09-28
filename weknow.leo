@@ -25,7 +25,7 @@
 <v t="zoomq.20130923093950.8569"><vh>&lt;&lt;大妈们&gt;&gt;</vh></v>
 <v t="zoomq.20130923093950.5396"><vh>&lt;&lt;HISTORIC&gt;&gt;</vh></v>
 </v>
-<v t="zoomq.20130918155053.7084"><vh>4wechat</vh>
+<v t="zoomq.20130918155053.7084" a="E"><vh>4wechat</vh>
 <v t="zoomq.20130923093950.7285"><vh>&lt;&lt;XML模板&gt;&gt;</vh></v>
 <v t="zoomq.20130925103854.6457"><vh>活动报名</vh></v>
 <v t="zoomq.20130925103854.6455"><vh>礼节/帮助</vh></v>
@@ -80,7 +80,7 @@
 <v t="zoomq.20120723102156.5561" a="E"><vh>@nosent mana4api.py</vh>
 <v t="zoomq.20120723102156.5562"><vh>&lt;&lt;declarations&gt;&gt;</vh></v>
 <v t="zoomq.20130918155053.5760"><vh>GET  /echo</vh></v>
-<v t="zoomq.20130925103854.5007" a="E"><vh>cli/ 工具</vh>
+<v t="zoomq.20130925103854.5007"><vh>cli/ 工具</vh>
 <v t="zoomq.20130925103854.5049"><vh>GET sum/db|dm|m|e|p</vh></v>
 <v t="zoomq.20130927104354.6051"><vh>POST bkup/db|dm|m|e|p</vh></v>
 <v t="zoomq.20130927104354.6062"><vh>PUT revert/db|dm|m|e|p</vh></v>
@@ -120,7 +120,9 @@
 <v t="zoomq.20130923093950.8565"><vh>&lt;&lt;SEARCH&gt;&gt;</vh></v>
 <v t="zoomq.20130923093950.8566"><vh>&lt;&lt;THANKS&gt;&gt;</vh></v>
 </v>
-<v t="zoomq.20130925103854.6430"><vh>FSM</vh>
+<v t="zoomq.20130925103854.6426"><vh>__chkRegUsr()</vh></v>
+<v t="zoomq.20130925103854.6427"><vh>__update_usr()</vh></v>
+<v t="zoomq.20130925103854.6430" a="E"><vh>FSM</vh>
 <v t="zoomq.20130925103854.6461"><vh>&lt;&lt;大妈联系&gt;&gt;</vh></v>
 <v t="zoomq.20130925103854.6431" a="E"><vh>s 查阅文章</vh>
 <v t="zoomq.20130926092950.5443"><vh>&lt;&lt;seek&gt;&gt;</vh></v>
@@ -137,8 +139,6 @@
 <v t="zoomq.20130925103854.6437"><vh>e 活动查询</vh></v>
 <v t="zoomq.20130925103854.6435"><vh>活动报名</vh></v>
 </v>
-<v t="zoomq.20130925103854.6426"><vh>__chkRegUsr()</vh></v>
-<v t="zoomq.20130925103854.6427"><vh>__update_usr()</vh></v>
 <v t="zoomq.20130923093950.8570"><vh>__echo_txt()</vh></v>
 <v t="zoomq.20120727213305.13050"><vh>/api/sysincr</vh></v>
 <v t="zoomq.20120727213305.14707"></v>
@@ -489,7 +489,7 @@ class Borg():
     def __init__(self):
         self.__dict__ = self.__collective_mind
     
-    VERSION = "weknow v13.09.26-24"
+    VERSION = "weknow v13.09.28-3"
     &lt;&lt;cfg4Borg&gt;&gt;
     
 CFG = Borg()
@@ -1439,11 +1439,11 @@ def wechat_post():
 <t tx="zoomq.20130923093950.3647">import sae.kvdb
 KV = sae.kvdb.KVClient()
 #   系统索引键-名字典
-K4D = {'incr':"SYS_TOT"         # int
-    ,'m':"SYS_usrs_ALL"    # [] 所有用户  (包含已经 del 的)
-    ,'dm':"SYS_dama_ALL"      # [] 所有 组委  (包含已经 del 的)
-    ,'e':"SYS_eves_ALL"    # [] 所有活动索引 (包含已经 del 的)
-    ,'p':"SYS_pubs_ALL"    # [] 所有文章索引 (包含已经 del 的)
+K4D = {'incr':"SYS_TOT"     # int
+    ,'m':"SYS_usrs_ALL"     # [] 所有用户  (包含已经 del 的)
+    ,'dm':"SYS_dama_ALL"    # [] 所有 组委  (包含已经 del 的)
+    ,'e':"SYS_eves_ALL"     # [] 所有活动索引 (包含已经 del 的)
+    ,'p':"SYS_pubs_ALL"     # [] 所有文章索引 (包含已经 del 的)
 }
 #KEY4_incr = K4D['incr']
 for k in K4D:
@@ -1829,7 +1829,7 @@ from module.auth import _genQueryArgs, _genArgsStr
             if debug:
                 _rest_main(method, cmd, sets)
             else:
-                _rest_main(method, cmd, sets, host = XCFG.AS_SAE)
+                _rest_main(method, cmd, sets, host = XCFG.TO_SAE)
         else:
             print "参数错误,请使用 -h 参阅手册..."
 
@@ -2252,8 +2252,7 @@ return None
 
 
 
-        
-        
+
 </t>
 <t tx="zoomq.20130925103854.6427">def __update_usr(objUsr):
     sha1_name = hashlib.sha1(objUsr['pp']).hexdigest()
@@ -2366,7 +2365,6 @@ def events(self, wxreq):
     #print "appended\n", appended
     KV.replace(k4sys,  appended)
     return (k4sys, appended)
-
 
 
 </t>
@@ -2686,11 +2684,13 @@ em:foo.bar@gmail.com
 更多细节,请惯性地输入 h 继续吧 :)
 '''</t>
 <t tx="zoomq.20130925103854.6458">PAPER_TAGS = ESSAY_TAG.keys()
-TXT_TAG_DEFINE = "\n".join([u"%s %s"%(k, ESSAY_TAG[k]) for k in ESSAY_TAG.keys()])
+TXT_TAG_DEFINE = "".join([u"%s %s\n"%(k, ESSAY_TAG[k]) for k in ESSAY_TAG.keys()])
 
 TXT_PLS_TAG = u'''亲! 请输入文章类别编码(类似 dm 的2字母):
 然后,俺才能给出该类别的文章索引...
+
 %s
+
 也可以输入 * 退出文章查阅流程;-)
 
 更多细节,请惯性地输入 h 继续吧 :)
@@ -2886,10 +2886,10 @@ def fix_dm(nm):
         set_key = list(set(q_dict.keys())-set(CFG.SECURE_ARGS))[0]
         set_var = base64.urlsafe_b64decode(request.forms[set_key])
         if set_key in CFG.K4DM.keys():
-            print set_key, set_var
-            print "&lt;nm&gt;", nm
+            #print set_key, set_var
+            #print "&lt;nm&gt;", nm
             uuid, dm = __chkDAMA(nm.strip())
-            print uuid,dm
+            #print uuid,dm
             if uuid:
                 dm[set_key] = set_var.decode('utf-8')
                 KV.replace(uuid, dm)
@@ -2923,7 +2923,6 @@ def fix_dm(nm):
     k4dm = __chkDMID(zipname)
     if not k4dm:
         return None, None
-        
     uuid = DAMAID(k4dm)
     usr = KV.get(uuid)
     if usr:
@@ -2941,9 +2940,6 @@ def fix_dm(nm):
         return uuid, new_usr
 
 
-
-        
-        
 </t>
 <t tx="zoomq.20130926092950.5443">@state('weknow')
 @transition('gb', 'papers')
@@ -2953,6 +2949,7 @@ def fix_dm(nm):
 @transition('hd', 'papers')
 @transition('et', 'papers')
 @transition('ot', 'papers')
+@transition('*', 'end')
 def seek(self, wxreq):
     print 'setup-&gt;seek-&gt;{gb dd gt dm ot}'
     crt_usr = wxreq.crt_usr

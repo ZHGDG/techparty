@@ -139,7 +139,7 @@ def smart_rest(matter, sets):
             if debug:
                 _rest_main(method, cmd, sets)
             else:
-                _rest_main(method, cmd, sets, host = XCFG.AS_SAE)
+                _rest_main(method, cmd, sets, host = XCFG.TO_SAE)
         else:
             print "参数错误,请使用 -h 参阅手册..."
 

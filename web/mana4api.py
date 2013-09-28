@@ -177,10 +177,10 @@ def fix_dm(nm):
         set_key = list(set(q_dict.keys())-set(CFG.SECURE_ARGS))[0]
         set_var = base64.urlsafe_b64decode(request.forms[set_key])
         if set_key in CFG.K4DM.keys():
-            print set_key, set_var
-            print "<nm>", nm
+            #print set_key, set_var
+            #print "<nm>", nm
             uuid, dm = __chkDAMA(nm.strip())
-            print uuid,dm
+            #print uuid,dm
             if uuid:
                 dm[set_key] = set_var.decode('utf-8')
                 KV.replace(uuid, dm)
@@ -212,7 +212,6 @@ def __chkDAMA(zipname):
     k4dm = __chkDMID(zipname)
     if not k4dm:
         return None, None
-        
     uuid = DAMAID(k4dm)
     usr = KV.get(uuid)
     if usr:
@@ -230,9 +229,6 @@ def __chkDAMA(zipname):
         return uuid, new_usr
 
 
-
-        
-        
 @APP.put('/cli/fix/pub/<tag>/<uuid>')
 def fix_pub(tag, uuid):
     q_dict = request.forms
@@ -623,6 +619,36 @@ def wechat_post():
 
 
 
+def __chkRegUsr(openid):
+    '''chk or init. webchat usr.:
+        - gen KV uuid, try get
+        - if no-exited, init. fsm
+    '''
+    sha1_name = hashlib.sha1(openid).hexdigest()
+    uuid = USRID(sha1_name)
+    usr = KV.get(uuid)
+    if usr:
+        print usr
+        return usr
+    else:
+        # inti.
+        new_usr = deepcopy(CFG.objUSR)
+        new_usr['his_id'] = GENID('his')
+        new_usr['pp'] = openid
+        new_usr['lasttm'] = time.time()
+        new_usr['fsm'] = None
+        KV.add(uuid, new_usr)
+        ADD4SYS('m', uuid)
+        print new_usr
+        return new_usr
+
+
+
+
+def __update_usr(objUsr):
+    sha1_name = hashlib.sha1(objUsr['pp']).hexdigest()
+    uuid = USRID(sha1_name)
+    KV.replace(uuid, objUsr)
 @state('weknow')
 @transition('e', 'events')
 @transition('E', 'events')
@@ -681,6 +707,7 @@ def end(self, wxreq):
 @transition('hd', 'papers')
 @transition('et', 'papers')
 @transition('ot', 'papers')
+@transition('*', 'end')
 def seek(self, wxreq):
     print 'setup->seek->{gb dd gt dm ot}'
     crt_usr = wxreq.crt_usr
@@ -921,37 +948,6 @@ def reg_cancel(self, crt_usr):
 def reg_info(self, crt_usr):
     print 'setup->info_reg->end'
 
-def __chkRegUsr(openid):
-    '''chk or init. webchat usr.:
-        - gen KV uuid, try get
-        - if no-exited, init. fsm
-    '''
-    sha1_name = hashlib.sha1(openid).hexdigest()
-    uuid = USRID(sha1_name)
-    usr = KV.get(uuid)
-    if usr:
-        print usr
-        return usr
-    else:
-        # inti.
-        new_usr = deepcopy(CFG.objUSR)
-        new_usr['his_id'] = GENID('his')
-        new_usr['pp'] = openid
-        new_usr['lasttm'] = time.time()
-        new_usr['fsm'] = None
-        KV.add(uuid, new_usr)
-        ADD4SYS('m', uuid)
-        print new_usr
-        return new_usr
-
-
-
-        
-        
-def __update_usr(objUsr):
-    sha1_name = hashlib.sha1(objUsr['pp']).hexdigest()
-    uuid = USRID(sha1_name)
-    KV.replace(uuid, objUsr)
 def __echo_txt(fromUsr, toUsr, text):
     '''zip xml exp.
     '''

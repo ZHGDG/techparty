@@ -25,7 +25,7 @@ class Borg():
     def __init__(self):
         self.__dict__ = self.__collective_mind
     
-    VERSION = "weknow v13.09.26-24"
+    VERSION = "weknow v13.09.28-3"
     #管理员邮箱列表
     ADMIN_EMAIL_LIST = ['zoomquiet+gdg@gmail.com']
 
@@ -40,11 +40,11 @@ class Borg():
     import sae.kvdb
     KV = sae.kvdb.KVClient()
     #   系统索引键-名字典
-    K4D = {'incr':"SYS_TOT"         # int
-        ,'m':"SYS_usrs_ALL"    # [] 所有用户  (包含已经 del 的)
-        ,'dm':"SYS_dama_ALL"      # [] 所有 组委  (包含已经 del 的)
-        ,'e':"SYS_eves_ALL"    # [] 所有活动索引 (包含已经 del 的)
-        ,'p':"SYS_pubs_ALL"    # [] 所有文章索引 (包含已经 del 的)
+    K4D = {'incr':"SYS_TOT"     # int
+        ,'m':"SYS_usrs_ALL"     # [] 所有用户  (包含已经 del 的)
+        ,'dm':"SYS_dama_ALL"    # [] 所有 组委  (包含已经 del 的)
+        ,'e':"SYS_eves_ALL"     # [] 所有活动索引 (包含已经 del 的)
+        ,'p':"SYS_pubs_ALL"     # [] 所有文章索引 (包含已经 del 的)
     }
     #KEY4_incr = K4D['incr']
     for k in K4D:
@@ -245,11 +245,13 @@ class Borg():
 
 
     PAPER_TAGS = ESSAY_TAG.keys()
-    TXT_TAG_DEFINE = "\n".join([u"%s %s"%(k, ESSAY_TAG[k]) for k in ESSAY_TAG.keys()])
+    TXT_TAG_DEFINE = "".join([u"%s %s\n"%(k, ESSAY_TAG[k]) for k in ESSAY_TAG.keys()])
 
     TXT_PLS_TAG = u'''亲! 请输入文章类别编码(类似 dm 的2字母):
     然后,俺才能给出该类别的文章索引...
+
     %s
+
     也可以输入 * 退出文章查阅流程;-)
 
     更多细节,请惯性地输入 h 继续吧 :)

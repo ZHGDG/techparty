@@ -57,7 +57,6 @@ def ADD4SYS(k4sys, cnt):
     return (k4sys, appended)
 
 
-
 def TSTAMP():
     '''通用时间戳生成器:
         yymmddHHMMSS+5位微秒
