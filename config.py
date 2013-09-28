@@ -39,12 +39,12 @@ class Borg():
     BK = Bucket('bkup')
     import sae.kvdb
     KV = sae.kvdb.KVClient()
-    #   系统索引键-名字典
+    #   系统索引名-UUID 字典; KVDB 无法Mongo 样搜索,只能人工建立索引
     K4D = {'incr':"SYS_TOT"     # int
-        ,'m':"SYS_usrs_ALL"     # [] 所有用户  (包含已经 del 的)
-        ,'dm':"SYS_dama_ALL"    # [] 所有 组委  (包含已经 del 的)
-        ,'e':"SYS_eves_ALL"     # [] 所有活动索引 (包含已经 del 的)
-        ,'p':"SYS_pubs_ALL"     # [] 所有文章索引 (包含已经 del 的)
+        ,'m':"SYS_usrs_ALL"     # [] 所有 成员 (包含已经 del 的)
+        ,'dm':"SYS_dama_ALL"    # [] 所有 组委 (包含已经 del 的)
+        ,'e':"SYS_eves_ALL"     # [] 所有 活动 (包含已经 del 的)
+        ,'p':"SYS_pubs_ALL"     # [] 所有 文章 (包含已经 del 的)
     }
     #KEY4_incr = K4D['incr']
     for k in K4D:
@@ -77,8 +77,8 @@ class Borg():
         , "nm":""       # NickName "Zoom.Quiet"
         , "desc":""     # 解释
         , "pp":''       # Passport "kswl662773786"
-        , 'em':''       #'zhouqi@ijinshan.com',
-        , 'mo':''       #Mobile
+        , 'em':''       # 'zhouqi@ijinshan.com',
+        , 'mo':''       # Mobile
         }
 
 
@@ -89,7 +89,7 @@ class Borg():
         , 'gt':u" ~ G说公论 (时评杂文,新旧不拘)"
         , 'dm':u" ~ 珠的自白 (大妈自述,每周一篇)"
         , 'hd':u" ~ 海选文章 (得要相信,大妈法眼)"
-        , 're':u" ~ 活动报道 (快乐大趴,给力小会)"
+        , 'et':u" ~ 活动报道 (快乐大趴,给力小会)"
         }
         
     # 文章索引
@@ -245,7 +245,7 @@ class Borg():
 
 
     PAPER_TAGS = ESSAY_TAG.keys()
-    TXT_TAG_DEFINE = "".join([u"%s %s\n"%(k, ESSAY_TAG[k]) for k in ESSAY_TAG.keys()])
+    TXT_TAG_DEFINE = "    ".join([u"%s %s\n"%(k, ESSAY_TAG[k]) for k in ESSAY_TAG.keys()])
 
     TXT_PLS_TAG = u'''亲! 请输入文章类别编码(类似 dm 的2字母):
     然后,俺才能给出该类别的文章索引...
@@ -267,6 +267,15 @@ class Borg():
     更多细节,请惯性地输入 h 继续吧 :)
     '''% TXT_TAG_DEFINE
 
+    TXT_TAG_PAPERS = u'''%s ::
+
+    %s
+
+    可输入 * 退出文章查阅流程;-)
+
+    更多细节,请惯性地输入 h 继续吧 :)
+    '''
+
     TXT_PLS_INT = u'''亲! 请输入类型文章的编号,仅数字就好:
 
     也可以输入 * 退出文章查阅流程;-)
@@ -285,8 +294,6 @@ class Borg():
     TXT_PUB_WAIT = u'''对不起亲!
     过往文章的信息,大妈们还没来的及增补进来,
     放轻松,等等先... (~.~)
-
-    也可以输入 * 退出文章查阅流程;-)
 
     更多细节,请惯性地输入 h 继续吧 :)
     '''
@@ -355,9 +362,15 @@ class Borg():
         
         , "fix/dm":     "PUT"       # 修订 大妈 信息
         , "fix/m":      "PUT"       # 修订 成员 信息
-        , "fix/p":      "PUT"       # 增补 文章 信息
         , "fix/e":      "PUT"       # 增补 活动 信息
-
+        , "fix/p/gb":   "PUT"       # 增补 文章 信息
+        , "fix/p/dd":   "PUT"       # 增补 文章 信息
+        , "fix/p/gt":   "PUT"       # 增补 文章 信息
+        , "fix/p/dm":   "PUT"       # 增补 文章 信息
+        , "fix/p/hd":   "PUT"       # 增补 文章 信息
+        , "fix/p/ot":   "PUT"       # 增补 文章 信息
+        , "fix/p/et":   "PUT"       # 增补 活动 文章
+        
         , "echo":       "GET"       # 模拟wechat 问答
         
         , "st/kv":      "GET"       # 查阅 KVDB 信息
@@ -367,6 +380,7 @@ class Borg():
         , "sum/m":      "GET"       # 统计 成员 信息现状
         , "sum/e":      "GET"       # 统计 活动 信息现状
         , "sum/p":      "GET"       # 统计 文章 信息现状
+
         , "sum/bk":     "GET"       # 综合 备份 数据现状
         , "del/bk":     "DELETE"    # 删除指定备份 dump
 
@@ -382,7 +396,6 @@ class Borg():
         , "revert/e":   "PUT"      # 恢复 大妈 数据
         , "revert/p":   "PUT"      # 恢复 大妈 数据
         }
-
 
     LEVEL4USR = {"mana":0
         , "up":1

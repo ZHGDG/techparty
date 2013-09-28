@@ -43,18 +43,23 @@ def INIobjSYS(key):
 
 
 
-def ADD4SYS(k4sys, cnt):
+def ADD4SYS(k4sys, uuid):
     '''try safty insert SOMETHING to SYS:** K/V
-    only member|member|paper
+    only dm|m|p means dama|member|paper
     '''
-    listobj = KV.get(CFG.K4D[k4sys])
-    print "listobj:\t", listobj
-    # 防止意外重复
-    listobj.append(cnt)
-    appended = list(set(listobj))
-    #print "appended\n", appended
-    KV.replace(k4sys,  appended)
+    uuid_idx = KV.get(CFG.K4D[k4sys])
+    print "listobj:\t", uuid_idx
+    if None == uuid:
+        appended = uuid_idx
+    elif uuid in uuid_idx:
+        appended = uuid_idx
+    else:
+        # 防止意外重复
+        uuid_idx.append(uuid)
+        appended = list(set(uuid_idx))
+        KV.replace(k4sys,  appended)
     return (k4sys, appended)
+
 
 
 def TSTAMP():
@@ -87,8 +92,9 @@ def GENID(obj, name=""):
         ,'paper':'p_%(timestamp)s_PUB%(tot)d'
         ,'gd':'gd_%(timestamp)s_PUB%(tot)d'
         ,'dd':'dd_%(timestamp)s_PUB%(tot)d'
-        ,'dm':'dm_%(timestamp)s_PUB%(tot)d'
         ,'gt':'gt_%(timestamp)s_PUB%(tot)d'
+        ,'dm':'dm_%(timestamp)s_PUB%(tot)d'
+        ,'hd':'hd_%(timestamp)s_PUB%(tot)d'
         ,'ot':'ot_%(timestamp)s_PUB%(tot)d'
         ,'re':'re_%(timestamp)s_PUB%(tot)d'
         #,'dm':'m:%(timestamp)s:DM%(tot)d'

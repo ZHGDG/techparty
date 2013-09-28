@@ -30,11 +30,9 @@ e.g:
   fix/dm/:NM  nm=ZQ       修订/创建指定 大妈 的相关信息
   fix/m/:UUID nm=ZQ       修订指定 成员 的相关信息
   fix/e/:CODE pic=***     修订/创建指定 活动 的相关信息
-  fix/p/:UUID url=***     增补|指定 文章 信息
+  fix/p/:TAG/:UUID url=***     增补|指定 文章 信息
+    TAG当前支持 ot|et|gt|dd|gb|dm|hd
     UUID 为 null 时,指创建文章信息
-    可设定字段:
-        tag     ~ gb|dd|gt|dm|ot
-        ...
 
   !!! 小心:大规模数据I/O操作 !!!
   del/bk/:UUID          删除指定备份 dump

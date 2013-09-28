@@ -60,7 +60,7 @@ digraph G4gdg_fsm_map {
     REG_EVEN [label="re\n活动报名",shape=component];
     REG_CANCEL [label="rc\n放弃报名",shape=component];
 
-    ECHO_INFO [label="回报相关资料",shape=box];
+    ECHO_INFO [label="回报相关资料",shape=note];
 
     INFO_REG [label="ri\n确认报名",shape=component];
 
@@ -70,12 +70,15 @@ digraph G4gdg_fsm_map {
         ME_ALIAS [label="妮称",shape=component];
         ME_EM [label="邮箱",shape=component];
 
-    SEEK [label="s\n查阅文章",shape=box];
-        GB [label="gb\nG术图书",shape=box];
-        DD [label="dd\nD码点评",shape=box];
-        GT [label="gt\nG说公论",shape=box];
-        DM [label="dm\n珠的自白",shape=box];
-            NO [label="指定序号\n查阅具体文章",shape=box];
+    SEEK [label="s\n查阅文章",shape=component];
+        GB [label="gb\nG术图书",shape=note];
+        DD [label="dd\nD码点评",shape=note];
+        GT [label="gt\nG说公论",shape=note];
+        DM [label="dm\n珠的自白",shape=note];
+        HD [label="dm\n珠的自白",shape=note];
+        ET [label="et\n活动回顾",shape=note];
+        OT [label="ot\n其它各种",shape=note];
+            NO [label="指定序号\n查阅具体文章",shape=component];
 
 
     /*图例关系
@@ -92,9 +95,9 @@ digraph G4gdg_fsm_map {
         SEEK->{GB DD GT DM}->NO;
     {EVENT ME_EM NO ECHO_INFO VERSION}->end;
 
-    {ME_ALIAS ME_EM GB DD GT DM }->CANCEL->end [color=red,style="dotted"];
+    {ME_ALIAS ME_EM GB DD GT DM HD ET OT}->CANCEL->end [color=red,style="dotted"];
         CANCEL->end [color=red];
-    {ME_ALIAS ME_EM GB DD GT DM }->HELP [color=blue,style="dotted"];
+    {ME_ALIAS ME_EM GB DD GT DM HD ET OT}->HELP [color=blue,style="dotted"];
         HELP->end [color=blue];
 
 

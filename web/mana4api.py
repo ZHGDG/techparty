@@ -169,6 +169,44 @@ def st_kv(qstr):
     else:
         return "alert quary!-("
 
+@APP.put('/cli/fix/e/<code>')
+def fix_event(code):
+    q_dict = request.forms
+    if _chkQueryArgs("/cli/fix/e/%s"% code, q_dict, "PUT"):
+        feed_back = {'data':[]}
+        set_key = list(set(q_dict.keys())-set(CFG.SECURE_ARGS))[0]
+        set_var = base64.urlsafe_b64decode(request.forms[set_key])
+        if set_key in CFG.K4DM.keys():
+            print set_key, set_var
+            feed_back['msg'] = "func. not working now..." 
+            
+        else:
+            feed_back['msg'] = "out keys, NULL fixed!" 
+            feed_back['can_fix_keys'] = CFG.K4DM.keys()
+        #data.append(KV.get_info())
+        return feed_back
+    else:
+        return "alert quary!-("
+
+@APP.put('/cli/fix/m/<uuid>')
+def fix_member(uuid):
+    q_dict = request.forms
+    if _chkQueryArgs("/cli/fix/m/%s"% uuid, q_dict, "PUT"):
+        feed_back = {'data':[]}
+        set_key = list(set(q_dict.keys())-set(CFG.SECURE_ARGS))[0]
+        set_var = base64.urlsafe_b64decode(request.forms[set_key])
+        if set_key in CFG.K4DM.keys():
+            print set_key, set_var
+            feed_back['msg'] = "func. not working now..." 
+            
+        else:
+            feed_back['msg'] = "out keys, NULL fixed!" 
+            feed_back['can_fix_keys'] = CFG.K4DM.keys()
+        #data.append(KV.get_info())
+        return feed_back
+    else:
+        return "alert quary!-("
+
 @APP.put('/cli/fix/dm/<nm>')
 def fix_dm(nm):
     q_dict = request.forms
@@ -196,7 +234,7 @@ def fix_dm(nm):
 
 def __chkDMID(text):
     for DM in CFG.DM_ALIAS.keys():
-        print CFG.DM_ALIAS[DM]
+        #print CFG.DM_ALIAS[DM]
         if text in CFG.DM_ALIAS[DM]:
             print "found DAMA!", CFG.DM_ALIAS[DM][0]
             return DM
@@ -213,9 +251,10 @@ def __chkDAMA(zipname):
     if not k4dm:
         return None, None
     uuid = DAMAID(k4dm)
+    ADD4SYS('dm', uuid)  # for old sys, collected uuid into idx node!
     usr = KV.get(uuid)
     if usr:
-        print uuid, usr
+        #print uuid, usr
         return uuid, usr
     else:
         # inti.
@@ -224,26 +263,29 @@ def __chkDAMA(zipname):
         new_usr['lasttm'] = time.time()
         new_usr['nm'] = CFG.DM_ALIAS[k4dm][0]
         KV.add(uuid, new_usr)
-        ADD4SYS('dm', uuid)
-        print uuid, new_usr
+        #ADD4SYS('dm', uuid)
+        #print uuid, new_usr
         return uuid, new_usr
 
 
-@APP.put('/cli/fix/pub/<tag>/<uuid>')
-def fix_pub(tag, uuid):
+@APP.put('/cli/fix/p/<tag>/<uuid>')
+def fix_paper(tag, uuid):
     q_dict = request.forms
-    if _chkQueryArgs("/cli/fix/pub/%s"% uuid, q_dict, "PUT"):
+    if _chkQueryArgs("/cli/fix/p/%s/%s"% (tag, uuid), q_dict, "PUT"):
         feed_back = {'data':[]}
         set_key = list(set(q_dict.keys())-set(CFG.SECURE_ARGS))[0]
         set_var = base64.urlsafe_b64decode(request.forms[set_key])
         if set_key in CFG.K4WD.keys():
             print set_key, set_var
             uuid, pub = __chkPAPER(tag, uuid)
-            pub[set_key] = set_var.decode('utf-8')
-            KV.replace(uuid, pub)
-            #print pub
-            feed_back['data'].append(pub)
-            feed_back['uuid'] = uuid
+            if not uuid:
+                feed_back['msg'] = "BAD tag: %s out pre-defined"% tag
+            else:
+                pub[set_key] = set_var.decode('utf-8')
+                KV.replace(uuid, pub)
+                #print pub
+                feed_back['data'].append(pub)
+                feed_back['uuid'] = uuid
         else:
             feed_back['msg'] = "out keys, NULL fixed!" 
             feed_back['can_fix_keys'] = CFG.K4WD.keys()
@@ -263,17 +305,24 @@ def __chkPAPER(tag, uuid):
     paper = KV.get(uuid)
     if paper:
         print uuid, paper
+        ADD4SYS('p', uuid)  # for old sys, collected uuid into idx node!
         return uuid, paper
     else:
         # inti.
-        new_paper = deepcopy(CFG.K4DM)
+        if tag not in CFG.ESSAY_TAG.keys():
+            return None, None
         uuid = GENID(tag)
+        if not uuid:
+            print "tag out GENID() accept area!"
+            return None, None
+        ADD4SYS('p', uuid)
+        new_paper = deepcopy(CFG.K4WD)
         new_paper['uuid'] = uuid
+        new_paper['tag'] = tag
         new_paper['his_id'] = GENID('his')
         new_paper['lasttm'] = time.time()
         new_paper['title'] = "waiting set..."
         KV.add(uuid, new_paper)
-        ADD4SYS('papers', uuid)
         print uuid, new_paper
         return uuid, new_paper
 
@@ -503,11 +552,12 @@ def wechat_post():
         weknow.start2('setup', wxreq)
         G_CRT_USR['fsm'] = "setup"
         __update_usr(G_CRT_USR)
-    print "weknow.send2:\n"
+    #print "weknow.send2:\n"
     return weknow.send2(wxreq.Content.strip(), wxreq)
 
     return None
-
+    '''collected old code for doc.
+    '''
     # base hard code for all 
     xml = etree.XML(request.forms.keys()[0])
     __MsgType = xml.findtext("MsgType")
@@ -611,7 +661,6 @@ def wechat_post():
 
                 return None
         
-    
 
 
 
@@ -626,6 +675,7 @@ def __chkRegUsr(openid):
     '''
     sha1_name = hashlib.sha1(openid).hexdigest()
     uuid = USRID(sha1_name)
+    ADD4SYS('m', uuid)  # for old sys, collected uuid into idx node!
     usr = KV.get(uuid)
     if usr:
         print usr
@@ -638,7 +688,7 @@ def __chkRegUsr(openid):
         new_usr['lasttm'] = time.time()
         new_usr['fsm'] = None
         KV.add(uuid, new_usr)
-        ADD4SYS('m', uuid)
+        #ADD4SYS('m', uuid)
         print new_usr
         return new_usr
 
@@ -673,17 +723,17 @@ def __update_usr(objUsr):
 def setup(self, wxreq):
     print 'setup->{h V e re rc ir i ei s}|大妈信息'
     #print crt_usr['msg']
-    print wxreq.Content
+    #print wxreq.Content
     cmd = wxreq.Content
     if cmd not in CFG.CMD_ALIAS:
         #if 8 > len(crt_usr['msg']):
         if cmd.isdigit():
             pass
         elif 8 > len(wxreq.Content):
-            print "try march dama"
+            #print "try march dama"
             uuid, dm = __chkDAMA(wxreq.Content)
             if uuid:
-                print dm
+                #print dm
                 msg = CFG.TXT_CRT_DM% (dm['nm'], dm['desc'])
                 return WxTextResponse(msg, wxreq).as_xml()
 
@@ -711,7 +761,7 @@ def end(self, wxreq):
 def seek(self, wxreq):
     print 'setup->seek->{gb dd gt dm ot}'
     crt_usr = wxreq.crt_usr
-    print "G_CRT_USR", crt_usr
+    #print "G_CRT_USR", crt_usr
     if wxreq.Content in CFG.PAPER_TAGS:
         crt_usr['fsm'] = "papers"
         __update_usr(crt_usr)
@@ -721,28 +771,54 @@ def seek(self, wxreq):
         __update_usr(crt_usr)
         return WxTextResponse(CFG.TXT_OUT_TAG, wxreq).as_xml()
 
+
 @state('weknow')
 @transition('no', 'no_paper')
 @transition('*', 'end')
 def papers(self, wxreq):
     print 'setup->seek->[papers]->no'
-    print "papers TAG?", wxreq.Content 
-    #return None
     crt_usr = wxreq.crt_usr
+    tag = wxreq.Content
+    count = 0
+    papers4tag = []
+    if tag in CFG.ESSAY_TAG.keys():
+        # right tag switch
+        uuid_all_paper = KV.get(CFG.K4D['p'])
+        for uuid in uuid_all_paper:
+            # sometime reg. uuid as None
+            if uuid and uuid[:2] == tag:
+                count += 1
+                paper =  KV.get(uuid)
+                print paper['title']
+                papers4tag.append(paper['title'])
+        print "count ", count
+        if 0 == count:
+            # not paper in the tag yet
+            crt_usr['fsm'] = "setup"
+            __update_usr(crt_usr)
+            return WxTextResponse(CFG.TXT_PUB_WAIT, wxreq).as_xml()
+        else:
+            # waiting paper Number code, jump into FSM:number_paper
+            crt_usr['fsm'] = "number_paper"
+            __update_usr(crt_usr)
+            return WxTextResponse(CFG.TXT_TAG_PAPERS% (CFG.ESSAY_TAG[tag]
+                , "\n".join(papers4tag)), wxreq).as_xml()
+    else:    
+        crt_usr['fsm'] = "papers"
+        __update_usr(crt_usr)
+        return WxTextResponse(CFG.TXT_PLS_TAG, wxreq).as_xml()
+
+    return None
     
     crt_usr['fsm'] = "setup"
     __update_usr(crt_usr)
     return WxTextResponse(CFG.TXT_PUB_WAIT, wxreq).as_xml()
 
-    crt_usr['fsm'] = "no_paper"
-    __update_usr(crt_usr)
-    return WxTextResponse(CFG.TXT_PUB_LIST, wxreq).as_xml()
-
 
 @state('weknow')
 @transition('end', 'end')
 @transition('*', 'end')
-def no_paper(self, wxreq):
+def number_paper(self, wxreq):
     print 'setup->seek->...->no->end'
     crt_usr = wxreq.crt_usr
     if wxreq.Content.isdigit():
@@ -751,7 +827,7 @@ def no_paper(self, wxreq):
         __update_usr(crt_usr)
         return WxTextResponse("will exp. 图文消息", wxreq).as_xml()
     else:
-        crt_usr['fsm'] = "no_paper"
+        crt_usr['fsm'] = "number_paper"
         __update_usr(crt_usr)
         return WxTextResponse(CFG.TXT_PLS_INT, wxreq).as_xml()
         
@@ -760,6 +836,13 @@ def no_paper(self, wxreq):
             , CFG.TXT_PLS_INT
             )
 
+'''
+resp = WxNewsResponse([WxArticle(Title="iPhone 6 is here!",
+                        Description="It is not a joke",
+                        Url="http://jeffkit.info",
+                        PicUrl="http://jeffkit.info/avatar.jpg")], wxreq).as_xml()
+                        
+'''
 
 '''
 WxNewsResponse, WxArticle
@@ -775,8 +858,8 @@ resp = WxNewsResponse([WxArticle(Title="iPhone 6 is here!",
 def info_me(self, wxreq):
     print 'setup->info_me->end'
     crt_usr = wxreq.crt_usr
-    #return None
-    print crt_usr['fsm']
+    #print "wxreq.crt_usr: ", crt_usr
+    #print crt_usr['fsm']
     crt_usr['fsm'] = "setup"
     __update_usr(crt_usr)
     if "" == crt_usr['em']:

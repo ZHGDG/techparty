@@ -19,7 +19,7 @@
 <v t="zoomq.20120710140424.5456" a="E"><vh>&lt;&lt;cfg4Borg&gt;&gt;</vh>
 <v t="zoomq.20130926092950.5432"><vh>环境切换</vh></v>
 <v t="zoomq.20130927104354.5456"><vh>storage</vh></v>
-<v t="zoomq.20130923093950.3647"><vh>KVDB</vh>
+<v t="zoomq.20130923093950.3647" a="E"><vh>KVDB</vh>
 <v t="zoomq.20130923093950.5397"><vh>&lt;&lt;MEMBER&gt;&gt;</vh></v>
 <v t="zoomq.20130923093950.5395"><vh>&lt;&lt;CONTENT&gt;&gt;</vh></v>
 <v t="zoomq.20130923093950.8569"><vh>&lt;&lt;大妈们&gt;&gt;</vh></v>
@@ -39,7 +39,7 @@
 <v t="zoomq.20130925103854.4957" a="E"><vh>@nosent CLI.py</vh>
 <v t="zoomq.20130925103854.4958"><vh>&lt;&lt;docopt&gt;&gt;</vh></v>
 <v t="zoomq.20130925103854.4959"><vh>&lt;&lt;declarations&gt;&gt;</vh></v>
-<v t="zoomq.20130925103854.4960" a="E"><vh>_rest_main()</vh>
+<v t="zoomq.20130925103854.4960"><vh>_rest_main()</vh>
 <v t="zoomq.20130925103854.6450"><vh>&lt;&lt;echo matters&gt;&gt;</vh></v>
 <v t="zoomq.20130925103854.6452"><vh>&lt;&lt;GET DEL&gt;&gt;</vh></v>
 <v t="zoomq.20130925103854.6451"><vh>&lt;&lt;PUT&gt;&gt;</vh></v>
@@ -80,16 +80,18 @@
 <v t="zoomq.20120723102156.5561" a="E"><vh>@nosent mana4api.py</vh>
 <v t="zoomq.20120723102156.5562"><vh>&lt;&lt;declarations&gt;&gt;</vh></v>
 <v t="zoomq.20130918155053.5760"><vh>GET  /echo</vh></v>
-<v t="zoomq.20130925103854.5007"><vh>cli/ 工具</vh>
+<v t="zoomq.20130925103854.5007"><vh>cli/ 远程管理</vh>
 <v t="zoomq.20130925103854.5049"><vh>GET sum/db|dm|m|e|p</vh></v>
 <v t="zoomq.20130927104354.6051"><vh>POST bkup/db|dm|m|e|p</vh></v>
 <v t="zoomq.20130927104354.6062"><vh>PUT revert/db|dm|m|e|p</vh></v>
 <v t="zoomq.20130927104354.6055"><vh>DELETE del/bk/:UUID</vh></v>
 <v t="zoomq.20130927104354.6049"><vh>GET st/kv</vh></v>
-<v t="zoomq.20130926092950.5438"><vh>PUT fix/dm/:NM</vh></v>
+<v t="zoomq.20130926092950.5438"><vh>PUT fix/e/:CODE</vh></v>
+<v t="zoomq.20130928090931.3710"><vh>PUT fix/m/:UUID</vh></v>
+<v t="zoomq.20130928090931.3708"><vh>PUT fix/dm/:NM</vh></v>
 <v t="zoomq.20130926092950.5440"><vh>__chkDMID()</vh></v>
 <v t="zoomq.20130926092950.5442"><vh>__chkDAMA()</vh></v>
-<v t="zoomq.20130926092950.5447"><vh>PUT fix/pub/:UUID</vh></v>
+<v t="zoomq.20130926092950.5447"><vh>PUT fix/p/:tag/:UUID</vh></v>
 <v t="zoomq.20130926092950.5449"><vh>__chkPAPER()</vh></v>
 <v t="zoomq.20130925103854.5041"><vh>用户管理</vh>
 <v t="zoomq.20130925103854.6454"><vh>GET cli/sum/usr</vh></v>
@@ -129,7 +131,7 @@
 <v t="zoomq.20130926092950.5444"><vh>&lt;&lt;tags&gt;&gt;</vh></v>
 <v t="zoomq.20130926092950.5445"><vh>&lt;&lt;no_paper&gt;&gt;</vh></v>
 </v>
-<v t="zoomq.20130925103854.6433"><vh>i 成员信息</vh>
+<v t="zoomq.20130925103854.6433" a="E"><vh>i 成员信息</vh>
 <v t="zoomq.20130926092950.5433"><vh>&lt;&lt;info_me&gt;&gt;</vh></v>
 <v t="zoomq.20130926092950.5434"><vh>&lt;&lt;edit_info&gt;&gt;</vh></v>
 <v t="zoomq.20130926092950.5436"><vh>&lt;&lt;info_alias&gt;&gt;</vh></v>
@@ -1043,8 +1045,9 @@ JINJA2TPL_PATH = os.path.abspath(
         ,'paper':'p_%(timestamp)s_PUB%(tot)d'
         ,'gd':'gd_%(timestamp)s_PUB%(tot)d'
         ,'dd':'dd_%(timestamp)s_PUB%(tot)d'
-        ,'dm':'dm_%(timestamp)s_PUB%(tot)d'
         ,'gt':'gt_%(timestamp)s_PUB%(tot)d'
+        ,'dm':'dm_%(timestamp)s_PUB%(tot)d'
+        ,'hd':'hd_%(timestamp)s_PUB%(tot)d'
         ,'ot':'ot_%(timestamp)s_PUB%(tot)d'
         ,'re':'re_%(timestamp)s_PUB%(tot)d'
         #,'dm':'m:%(timestamp)s:DM%(tot)d'
@@ -1348,11 +1351,12 @@ def wechat_post():
         weknow.start2('setup', wxreq)
         G_CRT_USR['fsm'] = "setup"
         __update_usr(G_CRT_USR)
-    print "weknow.send2:\n"
+    #print "weknow.send2:\n"
     return weknow.send2(wxreq.Content.strip(), wxreq)
 
     return None
-
+    '''collected old code for doc.
+    '''
     # base hard code for all 
     xml = etree.XML(request.forms.keys()[0])
     __MsgType = xml.findtext("MsgType")
@@ -1400,7 +1404,6 @@ def wechat_post():
             else:
                 &lt;&lt;THANKS&gt;&gt;
         
-    
 
 
 
@@ -1438,12 +1441,12 @@ def wechat_post():
 </t>
 <t tx="zoomq.20130923093950.3647">import sae.kvdb
 KV = sae.kvdb.KVClient()
-#   系统索引键-名字典
+#   系统索引名-UUID 字典; KVDB 无法Mongo 样搜索,只能人工建立索引
 K4D = {'incr':"SYS_TOT"     # int
-    ,'m':"SYS_usrs_ALL"     # [] 所有用户  (包含已经 del 的)
-    ,'dm':"SYS_dama_ALL"    # [] 所有 组委  (包含已经 del 的)
-    ,'e':"SYS_eves_ALL"     # [] 所有活动索引 (包含已经 del 的)
-    ,'p':"SYS_pubs_ALL"     # [] 所有文章索引 (包含已经 del 的)
+    ,'m':"SYS_usrs_ALL"     # [] 所有 成员 (包含已经 del 的)
+    ,'dm':"SYS_dama_ALL"    # [] 所有 组委 (包含已经 del 的)
+    ,'e':"SYS_eves_ALL"     # [] 所有 活动 (包含已经 del 的)
+    ,'p':"SYS_pubs_ALL"     # [] 所有 文章 (包含已经 del 的)
 }
 #KEY4_incr = K4D['incr']
 for k in K4D:
@@ -1470,7 +1473,7 @@ for k in K4D:
     , 'gt':u" ~ G说公论 (时评杂文,新旧不拘)"
     , 'dm':u" ~ 珠的自白 (大妈自述,每周一篇)"
     , 'hd':u" ~ 海选文章 (得要相信,大妈法眼)"
-    , 're':u" ~ 活动报道 (快乐大趴,给力小会)"
+    , 'et':u" ~ 活动报道 (快乐大趴,给力小会)"
     }
     
 # 文章索引
@@ -1597,8 +1600,8 @@ K4DM = {"his_id":""   # 更新戮
     , "nm":""       # NickName "Zoom.Quiet"
     , "desc":""     # 解释
     , "pp":''       # Passport "kswl662773786"
-    , 'em':''       #'zhouqi@ijinshan.com',
-    , 'mo':''       #Mobile
+    , 'em':''       # 'zhouqi@ijinshan.com',
+    , 'mo':''       # Mobile
     }
 
 
@@ -1671,9 +1674,15 @@ CLI_MATTERS = {     # 命令行响应方式速查字典
     
     , "fix/dm":     "PUT"       # 修订 大妈 信息
     , "fix/m":      "PUT"       # 修订 成员 信息
-    , "fix/p":      "PUT"       # 增补 文章 信息
     , "fix/e":      "PUT"       # 增补 活动 信息
-
+    , "fix/p/gb":   "PUT"       # 增补 文章 信息
+    , "fix/p/dd":   "PUT"       # 增补 文章 信息
+    , "fix/p/gt":   "PUT"       # 增补 文章 信息
+    , "fix/p/dm":   "PUT"       # 增补 文章 信息
+    , "fix/p/hd":   "PUT"       # 增补 文章 信息
+    , "fix/p/ot":   "PUT"       # 增补 文章 信息
+    , "fix/p/et":   "PUT"       # 增补 活动 文章
+    
     , "echo":       "GET"       # 模拟wechat 问答
     
     , "st/kv":      "GET"       # 查阅 KVDB 信息
@@ -1683,6 +1692,7 @@ CLI_MATTERS = {     # 命令行响应方式速查字典
     , "sum/m":      "GET"       # 统计 成员 信息现状
     , "sum/e":      "GET"       # 统计 活动 信息现状
     , "sum/p":      "GET"       # 统计 文章 信息现状
+
     , "sum/bk":     "GET"       # 综合 备份 数据现状
     , "del/bk":     "DELETE"    # 删除指定备份 dump
 
@@ -1698,7 +1708,6 @@ CLI_MATTERS = {     # 命令行响应方式速查字典
     , "revert/e":   "PUT"      # 恢复 大妈 数据
     , "revert/p":   "PUT"      # 恢复 大妈 数据
     }
-
 
 LEVEL4USR = {"mana":0
     , "up":1
@@ -1760,11 +1769,9 @@ e.g:
   fix/dm/:NM  nm=ZQ       修订/创建指定 大妈 的相关信息
   fix/m/:UUID nm=ZQ       修订指定 成员 的相关信息
   fix/e/:CODE pic=***     修订/创建指定 活动 的相关信息
-  fix/p/:UUID url=***     增补|指定 文章 信息
+  fix/p/:TAG/:UUID url=***     增补|指定 文章 信息
+    TAG当前支持 ot|et|gt|dd|gb|dm|hd
     UUID 为 null 时,指创建文章信息
-    可设定字段:
-        tag     ~ gb|dd|gt|dm|ot
-        ...
 
   !!! 小心:大规模数据I/O操作 !!!
   del/bk/:UUID          删除指定备份 dump
@@ -2234,6 +2241,7 @@ return None
     '''
     sha1_name = hashlib.sha1(openid).hexdigest()
     uuid = USRID(sha1_name)
+    ADD4SYS('m', uuid)  # for old sys, collected uuid into idx node!
     usr = KV.get(uuid)
     if usr:
         print usr
@@ -2246,7 +2254,7 @@ return None
         new_usr['lasttm'] = time.time()
         new_usr['fsm'] = None
         KV.add(uuid, new_usr)
-        ADD4SYS('m', uuid)
+        #ADD4SYS('m', uuid)
         print new_usr
         return new_usr
 
@@ -2353,18 +2361,23 @@ def events(self, wxreq):
 
 
 </t>
-<t tx="zoomq.20130925103854.6439">def ADD4SYS(k4sys, cnt):
+<t tx="zoomq.20130925103854.6439">def ADD4SYS(k4sys, uuid):
     '''try safty insert SOMETHING to SYS:** K/V
-    only member|member|paper
+    only dm|m|p means dama|member|paper
     '''
-    listobj = KV.get(CFG.K4D[k4sys])
-    print "listobj:\t", listobj
-    # 防止意外重复
-    listobj.append(cnt)
-    appended = list(set(listobj))
-    #print "appended\n", appended
-    KV.replace(k4sys,  appended)
+    uuid_idx = KV.get(CFG.K4D[k4sys])
+    print "listobj:\t", uuid_idx
+    if None == uuid:
+        appended = uuid_idx
+    elif uuid in uuid_idx:
+        appended = uuid_idx
+    else:
+        # 防止意外重复
+        uuid_idx.append(uuid)
+        appended = list(set(uuid_idx))
+        KV.replace(k4sys,  appended)
     return (k4sys, appended)
+
 
 
 </t>
@@ -2684,7 +2697,7 @@ em:foo.bar@gmail.com
 更多细节,请惯性地输入 h 继续吧 :)
 '''</t>
 <t tx="zoomq.20130925103854.6458">PAPER_TAGS = ESSAY_TAG.keys()
-TXT_TAG_DEFINE = "".join([u"%s %s\n"%(k, ESSAY_TAG[k]) for k in ESSAY_TAG.keys()])
+TXT_TAG_DEFINE = "    ".join([u"%s %s\n"%(k, ESSAY_TAG[k]) for k in ESSAY_TAG.keys()])
 
 TXT_PLS_TAG = u'''亲! 请输入文章类别编码(类似 dm 的2字母):
 然后,俺才能给出该类别的文章索引...
@@ -2706,6 +2719,15 @@ TXT_OUT_TAG = u'''亲! 目测输错了类别编码,再试?
 更多细节,请惯性地输入 h 继续吧 :)
 '''% TXT_TAG_DEFINE
 
+TXT_TAG_PAPERS = u'''%s ::
+
+%s
+
+可输入 * 退出文章查阅流程;-)
+
+更多细节,请惯性地输入 h 继续吧 :)
+'''
+
 TXT_PLS_INT = u'''亲! 请输入类型文章的编号,仅数字就好:
 
 也可以输入 * 退出文章查阅流程;-)
@@ -2725,24 +2747,22 @@ TXT_PUB_WAIT = u'''对不起亲!
 过往文章的信息,大妈们还没来的及增补进来,
 放轻松,等等先... (~.~)
 
-也可以输入 * 退出文章查阅流程;-)
-
 更多细节,请惯性地输入 h 继续吧 :)
 '''
 
 </t>
 <t tx="zoomq.20130925103854.6461">#print crt_usr['msg']
-print wxreq.Content
+#print wxreq.Content
 cmd = wxreq.Content
 if cmd not in CFG.CMD_ALIAS:
     #if 8 &gt; len(crt_usr['msg']):
     if cmd.isdigit():
         pass
     elif 8 &gt; len(wxreq.Content):
-        print "try march dama"
+        #print "try march dama"
         uuid, dm = __chkDAMA(wxreq.Content)
         if uuid:
-            print dm
+            #print dm
             msg = CFG.TXT_CRT_DM% (dm['nm'], dm['desc'])
             return WxTextResponse(msg, wxreq).as_xml()
 </t>
@@ -2764,8 +2784,8 @@ else:
 def info_me(self, wxreq):
     print 'setup-&gt;info_me-&gt;end'
     crt_usr = wxreq.crt_usr
-    #return None
-    print crt_usr['fsm']
+    #print "wxreq.crt_usr: ", crt_usr
+    #print crt_usr['fsm']
     crt_usr['fsm'] = "setup"
     __update_usr(crt_usr)
     if "" == crt_usr['em']:
@@ -2878,23 +2898,17 @@ def info_alias(self, wxreq):
         , CFG.TXT_PLS_EM
         )
 </t>
-<t tx="zoomq.20130926092950.5438">@APP.put('/cli/fix/dm/&lt;nm&gt;')
-def fix_dm(nm):
+<t tx="zoomq.20130926092950.5438">@APP.put('/cli/fix/e/&lt;code&gt;')
+def fix_event(code):
     q_dict = request.forms
-    if _chkQueryArgs("/cli/fix/dm/%s"% nm, q_dict, "PUT"):
+    if _chkQueryArgs("/cli/fix/e/%s"% code, q_dict, "PUT"):
         feed_back = {'data':[]}
         set_key = list(set(q_dict.keys())-set(CFG.SECURE_ARGS))[0]
         set_var = base64.urlsafe_b64decode(request.forms[set_key])
         if set_key in CFG.K4DM.keys():
-            #print set_key, set_var
-            #print "&lt;nm&gt;", nm
-            uuid, dm = __chkDAMA(nm.strip())
-            #print uuid,dm
-            if uuid:
-                dm[set_key] = set_var.decode('utf-8')
-                KV.replace(uuid, dm)
-                feed_back['data'].append(dm)
-                feed_back['uuid'] = uuid
+            print set_key, set_var
+            feed_back['msg'] = "func. not working now..." 
+            
         else:
             feed_back['msg'] = "out keys, NULL fixed!" 
             feed_back['can_fix_keys'] = CFG.K4DM.keys()
@@ -2906,7 +2920,7 @@ def fix_dm(nm):
 </t>
 <t tx="zoomq.20130926092950.5440">def __chkDMID(text):
     for DM in CFG.DM_ALIAS.keys():
-        print CFG.DM_ALIAS[DM]
+        #print CFG.DM_ALIAS[DM]
         if text in CFG.DM_ALIAS[DM]:
             print "found DAMA!", CFG.DM_ALIAS[DM][0]
             return DM
@@ -2924,9 +2938,10 @@ def fix_dm(nm):
     if not k4dm:
         return None, None
     uuid = DAMAID(k4dm)
+    ADD4SYS('dm', uuid)  # for old sys, collected uuid into idx node!
     usr = KV.get(uuid)
     if usr:
-        print uuid, usr
+        #print uuid, usr
         return uuid, usr
     else:
         # inti.
@@ -2935,8 +2950,8 @@ def fix_dm(nm):
         new_usr['lasttm'] = time.time()
         new_usr['nm'] = CFG.DM_ALIAS[k4dm][0]
         KV.add(uuid, new_usr)
-        ADD4SYS('dm', uuid)
-        print uuid, new_usr
+        #ADD4SYS('dm', uuid)
+        #print uuid, new_usr
         return uuid, new_usr
 
 
@@ -2953,7 +2968,7 @@ def fix_dm(nm):
 def seek(self, wxreq):
     print 'setup-&gt;seek-&gt;{gb dd gt dm ot}'
     crt_usr = wxreq.crt_usr
-    print "G_CRT_USR", crt_usr
+    #print "G_CRT_USR", crt_usr
     if wxreq.Content in CFG.PAPER_TAGS:
         crt_usr['fsm'] = "papers"
         __update_usr(crt_usr)
@@ -2963,30 +2978,56 @@ def seek(self, wxreq):
         __update_usr(crt_usr)
         return WxTextResponse(CFG.TXT_OUT_TAG, wxreq).as_xml()
 
+
 </t>
 <t tx="zoomq.20130926092950.5444">@state('weknow')
 @transition('no', 'no_paper')
 @transition('*', 'end')
 def papers(self, wxreq):
     print 'setup-&gt;seek-&gt;[papers]-&gt;no'
-    print "papers TAG?", wxreq.Content 
-    #return None
     crt_usr = wxreq.crt_usr
+    tag = wxreq.Content
+    count = 0
+    papers4tag = []
+    if tag in CFG.ESSAY_TAG.keys():
+        # right tag switch
+        uuid_all_paper = KV.get(CFG.K4D['p'])
+        for uuid in uuid_all_paper:
+            # sometime reg. uuid as None
+            if uuid and uuid[:2] == tag:
+                count += 1
+                paper =  KV.get(uuid)
+                print paper['title']
+                papers4tag.append(paper['title'])
+        print "count ", count
+        if 0 == count:
+            # not paper in the tag yet
+            crt_usr['fsm'] = "setup"
+            __update_usr(crt_usr)
+            return WxTextResponse(CFG.TXT_PUB_WAIT, wxreq).as_xml()
+        else:
+            # waiting paper Number code, jump into FSM:number_paper
+            crt_usr['fsm'] = "number_paper"
+            __update_usr(crt_usr)
+            return WxTextResponse(CFG.TXT_TAG_PAPERS% (CFG.ESSAY_TAG[tag]
+                , "\n".join(papers4tag)), wxreq).as_xml()
+    else:    
+        crt_usr['fsm'] = "papers"
+        __update_usr(crt_usr)
+        return WxTextResponse(CFG.TXT_PLS_TAG, wxreq).as_xml()
+
+    return None
     
     crt_usr['fsm'] = "setup"
     __update_usr(crt_usr)
     return WxTextResponse(CFG.TXT_PUB_WAIT, wxreq).as_xml()
-
-    crt_usr['fsm'] = "no_paper"
-    __update_usr(crt_usr)
-    return WxTextResponse(CFG.TXT_PUB_LIST, wxreq).as_xml()
 
 
 </t>
 <t tx="zoomq.20130926092950.5445">@state('weknow')
 @transition('end', 'end')
 @transition('*', 'end')
-def no_paper(self, wxreq):
+def number_paper(self, wxreq):
     print 'setup-&gt;seek-&gt;...-&gt;no-&gt;end'
     crt_usr = wxreq.crt_usr
     if wxreq.Content.isdigit():
@@ -2995,7 +3036,7 @@ def no_paper(self, wxreq):
         __update_usr(crt_usr)
         return WxTextResponse("will exp. 图文消息", wxreq).as_xml()
     else:
-        crt_usr['fsm'] = "no_paper"
+        crt_usr['fsm'] = "number_paper"
         __update_usr(crt_usr)
         return WxTextResponse(CFG.TXT_PLS_INT, wxreq).as_xml()
         
@@ -3004,22 +3045,31 @@ def no_paper(self, wxreq):
             , CFG.TXT_PLS_INT
             )
 
-</t>
-<t tx="zoomq.20130926092950.5447">@APP.put('/cli/fix/pub/&lt;tag&gt;/&lt;uuid&gt;')
-def fix_pub(tag, uuid):
+'''
+resp = WxNewsResponse([WxArticle(Title="iPhone 6 is here!",
+                        Description="It is not a joke",
+                        Url="http://jeffkit.info",
+                        PicUrl="http://jeffkit.info/avatar.jpg")], wxreq).as_xml()
+                        
+'''</t>
+<t tx="zoomq.20130926092950.5447">@APP.put('/cli/fix/p/&lt;tag&gt;/&lt;uuid&gt;')
+def fix_paper(tag, uuid):
     q_dict = request.forms
-    if _chkQueryArgs("/cli/fix/pub/%s"% uuid, q_dict, "PUT"):
+    if _chkQueryArgs("/cli/fix/p/%s/%s"% (tag, uuid), q_dict, "PUT"):
         feed_back = {'data':[]}
         set_key = list(set(q_dict.keys())-set(CFG.SECURE_ARGS))[0]
         set_var = base64.urlsafe_b64decode(request.forms[set_key])
         if set_key in CFG.K4WD.keys():
             print set_key, set_var
             uuid, pub = __chkPAPER(tag, uuid)
-            pub[set_key] = set_var.decode('utf-8')
-            KV.replace(uuid, pub)
-            #print pub
-            feed_back['data'].append(pub)
-            feed_back['uuid'] = uuid
+            if not uuid:
+                feed_back['msg'] = "BAD tag: %s out pre-defined"% tag
+            else:
+                pub[set_key] = set_var.decode('utf-8')
+                KV.replace(uuid, pub)
+                #print pub
+                feed_back['data'].append(pub)
+                feed_back['uuid'] = uuid
         else:
             feed_back['msg'] = "out keys, NULL fixed!" 
             feed_back['can_fix_keys'] = CFG.K4WD.keys()
@@ -3040,17 +3090,24 @@ def fix_pub(tag, uuid):
     paper = KV.get(uuid)
     if paper:
         print uuid, paper
+        ADD4SYS('p', uuid)  # for old sys, collected uuid into idx node!
         return uuid, paper
     else:
         # inti.
-        new_paper = deepcopy(CFG.K4DM)
+        if tag not in CFG.ESSAY_TAG.keys():
+            return None, None
         uuid = GENID(tag)
+        if not uuid:
+            print "tag out GENID() accept area!"
+            return None, None
+        ADD4SYS('p', uuid)
+        new_paper = deepcopy(CFG.K4WD)
         new_paper['uuid'] = uuid
+        new_paper['tag'] = tag
         new_paper['his_id'] = GENID('his')
         new_paper['lasttm'] = time.time()
         new_paper['title'] = "waiting set..."
         KV.add(uuid, new_paper)
-        ADD4SYS('papers', uuid)
         print uuid, new_paper
         return uuid, new_paper
 
@@ -3161,6 +3218,52 @@ def revert_dump(matter):
         feed_back['msg'] = "reverted %s nodes as %s "% (len(re_obj[CFG.K4D[matter]])
             , CFG.K4D[matter]
             )
+        #data.append(KV.get_info())
+        return feed_back
+    else:
+        return "alert quary!-("
+
+</t>
+<t tx="zoomq.20130928090931.3708">@APP.put('/cli/fix/dm/&lt;nm&gt;')
+def fix_dm(nm):
+    q_dict = request.forms
+    if _chkQueryArgs("/cli/fix/dm/%s"% nm, q_dict, "PUT"):
+        feed_back = {'data':[]}
+        set_key = list(set(q_dict.keys())-set(CFG.SECURE_ARGS))[0]
+        set_var = base64.urlsafe_b64decode(request.forms[set_key])
+        if set_key in CFG.K4DM.keys():
+            #print set_key, set_var
+            #print "&lt;nm&gt;", nm
+            uuid, dm = __chkDAMA(nm.strip())
+            #print uuid,dm
+            if uuid:
+                dm[set_key] = set_var.decode('utf-8')
+                KV.replace(uuid, dm)
+                feed_back['data'].append(dm)
+                feed_back['uuid'] = uuid
+        else:
+            feed_back['msg'] = "out keys, NULL fixed!" 
+            feed_back['can_fix_keys'] = CFG.K4DM.keys()
+        #data.append(KV.get_info())
+        return feed_back
+    else:
+        return "alert quary!-("
+
+</t>
+<t tx="zoomq.20130928090931.3710">@APP.put('/cli/fix/m/&lt;uuid&gt;')
+def fix_member(uuid):
+    q_dict = request.forms
+    if _chkQueryArgs("/cli/fix/m/%s"% uuid, q_dict, "PUT"):
+        feed_back = {'data':[]}
+        set_key = list(set(q_dict.keys())-set(CFG.SECURE_ARGS))[0]
+        set_var = base64.urlsafe_b64decode(request.forms[set_key])
+        if set_key in CFG.K4DM.keys():
+            print set_key, set_var
+            feed_back['msg'] = "func. not working now..." 
+            
+        else:
+            feed_back['msg'] = "out keys, NULL fixed!" 
+            feed_back['can_fix_keys'] = CFG.K4DM.keys()
         #data.append(KV.get_info())
         return feed_back
     else:
