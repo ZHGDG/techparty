@@ -116,6 +116,41 @@ def bkup_dump(matter):
     else:
         return "alert quary!-("
 
+@APP.post('/cli/push/p/<qstr>')
+def push_paper(qstr):
+    q_dict = _query2dict(qstr)
+    q_form = request.forms
+    if _chkQueryArgs("/cli/push/p", q_dict, "POST"):
+        feed_back = {'data':[]}
+        set_key = list(set(q_form.keys())-set(CFG.SECURE_ARGS))[0]
+        #set_var = base64.urlsafe_b64decode(request.forms[set_key])
+        j = eval(set_key) #, set_var
+        print j.keys()
+        return None
+        
+        if 'db' ==  matter:
+            print "try dumps all nodes from KVDB"
+        else:
+            kb_objs = {}
+            kb_objs[CFG.K4D[matter] ] = KV.get(CFG.K4D[matter])
+            if 0 != len(kb_objs[CFG.K4D[matter] ] ):
+                for k in kb_objs[CFG.K4D[matter] ]:
+                    kb_objs[k] = KV.get(k)
+            dumps = cPickle.dumps(kb_objs)
+            feed_back['data'].append("%s pointed %s nodes"%(CFG.K4D[matter] 
+                , len(kb_objs[CFG.K4D[matter] ] )))
+            #print kb_objs
+        sid, uri = PUT2SS(dumps, name=matter)
+        
+        feed_back['data'].append( BK.stat_object(sid) )
+        feed_back['msg'] = "bkup %s dump as %s"% (CFG.K4D[matter], uri)
+        #data.append(KV.get_info())
+        return feed_back
+    else:
+        return "alert quary!-("
+
+
+
 @APP.put('/cli/revert/<matter>')
 def revert_dump(matter):
     q_dict = request.forms

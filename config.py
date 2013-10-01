@@ -25,7 +25,7 @@ class Borg():
     def __init__(self):
         self.__dict__ = self.__collective_mind
     
-    VERSION = "weknow v13.09.28-3"
+    VERSION = "weknow v13.09.28.11"
     #管理员邮箱列表
     ADMIN_EMAIL_LIST = ['zoomquiet+gdg@gmail.com']
 
@@ -140,10 +140,12 @@ class Borg():
     '''
     TXT_VER = u'''珠海GDG 公众号应答系统当前版本:
     %s
+
     Changelog:
-    - 130926 改造并使用 Jeff 的SDK,配合运营CLI 工具
-    - 130923 完成初始可用, 并发布 42分钟乱入 wechat 手册!-)
-    - 130918 启动开发
+    - 130928 启用Storage 服务,数据可备份/下载/恢复
+    - 130926 启用 Jeff 的SDK,配合运营CLI 工具简化代码
+    - 130923 初始可用,并发布 42分钟乱入 wechat 手册!-)
+    - 130918 开发启动
 
     更多细节,请惯性地输入 h 继续吧 :)'''% VERSION
 
@@ -389,6 +391,8 @@ class Borg():
         , "bkup/m":     "POST"      # 备份所有 成员
         , "bkup/e":     "POST"      # 备份所有 活动
         , "bkup/p":     "POST"      # 备份所有 文章
+
+        , "push/p":     "POST"      # 推送批量文章数据 可以根据 url 判定是否有重复 
 
         , "revert/db":  "PUT"      # 恢复整个 KVDB
         , "revert/dm":  "PUT"      # 恢复 大妈 数据

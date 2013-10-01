@@ -57,8 +57,9 @@ def ADD4SYS(k4sys, uuid):
         # 防止意外重复
         uuid_idx.append(uuid)
         appended = list(set(uuid_idx))
-        KV.replace(k4sys,  appended)
-    return (k4sys, appended)
+        KV.replace(CFG.K4D[k4sys],  appended)
+    
+    return (CFG.K4D[k4sys], appended)
 
 
 
@@ -79,8 +80,9 @@ def TSTAMP():
 def GENID(obj, name=""):
     '''通用ID生成器:
         yymmddHHMMSS+5位微秒+对象鍵3位+全局序号
-        e.g.
-        x:12080110561431076:CRX1111
+        - 对分标签的文章分级选择,包含额外标识信息:
+            - dd_ 前缀就是分类 tag
+            - __** 后缀就是指定的文章编号
     '''
     timestamp = TSTAMP()
     tot = INCR4KV()

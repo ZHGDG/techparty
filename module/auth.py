@@ -99,6 +99,7 @@ def _genQueryArgs(api_matter, q="", rest_method="GET"):
         - GET/DELETE 时将参数拼为统一联合字串
         - PUT/POST 时提交唯一数据,同 GET 时的参数字串结构
     '''
+    #print "_genQueryArgs as:", rest_method
     matter = "%s/%s"% (CFG.APIPRE, api_matter)
     args = []
     args.append(("appkey", XCFG.APPKEY ))
@@ -109,7 +110,7 @@ def _genQueryArgs(api_matter, q="", rest_method="GET"):
             return None
         q_args = q.split("=")
         args.append((q_args[0], base64.urlsafe_b64encode(q_args[1])))
-
+    # GET|POST|DELETE 一般不提交额外数据
     sign_base_string = _genArgsStr(matter, args)
     args.append(("sign"
         , md5(sign_base_string + XCFG.SECRET).hexdigest()))

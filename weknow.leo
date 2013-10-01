@@ -28,7 +28,7 @@
 <v t="zoomq.20130918155053.7084" a="E"><vh>4wechat</vh>
 <v t="zoomq.20130923093950.7285"><vh>&lt;&lt;XML模板&gt;&gt;</vh></v>
 <v t="zoomq.20130925103854.6457"><vh>活动报名</vh></v>
-<v t="zoomq.20130925103854.6455"><vh>礼节/帮助</vh></v>
+<v t="zoomq.20130925103854.6455"><vh>帮助.系统</vh></v>
 <v t="zoomq.20130925103854.6456"><vh>用户信息</vh></v>
 <v t="zoomq.20130923093950.8818"><vh>&lt;&lt;ALIAS&gt;&gt;</vh></v>
 <v t="zoomq.20130925103854.6458"><vh>文章查询</vh></v>
@@ -39,7 +39,7 @@
 <v t="zoomq.20130925103854.4957" a="E"><vh>@nosent CLI.py</vh>
 <v t="zoomq.20130925103854.4958"><vh>&lt;&lt;docopt&gt;&gt;</vh></v>
 <v t="zoomq.20130925103854.4959"><vh>&lt;&lt;declarations&gt;&gt;</vh></v>
-<v t="zoomq.20130925103854.4960"><vh>_rest_main()</vh>
+<v t="zoomq.20130925103854.4960" a="E"><vh>_rest_main()</vh>
 <v t="zoomq.20130925103854.6450"><vh>&lt;&lt;echo matters&gt;&gt;</vh></v>
 <v t="zoomq.20130925103854.6452"><vh>&lt;&lt;GET DEL&gt;&gt;</vh></v>
 <v t="zoomq.20130925103854.6451"><vh>&lt;&lt;PUT&gt;&gt;</vh></v>
@@ -47,9 +47,9 @@
 </v>
 <v t="zoomq.20130925103854.4961"><vh>smart_rest()</vh></v>
 </v>
-<v t="zoomq.20120723102156.5541" a="E"><vh>module</vh>
+<v t="zoomq.20120723102156.5541"><vh>module</vh>
 <v t="zoomq.20130925103854.6406"><vh>@nosent __init__.py</vh></v>
-<v t="zoomq.20120820121523.7422"><vh>@nosent auth.py</vh>
+<v t="zoomq.20120820121523.7422" a="E"><vh>@nosent auth.py</vh>
 <v t="zoomq.20120820121523.7423"><vh>&lt;&lt;declarations&gt;&gt;</vh></v>
 <v t="zoomq.20120820121523.7426"><vh>sha256_uhex</vh></v>
 <v t="zoomq.20120820121523.7424"><vh>check_login</vh></v>
@@ -80,9 +80,10 @@
 <v t="zoomq.20120723102156.5561" a="E"><vh>@nosent mana4api.py</vh>
 <v t="zoomq.20120723102156.5562"><vh>&lt;&lt;declarations&gt;&gt;</vh></v>
 <v t="zoomq.20130918155053.5760"><vh>GET  /echo</vh></v>
-<v t="zoomq.20130925103854.5007"><vh>cli/ 远程管理</vh>
+<v t="zoomq.20130925103854.5007" a="E"><vh>cli/ 远程管理</vh>
 <v t="zoomq.20130925103854.5049"><vh>GET sum/db|dm|m|e|p</vh></v>
 <v t="zoomq.20130927104354.6051"><vh>POST bkup/db|dm|m|e|p</vh></v>
+<v t="zoomq.20130929203117.3712"><vh>POST push/p</vh></v>
 <v t="zoomq.20130927104354.6062"><vh>PUT revert/db|dm|m|e|p</vh></v>
 <v t="zoomq.20130927104354.6055"><vh>DELETE del/bk/:UUID</vh></v>
 <v t="zoomq.20130927104354.6049"><vh>GET st/kv</vh></v>
@@ -124,9 +125,9 @@
 </v>
 <v t="zoomq.20130925103854.6426"><vh>__chkRegUsr()</vh></v>
 <v t="zoomq.20130925103854.6427"><vh>__update_usr()</vh></v>
-<v t="zoomq.20130925103854.6430" a="E"><vh>FSM</vh>
+<v t="zoomq.20130925103854.6430"><vh>FSM</vh>
 <v t="zoomq.20130925103854.6461"><vh>&lt;&lt;大妈联系&gt;&gt;</vh></v>
-<v t="zoomq.20130925103854.6431" a="E"><vh>s 查阅文章</vh>
+<v t="zoomq.20130925103854.6431"><vh>s 查阅文章</vh>
 <v t="zoomq.20130926092950.5443"><vh>&lt;&lt;seek&gt;&gt;</vh></v>
 <v t="zoomq.20130926092950.5444"><vh>&lt;&lt;tags&gt;&gt;</vh></v>
 <v t="zoomq.20130926092950.5445"><vh>&lt;&lt;no_paper&gt;&gt;</vh></v>
@@ -491,7 +492,7 @@ class Borg():
     def __init__(self):
         self.__dict__ = self.__collective_mind
     
-    VERSION = "weknow v13.09.28-3"
+    VERSION = "weknow v13.09.28.11"
     &lt;&lt;cfg4Borg&gt;&gt;
     
 CFG = Borg()
@@ -1032,8 +1033,9 @@ JINJA2TPL_PATH = os.path.abspath(
 <t tx="zoomq.20120802192540.5468">def GENID(obj, name=""):
     '''通用ID生成器:
         yymmddHHMMSS+5位微秒+对象鍵3位+全局序号
-        e.g.
-        x:12080110561431076:CRX1111
+        - 对分标签的文章分级选择,包含额外标识信息:
+            - dd_ 前缀就是分类 tag
+            - __** 后缀就是指定的文章编号
     '''
     timestamp = TSTAMP()
     tot = INCR4KV()
@@ -1702,6 +1704,8 @@ CLI_MATTERS = {     # 命令行响应方式速查字典
     , "bkup/e":     "POST"      # 备份所有 活动
     , "bkup/p":     "POST"      # 备份所有 文章
 
+    , "push/p":     "POST"      # 推送批量文章数据 可以根据 url 判定是否有重复 
+
     , "revert/db":  "PUT"      # 恢复整个 KVDB
     , "revert/dm":  "PUT"      # 恢复 大妈 数据
     , "revert/m":   "PUT"      # 恢复 大妈 数据
@@ -1726,15 +1730,19 @@ AS_LOCAL = "http://localhost:8080/api"
 @others
 
 if __name__ == '__main__':
-    '''
-    - 为了简化 后台控制的界面开发,快速实现远程控制
-    - 通过 RESTful 接口,从本地使用工具脚本实施管理事务!
+    '''为了简化 后台控制的界面开发,快速实现远程控制:
+        - 通过 RESTful 接口,从本地使用工具脚本实施管理事务!
+    主要功能:
+        - 模拟微信的服务端消息转发,进行消息应答测试
+        - (模拟短信客户端向微信服务端发送消息,驱动真实测试)
+        - 自动生成含安全认证的网络请求,将各种操作指令格式化为http 请求,并自动发送
+        ...
     '''
     arguments = docopt(__doc__, version='lbTCLI v13.09.03b')
     metter = arguments.get('&lt;matter&gt;')
     debug = arguments.get('--debug')
     sets = arguments.get('&lt;sets&gt;')
-    #print arguments
+    #print sets
     smart_rest(metter, sets)
     #_rest_main(method, uri, args)
 
@@ -1774,6 +1782,7 @@ e.g:
     UUID 为 null 时,指创建文章信息
 
   !!! 小心:大规模数据I/O操作 !!!
+  push/p json=path/2/xxx.json   提交批量文章数据文件
   del/bk/:UUID          删除指定备份 dump
   bkup/db|dm|m|e|p
      备份 KVDB|大妈|成员|活动|文章 数据到Storage
@@ -1826,19 +1835,18 @@ from module.auth import _genQueryArgs, _genArgsStr
     else:
         cmd = matter
         mess = matter.split("/")
+        # 服务端的指令只有两节,其它的是动态数据,所以,进行净化
         if 2 &lt; len(mess):
             matter = "/".join(mess[:-1])
-        #print mess
-        #print matter
+        # 然后进行分拣 协议情况生成请求
         if matter in CFG.CLI_MATTERS.keys():  
             method = CFG.CLI_MATTERS[matter]      
-            #print "smart_rest:", method
             if debug:
                 _rest_main(method, cmd, sets)
             else:
                 _rest_main(method, cmd, sets, host = XCFG.TO_SAE)
         else:
-            print "参数错误,请使用 -h 参阅手册..."
+            print "smart_rest()\n\t参数错误,请使用 -h 参阅手册..."
 
 
 
@@ -2375,8 +2383,9 @@ def events(self, wxreq):
         # 防止意外重复
         uuid_idx.append(uuid)
         appended = list(set(uuid_idx))
-        KV.replace(k4sys,  appended)
-    return (k4sys, appended)
+        KV.replace(CFG.K4D[k4sys],  appended)
+    
+    return (CFG.K4D[k4sys], appended)
 
 
 
@@ -2482,6 +2491,7 @@ def status(self, wxreq):
         - GET/DELETE 时将参数拼为统一联合字串
         - PUT/POST 时提交唯一数据,同 GET 时的参数字串结构
     '''
+    #print "_genQueryArgs as:", rest_method
     matter = "%s/%s"% (CFG.APIPRE, api_matter)
     args = []
     args.append(("appkey", XCFG.APPKEY ))
@@ -2492,7 +2502,7 @@ def status(self, wxreq):
             return None
         q_args = q.split("=")
         args.append((q_args[0], base64.urlsafe_b64encode(q_args[1])))
-
+    # GET|POST|DELETE 一般不提交额外数据
     sign_base_string = _genArgsStr(matter, args)
     args.append(("sign"
         , md5(sign_base_string + XCFG.SECRET).hexdigest()))
@@ -2540,13 +2550,15 @@ cmd = "curl -d '%s' %s/%s "% (xml, AS_LOCAL, uri)
 </t>
 <t tx="zoomq.20130925103854.6451">put_args = _genQueryArgs(uri, q=args, rest_method=method)
 if not put_args:
-    print "参数错误,请先使用 -h 学习;-)"
+    print "_rest_main()\n\t参数错误,请先使用 -h 学习;-)"
     return None
 #print "put_args\n\t", put_args
 pur_vars = " ".join(["%s=%s"% (p[0], p[1]) for p in put_args])
 #print pur_vars
 uri = "%s%s/%s %s"% (host, CFG.APIPRE, uri, pur_vars)
 cmd = "http -f -b %s %s "% (method, uri)
+
+
 
 
 </t>
@@ -2586,10 +2598,12 @@ def sum_usr(qstr):
 </t>
 <t tx="zoomq.20130925103854.6455">TXT_VER = u'''珠海GDG 公众号应答系统当前版本:
 %s
+
 Changelog:
-- 130926 改造并使用 Jeff 的SDK,配合运营CLI 工具
-- 130923 完成初始可用, 并发布 42分钟乱入 wechat 手册!-)
-- 130918 启动开发
+- 130928 启用Storage 服务,数据可备份/下载/恢复
+- 130926 启用 Jeff 的SDK,配合运营CLI 工具简化代码
+- 130923 初始可用,并发布 42分钟乱入 wechat 手册!-)
+- 130918 开发启动
 
 更多细节,请惯性地输入 h 继续吧 :)'''% VERSION
 
@@ -3173,13 +3187,26 @@ def bkup_dump(matter):
         return "alert quary!-("
 
 </t>
-<t tx="zoomq.20130927104354.6053">#print args
-put_args = _genQueryArgs(uri, q=args, rest_method=method)
-#print "put_args\n\t", put_args
-pur_vars = " ".join(["%s=%s"% (p[0], p[1]) for p in put_args])
-#print pur_vars
-uri = "%s%s/%s %s"% (host, CFG.APIPRE, uri, pur_vars)
-cmd = "http -f -b %s %s "% (method, uri)
+<t tx="zoomq.20130927104354.6053">if args:
+    li_arg = args.split('=')
+    if 'json' == li_arg[0]:
+        print "外部数据文件%s"% li_arg[1]
+        get_args = _genQueryArgs(uri)
+        get_str = "&amp;".join(["%s=%s"% (g[0], g[1]) for g in get_args])
+        uri = "%s%s/%s/%s"% (host
+            , CFG.APIPRE
+            , uri
+            , base64.urlsafe_b64encode(get_str)
+            )
+        cmd = "http -b %s %s &lt; %s"% (method, uri, li_arg[1])
+
+else:
+    put_args = _genQueryArgs(uri, q=args, rest_method=method)
+    pur_vars = " ".join(["%s=%s"% (p[0], p[1]) for p in put_args])
+    uri = "%s%s/%s %s"% (host, CFG.APIPRE, uri, pur_vars)
+    cmd = "http -f -b %s %s "% (method, uri)
+    
+
 
 </t>
 <t tx="zoomq.20130927104354.6055">@APP.delete('/cli/del/bk/&lt;uuid&gt;/&lt;qstr&gt;')
@@ -3268,6 +3295,42 @@ def fix_member(uuid):
         return feed_back
     else:
         return "alert quary!-("
+
+</t>
+<t tx="zoomq.20130929203117.3712">@APP.post('/cli/push/p/&lt;qstr&gt;')
+def push_paper(qstr):
+    q_dict = _query2dict(qstr)
+    q_form = request.forms
+    if _chkQueryArgs("/cli/push/p", q_dict, "POST"):
+        feed_back = {'data':[]}
+        set_key = list(set(q_form.keys())-set(CFG.SECURE_ARGS))[0]
+        #set_var = base64.urlsafe_b64decode(request.forms[set_key])
+        j = eval(set_key) #, set_var
+        print j.keys()
+        return None
+        
+        if 'db' ==  matter:
+            print "try dumps all nodes from KVDB"
+        else:
+            kb_objs = {}
+            kb_objs[CFG.K4D[matter] ] = KV.get(CFG.K4D[matter])
+            if 0 != len(kb_objs[CFG.K4D[matter] ] ):
+                for k in kb_objs[CFG.K4D[matter] ]:
+                    kb_objs[k] = KV.get(k)
+            dumps = cPickle.dumps(kb_objs)
+            feed_back['data'].append("%s pointed %s nodes"%(CFG.K4D[matter] 
+                , len(kb_objs[CFG.K4D[matter] ] )))
+            #print kb_objs
+        sid, uri = PUT2SS(dumps, name=matter)
+        
+        feed_back['data'].append( BK.stat_object(sid) )
+        feed_back['msg'] = "bkup %s dump as %s"% (CFG.K4D[matter], uri)
+        #data.append(KV.get_info())
+        return feed_back
+    else:
+        return "alert quary!-("
+
+
 
 </t>
 </tnodes>

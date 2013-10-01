@@ -35,6 +35,7 @@ e.g:
     UUID 为 null 时,指创建文章信息
 
   !!! 小心:大规模数据I/O操作 !!!
+  push/p json=path/2/xxx.json   提交批量文章数据文件
   del/bk/:UUID          删除指定备份 dump
   bkup/db|dm|m|e|p
      备份 KVDB|大妈|成员|活动|文章 数据到Storage
@@ -68,7 +69,7 @@ def _rest_main(method, uri, args, host=AS_LOCAL):
     if 'PUT' == method: 
         put_args = _genQueryArgs(uri, q=args, rest_method=method)
         if not put_args:
-            print "参数错误,请先使用 -h 学习;-)"
+            print "_rest_main()\n\t参数错误,请先使用 -h 学习;-)"
             return None
         #print "put_args\n\t", put_args
         pur_vars = " ".join(["%s=%s"% (p[0], p[1]) for p in put_args])
@@ -77,14 +78,29 @@ def _rest_main(method, uri, args, host=AS_LOCAL):
         cmd = "http -f -b %s %s "% (method, uri)
 
 
+
+
     elif 'POST' == method:
-        #print args
-        put_args = _genQueryArgs(uri, q=args, rest_method=method)
-        #print "put_args\n\t", put_args
-        pur_vars = " ".join(["%s=%s"% (p[0], p[1]) for p in put_args])
-        #print pur_vars
-        uri = "%s%s/%s %s"% (host, CFG.APIPRE, uri, pur_vars)
-        cmd = "http -f -b %s %s "% (method, uri)
+        if args:
+            li_arg = args.split('=')
+            if 'json' == li_arg[0]:
+                print "外部数据文件%s"% li_arg[1]
+                get_args = _genQueryArgs(uri)
+                get_str = "&".join(["%s=%s"% (g[0], g[1]) for g in get_args])
+                uri = "%s%s/%s/%s"% (host
+                    , CFG.APIPRE
+                    , uri
+                    , base64.urlsafe_b64encode(get_str)
+                    )
+                cmd = "http -b %s %s < %s"% (method, uri, li_arg[1])
+
+        else:
+            put_args = _genQueryArgs(uri, q=args, rest_method=method)
+            pur_vars = " ".join(["%s=%s"% (p[0], p[1]) for p in put_args])
+            uri = "%s%s/%s %s"% (host, CFG.APIPRE, uri, pur_vars)
+            cmd = "http -f -b %s %s "% (method, uri)
+            
+
 
     else:
         if "echo" == uri:
@@ -127,33 +143,36 @@ def smart_rest(matter, sets):
     else:
         cmd = matter
         mess = matter.split("/")
+        # 服务端的指令只有两节,其它的是动态数据,所以,进行净化
         if 2 < len(mess):
             matter = "/".join(mess[:-1])
-        #print mess
-        #print matter
+        # 然后进行分拣 协议情况生成请求
         if matter in CFG.CLI_MATTERS.keys():  
             method = CFG.CLI_MATTERS[matter]      
-            #print "smart_rest:", method
             if debug:
                 _rest_main(method, cmd, sets)
             else:
                 _rest_main(method, cmd, sets, host = XCFG.TO_SAE)
         else:
-            print "参数错误,请使用 -h 参阅手册..."
+            print "smart_rest()\n\t参数错误,请使用 -h 参阅手册..."
 
 
 
 
 if __name__ == '__main__':
-    '''
-    - 为了简化 后台控制的界面开发,快速实现远程控制
-    - 通过 RESTful 接口,从本地使用工具脚本实施管理事务!
+    '''为了简化 后台控制的界面开发,快速实现远程控制:
+        - 通过 RESTful 接口,从本地使用工具脚本实施管理事务!
+    主要功能:
+        - 模拟微信的服务端消息转发,进行消息应答测试
+        - (模拟短信客户端向微信服务端发送消息,驱动真实测试)
+        - 自动生成含安全认证的网络请求,将各种操作指令格式化为http 请求,并自动发送
+        ...
     '''
     arguments = docopt(__doc__, version='lbTCLI v13.09.03b')
     metter = arguments.get('<matter>')
     debug = arguments.get('--debug')
     sets = arguments.get('<sets>')
-    #print arguments
+    #print sets
     smart_rest(metter, sets)
     #_rest_main(method, uri, args)
 

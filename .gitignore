@@ -1,6 +1,7 @@
 .ropeproject
 media
 site-packages
+*.dump
 *.pyc
 *.db
 *.log
