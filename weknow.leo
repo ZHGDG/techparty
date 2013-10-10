@@ -39,7 +39,7 @@
 <v t="zoomq.20130925103854.4957" a="E"><vh>@nosent CLI.py</vh>
 <v t="zoomq.20130925103854.4958"><vh>&lt;&lt;docopt&gt;&gt;</vh></v>
 <v t="zoomq.20130925103854.4959"><vh>&lt;&lt;declarations&gt;&gt;</vh></v>
-<v t="zoomq.20130925103854.4960" a="E"><vh>_rest_main()</vh>
+<v t="zoomq.20130925103854.4960"><vh>_rest_main()</vh>
 <v t="zoomq.20130925103854.6450"><vh>&lt;&lt;echo matters&gt;&gt;</vh></v>
 <v t="zoomq.20130925103854.6452"><vh>&lt;&lt;GET DEL&gt;&gt;</vh></v>
 <v t="zoomq.20130925103854.6451"><vh>&lt;&lt;PUT&gt;&gt;</vh></v>
@@ -59,7 +59,7 @@
 <v t="zoomq.20130925103854.6443"><vh>_query2dict</vh></v>
 <v t="zoomq.20130925103854.6445"><vh>_chkQueryArgs</vh></v>
 </v>
-<v t="zoomq.20120717112543.5481" a="E"><vh>@nosent utility.py</vh>
+<v t="zoomq.20120717112543.5481"><vh>@nosent utility.py</vh>
 <v t="zoomq.20120727213305.14698"><vh>&lt;&lt;declarations&gt;&gt;</vh></v>
 <v t="zoomq.20130927104354.6047"><vh>PUT2SS()</vh></v>
 <v t="zoomq.20120727213305.14756"><vh>INIobjSYS()</vh></v>
@@ -89,7 +89,9 @@
 <v t="zoomq.20130925103854.5049"><vh>GET sum/db|dm|m|e|p</vh></v>
 <v t="zoomq.20130927104354.6049"><vh>GET st/kv</vh></v>
 <v t="zoomq.20131007093121.5601" a="E"><vh>文章管理</vh>
-<v t="zoomq.20130929203117.3712" a="E"><vh>POST push/p</vh>
+<v t="zoomq.20131010225811.3726"><vh>GET sum/p/:TAG</vh></v>
+<v t="zoomq.20131010225811.3728"><vh>DELETE del/p/:UUID</vh></v>
+<v t="zoomq.20130929203117.3712"><vh>POST push/p</vh>
 <v t="zoomq.20131007093121.31623"><vh>&lt;&lt;检验导入&gt;&gt;</vh></v>
 </v>
 <v t="zoomq.20130926092950.5447"><vh>PUT fix/p/:tag/:UUID</vh></v>
@@ -1059,12 +1061,12 @@ JINJA2TPL_PATH = os.path.abspath(
         ,'tag':'t_%(timestamp)s_TAG%(tot)d'
         ,'event':'e_%(timestamp)s_EVE%(tot)d'
         ,'paper':'p_%(timestamp)s_PUB%(tot)d'
-        ,'gd':'gd_%(timestamp)s_PUB%(tot)d'
+        ,'ot':'ot_%(timestamp)s_PUB%(tot)d'
+        ,'gb':'gb_%(timestamp)s_PUB%(tot)d'
         ,'dd':'dd_%(timestamp)s_PUB%(tot)d'
         ,'gt':'gt_%(timestamp)s_PUB%(tot)d'
         ,'dm':'dm_%(timestamp)s_PUB%(tot)d'
         ,'hd':'hd_%(timestamp)s_PUB%(tot)d'
-        ,'ot':'ot_%(timestamp)s_PUB%(tot)d'
         ,'et':'et_%(timestamp)s_PUB%(tot)d'
         #,'dm':'m:%(timestamp)s:DM%(tot)d'
         }
@@ -1072,9 +1074,6 @@ JINJA2TPL_PATH = os.path.abspath(
         return GOBJMAP[obj]% locals()
     else:
         return None
-
-
-
 </t>
 <t tx="zoomq.20120802192540.7100">def TSTAMP():
     '''通用时间戳生成器:
@@ -1710,6 +1709,14 @@ CLI_MATTERS = {     # 命令行响应方式速查字典
     , "sum/m":      "GET"       # 统计 成员 信息现状
     , "sum/e":      "GET"       # 统计 活动 信息现状
     , "sum/p":      "GET"       # 统计 文章 信息现状
+    , "sum/p/gb":   "GET"       # 统计 分类文章 信息现状
+    , "sum/p/dd":   "GET"       # 统计 分类文章 信息现状
+    , "sum/p/gt":   "GET"       # 统计 分类文章 信息现状
+    , "sum/p/dm":   "GET"       # 统计 分类文章 信息现状
+    , "sum/p/hd":   "GET"       # 统计 分类文章 信息现状
+    , "sum/p/ot":   "GET"       # 统计 分类文章 信息现状
+    , "sum/p/et":   "GET"       # 统计 分类文章 信息现状
+    , "del/p":      "DELETE"    # 删除指定文章
 
     , "sum/bk":     "GET"       # 综合 备份 数据现状
     , "del/bk":     "DELETE"    # 删除指定备份 dump
@@ -1796,6 +1803,8 @@ e.g:
   fix/p/:TAG/:UUID url=***     增补|指定 文章 信息
     TAG当前支持 ot|et|gt|dd|gb|dm|hd
     UUID 为 null 时,指创建文章信息
+  sum/p/:TAG 综合 分类文章 信息现状
+  del/p/:UUID          删除指定文章
 
   !!! 小心:大规模数据I/O操作 !!!
   push/p json=path/2/xxx.json   提交批量文章数据文件
@@ -3194,6 +3203,8 @@ def push_papers(qstr):
         #set_var = base64.urlsafe_b64decode(request.forms[set_key])
         j = eval(set_var) #, set_var
         p_tag = j.keys()[0]
+        #print j.keys()
+        #return None
         for paper in j[p_tag]:
             &lt;&lt;检验导入&gt;&gt;
         #feed_back['data'].append( BK.stat_object(sid) )
@@ -3417,6 +3428,41 @@ def find_usr_kword(kword, qstr):
                 , {'uuid':pattern}
                 ]}).count()
             }
+    else:
+        return "alert quary!-("
+
+</t>
+<t tx="zoomq.20131010225811.3726">@APP.get('/cli/sum/p/&lt;tag&gt;/&lt;qstr&gt;')
+def st_p_tag(tag, qstr):
+    q_dict = _query2dict(qstr)
+    if _chkQueryArgs("/cli/sum/p/%s"% tag, q_dict, "GET"):
+        feed_back = {'data':[]}
+        print tag
+        for puuid in KV.get(CFG.K4D['p']):
+            if tag ==  puuid[:2]:
+                p = KV.get(puuid)
+                if 0 == p['del']:
+                    feed_back['data'].append("%s %s:%s"%(puuid 
+                        , p['code']
+                        , p['title'])) 
+        feed_back['msg'] = "%s papers had %s ."% (tag, len(feed_back['data']))
+        return feed_back
+        
+    else:
+        return "alert quary !-("
+
+</t>
+<t tx="zoomq.20131010225811.3728">@APP.delete('/cli/del/p/&lt;uuid&gt;/&lt;qstr&gt;')
+def del_p(uuid, qstr):
+    q_dict = _query2dict(qstr)
+    if _chkQueryArgs("/cli/del/p/%s"% uuid, q_dict, "DELETE"):
+        feed_back = {'data':[]}
+        p = KV.get(uuid)
+        p['del'] = 1
+        KV.replace(uuid, p)
+        feed_back['data'].append("%s:%s"% (p['code'],p['title']))
+        feed_back['msg'] = "deleted: %s"% uuid
+        return feed_back
     else:
         return "alert quary!-("
 

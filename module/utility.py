@@ -92,12 +92,12 @@ def GENID(obj, name=""):
         ,'tag':'t_%(timestamp)s_TAG%(tot)d'
         ,'event':'e_%(timestamp)s_EVE%(tot)d'
         ,'paper':'p_%(timestamp)s_PUB%(tot)d'
-        ,'gd':'gd_%(timestamp)s_PUB%(tot)d'
+        ,'ot':'ot_%(timestamp)s_PUB%(tot)d'
+        ,'gb':'gb_%(timestamp)s_PUB%(tot)d'
         ,'dd':'dd_%(timestamp)s_PUB%(tot)d'
         ,'gt':'gt_%(timestamp)s_PUB%(tot)d'
         ,'dm':'dm_%(timestamp)s_PUB%(tot)d'
         ,'hd':'hd_%(timestamp)s_PUB%(tot)d'
-        ,'ot':'ot_%(timestamp)s_PUB%(tot)d'
         ,'et':'et_%(timestamp)s_PUB%(tot)d'
         #,'dm':'m:%(timestamp)s:DM%(tot)d'
         }
@@ -105,9 +105,6 @@ def GENID(obj, name=""):
         return GOBJMAP[obj]% locals()
     else:
         return None
-
-
-
 def USRID(name):
     return 'u_%s'% name
 

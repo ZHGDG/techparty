@@ -178,6 +178,39 @@ def st_kv(qstr):
 # collection wechat papers mana. matters
 '''
 '''
+@APP.get('/cli/sum/p/<tag>/<qstr>')
+def st_p_tag(tag, qstr):
+    q_dict = _query2dict(qstr)
+    if _chkQueryArgs("/cli/sum/p/%s"% tag, q_dict, "GET"):
+        feed_back = {'data':[]}
+        print tag
+        for puuid in KV.get(CFG.K4D['p']):
+            if tag ==  puuid[:2]:
+                p = KV.get(puuid)
+                if 0 == p['del']:
+                    feed_back['data'].append("%s %s:%s"%(puuid 
+                        , p['code']
+                        , p['title'])) 
+        feed_back['msg'] = "%s papers had %s ."% (tag, len(feed_back['data']))
+        return feed_back
+        
+    else:
+        return "alert quary !-("
+
+@APP.delete('/cli/del/p/<uuid>/<qstr>')
+def del_p(uuid, qstr):
+    q_dict = _query2dict(qstr)
+    if _chkQueryArgs("/cli/del/p/%s"% uuid, q_dict, "DELETE"):
+        feed_back = {'data':[]}
+        p = KV.get(uuid)
+        p['del'] = 1
+        KV.replace(uuid, p)
+        feed_back['data'].append("%s:%s"% (p['code'],p['title']))
+        feed_back['msg'] = "deleted: %s"% uuid
+        return feed_back
+    else:
+        return "alert quary!-("
+
 @APP.post('/cli/push/p/<qstr>')
 def push_papers(qstr):
     q_dict = _query2dict(qstr)
@@ -192,6 +225,8 @@ def push_papers(qstr):
         #set_var = base64.urlsafe_b64decode(request.forms[set_key])
         j = eval(set_var) #, set_var
         p_tag = j.keys()[0]
+        #print j.keys()
+        #return None
         for paper in j[p_tag]:
             uuid = GENID(p_tag)
             feed_back['data'].append(uuid)

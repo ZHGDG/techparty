@@ -384,6 +384,14 @@ class Borg():
         , "sum/m":      "GET"       # 统计 成员 信息现状
         , "sum/e":      "GET"       # 统计 活动 信息现状
         , "sum/p":      "GET"       # 统计 文章 信息现状
+        , "sum/p/gb":   "GET"       # 统计 分类文章 信息现状
+        , "sum/p/dd":   "GET"       # 统计 分类文章 信息现状
+        , "sum/p/gt":   "GET"       # 统计 分类文章 信息现状
+        , "sum/p/dm":   "GET"       # 统计 分类文章 信息现状
+        , "sum/p/hd":   "GET"       # 统计 分类文章 信息现状
+        , "sum/p/ot":   "GET"       # 统计 分类文章 信息现状
+        , "sum/p/et":   "GET"       # 统计 分类文章 信息现状
+        , "del/p":      "DELETE"    # 删除指定文章
 
         , "sum/bk":     "GET"       # 综合 备份 数据现状
         , "del/bk":     "DELETE"    # 删除指定备份 dump

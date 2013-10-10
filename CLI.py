@@ -33,6 +33,8 @@ e.g:
   fix/p/:TAG/:UUID url=***     增补|指定 文章 信息
     TAG当前支持 ot|et|gt|dd|gb|dm|hd
     UUID 为 null 时,指创建文章信息
+  sum/p/:TAG 综合 分类文章 信息现状
+  del/p/:UUID          删除指定文章
 
   !!! 小心:大规模数据I/O操作 !!!
   push/p json=path/2/xxx.json   提交批量文章数据文件
