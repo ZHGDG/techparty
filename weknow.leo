@@ -47,9 +47,9 @@
 </v>
 <v t="zoomq.20130925103854.4961"><vh>smart_rest()</vh></v>
 </v>
-<v t="zoomq.20120723102156.5541"><vh>module</vh>
+<v t="zoomq.20120723102156.5541" a="E"><vh>module</vh>
 <v t="zoomq.20130925103854.6406"><vh>@nosent __init__.py</vh></v>
-<v t="zoomq.20120820121523.7422" a="E"><vh>@nosent auth.py</vh>
+<v t="zoomq.20120820121523.7422"><vh>@nosent auth.py</vh>
 <v t="zoomq.20120820121523.7423"><vh>&lt;&lt;declarations&gt;&gt;</vh></v>
 <v t="zoomq.20120820121523.7426"><vh>sha256_uhex</vh></v>
 <v t="zoomq.20120820121523.7424"><vh>check_login</vh></v>
@@ -59,7 +59,7 @@
 <v t="zoomq.20130925103854.6443"><vh>_query2dict</vh></v>
 <v t="zoomq.20130925103854.6445"><vh>_chkQueryArgs</vh></v>
 </v>
-<v t="zoomq.20120717112543.5481"><vh>@nosent utility.py</vh>
+<v t="zoomq.20120717112543.5481" a="E"><vh>@nosent utility.py</vh>
 <v t="zoomq.20120727213305.14698"><vh>&lt;&lt;declarations&gt;&gt;</vh></v>
 <v t="zoomq.20130927104354.6047"><vh>PUT2SS()</vh></v>
 <v t="zoomq.20120727213305.14756"><vh>INIobjSYS()</vh></v>
@@ -81,33 +81,27 @@
 <v t="zoomq.20120723102156.5562"><vh>&lt;&lt;declarations&gt;&gt;</vh></v>
 <v t="zoomq.20130918155053.5760"><vh>GET  /echo</vh></v>
 <v t="zoomq.20130925103854.5007" a="E"><vh>cli/ 远程管理</vh>
-<v t="zoomq.20130925103854.5049"><vh>GET sum/db|dm|m|e|p</vh></v>
+<v t="zoomq.20131007093121.5602"><vh>数据管理</vh>
 <v t="zoomq.20130927104354.6051"><vh>POST bkup/db|dm|m|e|p</vh></v>
-<v t="zoomq.20130929203117.3712"><vh>POST push/p</vh></v>
 <v t="zoomq.20130927104354.6062"><vh>PUT revert/db|dm|m|e|p</vh></v>
 <v t="zoomq.20130927104354.6055"><vh>DELETE del/bk/:UUID</vh></v>
+</v>
+<v t="zoomq.20130925103854.5049"><vh>GET sum/db|dm|m|e|p</vh></v>
 <v t="zoomq.20130927104354.6049"><vh>GET st/kv</vh></v>
-<v t="zoomq.20130926092950.5438"><vh>PUT fix/e/:CODE</vh></v>
-<v t="zoomq.20130928090931.3710"><vh>PUT fix/m/:UUID</vh></v>
-<v t="zoomq.20130928090931.3708"><vh>PUT fix/dm/:NM</vh></v>
-<v t="zoomq.20130926092950.5440"><vh>__chkDMID()</vh></v>
-<v t="zoomq.20130926092950.5442"><vh>__chkDAMA()</vh></v>
+<v t="zoomq.20131007093121.5601" a="E"><vh>文章管理</vh>
+<v t="zoomq.20130929203117.3712" a="E"><vh>POST push/p</vh>
+<v t="zoomq.20131007093121.31623"><vh>&lt;&lt;检验导入&gt;&gt;</vh></v>
+</v>
 <v t="zoomq.20130926092950.5447"><vh>PUT fix/p/:tag/:UUID</vh></v>
 <v t="zoomq.20130926092950.5449"><vh>__chkPAPER()</vh></v>
+<v t="zoomq.20130926092950.5438"><vh>PUT fix/e/:CODE</vh></v>
+</v>
 <v t="zoomq.20130925103854.5041"><vh>用户管理</vh>
 <v t="zoomq.20130925103854.6454"><vh>GET cli/sum/usr</vh></v>
-<v t="zoomq.20130925103854.5042"><vh>PUT cli/acl/usr/&lt;uuid&gt;</vh>
-<v t="zoomq.20130925103854.5043"><vh>&lt;&lt;acl bind&gt;&gt;</vh></v>
-</v>
-<v t="zoomq.20130925103854.5044"><vh>PUT cli/reliv/usr/&lt;uuid&gt;</vh>
-<v t="zoomq.20130925103854.5045"><vh>&lt;&lt;reliv del&gt;&gt;</vh></v>
-</v>
-<v t="zoomq.20130925103854.5046"><vh>DEL cli/del/usr/&lt;uuid&gt;</vh>
-<v t="zoomq.20130925103854.5047"><vh>&lt;&lt;usr del&gt;&gt;</vh></v>
-</v>
-<v t="zoomq.20130925103854.5048"><vh>GET cli/info/usr/&lt;uuid&gt;</vh></v>
-<v t="zoomq.20130925103854.5050"><vh>GET cli/list/usr/级别</vh></v>
-<v t="zoomq.20130925103854.5051"><vh>GET cli/find/usr/&lt;关键字&gt;</vh></v>
+<v t="zoomq.20130928090931.3708"><vh>PUT fix/dm/:NM</vh></v>
+<v t="zoomq.20130928090931.3710"><vh>PUT fix/m/:UUID</vh></v>
+<v t="zoomq.20130926092950.5440"><vh>__chkDMID()</vh></v>
+<v t="zoomq.20130926092950.5442"><vh>__chkDAMA()</vh></v>
 </v>
 <v t="zoomq.20130925103854.5033"><vh>his事务</vh>
 <v t="zoomq.20130925103854.5034"><vh>GET sum/his</vh></v>
@@ -125,14 +119,16 @@
 </v>
 <v t="zoomq.20130925103854.6426"><vh>__chkRegUsr()</vh></v>
 <v t="zoomq.20130925103854.6427"><vh>__update_usr()</vh></v>
-<v t="zoomq.20130925103854.6430"><vh>FSM</vh>
+<v t="zoomq.20130925103854.6430" a="E"><vh>FSM</vh>
 <v t="zoomq.20130925103854.6461"><vh>&lt;&lt;大妈联系&gt;&gt;</vh></v>
-<v t="zoomq.20130925103854.6431"><vh>s 查阅文章</vh>
+<v t="zoomq.20130925103854.6431" a="E"><vh>s 查阅文章</vh>
 <v t="zoomq.20130926092950.5443"><vh>&lt;&lt;seek&gt;&gt;</vh></v>
 <v t="zoomq.20130926092950.5444"><vh>&lt;&lt;tags&gt;&gt;</vh></v>
-<v t="zoomq.20130926092950.5445"><vh>&lt;&lt;no_paper&gt;&gt;</vh></v>
+<v t="zoomq.20130926092950.5445" a="E"><vh>&lt;&lt;no_paper&gt;&gt;</vh>
+<v t="zoomq.20131007093121.31624"><vh>&lt;&lt;tag paper No.&gt;&gt;</vh></v>
 </v>
-<v t="zoomq.20130925103854.6433" a="E"><vh>i 成员信息</vh>
+</v>
+<v t="zoomq.20130925103854.6433"><vh>i 成员信息</vh>
 <v t="zoomq.20130926092950.5433"><vh>&lt;&lt;info_me&gt;&gt;</vh></v>
 <v t="zoomq.20130926092950.5434"><vh>&lt;&lt;edit_info&gt;&gt;</vh></v>
 <v t="zoomq.20130926092950.5436"><vh>&lt;&lt;info_alias&gt;&gt;</vh></v>
@@ -167,7 +163,22 @@
 </v>
 <v t="zoomq.20120727213305.14717"><vh>@nosent index.html</vh></v>
 </v>
-<v t="zoomq.20120717112543.5493"><vh>__chaos</vh>
+<v t="zoomq.20120717112543.5493" a="E"><vh>__chaos</vh>
+<v t="zoomq.20131007093121.5614"><vh>用户管理</vh>
+<v t="zoomq.20131007093121.5615"><vh>GET cli/sum/usr</vh></v>
+<v t="zoomq.20131007093121.5616"><vh>PUT cli/acl/usr/&lt;uuid&gt;</vh>
+<v t="zoomq.20131007093121.5617"><vh>&lt;&lt;acl bind&gt;&gt;</vh></v>
+</v>
+<v t="zoomq.20131007093121.5618"><vh>PUT cli/reliv/usr/&lt;uuid&gt;</vh>
+<v t="zoomq.20131007093121.5619"><vh>&lt;&lt;reliv del&gt;&gt;</vh></v>
+</v>
+<v t="zoomq.20131007093121.5620"><vh>DEL cli/del/usr/&lt;uuid&gt;</vh>
+<v t="zoomq.20131007093121.5621"><vh>&lt;&lt;usr del&gt;&gt;</vh></v>
+</v>
+<v t="zoomq.20131007093121.5622"><vh>GET cli/info/usr/&lt;uuid&gt;</vh></v>
+<v t="zoomq.20131007093121.5623"><vh>GET cli/list/usr/级别</vh></v>
+<v t="zoomq.20131007093121.5624"><vh>GET cli/find/usr/&lt;关键字&gt;</vh></v>
+</v>
 <v t="zoomq.20120727213305.14743"><vh>&lt;&lt;validate&gt;&gt;</vh></v>
 <v t="zoomq.20120727213305.14734"><vh>表单JS验证</vh></v>
 <v t="zoomq.20120727213305.14730"><vh>用户crx升级</vh>
@@ -560,6 +571,9 @@ import traceback
 import hashlib
 import base64
 import cPickle
+import ConfigParser
+from os.path import splitext as os_splitext
+from os.path import exists as os_exists
 
 from copy import deepcopy
 import xml.etree.ElementTree as etree
@@ -1051,7 +1065,7 @@ JINJA2TPL_PATH = os.path.abspath(
         ,'dm':'dm_%(timestamp)s_PUB%(tot)d'
         ,'hd':'hd_%(timestamp)s_PUB%(tot)d'
         ,'ot':'ot_%(timestamp)s_PUB%(tot)d'
-        ,'re':'re_%(timestamp)s_PUB%(tot)d'
+        ,'et':'et_%(timestamp)s_PUB%(tot)d'
         #,'dm':'m:%(timestamp)s:DM%(tot)d'
         }
     if obj in GOBJMAP.keys():
@@ -1485,6 +1499,7 @@ K4WD = {"his_id":""   # 更新戮
     , "tag":"ot"
     , 'title':''
     , "desc":""     # 解释
+    , "code":""     # 文章,分类序号
     , "picurl":''
     , "url":""
     }
@@ -1512,6 +1527,7 @@ objHis = {'hisobj':""
     , "desc":""     # 解释
 
     , "fsm":""      # 有限状态机 当前状态
+    , "buffer":""   # 有限状态机 前次选择指令
     , "pp":''       # Passport 
     , "nm":""       # NickName "Zoom.Quiet"
     , 'em':''       #'zhouqi@ijinshan.com',
@@ -1907,106 +1923,6 @@ def sum_tag(qstr):
 '''
 '''
 </t>
-<t tx="zoomq.20130925103854.5042">@APP.put('/cli/acl/usr/&lt;uuid&gt;')
-def put_usr_acl(uuid):
-    q_dict = request.forms
-    #print q_dict
-    if _chkQueryArgs("/cli/acl/usr/%s"% uuid, q_dict, "PUT"):
-        if 'set' in q_dict.keys():
-            &lt;&lt;acl bind&gt;&gt;
-            return {'msg':"safe quary;-)"
-                , 'data': data
-                }
-        else:
-            return {'alert':"lost set=XXX !-("}
-    else:
-        return "alert quary!-("
-
-</t>
-<t tx="zoomq.20130925103854.5043">q_acl = base64.urlsafe_b64decode(q_dict['set'])
-if q_acl in CFG.ACL_USR.keys():
-    print q_acl, CFG.ACL_USR[q_acl]
-    data = {}
-    his_id = HISIT('usr', uuid, "U")
-    print CFG.USR.update({'uuid':uuid}
-        ,{"$set": {"acl": CFG.ACL_USR[q_acl]
-            , 'his_id':his_id
-            }
-        })
-    data['hisid'] = his_id
-    data['setACL'] = CFG.ACL_USR[q_acl]
-    
-    #print dump, "\n\t", len(dump)
-    #print marshal.loads(dump)
-else:
-    return {'alert':'bad acl alias!-( MUST:[ban|usr|api|admin]'}
-
-</t>
-<t tx="zoomq.20130925103854.5044">@APP.put('/cli/reliv/usr/&lt;uuid&gt;')
-def put_usr_reliv(uuid):
-    q_dict = request.forms
-    #print q_dict
-    if _chkQueryArgs("/cli/reliv/usr/%s"% uuid, q_dict, "PUT"):
-        if 'set' in q_dict.keys():
-            &lt;&lt;reliv del&gt;&gt;
-            return {'msg':"safe quary;-)"
-                , 'data': data
-                }
-        else:
-            return {'alert':"lost set=XXX !-("}
-    else:
-        return "alert quary!-("
-
-
-
-</t>
-<t tx="zoomq.20130925103854.5045">data = {}
-his_id = HISIT('usr', uuid, "U")
-print CFG.USR.update({'uuid':uuid}
-    ,{"$set": {"del": 0
-        , 'his_id':his_id
-        }
-    })
-data['hisid'] = his_id
-data['means'] = "usr reliving now"
-</t>
-<t tx="zoomq.20130925103854.5046">@APP.delete('/cli/del/usr/&lt;uuid&gt;/&lt;qstr&gt;')
-def del_usr(uuid, qstr):
-    q_dict = _query2dict(qstr)
-    if _chkQueryArgs("/cli/del/usr/%s"% uuid, q_dict, "DELETE"):
-        &lt;&lt;usr del&gt;&gt;
-        return {'msg':"safe quary;-)"
-            , 'data': data
-            }
-    else:
-        return "alert quary!-("
-
-
-
-
-
-</t>
-<t tx="zoomq.20130925103854.5047">data = {}
-his_id = HISIT('usr', uuid, "D")
-print CFG.USR.update({'uuid':uuid}
-    ,{"$set": {"del": 1
-        , 'his_id':his_id
-        }
-    })
-data['hisid'] = his_id
-data['means'] = "usr DELETE now!"
-</t>
-<t tx="zoomq.20130925103854.5048">@APP.get('/cli/info/usr/&lt;uuid&gt;/&lt;qstr&gt;')
-def get_usr_info(uuid, qstr):
-    q_dict = _query2dict(qstr)
-    if _chkQueryArgs("/cli/info/usr/%s"% uuid, q_dict, "GET"):
-        return {'msg':"safe quary;-)"
-            , 'data':CFG.USR.find_one({'uuid': uuid}, {'_id':0})
-            }
-    else:
-        return "alert quary!-("
-
-</t>
 <t tx="zoomq.20130925103854.5049">@APP.get('/cli/sum/&lt;matter&gt;/&lt;qstr&gt;')
 def st_kv(matter, qstr):
     q_dict = _query2dict(qstr)
@@ -2037,55 +1953,6 @@ def st_kv(matter, qstr):
         
     else:
         return "alert quary !-("
-
-</t>
-<t tx="zoomq.20130925103854.5050">@APP.get('/cli/list/usr/&lt;acl&gt;/&lt;qstr&gt;')
-def q_usr_acl(acl, qstr):
-    '''ACL_USR={'ban':0,'usr':1,'api':42,'admin':100}
-    '''
-    print acl
-    q_dict = _query2dict(qstr)
-    if _chkQueryArgs("/cli/list/usr/%s"% acl, q_dict, "GET"):
-        data = []
-        for u in CFG.USR.find({'acl':acl}
-            , {'_id':0, 'pp':1, 'nm':1, 'acl':1, 'uuid':1}
-            , limit=5).sort("uuid"):
-            data.append(u)
-            
-        return {'msg':"safe quary;-)"
-            , 'data':data
-            , 'count': CFG.USR.find({'acl':acl}).count()
-            }
-    else:
-        return "alert quary!-("
-
-</t>
-<t tx="zoomq.20130925103854.5051">@APP.get('/cli/find/usr/&lt;kword&gt;/&lt;qstr&gt;')
-def find_usr_kword(kword, qstr):
-    #print request.query_string #query.keys()#.appkey
-    q_dict = _query2dict(qstr)
-    pattern = re.compile(".*%s.*"% kword)
-    if _chkQueryArgs("/cli/find/usr/%s"% kword, q_dict, "GET"):
-        data = []
-        for u in CFG.USR.find({"$or":[{'nm':pattern}
-                , {'em':pattern}
-                , {'acc':pattern}
-                , {'uuid':pattern}
-                ]}
-            , {'_id':0, 'pp':1, 'nm':1, 'acl':1, 'uuid':1}
-            , limit=5):
-            data.append(u)
-            
-        return {'msg':"safe quary;-)"
-            , 'data':data
-            , 'count': CFG.USR.find({"$or":[{'nm':pattern}
-                , {'em':pattern}
-                , {'mb':pattern}
-                , {'uuid':pattern}
-                ]}).count()
-            }
-    else:
-        return "alert quary!-("
 
 </t>
 <t tx="zoomq.20130925103854.6406">@language python
@@ -2914,6 +2781,8 @@ def info_alias(self, wxreq):
 </t>
 <t tx="zoomq.20130926092950.5438">@APP.put('/cli/fix/e/&lt;code&gt;')
 def fix_event(code):
+    '''events info. editor
+    '''
     q_dict = request.forms
     if _chkQueryArgs("/cli/fix/e/%s"% code, q_dict, "PUT"):
         feed_back = {'data':[]}
@@ -3012,19 +2881,24 @@ def papers(self, wxreq):
                 count += 1
                 paper =  KV.get(uuid)
                 print paper['title']
-                papers4tag.append(paper['title'])
-        print "count ", count
+                papers4tag.append((paper['code'],paper['title']))
+        #print "count ", count
         if 0 == count:
             # not paper in the tag yet
             crt_usr['fsm'] = "setup"
+            crt_usr['buffer'] = ""
             __update_usr(crt_usr)
             return WxTextResponse(CFG.TXT_PUB_WAIT, wxreq).as_xml()
         else:
             # waiting paper Number code, jump into FSM:number_paper
+            papers4tag.sort()
+            p_list = "    ".join(["%s: %s\n"%(p[0], p[1]) for p in papers4tag])
             crt_usr['fsm'] = "number_paper"
+            crt_usr['buffer'] = tag
             __update_usr(crt_usr)
             return WxTextResponse(CFG.TXT_TAG_PAPERS% (CFG.ESSAY_TAG[tag]
-                , "\n".join(papers4tag)), wxreq).as_xml()
+                , p_list.decode('utf-8')), wxreq).as_xml()
+            
     else:    
         crt_usr['fsm'] = "papers"
         __update_usr(crt_usr)
@@ -3044,11 +2918,18 @@ def papers(self, wxreq):
 def number_paper(self, wxreq):
     print 'setup-&gt;seek-&gt;...-&gt;no-&gt;end'
     crt_usr = wxreq.crt_usr
-    if wxreq.Content.isdigit():
+    code = wxreq.Content
+    #print code, code.isdigit()
+    if code.isdigit():
         print "exp URI xml..."
+        &lt;&lt;tag paper No.&gt;&gt;
+        #return None
         crt_usr['fsm'] = "setup"
         __update_usr(crt_usr)
-        return WxTextResponse("will exp. 图文消息", wxreq).as_xml()
+        if resp:
+            return resp
+        else:
+            return WxTextResponse("图文消息返回异常,议案吼 大妈!", wxreq).as_xml()
     else:
         crt_usr['fsm'] = "number_paper"
         __update_usr(crt_usr)
@@ -3198,8 +3079,10 @@ def bkup_dump(matter):
             , uri
             , base64.urlsafe_b64encode(get_str)
             )
-        cmd = "http -b %s %s &lt; %s"% (method, uri, li_arg[1])
-
+        #print uri
+        #cmd = "http -b %s %s &lt; %s"% (method, uri, li_arg[1])
+        cmd = "http -b -f %s %s json@%s"% (method, uri, li_arg[1])
+        #print cmd
 else:
     put_args = _genQueryArgs(uri, q=args, rest_method=method)
     pur_vars = " ".join(["%s=%s"% (p[0], p[1]) for p in put_args])
@@ -3298,39 +3181,244 @@ def fix_member(uuid):
 
 </t>
 <t tx="zoomq.20130929203117.3712">@APP.post('/cli/push/p/&lt;qstr&gt;')
-def push_paper(qstr):
+def push_papers(qstr):
     q_dict = _query2dict(qstr)
     q_form = request.forms
+    q_file = request.files.get('json')
+    #f_name, f_ext = os_splitext(q_file.filename)
+    #print f_name, f_ext
+    set_var = q_file.file.read()
     if _chkQueryArgs("/cli/push/p", q_dict, "POST"):
         feed_back = {'data':[]}
-        set_key = list(set(q_form.keys())-set(CFG.SECURE_ARGS))[0]
+        #set_key = list(set(q_form.keys())-set(CFG.SECURE_ARGS))[0]
         #set_var = base64.urlsafe_b64decode(request.forms[set_key])
-        j = eval(set_key) #, set_var
-        print j.keys()
-        return None
-        
-        if 'db' ==  matter:
-            print "try dumps all nodes from KVDB"
-        else:
-            kb_objs = {}
-            kb_objs[CFG.K4D[matter] ] = KV.get(CFG.K4D[matter])
-            if 0 != len(kb_objs[CFG.K4D[matter] ] ):
-                for k in kb_objs[CFG.K4D[matter] ]:
-                    kb_objs[k] = KV.get(k)
-            dumps = cPickle.dumps(kb_objs)
-            feed_back['data'].append("%s pointed %s nodes"%(CFG.K4D[matter] 
-                , len(kb_objs[CFG.K4D[matter] ] )))
-            #print kb_objs
-        sid, uri = PUT2SS(dumps, name=matter)
-        
-        feed_back['data'].append( BK.stat_object(sid) )
-        feed_back['msg'] = "bkup %s dump as %s"% (CFG.K4D[matter], uri)
+        j = eval(set_var) #, set_var
+        p_tag = j.keys()[0]
+        for paper in j[p_tag]:
+            &lt;&lt;检验导入&gt;&gt;
+        #feed_back['data'].append( BK.stat_object(sid) )
+        feed_back['msg'] = "uploaded %s papers info."% len(j[p_tag])
         #data.append(KV.get_info())
         return feed_back
     else:
         return "alert quary!-("
 
 
+
+</t>
+<t tx="zoomq.20131007093121.31623">uuid = GENID(p_tag)
+feed_back['data'].append(uuid)
+#print uuid
+new_paper = deepcopy(CFG.K4WD)
+new_paper['uuid'] = uuid
+new_paper['his_id'] = uuid
+new_paper['lasttm'] = time.time()
+new_paper['tag'] = p_tag
+new_paper['title'] = paper['title']
+new_paper['url'] = paper['uri']
+new_paper['picurl'] = paper['picuri']
+new_paper['code'] = paper['code']
+KV.add(uuid, new_paper)
+ADD4SYS('p', uuid)
+#print uuid, new_paper
+
+</t>
+<t tx="zoomq.20131007093121.31624">#print code
+tag = crt_usr['buffer']
+resp = None
+for puuid in KV.get(CFG.K4D['p']):
+    if tag == puuid[:2]:
+        p = KV.get(puuid)
+        #print p['code']
+        if int(code) == int(p['code']):
+            #print p
+            resp = WxNewsResponse([WxArticle(p['title'],
+                        Description="",
+                        Url=p['url'],
+                        PicUrl=p['picurl'])], wxreq).as_xml()
+            #return resp
+            break
+
+
+</t>
+<t tx="zoomq.20131007093121.5601"># collection wechat papers mana. matters
+'''
+'''
+</t>
+<t tx="zoomq.20131007093121.5602"># collection KVDB mana. matters
+'''
+'''
+</t>
+<t tx="zoomq.20131007093121.5614"># collection usr ACL matter
+'''
+'''
+</t>
+<t tx="zoomq.20131007093121.5615">@APP.get('/cli/sum/m/&lt;qstr&gt;')
+def sum_usr(qstr):
+    #print request.query_string #query.keys()#.appkey
+    q_dict = _query2dict(qstr)
+    if _chkQueryArgs("/cli/sum/m", q_dict, "GET"):
+        data = []
+        usrs = KV.get(CFG.K4D['m'])
+        print usrs
+        for u in usrs[:3]:
+            data.append(KV.get(u))
+    
+        return {'msg':"safe quary;-)"
+            , 'data':data
+            , 'count': len(usrs)
+            }
+    else:
+        return "alert quary!-("
+
+</t>
+<t tx="zoomq.20131007093121.5616">@APP.put('/cli/acl/usr/&lt;uuid&gt;')
+def put_usr_acl(uuid):
+    q_dict = request.forms
+    #print q_dict
+    if _chkQueryArgs("/cli/acl/usr/%s"% uuid, q_dict, "PUT"):
+        if 'set' in q_dict.keys():
+            &lt;&lt;acl bind&gt;&gt;
+            return {'msg':"safe quary;-)"
+                , 'data': data
+                }
+        else:
+            return {'alert':"lost set=XXX !-("}
+    else:
+        return "alert quary!-("
+
+</t>
+<t tx="zoomq.20131007093121.5617">q_acl = base64.urlsafe_b64decode(q_dict['set'])
+if q_acl in CFG.ACL_USR.keys():
+    print q_acl, CFG.ACL_USR[q_acl]
+    data = {}
+    his_id = HISIT('usr', uuid, "U")
+    print CFG.USR.update({'uuid':uuid}
+        ,{"$set": {"acl": CFG.ACL_USR[q_acl]
+            , 'his_id':his_id
+            }
+        })
+    data['hisid'] = his_id
+    data['setACL'] = CFG.ACL_USR[q_acl]
+    
+    #print dump, "\n\t", len(dump)
+    #print marshal.loads(dump)
+else:
+    return {'alert':'bad acl alias!-( MUST:[ban|usr|api|admin]'}
+
+</t>
+<t tx="zoomq.20131007093121.5618">@APP.put('/cli/reliv/usr/&lt;uuid&gt;')
+def put_usr_reliv(uuid):
+    q_dict = request.forms
+    #print q_dict
+    if _chkQueryArgs("/cli/reliv/usr/%s"% uuid, q_dict, "PUT"):
+        if 'set' in q_dict.keys():
+            &lt;&lt;reliv del&gt;&gt;
+            return {'msg':"safe quary;-)"
+                , 'data': data
+                }
+        else:
+            return {'alert':"lost set=XXX !-("}
+    else:
+        return "alert quary!-("
+
+
+
+</t>
+<t tx="zoomq.20131007093121.5619">data = {}
+his_id = HISIT('usr', uuid, "U")
+print CFG.USR.update({'uuid':uuid}
+    ,{"$set": {"del": 0
+        , 'his_id':his_id
+        }
+    })
+data['hisid'] = his_id
+data['means'] = "usr reliving now"
+</t>
+<t tx="zoomq.20131007093121.5620">@APP.delete('/cli/del/usr/&lt;uuid&gt;/&lt;qstr&gt;')
+def del_usr(uuid, qstr):
+    q_dict = _query2dict(qstr)
+    if _chkQueryArgs("/cli/del/usr/%s"% uuid, q_dict, "DELETE"):
+        &lt;&lt;usr del&gt;&gt;
+        return {'msg':"safe quary;-)"
+            , 'data': data
+            }
+    else:
+        return "alert quary!-("
+
+
+
+
+
+</t>
+<t tx="zoomq.20131007093121.5621">data = {}
+his_id = HISIT('usr', uuid, "D")
+print CFG.USR.update({'uuid':uuid}
+    ,{"$set": {"del": 1
+        , 'his_id':his_id
+        }
+    })
+data['hisid'] = his_id
+data['means'] = "usr DELETE now!"
+</t>
+<t tx="zoomq.20131007093121.5622">@APP.get('/cli/info/usr/&lt;uuid&gt;/&lt;qstr&gt;')
+def get_usr_info(uuid, qstr):
+    q_dict = _query2dict(qstr)
+    if _chkQueryArgs("/cli/info/usr/%s"% uuid, q_dict, "GET"):
+        return {'msg':"safe quary;-)"
+            , 'data':CFG.USR.find_one({'uuid': uuid}, {'_id':0})
+            }
+    else:
+        return "alert quary!-("
+
+</t>
+<t tx="zoomq.20131007093121.5623">@APP.get('/cli/list/usr/&lt;acl&gt;/&lt;qstr&gt;')
+def q_usr_acl(acl, qstr):
+    '''ACL_USR={'ban':0,'usr':1,'api':42,'admin':100}
+    '''
+    print acl
+    q_dict = _query2dict(qstr)
+    if _chkQueryArgs("/cli/list/usr/%s"% acl, q_dict, "GET"):
+        data = []
+        for u in CFG.USR.find({'acl':acl}
+            , {'_id':0, 'pp':1, 'nm':1, 'acl':1, 'uuid':1}
+            , limit=5).sort("uuid"):
+            data.append(u)
+            
+        return {'msg':"safe quary;-)"
+            , 'data':data
+            , 'count': CFG.USR.find({'acl':acl}).count()
+            }
+    else:
+        return "alert quary!-("
+
+</t>
+<t tx="zoomq.20131007093121.5624">@APP.get('/cli/find/usr/&lt;kword&gt;/&lt;qstr&gt;')
+def find_usr_kword(kword, qstr):
+    #print request.query_string #query.keys()#.appkey
+    q_dict = _query2dict(qstr)
+    pattern = re.compile(".*%s.*"% kword)
+    if _chkQueryArgs("/cli/find/usr/%s"% kword, q_dict, "GET"):
+        data = []
+        for u in CFG.USR.find({"$or":[{'nm':pattern}
+                , {'em':pattern}
+                , {'acc':pattern}
+                , {'uuid':pattern}
+                ]}
+            , {'_id':0, 'pp':1, 'nm':1, 'acl':1, 'uuid':1}
+            , limit=5):
+            data.append(u)
+            
+        return {'msg':"safe quary;-)"
+            , 'data':data
+            , 'count': CFG.USR.find({"$or":[{'nm':pattern}
+                , {'em':pattern}
+                , {'mb':pattern}
+                , {'uuid':pattern}
+                ]}).count()
+            }
+    else:
+        return "alert quary!-("
 
 </t>
 </tnodes>

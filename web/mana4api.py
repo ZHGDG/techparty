@@ -6,6 +6,9 @@ import traceback
 import hashlib
 import base64
 import cPickle
+import ConfigParser
+from os.path import splitext as os_splitext
+from os.path import exists as os_exists
 
 from copy import deepcopy
 import xml.etree.ElementTree as etree
@@ -59,37 +62,9 @@ def wechat(request):
 query_string 
 '''
 
-@APP.get('/cli/sum/<matter>/<qstr>')
-def st_kv(matter, qstr):
-    q_dict = _query2dict(qstr)
-    if _chkQueryArgs("/cli/sum/%s"% matter, q_dict, "GET"):
-        feed_back = {'data':[]}
-        if 'db' == matter:
-            feed_back['msg'] = "all SYS_* status."
-            feed_back['data'] = ["%s hold %s node info."% (k
-                , len(KV.get(CFG.K4D[k] )) ) for k in CFG.K4D.keys() if "incr"!=k
-                ]
-        elif 'bk' == matter:
-            count = 0
-            for dump in BK.list():
-                count += 1
-                feed_back['data'].append("%s ~ %s"%(dump['name']
-                    , dump['bytes']
-                    ))
-            feed_back['msg'] = "all Storaged %s dumps"% count
-        else:
-            if matter in CFG.K4D.keys():
-                feed_back['msg'] = "base %s data."% CFG.K4D[matter]
-                feed_back['data'] = "%s hold %s node info."% (matter
-                    , len(KV.get(CFG.K4D[matter] )) 
-                    )
-            else:
-                feed_back['msg'] = "sum key is OUT CFG.K4D !-("
-        return feed_back
-        
-    else:
-        return "alert quary !-("
-
+# collection KVDB mana. matters
+'''
+'''
 @APP.post('/cli/bkup/<matter>')
 def bkup_dump(matter):
     q_dict = request.forms
@@ -115,41 +90,6 @@ def bkup_dump(matter):
         return feed_back
     else:
         return "alert quary!-("
-
-@APP.post('/cli/push/p/<qstr>')
-def push_paper(qstr):
-    q_dict = _query2dict(qstr)
-    q_form = request.forms
-    if _chkQueryArgs("/cli/push/p", q_dict, "POST"):
-        feed_back = {'data':[]}
-        set_key = list(set(q_form.keys())-set(CFG.SECURE_ARGS))[0]
-        #set_var = base64.urlsafe_b64decode(request.forms[set_key])
-        j = eval(set_key) #, set_var
-        print j.keys()
-        return None
-        
-        if 'db' ==  matter:
-            print "try dumps all nodes from KVDB"
-        else:
-            kb_objs = {}
-            kb_objs[CFG.K4D[matter] ] = KV.get(CFG.K4D[matter])
-            if 0 != len(kb_objs[CFG.K4D[matter] ] ):
-                for k in kb_objs[CFG.K4D[matter] ]:
-                    kb_objs[k] = KV.get(k)
-            dumps = cPickle.dumps(kb_objs)
-            feed_back['data'].append("%s pointed %s nodes"%(CFG.K4D[matter] 
-                , len(kb_objs[CFG.K4D[matter] ] )))
-            #print kb_objs
-        sid, uri = PUT2SS(dumps, name=matter)
-        
-        feed_back['data'].append( BK.stat_object(sid) )
-        feed_back['msg'] = "bkup %s dump as %s"% (CFG.K4D[matter], uri)
-        #data.append(KV.get_info())
-        return feed_back
-    else:
-        return "alert quary!-("
-
-
 
 @APP.put('/cli/revert/<matter>')
 def revert_dump(matter):
@@ -191,6 +131,37 @@ def del_bk(uuid, qstr):
     else:
         return "alert quary!-("
 
+@APP.get('/cli/sum/<matter>/<qstr>')
+def st_kv(matter, qstr):
+    q_dict = _query2dict(qstr)
+    if _chkQueryArgs("/cli/sum/%s"% matter, q_dict, "GET"):
+        feed_back = {'data':[]}
+        if 'db' == matter:
+            feed_back['msg'] = "all SYS_* status."
+            feed_back['data'] = ["%s hold %s node info."% (k
+                , len(KV.get(CFG.K4D[k] )) ) for k in CFG.K4D.keys() if "incr"!=k
+                ]
+        elif 'bk' == matter:
+            count = 0
+            for dump in BK.list():
+                count += 1
+                feed_back['data'].append("%s ~ %s"%(dump['name']
+                    , dump['bytes']
+                    ))
+            feed_back['msg'] = "all Storaged %s dumps"% count
+        else:
+            if matter in CFG.K4D.keys():
+                feed_back['msg'] = "base %s data."% CFG.K4D[matter]
+                feed_back['data'] = "%s hold %s node info."% (matter
+                    , len(KV.get(CFG.K4D[matter] )) 
+                    )
+            else:
+                feed_back['msg'] = "sum key is OUT CFG.K4D !-("
+        return feed_back
+        
+    else:
+        return "alert quary !-("
+
 @APP.get('/cli/st/kv/<qstr>')
 def st_kv(qstr):
     q_dict = _query2dict(qstr)
@@ -204,103 +175,47 @@ def st_kv(qstr):
     else:
         return "alert quary!-("
 
-@APP.put('/cli/fix/e/<code>')
-def fix_event(code):
-    q_dict = request.forms
-    if _chkQueryArgs("/cli/fix/e/%s"% code, q_dict, "PUT"):
+# collection wechat papers mana. matters
+'''
+'''
+@APP.post('/cli/push/p/<qstr>')
+def push_papers(qstr):
+    q_dict = _query2dict(qstr)
+    q_form = request.forms
+    q_file = request.files.get('json')
+    #f_name, f_ext = os_splitext(q_file.filename)
+    #print f_name, f_ext
+    set_var = q_file.file.read()
+    if _chkQueryArgs("/cli/push/p", q_dict, "POST"):
         feed_back = {'data':[]}
-        set_key = list(set(q_dict.keys())-set(CFG.SECURE_ARGS))[0]
-        set_var = base64.urlsafe_b64decode(request.forms[set_key])
-        if set_key in CFG.K4DM.keys():
-            print set_key, set_var
-            feed_back['msg'] = "func. not working now..." 
-            
-        else:
-            feed_back['msg'] = "out keys, NULL fixed!" 
-            feed_back['can_fix_keys'] = CFG.K4DM.keys()
+        #set_key = list(set(q_form.keys())-set(CFG.SECURE_ARGS))[0]
+        #set_var = base64.urlsafe_b64decode(request.forms[set_key])
+        j = eval(set_var) #, set_var
+        p_tag = j.keys()[0]
+        for paper in j[p_tag]:
+            uuid = GENID(p_tag)
+            feed_back['data'].append(uuid)
+            #print uuid
+            new_paper = deepcopy(CFG.K4WD)
+            new_paper['uuid'] = uuid
+            new_paper['his_id'] = uuid
+            new_paper['lasttm'] = time.time()
+            new_paper['tag'] = p_tag
+            new_paper['title'] = paper['title']
+            new_paper['url'] = paper['uri']
+            new_paper['picurl'] = paper['picuri']
+            new_paper['code'] = paper['code']
+            KV.add(uuid, new_paper)
+            ADD4SYS('p', uuid)
+            #print uuid, new_paper
+
+        #feed_back['data'].append( BK.stat_object(sid) )
+        feed_back['msg'] = "uploaded %s papers info."% len(j[p_tag])
         #data.append(KV.get_info())
         return feed_back
     else:
         return "alert quary!-("
 
-@APP.put('/cli/fix/m/<uuid>')
-def fix_member(uuid):
-    q_dict = request.forms
-    if _chkQueryArgs("/cli/fix/m/%s"% uuid, q_dict, "PUT"):
-        feed_back = {'data':[]}
-        set_key = list(set(q_dict.keys())-set(CFG.SECURE_ARGS))[0]
-        set_var = base64.urlsafe_b64decode(request.forms[set_key])
-        if set_key in CFG.K4DM.keys():
-            print set_key, set_var
-            feed_back['msg'] = "func. not working now..." 
-            
-        else:
-            feed_back['msg'] = "out keys, NULL fixed!" 
-            feed_back['can_fix_keys'] = CFG.K4DM.keys()
-        #data.append(KV.get_info())
-        return feed_back
-    else:
-        return "alert quary!-("
-
-@APP.put('/cli/fix/dm/<nm>')
-def fix_dm(nm):
-    q_dict = request.forms
-    if _chkQueryArgs("/cli/fix/dm/%s"% nm, q_dict, "PUT"):
-        feed_back = {'data':[]}
-        set_key = list(set(q_dict.keys())-set(CFG.SECURE_ARGS))[0]
-        set_var = base64.urlsafe_b64decode(request.forms[set_key])
-        if set_key in CFG.K4DM.keys():
-            #print set_key, set_var
-            #print "<nm>", nm
-            uuid, dm = __chkDAMA(nm.strip())
-            #print uuid,dm
-            if uuid:
-                dm[set_key] = set_var.decode('utf-8')
-                KV.replace(uuid, dm)
-                feed_back['data'].append(dm)
-                feed_back['uuid'] = uuid
-        else:
-            feed_back['msg'] = "out keys, NULL fixed!" 
-            feed_back['can_fix_keys'] = CFG.K4DM.keys()
-        #data.append(KV.get_info())
-        return feed_back
-    else:
-        return "alert quary!-("
-
-def __chkDMID(text):
-    for DM in CFG.DM_ALIAS.keys():
-        #print CFG.DM_ALIAS[DM]
-        if text in CFG.DM_ALIAS[DM]:
-            print "found DAMA!", CFG.DM_ALIAS[DM][0]
-            return DM
-    
-    print "not march DAMA!"
-    return None
-
-def __chkDAMA(zipname):
-    '''chk or init. webchat usr.:
-        - gen KV uuid, try get
-        - if no-exited, init. DM node
-    '''
-    k4dm = __chkDMID(zipname)
-    if not k4dm:
-        return None, None
-    uuid = DAMAID(k4dm)
-    ADD4SYS('dm', uuid)  # for old sys, collected uuid into idx node!
-    usr = KV.get(uuid)
-    if usr:
-        #print uuid, usr
-        return uuid, usr
-    else:
-        # inti.
-        new_usr = deepcopy(CFG.K4DM)
-        new_usr['his_id'] = GENID('his')
-        new_usr['lasttm'] = time.time()
-        new_usr['nm'] = CFG.DM_ALIAS[k4dm][0]
-        KV.add(uuid, new_usr)
-        #ADD4SYS('dm', uuid)
-        #print uuid, new_usr
-        return uuid, new_usr
 
 
 @APP.put('/cli/fix/p/<tag>/<uuid>')
@@ -365,6 +280,27 @@ def __chkPAPER(tag, uuid):
 
         
         
+@APP.put('/cli/fix/e/<code>')
+def fix_event(code):
+    '''events info. editor
+    '''
+    q_dict = request.forms
+    if _chkQueryArgs("/cli/fix/e/%s"% code, q_dict, "PUT"):
+        feed_back = {'data':[]}
+        set_key = list(set(q_dict.keys())-set(CFG.SECURE_ARGS))[0]
+        set_var = base64.urlsafe_b64decode(request.forms[set_key])
+        if set_key in CFG.K4DM.keys():
+            print set_key, set_var
+            feed_back['msg'] = "func. not working now..." 
+            
+        else:
+            feed_back['msg'] = "out keys, NULL fixed!" 
+            feed_back['can_fix_keys'] = CFG.K4DM.keys()
+        #data.append(KV.get_info())
+        return feed_back
+    else:
+        return "alert quary!-("
+
 # collection usr ACL matter
 '''
 '''
@@ -386,142 +322,85 @@ def sum_usr(qstr):
     else:
         return "alert quary!-("
 
-@APP.put('/cli/acl/usr/<uuid>')
-def put_usr_acl(uuid):
+@APP.put('/cli/fix/dm/<nm>')
+def fix_dm(nm):
     q_dict = request.forms
-    #print q_dict
-    if _chkQueryArgs("/cli/acl/usr/%s"% uuid, q_dict, "PUT"):
-        if 'set' in q_dict.keys():
-            q_acl = base64.urlsafe_b64decode(q_dict['set'])
-            if q_acl in CFG.ACL_USR.keys():
-                print q_acl, CFG.ACL_USR[q_acl]
-                data = {}
-                his_id = HISIT('usr', uuid, "U")
-                print CFG.USR.update({'uuid':uuid}
-                    ,{"$set": {"acl": CFG.ACL_USR[q_acl]
-                        , 'his_id':his_id
-                        }
-                    })
-                data['hisid'] = his_id
-                data['setACL'] = CFG.ACL_USR[q_acl]
-                
-                #print dump, "\n\t", len(dump)
-                #print marshal.loads(dump)
-            else:
-                return {'alert':'bad acl alias!-( MUST:[ban|usr|api|admin]'}
-
-            return {'msg':"safe quary;-)"
-                , 'data': data
-                }
+    if _chkQueryArgs("/cli/fix/dm/%s"% nm, q_dict, "PUT"):
+        feed_back = {'data':[]}
+        set_key = list(set(q_dict.keys())-set(CFG.SECURE_ARGS))[0]
+        set_var = base64.urlsafe_b64decode(request.forms[set_key])
+        if set_key in CFG.K4DM.keys():
+            #print set_key, set_var
+            #print "<nm>", nm
+            uuid, dm = __chkDAMA(nm.strip())
+            #print uuid,dm
+            if uuid:
+                dm[set_key] = set_var.decode('utf-8')
+                KV.replace(uuid, dm)
+                feed_back['data'].append(dm)
+                feed_back['uuid'] = uuid
         else:
-            return {'alert':"lost set=XXX !-("}
+            feed_back['msg'] = "out keys, NULL fixed!" 
+            feed_back['can_fix_keys'] = CFG.K4DM.keys()
+        #data.append(KV.get_info())
+        return feed_back
     else:
         return "alert quary!-("
 
-@APP.put('/cli/reliv/usr/<uuid>')
-def put_usr_reliv(uuid):
+@APP.put('/cli/fix/m/<uuid>')
+def fix_member(uuid):
     q_dict = request.forms
-    #print q_dict
-    if _chkQueryArgs("/cli/reliv/usr/%s"% uuid, q_dict, "PUT"):
-        if 'set' in q_dict.keys():
-            data = {}
-            his_id = HISIT('usr', uuid, "U")
-            print CFG.USR.update({'uuid':uuid}
-                ,{"$set": {"del": 0
-                    , 'his_id':his_id
-                    }
-                })
-            data['hisid'] = his_id
-            data['means'] = "usr reliving now"
-            return {'msg':"safe quary;-)"
-                , 'data': data
-                }
+    if _chkQueryArgs("/cli/fix/m/%s"% uuid, q_dict, "PUT"):
+        feed_back = {'data':[]}
+        set_key = list(set(q_dict.keys())-set(CFG.SECURE_ARGS))[0]
+        set_var = base64.urlsafe_b64decode(request.forms[set_key])
+        if set_key in CFG.K4DM.keys():
+            print set_key, set_var
+            feed_back['msg'] = "func. not working now..." 
+            
         else:
-            return {'alert':"lost set=XXX !-("}
+            feed_back['msg'] = "out keys, NULL fixed!" 
+            feed_back['can_fix_keys'] = CFG.K4DM.keys()
+        #data.append(KV.get_info())
+        return feed_back
     else:
         return "alert quary!-("
 
+def __chkDMID(text):
+    for DM in CFG.DM_ALIAS.keys():
+        #print CFG.DM_ALIAS[DM]
+        if text in CFG.DM_ALIAS[DM]:
+            print "found DAMA!", CFG.DM_ALIAS[DM][0]
+            return DM
+    
+    print "not march DAMA!"
+    return None
 
-
-@APP.delete('/cli/del/usr/<uuid>/<qstr>')
-def del_usr(uuid, qstr):
-    q_dict = _query2dict(qstr)
-    if _chkQueryArgs("/cli/del/usr/%s"% uuid, q_dict, "DELETE"):
-        data = {}
-        his_id = HISIT('usr', uuid, "D")
-        print CFG.USR.update({'uuid':uuid}
-            ,{"$set": {"del": 1
-                , 'his_id':his_id
-                }
-            })
-        data['hisid'] = his_id
-        data['means'] = "usr DELETE now!"
-        return {'msg':"safe quary;-)"
-            , 'data': data
-            }
-    else:
-        return "alert quary!-("
-
-
-
-
-
-@APP.get('/cli/info/usr/<uuid>/<qstr>')
-def get_usr_info(uuid, qstr):
-    q_dict = _query2dict(qstr)
-    if _chkQueryArgs("/cli/info/usr/%s"% uuid, q_dict, "GET"):
-        return {'msg':"safe quary;-)"
-            , 'data':CFG.USR.find_one({'uuid': uuid}, {'_id':0})
-            }
-    else:
-        return "alert quary!-("
-
-@APP.get('/cli/list/usr/<acl>/<qstr>')
-def q_usr_acl(acl, qstr):
-    '''ACL_USR={'ban':0,'usr':1,'api':42,'admin':100}
+def __chkDAMA(zipname):
+    '''chk or init. webchat usr.:
+        - gen KV uuid, try get
+        - if no-exited, init. DM node
     '''
-    print acl
-    q_dict = _query2dict(qstr)
-    if _chkQueryArgs("/cli/list/usr/%s"% acl, q_dict, "GET"):
-        data = []
-        for u in CFG.USR.find({'acl':acl}
-            , {'_id':0, 'pp':1, 'nm':1, 'acl':1, 'uuid':1}
-            , limit=5).sort("uuid"):
-            data.append(u)
-            
-        return {'msg':"safe quary;-)"
-            , 'data':data
-            , 'count': CFG.USR.find({'acl':acl}).count()
-            }
+    k4dm = __chkDMID(zipname)
+    if not k4dm:
+        return None, None
+    uuid = DAMAID(k4dm)
+    ADD4SYS('dm', uuid)  # for old sys, collected uuid into idx node!
+    usr = KV.get(uuid)
+    if usr:
+        #print uuid, usr
+        return uuid, usr
     else:
-        return "alert quary!-("
+        # inti.
+        new_usr = deepcopy(CFG.K4DM)
+        new_usr['his_id'] = GENID('his')
+        new_usr['lasttm'] = time.time()
+        new_usr['nm'] = CFG.DM_ALIAS[k4dm][0]
+        KV.add(uuid, new_usr)
+        #ADD4SYS('dm', uuid)
+        #print uuid, new_usr
+        return uuid, new_usr
 
-@APP.get('/cli/find/usr/<kword>/<qstr>')
-def find_usr_kword(kword, qstr):
-    #print request.query_string #query.keys()#.appkey
-    q_dict = _query2dict(qstr)
-    pattern = re.compile(".*%s.*"% kword)
-    if _chkQueryArgs("/cli/find/usr/%s"% kword, q_dict, "GET"):
-        data = []
-        for u in CFG.USR.find({"$or":[{'nm':pattern}
-                , {'em':pattern}
-                , {'acc':pattern}
-                , {'uuid':pattern}
-                ]}
-            , {'_id':0, 'pp':1, 'nm':1, 'acl':1, 'uuid':1}
-            , limit=5):
-            data.append(u)
-            
-        return {'msg':"safe quary;-)"
-            , 'data':data
-            , 'count': CFG.USR.find({"$or":[{'nm':pattern}
-                , {'em':pattern}
-                , {'mb':pattern}
-                , {'uuid':pattern}
-                ]}).count()
-            }
-    else:
-        return "alert quary!-("
 
 # collection usr ACL matter
 '''
@@ -825,19 +704,24 @@ def papers(self, wxreq):
                 count += 1
                 paper =  KV.get(uuid)
                 print paper['title']
-                papers4tag.append(paper['title'])
-        print "count ", count
+                papers4tag.append((paper['code'],paper['title']))
+        #print "count ", count
         if 0 == count:
             # not paper in the tag yet
             crt_usr['fsm'] = "setup"
+            crt_usr['buffer'] = ""
             __update_usr(crt_usr)
             return WxTextResponse(CFG.TXT_PUB_WAIT, wxreq).as_xml()
         else:
             # waiting paper Number code, jump into FSM:number_paper
+            papers4tag.sort()
+            p_list = "    ".join(["%s: %s\n"%(p[0], p[1]) for p in papers4tag])
             crt_usr['fsm'] = "number_paper"
+            crt_usr['buffer'] = tag
             __update_usr(crt_usr)
             return WxTextResponse(CFG.TXT_TAG_PAPERS% (CFG.ESSAY_TAG[tag]
-                , "\n".join(papers4tag)), wxreq).as_xml()
+                , p_list.decode('utf-8')), wxreq).as_xml()
+            
     else:    
         crt_usr['fsm'] = "papers"
         __update_usr(crt_usr)
@@ -856,11 +740,34 @@ def papers(self, wxreq):
 def number_paper(self, wxreq):
     print 'setup->seek->...->no->end'
     crt_usr = wxreq.crt_usr
-    if wxreq.Content.isdigit():
+    code = wxreq.Content
+    #print code, code.isdigit()
+    if code.isdigit():
         print "exp URI xml..."
+        #print code
+        tag = crt_usr['buffer']
+        resp = None
+        for puuid in KV.get(CFG.K4D['p']):
+            if tag == puuid[:2]:
+                p = KV.get(puuid)
+                #print p['code']
+                if int(code) == int(p['code']):
+                    #print p
+                    resp = WxNewsResponse([WxArticle(p['title'],
+                                Description="",
+                                Url=p['url'],
+                                PicUrl=p['picurl'])], wxreq).as_xml()
+                    #return resp
+                    break
+
+
+        #return None
         crt_usr['fsm'] = "setup"
         __update_usr(crt_usr)
-        return WxTextResponse("will exp. 图文消息", wxreq).as_xml()
+        if resp:
+            return resp
+        else:
+            return WxTextResponse("图文消息返回异常,议案吼 大妈!", wxreq).as_xml()
     else:
         crt_usr['fsm'] = "number_paper"
         __update_usr(crt_usr)

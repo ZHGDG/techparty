@@ -63,6 +63,7 @@ class Borg():
         , "desc":""     # 解释
 
         , "fsm":""      # 有限状态机 当前状态
+        , "buffer":""   # 有限状态机 前次选择指令
         , "pp":''       # Passport 
         , "nm":""       # NickName "Zoom.Quiet"
         , 'em':''       #'zhouqi@ijinshan.com',
@@ -99,6 +100,7 @@ class Borg():
         , "tag":"ot"
         , 'title':''
         , "desc":""     # 解释
+        , "code":""     # 文章,分类序号
         , "picurl":''
         , "url":""
         }

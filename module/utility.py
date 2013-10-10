@@ -98,7 +98,7 @@ def GENID(obj, name=""):
         ,'dm':'dm_%(timestamp)s_PUB%(tot)d'
         ,'hd':'hd_%(timestamp)s_PUB%(tot)d'
         ,'ot':'ot_%(timestamp)s_PUB%(tot)d'
-        ,'re':'re_%(timestamp)s_PUB%(tot)d'
+        ,'et':'et_%(timestamp)s_PUB%(tot)d'
         #,'dm':'m:%(timestamp)s:DM%(tot)d'
         }
     if obj in GOBJMAP.keys():

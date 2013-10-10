@@ -92,8 +92,10 @@ def _rest_main(method, uri, args, host=AS_LOCAL):
                     , uri
                     , base64.urlsafe_b64encode(get_str)
                     )
-                cmd = "http -b %s %s < %s"% (method, uri, li_arg[1])
-
+                #print uri
+                #cmd = "http -b %s %s < %s"% (method, uri, li_arg[1])
+                cmd = "http -b -f %s %s json@%s"% (method, uri, li_arg[1])
+                #print cmd
         else:
             put_args = _genQueryArgs(uri, q=args, rest_method=method)
             pur_vars = " ".join(["%s=%s"% (p[0], p[1]) for p in put_args])
