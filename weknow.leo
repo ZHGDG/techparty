@@ -2887,10 +2887,11 @@ def papers(self, wxreq):
         for uuid in uuid_all_paper:
             # sometime reg. uuid as None
             if uuid and uuid[:2] == tag:
-                count += 1
                 paper =  KV.get(uuid)
-                print paper['title']
-                papers4tag.append((paper['code'],paper['title']))
+                if 0 == paper['del']:
+                    count += 1
+                    print paper['title']
+                    papers4tag.append((paper['code'],paper['title']))
         #print "count ", count
         if 0 == count:
             # not paper in the tag yet
