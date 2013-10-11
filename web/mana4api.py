@@ -183,7 +183,10 @@ def st_p_tag(tag, qstr):
     q_dict = _query2dict(qstr)
     if _chkQueryArgs("/cli/sum/p/%s"% tag, q_dict, "GET"):
         feed_back = {'data':[]}
-        print tag
+        #print tag
+        all_papers = KV.get(CFG.K4D['p'])
+        #print type(all_papers)
+        all_papers.sort()
         for puuid in KV.get(CFG.K4D['p']):
             if tag ==  puuid[:2]:
                 p = KV.get(puuid)
@@ -191,6 +194,7 @@ def st_p_tag(tag, qstr):
                     feed_back['data'].append("%s %s:%s"%(puuid 
                         , p['code']
                         , p['title'])) 
+        #feed_back['data'].sort()
         feed_back['msg'] = "%s papers had %s ."% (tag, len(feed_back['data']))
         return feed_back
         
@@ -739,7 +743,7 @@ def papers(self, wxreq):
                 paper =  KV.get(uuid)
                 if 0 == paper['del']:
                     count += 1
-                    print paper['title']
+                    #print paper['title']
                     papers4tag.append((paper['code'],paper['title']))
         #print "count ", count
         if 0 == count:
