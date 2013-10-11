@@ -2891,7 +2891,20 @@ def papers(self, wxreq):
                 if 0 == paper['del']:
                     count += 1
                     #print paper['title']
-                    papers4tag.append((paper['code'],paper['title']))
+                    #papers4tag.append((str(paper['code']),paper['title']))
+                    #print paper['title']
+                    #print type(paper['title'])
+                    if isinstance(paper['title'], unicode):
+                        #print '%s is a unicode object'%paper['title']
+                        crt_title = paper['title'].encode('utf-8')
+                        #print type(crt_title)
+                    else:
+                        #print '%s is a str object'%paper['title']
+                        crt_title = paper['title']
+                    papers4tag.append((int(paper['code']), crt_title))
+                    #print paper['title'].enconde('utf-8')
+                    #AttributeError: 'str' object has no attribute 'encode'
+        #return None
         #print "count ", count
         if 0 == count:
             # not paper in the tag yet
@@ -2901,7 +2914,9 @@ def papers(self, wxreq):
             return WxTextResponse(CFG.TXT_PUB_WAIT, wxreq).as_xml()
         else:
             # waiting paper Number code, jump into FSM:number_paper
+            #for p in papers4tag: print p
             papers4tag.sort()
+            #return None
             p_list = "    ".join(["%s: %s\n"%(p[0], p[1]) for p in papers4tag])
             crt_usr['fsm'] = "number_paper"
             crt_usr['buffer'] = tag
