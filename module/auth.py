@@ -108,8 +108,15 @@ def _genQueryArgs(api_matter, q="", rest_method="GET"):
         if not q:
             print "缺少 set=*** 设定值"
             return None
-        q_args = q.split("=")
-        args.append((q_args[0], base64.urlsafe_b64encode(q_args[1])))
+        q_args = q.split("=")   
+        #对于值中包含类似 appmsg/show?__biz=MjM$sign=sdfsfd .. 形式就失常了!
+        #print "=".join(q_args[1:])
+        #args.append((q_args[0], base64.urlsafe_b64encode(q_args[1])))
+        args.append((q_args[0], base64.urlsafe_b64encode(
+                        "=".join(q_args[1:]) 
+                        )
+                    ))
+        
     # GET|POST|DELETE 一般不提交额外数据
     sign_base_string = _genArgsStr(matter, args)
     args.append(("sign"

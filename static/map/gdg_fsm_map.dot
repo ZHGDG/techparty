@@ -60,15 +60,13 @@ digraph G4gdg_fsm_map {
     REG_EVEN [label="re\n活动报名",shape=component];
     REG_CANCEL [label="rc\n放弃报名",shape=component];
 
-    ECHO_INFO [label="回报相关资料",shape=note];
-
     INFO_REG [label="ri\n确认报名",shape=component];
 
     ME [label="i 查阅成员资料",shape=component];
         isINFO [label="注册过\n个人资料?",shape=diamond];
     ME_INFO [label="ei\n修订成员资料",shape=component];
-        ME_ALIAS [label="妮称",shape=component];
-        ME_EM [label="邮箱",shape=component];
+        ME_ALIAS [label="提示输入\n妮称",shape=component];
+        ME_EM [label="提示输入\n邮箱",shape=component];
 
     SEEK [label="s\n查阅文章",shape=component];
         GB [label="gb\nG术图书",shape=note];
@@ -78,26 +76,34 @@ digraph G4gdg_fsm_map {
         HD [label="dm\n珠的自白",shape=note];
         ET [label="et\n活动回顾",shape=note];
         OT [label="ot\n其它各种",shape=note];
-            NO [label="指定序号\n查阅具体文章",shape=component];
-
+            TAG [label="输入编号\n查阅分类列表",shape=note];
+            PLI [label="分类文章列表",shape=tab];
+            PID [label="输入序号\n查阅具体文章",shape=note];
+            EXP [label="输出图文链接",shape=tab];
 
     /*图例关系
     srvPUB->installer [label="2.0",style="dotted"];
             ME_EM->ME_CONFIRM;
+    ECHO_INFO [label="回报相关资料",shape=note];
     */
     start->setup [color="#555555",style="dashed,setlinewidth(4)"];
     
     setup->{EVENT REG_EVEN ME ME_INFO INFO_REG REG_CANCEL SEEK HELP VERSION} [style="setlinewidth(2)"];
         {INFO_REG REG_EVEN ME REG_CANCEL}->isINFO;
-            isINFO->end [label="N\n未创建"];
-            isINFO->ECHO_INFO [label="Y"];
+            isINFO->end [label="N\n未创建",fontcolor=red,color=red];
+            isINFO->end [label="Y\n回报相关资料",fontcolor=blue,color=blue,style="setlinewidth(2)"];
         ME_INFO->ME_ALIAS->ME_EM;
-        SEEK->{GB DD GT DM}->NO;
-    {EVENT ME_EM NO ECHO_INFO VERSION}->end;
 
-    {ME_ALIAS ME_EM GB DD GT DM HD ET OT}->CANCEL->end [color=red,style="dotted"];
-        CANCEL->end [color=red];
-    {ME_ALIAS ME_EM GB DD GT DM HD ET OT}->HELP [color=blue,style="dotted"];
+    {ME_EM VERSION}->end;
+        EVENT->end [color=blue,style="setlinewidth(1)"];
+
+    {ME_ALIAS ME_EM TAG PID}->CANCEL->end [color=red,style="dotted"];
+
+    SEEK->{GB DD GT DM HD ET OT}->TAG->PLI->PID->EXP->end [color=blue];
+        TAG->TAG [label="错误,重试",fontcolor=red,color=red];
+        PID->PID [label="错误,重试",fontcolor=red,color=red];
+
+    {ME_ALIAS ME_EM TAG PID}->HELP [color=blue,style="dotted"];
         HELP->end [color=blue];
 
 

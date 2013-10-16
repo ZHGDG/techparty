@@ -16,16 +16,16 @@
 <v t="zoomq.20120710140424.5455"><vh>@nosent index.wsgi</vh></v>
 <v t="zoomq.20120723102156.5544" a="E"><vh>@nosent config.py</vh>
 <v t="zoomq.20120727213305.14750"><vh>&lt;&lt;declarations&gt;&gt;</vh></v>
-<v t="zoomq.20120710140424.5456" a="E"><vh>&lt;&lt;cfg4Borg&gt;&gt;</vh>
+<v t="zoomq.20120710140424.5456"><vh>&lt;&lt;cfg4Borg&gt;&gt;</vh>
 <v t="zoomq.20130926092950.5432"><vh>环境切换</vh></v>
 <v t="zoomq.20130927104354.5456"><vh>storage</vh></v>
-<v t="zoomq.20130923093950.3647" a="E"><vh>KVDB</vh>
+<v t="zoomq.20130923093950.3647"><vh>KVDB</vh>
 <v t="zoomq.20130923093950.5397"><vh>&lt;&lt;MEMBER&gt;&gt;</vh></v>
 <v t="zoomq.20130923093950.5395"><vh>&lt;&lt;CONTENT&gt;&gt;</vh></v>
 <v t="zoomq.20130923093950.8569"><vh>&lt;&lt;大妈们&gt;&gt;</vh></v>
 <v t="zoomq.20130923093950.5396"><vh>&lt;&lt;HISTORIC&gt;&gt;</vh></v>
 </v>
-<v t="zoomq.20130918155053.7084" a="E"><vh>4wechat</vh>
+<v t="zoomq.20130918155053.7084"><vh>4wechat</vh>
 <v t="zoomq.20130923093950.7285"><vh>&lt;&lt;XML模板&gt;&gt;</vh></v>
 <v t="zoomq.20130925103854.6457"><vh>活动报名</vh></v>
 <v t="zoomq.20130925103854.6455"><vh>帮助.系统</vh></v>
@@ -39,7 +39,7 @@
 <v t="zoomq.20130925103854.4957" a="E"><vh>@nosent CLI.py</vh>
 <v t="zoomq.20130925103854.4958"><vh>&lt;&lt;docopt&gt;&gt;</vh></v>
 <v t="zoomq.20130925103854.4959"><vh>&lt;&lt;declarations&gt;&gt;</vh></v>
-<v t="zoomq.20130925103854.4960"><vh>_rest_main()</vh>
+<v t="zoomq.20130925103854.4960" a="E"><vh>_rest_main()</vh>
 <v t="zoomq.20130925103854.6450"><vh>&lt;&lt;echo matters&gt;&gt;</vh></v>
 <v t="zoomq.20130925103854.6452"><vh>&lt;&lt;GET DEL&gt;&gt;</vh></v>
 <v t="zoomq.20130925103854.6451"><vh>&lt;&lt;PUT&gt;&gt;</vh></v>
@@ -47,9 +47,10 @@
 </v>
 <v t="zoomq.20130925103854.4961"><vh>smart_rest()</vh></v>
 </v>
+<v t="zoomq.20131011103836.16656"><vh>@nosent chaos_CLI.py</vh></v>
 <v t="zoomq.20120723102156.5541" a="E"><vh>module</vh>
 <v t="zoomq.20130925103854.6406"><vh>@nosent __init__.py</vh></v>
-<v t="zoomq.20120820121523.7422"><vh>@nosent auth.py</vh>
+<v t="zoomq.20120820121523.7422" a="E"><vh>@nosent auth.py</vh>
 <v t="zoomq.20120820121523.7423"><vh>&lt;&lt;declarations&gt;&gt;</vh></v>
 <v t="zoomq.20120820121523.7426"><vh>sha256_uhex</vh></v>
 <v t="zoomq.20120820121523.7424"><vh>check_login</vh></v>
@@ -121,7 +122,7 @@
 </v>
 <v t="zoomq.20130925103854.6426"><vh>__chkRegUsr()</vh></v>
 <v t="zoomq.20130925103854.6427"><vh>__update_usr()</vh></v>
-<v t="zoomq.20130925103854.6430" a="E"><vh>FSM</vh>
+<v t="zoomq.20130925103854.6430"><vh>FSM</vh>
 <v t="zoomq.20130925103854.6461"><vh>&lt;&lt;大妈联系&gt;&gt;</vh></v>
 <v t="zoomq.20130925103854.6431" a="E"><vh>s 查阅文章</vh>
 <v t="zoomq.20130926092950.5443"><vh>&lt;&lt;seek&gt;&gt;</vh></v>
@@ -165,7 +166,7 @@
 </v>
 <v t="zoomq.20120727213305.14717"><vh>@nosent index.html</vh></v>
 </v>
-<v t="zoomq.20120717112543.5493" a="E"><vh>__chaos</vh>
+<v t="zoomq.20120717112543.5493"><vh>__chaos</vh>
 <v t="zoomq.20131007093121.5614"><vh>用户管理</vh>
 <v t="zoomq.20131007093121.5615"><vh>GET cli/sum/usr</vh></v>
 <v t="zoomq.20131007093121.5616"><vh>PUT cli/acl/usr/&lt;uuid&gt;</vh>
@@ -2250,7 +2251,7 @@ def events(self, wxreq):
     only dm|m|p means dama|member|paper
     '''
     uuid_idx = KV.get(CFG.K4D[k4sys])
-    print "listobj:\t", uuid_idx
+    #print "listobj:\t", uuid_idx
     if None == uuid:
         appended = uuid_idx
     elif uuid in uuid_idx:
@@ -2376,8 +2377,15 @@ def status(self, wxreq):
         if not q:
             print "缺少 set=*** 设定值"
             return None
-        q_args = q.split("=")
-        args.append((q_args[0], base64.urlsafe_b64encode(q_args[1])))
+        q_args = q.split("=")   
+        #对于值中包含类似 appmsg/show?__biz=MjM$sign=sdfsfd .. 形式就失常了!
+        #print "=".join(q_args[1:])
+        #args.append((q_args[0], base64.urlsafe_b64encode(q_args[1])))
+        args.append((q_args[0], base64.urlsafe_b64encode(
+                        "=".join(q_args[1:]) 
+                        )
+                    ))
+        
     # GET|POST|DELETE 一般不提交额外数据
     sign_base_string = _genArgsStr(matter, args)
     args.append(("sign"
@@ -2430,9 +2438,12 @@ if not put_args:
     return None
 #print "put_args\n\t", put_args
 pur_vars = " ".join(["%s=%s"% (p[0], p[1]) for p in put_args])
-#print pur_vars
+#print "pur_vars:\n\t", pur_vars
 uri = "%s%s/%s %s"% (host, CFG.APIPRE, uri, pur_vars)
 cmd = "http -f -b %s %s "% (method, uri)
+
+
+
 
 
 
@@ -2979,6 +2990,10 @@ def fix_paper(tag, uuid):
         feed_back = {'data':[]}
         set_key = list(set(q_dict.keys())-set(CFG.SECURE_ARGS))[0]
         set_var = base64.urlsafe_b64decode(request.forms[set_key])
+        print "\t", set_key
+        print set_var
+        #return None
+        
         if set_key in CFG.K4WD.keys():
             print set_key, set_var
             uuid, pub = __chkPAPER(tag, uuid)
@@ -3486,6 +3501,41 @@ def del_p(uuid, qstr):
     else:
         return "alert quary!-("
 
+</t>
+<t tx="zoomq.20131011103836.16656">@language python
+@tabwidth -4
+# -*- coding: utf-8 -*-
+#!/usr/bin/env python
+import sys
+from time import time
+from subprocess import Popen
+from xsettings import XCFG
+
+
+if __name__ == "__main__":
+    if 2 != len(sys.argv):
+        print """ Usage::
+        $ python CLI.py [指令]
+        """
+    else:
+        TPL_TEXT='''&lt;xml&gt;
+        &lt;ToUserName&gt;&lt;![CDATA[%(toUser)s]]&gt;&lt;/ToUserName&gt;
+        &lt;FromUserName&gt;&lt;![CDATA[%(fromUser)s]]&gt;&lt;/FromUserName&gt;
+        &lt;CreateTime&gt;%(tStamp)s&lt;/CreateTime&gt;
+        &lt;MsgType&gt;&lt;![CDATA[text]]&gt;&lt;/MsgType&gt;
+        &lt;Content&gt;&lt;![CDATA[%(content)s]]&gt;&lt;/Content&gt;
+        &lt;/xml&gt;'''
+
+        toUser = XCFG.AS_SRV
+        fromUser = XCFG.AS_USR
+
+        tStamp = int(time())
+        content = sys.argv[1]
+        xml = TPL_TEXT % locals()
+
+        cmd = "curl -d '%s' http://localhost:8080/api/echo"% xml
+        print cmd
+        #Popen(cmd, shell=True, close_fds=True)
 </t>
 </tnodes>
 </leo_file>

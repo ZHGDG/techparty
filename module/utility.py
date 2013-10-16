@@ -48,7 +48,7 @@ def ADD4SYS(k4sys, uuid):
     only dm|m|p means dama|member|paper
     '''
     uuid_idx = KV.get(CFG.K4D[k4sys])
-    print "listobj:\t", uuid_idx
+    #print "listobj:\t", uuid_idx
     if None == uuid:
         appended = uuid_idx
     elif uuid in uuid_idx:

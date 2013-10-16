@@ -75,9 +75,12 @@ def _rest_main(method, uri, args, host=AS_LOCAL):
             return None
         #print "put_args\n\t", put_args
         pur_vars = " ".join(["%s=%s"% (p[0], p[1]) for p in put_args])
-        #print pur_vars
+        #print "pur_vars:\n\t", pur_vars
         uri = "%s%s/%s %s"% (host, CFG.APIPRE, uri, pur_vars)
         cmd = "http -f -b %s %s "% (method, uri)
+
+
+
 
 
 

@@ -264,6 +264,10 @@ def fix_paper(tag, uuid):
         feed_back = {'data':[]}
         set_key = list(set(q_dict.keys())-set(CFG.SECURE_ARGS))[0]
         set_var = base64.urlsafe_b64decode(request.forms[set_key])
+        print "\t", set_key
+        print set_var
+        #return None
+        
         if set_key in CFG.K4WD.keys():
             print set_key, set_var
             uuid, pub = __chkPAPER(tag, uuid)
