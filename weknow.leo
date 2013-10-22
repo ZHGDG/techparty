@@ -36,10 +36,10 @@
 <v t="zoomq.20130925103854.4951"><vh>RESTful</vh></v>
 </v>
 </v>
-<v t="zoomq.20130925103854.4957" a="E"><vh>@nosent CLI.py</vh>
+<v t="zoomq.20130925103854.4957"><vh>@nosent CLI.py</vh>
 <v t="zoomq.20130925103854.4958"><vh>&lt;&lt;docopt&gt;&gt;</vh></v>
 <v t="zoomq.20130925103854.4959"><vh>&lt;&lt;declarations&gt;&gt;</vh></v>
-<v t="zoomq.20130925103854.4960" a="E"><vh>_rest_main()</vh>
+<v t="zoomq.20130925103854.4960"><vh>_rest_main()</vh>
 <v t="zoomq.20130925103854.6450"><vh>&lt;&lt;echo matters&gt;&gt;</vh></v>
 <v t="zoomq.20130925103854.6452"><vh>&lt;&lt;GET DEL&gt;&gt;</vh></v>
 <v t="zoomq.20130925103854.6451"><vh>&lt;&lt;PUT&gt;&gt;</vh></v>
@@ -48,7 +48,7 @@
 <v t="zoomq.20130925103854.4961"><vh>smart_rest()</vh></v>
 </v>
 <v t="zoomq.20131011103836.16656"><vh>@nosent chaos_CLI.py</vh></v>
-<v t="zoomq.20120723102156.5541" a="E"><vh>module</vh>
+<v t="zoomq.20120723102156.5541"><vh>module</vh>
 <v t="zoomq.20130925103854.6406"><vh>@nosent __init__.py</vh></v>
 <v t="zoomq.20120820121523.7422" a="E"><vh>@nosent auth.py</vh>
 <v t="zoomq.20120820121523.7423"><vh>&lt;&lt;declarations&gt;&gt;</vh></v>
@@ -3472,14 +3472,18 @@ def st_p_tag(tag, qstr):
         all_papers = KV.get(CFG.K4D['p'])
         #print type(all_papers)
         all_papers.sort()
+        tmp = {}
         for puuid in KV.get(CFG.K4D['p']):
             if tag ==  puuid[:2]:
                 p = KV.get(puuid)
                 if 0 == p['del']:
-                    feed_back['data'].append("%s %s:%s"%(puuid 
-                        , p['code']
-                        , p['title'])) 
-        #feed_back['data'].sort()
+                    exp = "%s:%-28s"%(p['code'], puuid)
+                    tmp[exp] = p['title']
+                    feed_back['data'].append(exp) 
+        feed_back['data'].sort()
+        for i in range(len(feed_back['data'])):
+            k = feed_back['data'][i]
+            feed_back['data'][i] = "%s%s"% (k, tmp[k])
         feed_back['msg'] = "%s papers had %s ."% (tag, len(feed_back['data']))
         return feed_back
         

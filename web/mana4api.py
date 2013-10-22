@@ -187,14 +187,18 @@ def st_p_tag(tag, qstr):
         all_papers = KV.get(CFG.K4D['p'])
         #print type(all_papers)
         all_papers.sort()
+        tmp = {}
         for puuid in KV.get(CFG.K4D['p']):
             if tag ==  puuid[:2]:
                 p = KV.get(puuid)
                 if 0 == p['del']:
-                    feed_back['data'].append("%s %s:%s"%(puuid 
-                        , p['code']
-                        , p['title'])) 
-        #feed_back['data'].sort()
+                    exp = "%s:%-28s"%(p['code'], puuid)
+                    tmp[exp] = p['title']
+                    feed_back['data'].append(exp) 
+        feed_back['data'].sort()
+        for i in range(len(feed_back['data'])):
+            k = feed_back['data'][i]
+            feed_back['data'][i] = "%s%s"% (k, tmp[k])
         feed_back['msg'] = "%s papers had %s ."% (tag, len(feed_back['data']))
         return feed_back
         
