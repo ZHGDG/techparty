@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import sys
 from os import uname
+import datetime
 
 import os.path
 app_root = os.path.dirname(__file__)
@@ -25,10 +26,10 @@ class Borg():
     def __init__(self):
         self.__dict__ = self.__collective_mind
     
-    VERSION = "weknow v13.10.10.11"
+    VERSION = "weknow v13.10.24.2"
     #管理员邮箱列表
     ADMIN_EMAIL_LIST = ['zoomquiet+gdg@gmail.com']
-
+    NIUNIU = datetime.datetime(2009, 5, 19)
     if 'SERVER_SOFTWARE' in os.environ:
         # SAE
         AS_SAE = True
@@ -140,6 +141,10 @@ class Borg():
 
     更多细节,请惯性地输入 h 继续吧 :)
     '''
+    TXT_NN = u'''牛妞今天距离出生有
+        %s
+    天啦 !-)'''
+
     TXT_VER = u'''珠海GDG 公众号应答系统当前版本:
     %s
 
@@ -160,9 +165,9 @@ class Borg():
     i   ~ 查阅成员资料
     ei  ~ 修订成员资料
 
+    '''
+    '''
     e   ~ 活动查询
-    '''
-    '''
     re  ~ 活动报名
     rc  ~ 放弃报名
     ri  ~ 确认报名

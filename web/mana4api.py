@@ -681,6 +681,7 @@ def __update_usr(objUsr):
 @transition('log', 'version')
 @transition('st', 'status')
 @transition('stat', 'status')
+@transition('nn', 'niuniu')
 def setup(self, wxreq):
     print 'setup->{h V e re rc ir i ei s}|大妈信息'
     #print crt_usr['msg']
@@ -1009,6 +1010,13 @@ def status(self, wxreq):
         , crt_usr['toUser']
         , KV.get_info()
         )
+
+@state('weknow')
+@transition('end', 'end')
+def niuniu(self, wxreq):
+    print 'setup->niuniu->end'
+    _today = datetime.now()
+    return WxTextResponse(CFG.TXT_NN% (_today-CFG.NIUNIU).days, wxreq).as_xml()
 
 @state('weknow')
 @transition('end', 'end')

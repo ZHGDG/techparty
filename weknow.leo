@@ -16,7 +16,7 @@
 <v t="zoomq.20120710140424.5455"><vh>@nosent index.wsgi</vh></v>
 <v t="zoomq.20120723102156.5544" a="E"><vh>@nosent config.py</vh>
 <v t="zoomq.20120727213305.14750"><vh>&lt;&lt;declarations&gt;&gt;</vh></v>
-<v t="zoomq.20120710140424.5456"><vh>&lt;&lt;cfg4Borg&gt;&gt;</vh>
+<v t="zoomq.20120710140424.5456" a="E"><vh>&lt;&lt;cfg4Borg&gt;&gt;</vh>
 <v t="zoomq.20130926092950.5432"><vh>环境切换</vh></v>
 <v t="zoomq.20130927104354.5456"><vh>storage</vh></v>
 <v t="zoomq.20130923093950.3647"><vh>KVDB</vh>
@@ -25,7 +25,7 @@
 <v t="zoomq.20130923093950.8569"><vh>&lt;&lt;大妈们&gt;&gt;</vh></v>
 <v t="zoomq.20130923093950.5396"><vh>&lt;&lt;HISTORIC&gt;&gt;</vh></v>
 </v>
-<v t="zoomq.20130918155053.7084"><vh>4wechat</vh>
+<v t="zoomq.20130918155053.7084" a="E"><vh>4wechat</vh>
 <v t="zoomq.20130923093950.7285"><vh>&lt;&lt;XML模板&gt;&gt;</vh></v>
 <v t="zoomq.20130925103854.6457"><vh>活动报名</vh></v>
 <v t="zoomq.20130925103854.6455"><vh>帮助.系统</vh></v>
@@ -81,7 +81,7 @@
 <v t="zoomq.20120723102156.5561" a="E"><vh>@nosent mana4api.py</vh>
 <v t="zoomq.20120723102156.5562"><vh>&lt;&lt;declarations&gt;&gt;</vh></v>
 <v t="zoomq.20130918155053.5760"><vh>GET  /echo</vh></v>
-<v t="zoomq.20130925103854.5007" a="E"><vh>cli/ 远程管理</vh>
+<v t="zoomq.20130925103854.5007"><vh>cli/ 远程管理</vh>
 <v t="zoomq.20131007093121.5602"><vh>数据管理</vh>
 <v t="zoomq.20130927104354.6051"><vh>POST bkup/db|dm|m|e|p</vh></v>
 <v t="zoomq.20130927104354.6062"><vh>PUT revert/db|dm|m|e|p</vh></v>
@@ -124,7 +124,7 @@
 <v t="zoomq.20130925103854.6427"><vh>__update_usr()</vh></v>
 <v t="zoomq.20130925103854.6430"><vh>FSM</vh>
 <v t="zoomq.20130925103854.6461"><vh>&lt;&lt;大妈联系&gt;&gt;</vh></v>
-<v t="zoomq.20130925103854.6431" a="E"><vh>s 查阅文章</vh>
+<v t="zoomq.20130925103854.6431"><vh>s 查阅文章</vh>
 <v t="zoomq.20130926092950.5443"><vh>&lt;&lt;seek&gt;&gt;</vh></v>
 <v t="zoomq.20130926092950.5444"><vh>&lt;&lt;tags&gt;&gt;</vh></v>
 <v t="zoomq.20130926092950.5445" a="E"><vh>&lt;&lt;no_paper&gt;&gt;</vh>
@@ -138,6 +138,7 @@
 <v t="zoomq.20130926092950.5435"><vh>&lt;&lt;info_mail&gt;&gt;</vh></v>
 </v>
 <v t="zoomq.20130925103854.6441"><vh>系统信息</vh></v>
+<v t="zoomq.20131024165032.5626"><vh>nn今天</vh></v>
 <v t="zoomq.20130925103854.6437"><vh>e 活动查询</vh></v>
 <v t="zoomq.20130925103854.6435"><vh>活动报名</vh></v>
 </v>
@@ -395,7 +396,7 @@ def echo_wechat():
 </t>
 <t tx="zoomq.20120710140424.5456">#管理员邮箱列表
 ADMIN_EMAIL_LIST = ['zoomquiet+gdg@gmail.com']
-
+NIUNIU = datetime.datetime(2009, 5, 19)
 @others
 
 </t>
@@ -506,7 +507,7 @@ class Borg():
     def __init__(self):
         self.__dict__ = self.__collective_mind
     
-    VERSION = "weknow v13.10.10.11"
+    VERSION = "weknow v13.10.24.2"
     &lt;&lt;cfg4Borg&gt;&gt;
     
 CFG = Borg()
@@ -856,6 +857,7 @@ new FormValidator('upcrxform', [{
 </t>
 <t tx="zoomq.20120727213305.14750">import sys
 from os import uname
+import datetime
 
 import os.path
 app_root = os.path.dirname(__file__)
@@ -2178,6 +2180,7 @@ return None
 @transition('log', 'version')
 @transition('st', 'status')
 @transition('stat', 'status')
+@transition('nn', 'niuniu')
 def setup(self, wxreq):
     print 'setup-&gt;{h V e re rc ir i ei s}|大妈信息'
     &lt;&lt;大妈联系&gt;&gt;
@@ -2483,7 +2486,11 @@ def sum_usr(qstr):
         return "alert quary!-("
 
 </t>
-<t tx="zoomq.20130925103854.6455">TXT_VER = u'''珠海GDG 公众号应答系统当前版本:
+<t tx="zoomq.20130925103854.6455">TXT_NN = u'''牛妞今天距离出生有
+    %s
+天啦 !-)'''
+
+TXT_VER = u'''珠海GDG 公众号应答系统当前版本:
 %s
 
 Changelog:
@@ -2503,9 +2510,9 @@ s   ~ 查阅文章
 i   ~ 查阅成员资料
 ei  ~ 修订成员资料
 
+'''
+'''
 e   ~ 活动查询
-'''
-'''
 re  ~ 活动报名
 rc  ~ 放弃报名
 ri  ~ 确认报名
@@ -3540,6 +3547,14 @@ if __name__ == "__main__":
         cmd = "curl -d '%s' http://localhost:8080/api/echo"% xml
         print cmd
         #Popen(cmd, shell=True, close_fds=True)
+</t>
+<t tx="zoomq.20131024165032.5626">@state('weknow')
+@transition('end', 'end')
+def niuniu(self, wxreq):
+    print 'setup-&gt;niuniu-&gt;end'
+    _today = datetime.now()
+    return WxTextResponse(CFG.TXT_NN% (_today-CFG.NIUNIU).days, wxreq).as_xml()
+
 </t>
 </tnodes>
 </leo_file>
