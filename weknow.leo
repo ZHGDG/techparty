@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Created by Leo (http://webpages.charter.net/edreamleo/front.html) -->
+<!-- Created by Leo (http://leoeditor.com/leo_toc.html) -->
 <?xml-stylesheet ekr_test?>
 <leo_file xmlns:leo="http://www.leo-editor.org/2011/leo" >
 <leo_header file_format="2" tnodes="0" max_tnode_index="0" clone_windows="0"/>
@@ -16,7 +16,7 @@
 <v t="zoomq.20120710140424.5455"><vh>@nosent index.wsgi</vh></v>
 <v t="zoomq.20120723102156.5544" a="E"><vh>@nosent config.py</vh>
 <v t="zoomq.20120727213305.14750"><vh>&lt;&lt;declarations&gt;&gt;</vh></v>
-<v t="zoomq.20120710140424.5456" a="E"><vh>&lt;&lt;cfg4Borg&gt;&gt;</vh>
+<v t="zoomq.20120710140424.5456"><vh>&lt;&lt;cfg4Borg&gt;&gt;</vh>
 <v t="zoomq.20130926092950.5432"><vh>环境切换</vh></v>
 <v t="zoomq.20130927104354.5456"><vh>storage</vh></v>
 <v t="zoomq.20130923093950.3647"><vh>KVDB</vh>
@@ -25,7 +25,7 @@
 <v t="zoomq.20130923093950.8569"><vh>&lt;&lt;大妈们&gt;&gt;</vh></v>
 <v t="zoomq.20130923093950.5396"><vh>&lt;&lt;HISTORIC&gt;&gt;</vh></v>
 </v>
-<v t="zoomq.20130918155053.7084" a="E"><vh>4wechat</vh>
+<v t="zoomq.20130918155053.7084"><vh>4wechat</vh>
 <v t="zoomq.20130923093950.7285"><vh>&lt;&lt;XML模板&gt;&gt;</vh></v>
 <v t="zoomq.20130925103854.6457"><vh>活动报名</vh></v>
 <v t="zoomq.20130925103854.6455"><vh>帮助.系统</vh></v>
@@ -122,12 +122,12 @@
 </v>
 <v t="zoomq.20130925103854.6426"><vh>__chkRegUsr()</vh></v>
 <v t="zoomq.20130925103854.6427"><vh>__update_usr()</vh></v>
-<v t="zoomq.20130925103854.6430"><vh>FSM</vh>
+<v t="zoomq.20130925103854.6430" a="E"><vh>FSM</vh>
 <v t="zoomq.20130925103854.6461"><vh>&lt;&lt;大妈联系&gt;&gt;</vh></v>
-<v t="zoomq.20130925103854.6431"><vh>s 查阅文章</vh>
+<v t="zoomq.20130925103854.6431" a="E"><vh>s 查阅文章</vh>
 <v t="zoomq.20130926092950.5443"><vh>&lt;&lt;seek&gt;&gt;</vh></v>
 <v t="zoomq.20130926092950.5444"><vh>&lt;&lt;tags&gt;&gt;</vh></v>
-<v t="zoomq.20130926092950.5445" a="E"><vh>&lt;&lt;no_paper&gt;&gt;</vh>
+<v t="zoomq.20130926092950.5445"><vh>&lt;&lt;no_paper&gt;&gt;</vh>
 <v t="zoomq.20131007093121.31624"><vh>&lt;&lt;tag paper No.&gt;&gt;</vh></v>
 </v>
 </v>
@@ -2225,16 +2225,25 @@ resp = WxNewsResponse([WxArticle(Title="iPhone 6 is here!",
 @transition('end', 'end')
 def reg_event(self, crt_usr):
     print 'setup-&gt;reg_event-&gt;end'
+    crt_usr = wxreq.crt_usr
+    crt_usr['fsm'] = "setup"
+    __update_usr(crt_usr)
 
 @state('weknow')
 @transition('end', 'end')
 def reg_cancel(self, crt_usr):
     print 'setup-&gt;reg_cancel-&gt;end'
+    crt_usr = wxreq.crt_usr
+    crt_usr['fsm'] = "setup"
+    __update_usr(crt_usr)
 
 @state('weknow')
 @transition('end', 'end')
 def reg_info(self, crt_usr):
     print 'setup-&gt;info_reg-&gt;end'
+    crt_usr = wxreq.crt_usr
+    crt_usr['fsm'] = "setup"
+    __update_usr(crt_usr)
 
 </t>
 <t tx="zoomq.20130925103854.6437">@state('weknow')
@@ -2274,6 +2283,9 @@ def events(self, wxreq):
 @transition('end', 'end')
 def helpme(self, wxreq):
     print 'setup-&gt;helpme-&gt;end'
+    crt_usr = wxreq.crt_usr
+    crt_usr['fsm'] = "setup"
+    __update_usr(crt_usr)
     return WxTextResponse(CFG.TXT_HELP, wxreq).as_xml()
     
     return __echo_txt(crt_usr['fromUser']
@@ -2285,6 +2297,9 @@ def helpme(self, wxreq):
 @transition('end', 'end')
 def version(self, wxreq):
     print 'setup-&gt;version-&gt;end'
+    crt_usr = wxreq.crt_usr
+    crt_usr['fsm'] = "setup"
+    __update_usr(crt_usr)
     return WxTextResponse(CFG.TXT_VER, wxreq).as_xml()
 
     return __echo_txt(crt_usr['fromUser']
@@ -2296,6 +2311,9 @@ def version(self, wxreq):
 @transition('end', 'end')
 def status(self, wxreq):
     print 'setup-&gt;status-&gt;end'
+    crt_usr = wxreq.crt_usr
+    crt_usr['fsm'] = "setup"
+    __update_usr(crt_usr)
     return WxTextResponse(KV.get_info(), wxreq).as_xml()
 
     return __echo_txt(crt_usr['fromUser']
@@ -2874,7 +2892,7 @@ def fix_event(code):
 @transition('hd', 'papers')
 @transition('et', 'papers')
 @transition('ot', 'papers')
-@transition('*', 'end')
+@transition('h', 'helpme')
 def seek(self, wxreq):
     print 'setup-&gt;seek-&gt;{gb dd gt dm ot}'
     crt_usr = wxreq.crt_usr
@@ -2892,7 +2910,8 @@ def seek(self, wxreq):
 </t>
 <t tx="zoomq.20130926092950.5444">@state('weknow')
 @transition('no', 'no_paper')
-@transition('*', 'end')
+@transition('*', 'helpme')
+@transition('h', 'helpme')
 def papers(self, wxreq):
     print 'setup-&gt;seek-&gt;[papers]-&gt;no'
     crt_usr = wxreq.crt_usr
@@ -2957,7 +2976,8 @@ def papers(self, wxreq):
 </t>
 <t tx="zoomq.20130926092950.5445">@state('weknow')
 @transition('end', 'end')
-@transition('*', 'end')
+@transition('*', 'helpme')
+@transition('h', 'helpme')
 def number_paper(self, wxreq):
     print 'setup-&gt;seek-&gt;...-&gt;no-&gt;end'
     crt_usr = wxreq.crt_usr
@@ -3552,6 +3572,9 @@ if __name__ == "__main__":
 @transition('end', 'end')
 def niuniu(self, wxreq):
     print 'setup-&gt;niuniu-&gt;end'
+    crt_usr = wxreq.crt_usr
+    crt_usr['fsm'] = "setup"
+    __update_usr(crt_usr)
     _today = datetime.now()
     return WxTextResponse(CFG.TXT_NN% (_today-CFG.NIUNIU).days, wxreq).as_xml()
 

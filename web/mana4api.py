@@ -719,7 +719,7 @@ def end(self, wxreq):
 @transition('hd', 'papers')
 @transition('et', 'papers')
 @transition('ot', 'papers')
-@transition('*', 'end')
+@transition('h', 'helpme')
 def seek(self, wxreq):
     print 'setup->seek->{gb dd gt dm ot}'
     crt_usr = wxreq.crt_usr
@@ -736,7 +736,8 @@ def seek(self, wxreq):
 
 @state('weknow')
 @transition('no', 'no_paper')
-@transition('*', 'end')
+@transition('*', 'helpme')
+@transition('h', 'helpme')
 def papers(self, wxreq):
     print 'setup->seek->[papers]->no'
     crt_usr = wxreq.crt_usr
@@ -800,7 +801,8 @@ def papers(self, wxreq):
 
 @state('weknow')
 @transition('end', 'end')
-@transition('*', 'end')
+@transition('*', 'helpme')
+@transition('h', 'helpme')
 def number_paper(self, wxreq):
     print 'setup->seek->...->no->end'
     crt_usr = wxreq.crt_usr
@@ -982,6 +984,9 @@ UnicodeEncodeError: 'ascii' codec can't encode character u'\u4eb2' in position 2
 @transition('end', 'end')
 def helpme(self, wxreq):
     print 'setup->helpme->end'
+    crt_usr = wxreq.crt_usr
+    crt_usr['fsm'] = "setup"
+    __update_usr(crt_usr)
     return WxTextResponse(CFG.TXT_HELP, wxreq).as_xml()
     
     return __echo_txt(crt_usr['fromUser']
@@ -993,6 +998,9 @@ def helpme(self, wxreq):
 @transition('end', 'end')
 def version(self, wxreq):
     print 'setup->version->end'
+    crt_usr = wxreq.crt_usr
+    crt_usr['fsm'] = "setup"
+    __update_usr(crt_usr)
     return WxTextResponse(CFG.TXT_VER, wxreq).as_xml()
 
     return __echo_txt(crt_usr['fromUser']
@@ -1004,6 +1012,9 @@ def version(self, wxreq):
 @transition('end', 'end')
 def status(self, wxreq):
     print 'setup->status->end'
+    crt_usr = wxreq.crt_usr
+    crt_usr['fsm'] = "setup"
+    __update_usr(crt_usr)
     return WxTextResponse(KV.get_info(), wxreq).as_xml()
 
     return __echo_txt(crt_usr['fromUser']
@@ -1015,6 +1026,9 @@ def status(self, wxreq):
 @transition('end', 'end')
 def niuniu(self, wxreq):
     print 'setup->niuniu->end'
+    crt_usr = wxreq.crt_usr
+    crt_usr['fsm'] = "setup"
+    __update_usr(crt_usr)
     _today = datetime.now()
     return WxTextResponse(CFG.TXT_NN% (_today-CFG.NIUNIU).days, wxreq).as_xml()
 
@@ -1033,16 +1047,25 @@ def events(self, wxreq):
 @transition('end', 'end')
 def reg_event(self, crt_usr):
     print 'setup->reg_event->end'
+    crt_usr = wxreq.crt_usr
+    crt_usr['fsm'] = "setup"
+    __update_usr(crt_usr)
 
 @state('weknow')
 @transition('end', 'end')
 def reg_cancel(self, crt_usr):
     print 'setup->reg_cancel->end'
+    crt_usr = wxreq.crt_usr
+    crt_usr['fsm'] = "setup"
+    __update_usr(crt_usr)
 
 @state('weknow')
 @transition('end', 'end')
 def reg_info(self, crt_usr):
     print 'setup->info_reg->end'
+    crt_usr = wxreq.crt_usr
+    crt_usr['fsm'] = "setup"
+    __update_usr(crt_usr)
 
 def __echo_txt(fromUsr, toUsr, text):
     '''zip xml exp.
