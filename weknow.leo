@@ -14,7 +14,7 @@
 <v t="zoomq.20120710140424.5447"><vh>@nosent README.md</vh></v>
 <v t="zoomq.20120710140424.5454"><vh>@nosent config.yaml</vh></v>
 <v t="zoomq.20120710140424.5455"><vh>@nosent index.wsgi</vh></v>
-<v t="zoomq.20120723102156.5544" a="E"><vh>@nosent config.py</vh>
+<v t="zoomq.20120723102156.5544"><vh>@nosent config.py</vh>
 <v t="zoomq.20120727213305.14750"><vh>&lt;&lt;declarations&gt;&gt;</vh></v>
 <v t="zoomq.20120710140424.5456"><vh>&lt;&lt;cfg4Borg&gt;&gt;</vh>
 <v t="zoomq.20130926092950.5432"><vh>环境切换</vh></v>
@@ -50,7 +50,7 @@
 <v t="zoomq.20131011103836.16656"><vh>@nosent chaos_CLI.py</vh></v>
 <v t="zoomq.20120723102156.5541"><vh>module</vh>
 <v t="zoomq.20130925103854.6406"><vh>@nosent __init__.py</vh></v>
-<v t="zoomq.20120820121523.7422" a="E"><vh>@nosent auth.py</vh>
+<v t="zoomq.20120820121523.7422"><vh>@nosent auth.py</vh>
 <v t="zoomq.20120820121523.7423"><vh>&lt;&lt;declarations&gt;&gt;</vh></v>
 <v t="zoomq.20120820121523.7426"><vh>sha256_uhex</vh></v>
 <v t="zoomq.20120820121523.7424"><vh>check_login</vh></v>
@@ -89,7 +89,7 @@
 </v>
 <v t="zoomq.20130925103854.5049"><vh>GET sum/db|dm|m|e|p</vh></v>
 <v t="zoomq.20130927104354.6049"><vh>GET st/kv</vh></v>
-<v t="zoomq.20131007093121.5601" a="E"><vh>文章管理</vh>
+<v t="zoomq.20131007093121.5601"><vh>文章管理</vh>
 <v t="zoomq.20131010225811.3726"><vh>GET sum/p/:TAG</vh></v>
 <v t="zoomq.20131010225811.3728"><vh>DELETE del/p/:UUID</vh></v>
 <v t="zoomq.20130929203117.3712"><vh>POST push/p</vh>
@@ -127,7 +127,7 @@
 <v t="zoomq.20130925103854.6431" a="E"><vh>s 查阅文章</vh>
 <v t="zoomq.20130926092950.5443"><vh>&lt;&lt;seek&gt;&gt;</vh></v>
 <v t="zoomq.20130926092950.5444"><vh>&lt;&lt;tags&gt;&gt;</vh></v>
-<v t="zoomq.20130926092950.5445"><vh>&lt;&lt;no_paper&gt;&gt;</vh>
+<v t="zoomq.20130926092950.5445" a="E"><vh>&lt;&lt;no_paper&gt;&gt;</vh>
 <v t="zoomq.20131007093121.31624"><vh>&lt;&lt;tag paper No.&gt;&gt;</vh></v>
 </v>
 </v>
@@ -516,14 +516,16 @@ CFG = Borg()
 <t tx="zoomq.20120723102156.5545">@language python
 @tabwidth -4
 # -*- coding: utf-8 -*-
-&lt;&lt;declarations&gt;&gt;
-from config import CFG
 
+&lt;&lt;declarations&gt;&gt;
+
+from config import CFG
 APP = Bottle()
 
 #APP.mount('/up', __import__('mana4up').APP)
 APP.mount('/api', __import__('mana4api').APP)
 #APP.mount('/mana', __import__('mana4sys').APP)
+
 
 @others
 
@@ -3301,12 +3303,13 @@ for puuid in KV.get(CFG.K4D['p']):
         #print p['code']
         if int(code) == int(p['code']):
             #print p
-            resp = WxNewsResponse([WxArticle(p['title'],
-                        Description="",
-                        Url=p['url'],
-                        PicUrl=p['picurl'])], wxreq).as_xml()
-            #return resp
-            break
+            if 0 == p['del']:
+                resp = WxNewsResponse([WxArticle(p['title'],
+                            Description="",
+                            Url=p['url'],
+                            PicUrl=p['picurl'])], wxreq).as_xml()
+                #return resp
+                break
 
 
 </t>

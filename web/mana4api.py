@@ -819,12 +819,13 @@ def number_paper(self, wxreq):
                 #print p['code']
                 if int(code) == int(p['code']):
                     #print p
-                    resp = WxNewsResponse([WxArticle(p['title'],
-                                Description="",
-                                Url=p['url'],
-                                PicUrl=p['picurl'])], wxreq).as_xml()
-                    #return resp
-                    break
+                    if 0 == p['del']:
+                        resp = WxNewsResponse([WxArticle(p['title'],
+                                    Description="",
+                                    Url=p['url'],
+                                    PicUrl=p['picurl'])], wxreq).as_xml()
+                        #return resp
+                        break
 
 
         #return None

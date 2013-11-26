@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+
 import sys   
 #sys.path.append("..")  
 
@@ -8,13 +9,14 @@ from bottle import jinja2_template as template
 from config import JINJA2TPL_PATH
 TEMPLATE_PATH.insert(0, JINJA2TPL_PATH)
 
-from config import CFG
 
+from config import CFG
 APP = Bottle()
 
 #APP.mount('/up', __import__('mana4up').APP)
 APP.mount('/api', __import__('mana4api').APP)
 #APP.mount('/mana', __import__('mana4sys').APP)
+
 
 @APP.route('/')
 #@view('404.html')
