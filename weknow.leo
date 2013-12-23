@@ -14,9 +14,9 @@
 <v t="zoomq.20120710140424.5447"><vh>@nosent README.md</vh></v>
 <v t="zoomq.20120710140424.5454"><vh>@nosent config.yaml</vh></v>
 <v t="zoomq.20120710140424.5455"><vh>@nosent index.wsgi</vh></v>
-<v t="zoomq.20120723102156.5544"><vh>@nosent config.py</vh>
+<v t="zoomq.20120723102156.5544" a="E"><vh>@nosent config.py</vh>
 <v t="zoomq.20120727213305.14750"><vh>&lt;&lt;declarations&gt;&gt;</vh></v>
-<v t="zoomq.20120710140424.5456"><vh>&lt;&lt;cfg4Borg&gt;&gt;</vh>
+<v t="zoomq.20120710140424.5456" a="E"><vh>&lt;&lt;cfg4Borg&gt;&gt;</vh>
 <v t="zoomq.20130926092950.5432"><vh>环境切换</vh></v>
 <v t="zoomq.20130927104354.5456"><vh>storage</vh></v>
 <v t="zoomq.20130923093950.3647"><vh>KVDB</vh>
@@ -39,15 +39,17 @@
 <v t="zoomq.20130925103854.4957"><vh>@nosent CLI.py</vh>
 <v t="zoomq.20130925103854.4958"><vh>&lt;&lt;docopt&gt;&gt;</vh></v>
 <v t="zoomq.20130925103854.4959"><vh>&lt;&lt;declarations&gt;&gt;</vh></v>
+<v t="zoomq.20130925103854.4961"><vh>smart_rest()</vh></v>
+<v t="zoomq.20131223160728.4902"><vh>_https_get()</vh></v>
 <v t="zoomq.20130925103854.4960"><vh>_rest_main()</vh>
+<v t="zoomq.20130925103854.6452"><vh>&lt;&lt;HTTPS&gt;&gt;</vh></v>
 <v t="zoomq.20130925103854.6450"><vh>&lt;&lt;echo matters&gt;&gt;</vh></v>
-<v t="zoomq.20130925103854.6452"><vh>&lt;&lt;GET DEL&gt;&gt;</vh></v>
+<v t="zoomq.20131223160728.4901"><vh>&lt;&lt;GET DEL&gt;&gt;</vh></v>
 <v t="zoomq.20130925103854.6451"><vh>&lt;&lt;PUT&gt;&gt;</vh></v>
 <v t="zoomq.20130927104354.6053"><vh>&lt;&lt;POST&gt;&gt;</vh></v>
 </v>
-<v t="zoomq.20130925103854.4961"><vh>smart_rest()</vh></v>
 </v>
-<v t="zoomq.20131011103836.16656"><vh>@nosent chaos_CLI.py</vh></v>
+<v t="zoomq.20131011103836.16656"><vh>chaos_CLI.py</vh></v>
 <v t="zoomq.20120723102156.5541"><vh>module</vh>
 <v t="zoomq.20130925103854.6406"><vh>@nosent __init__.py</vh></v>
 <v t="zoomq.20120820121523.7422"><vh>@nosent auth.py</vh>
@@ -60,7 +62,7 @@
 <v t="zoomq.20130925103854.6443"><vh>_query2dict</vh></v>
 <v t="zoomq.20130925103854.6445"><vh>_chkQueryArgs</vh></v>
 </v>
-<v t="zoomq.20120717112543.5481"><vh>@nosent utility.py</vh>
+<v t="zoomq.20120717112543.5481" a="E"><vh>@nosent utility.py</vh>
 <v t="zoomq.20120727213305.14698"><vh>&lt;&lt;declarations&gt;&gt;</vh></v>
 <v t="zoomq.20130927104354.6047"><vh>PUT2SS()</vh></v>
 <v t="zoomq.20120727213305.14756"><vh>INIobjSYS()</vh></v>
@@ -81,9 +83,13 @@
 <v t="zoomq.20120723102156.5561" a="E"><vh>@nosent mana4api.py</vh>
 <v t="zoomq.20120723102156.5562"><vh>&lt;&lt;declarations&gt;&gt;</vh></v>
 <v t="zoomq.20130918155053.5760"><vh>GET  /echo</vh></v>
-<v t="zoomq.20130925103854.5007"><vh>cli/ 远程管理</vh>
-<v t="zoomq.20131007093121.5602"><vh>数据管理</vh>
-<v t="zoomq.20130927104354.6051"><vh>POST bkup/db|dm|m|e|p</vh></v>
+<v t="zoomq.20130925103854.5007" a="E"><vh>CLI 远程管理</vh>
+<v t="zoomq.20131223160728.4904"><vh>GET info/:UUID</vh></v>
+<v t="zoomq.20131007093121.5602" a="E"><vh>数据管理</vh>
+<v t="zoomq.20130927104354.6051" a="E"><vh>POST bkup/db|dm|m|e|p</vh>
+<v t="zoomq.20131223160728.4905"><vh>&lt;&lt;dump 所有内容&gt;&gt;</vh></v>
+<v t="zoomq.20131223160728.4907"><vh>&lt;&lt;dump 指定内容&gt;&gt;</vh></v>
+</v>
 <v t="zoomq.20130927104354.6062"><vh>PUT revert/db|dm|m|e|p</vh></v>
 <v t="zoomq.20130927104354.6055"><vh>DELETE del/bk/:UUID</vh></v>
 </v>
@@ -122,12 +128,12 @@
 </v>
 <v t="zoomq.20130925103854.6426"><vh>__chkRegUsr()</vh></v>
 <v t="zoomq.20130925103854.6427"><vh>__update_usr()</vh></v>
-<v t="zoomq.20130925103854.6430" a="E"><vh>FSM</vh>
+<v t="zoomq.20130925103854.6430"><vh>FSM</vh>
 <v t="zoomq.20130925103854.6461"><vh>&lt;&lt;大妈联系&gt;&gt;</vh></v>
-<v t="zoomq.20130925103854.6431" a="E"><vh>s 查阅文章</vh>
+<v t="zoomq.20130925103854.6431"><vh>s 查阅文章</vh>
 <v t="zoomq.20130926092950.5443"><vh>&lt;&lt;seek&gt;&gt;</vh></v>
 <v t="zoomq.20130926092950.5444"><vh>&lt;&lt;tags&gt;&gt;</vh></v>
-<v t="zoomq.20130926092950.5445" a="E"><vh>&lt;&lt;no_paper&gt;&gt;</vh>
+<v t="zoomq.20130926092950.5445"><vh>&lt;&lt;no_paper&gt;&gt;</vh>
 <v t="zoomq.20131007093121.31624"><vh>&lt;&lt;tag paper No.&gt;&gt;</vh></v>
 </v>
 </v>
@@ -507,7 +513,7 @@ class Borg():
     def __init__(self):
         self.__dict__ = self.__collective_mind
     
-    VERSION = "weknow v13.10.24.2"
+    VERSION = "weknow v13.12.23.1"
     &lt;&lt;cfg4Borg&gt;&gt;
     
 CFG = Borg()
@@ -1476,7 +1482,7 @@ for k in K4D:
         else:
             KV.add(K4D[k], [])
     else:
-        print K4D[k], KV.get(K4D[k])
+        print K4D[k]#, KV.get(K4D[k])
 
 &lt;&lt;MEMBER&gt;&gt;
 
@@ -1687,23 +1693,24 @@ CLI_MATTERS = {     # 命令行响应方式速查字典
       "sum/his":    "GET"       # 节点(任意)修订次数
     , "his/last":   "GET"       # 最后一次节点(任意)修订
     
-    , "info/usr":   "GET"       # 查阅用户信息
     , "find/usr":   "GET"       # 搜索用户
     , "del/usr":    "DELETE"    # 软删除所有用户 (包含tag 信息)
     , "reliv/usr":  "PUT"       # 恢复指定用户
     , "acl/usr":    "PUT"       # 设置用户权限
     , "list/usr":   "GET"       # 列出指定级别用户
     
+    , "info":   "GET"          # 查阅 指定 信息
+    
     , "fix/dm":     "PUT"       # 修订 大妈 信息
     , "fix/m":      "PUT"       # 修订 成员 信息
     , "fix/e":      "PUT"       # 增补 活动 信息
-    , "fix/p/gb":   "PUT"       # 增补 文章 信息
-    , "fix/p/dd":   "PUT"       # 增补 文章 信息
-    , "fix/p/gt":   "PUT"       # 增补 文章 信息
-    , "fix/p/dm":   "PUT"       # 增补 文章 信息
-    , "fix/p/hd":   "PUT"       # 增补 文章 信息
-    , "fix/p/ot":   "PUT"       # 增补 文章 信息
-    , "fix/p/et":   "PUT"       # 增补 活动 文章
+    , "fix/p/gb":   "PUT"       # 增补 gb文章 信息
+    , "fix/p/dd":   "PUT"       # 增补 dd文章 信息
+    , "fix/p/gt":   "PUT"       # 增补 gt文章 信息
+    , "fix/p/dm":   "PUT"       # 增补 dm文章 信息
+    , "fix/p/hd":   "PUT"       # 增补 hd文章 信息
+    , "fix/p/ot":   "PUT"       # 增补 其它文章 信息
+    , "fix/p/et":   "PUT"       # 增补 活动文章 文章
     
     , "echo":       "GET"       # 模拟wechat 问答
     
@@ -1736,15 +1743,31 @@ CLI_MATTERS = {     # 命令行响应方式速查字典
 
     , "revert/db":  "PUT"      # 恢复整个 KVDB
     , "revert/dm":  "PUT"      # 恢复 大妈 数据
-    , "revert/m":   "PUT"      # 恢复 大妈 数据
-    , "revert/e":   "PUT"      # 恢复 大妈 数据
-    , "revert/p":   "PUT"      # 恢复 大妈 数据
+    , "revert/m":   "PUT"      # 恢复 成员 数据
+    , "revert/e":   "PUT"      # 恢复 活动 数据
+    , "revert/p":   "PUT"      # 恢复 文章 数据
+    
+    , "wx/t":       "HTTPS"     # 获取 token
+    , "wx/usr":     "HTTPS"     # 获取关注列表
+    }
+
+CLI_URI = {     # 命令行 请求外部系统URI 速查字典
+    "wx/t":     ("api.weixin.qq.com"
+        , "/cgi-bin/token?grant_type=client_credential&amp;appid=%(appid)s&amp;secret=%(secret)s"
+        )     # 获取 token
+    , "wx/ls":  ("api.weixin.qq.com"
+        , "/cgi-bin/user/get?access_token=%(token)s"
+        )     # 获取关注列表
+    , "wx/usr": ("api.weixin.qq.com"
+        , "/cgi-bin/user/info?access_token=%(token)s&amp;openid=%(openid)s"
+        )     # 获取成员信息
     }
 
 LEVEL4USR = {"mana":0
     , "up":1
     , "api":2
     }
+
 
 </t>
 <t tx="zoomq.20130925103854.4957">@language python
@@ -1794,32 +1817,33 @@ e.g:
   一般形式::
   $ python lbTCLI.py 事务指令 [可能的值设定 set=** 形式]
   详细操作::
-  echo set=i        模拟微信的消息交互
+  echo set=i                模拟微信的消息交互
 
-  info/usr/:UUID            查阅指定 用户 信息
-  find/usr/&lt;key word&gt;       搜索用户 [对名称,描述 进行搜索]
-
+  info/:UUID                查阅指定 信息
+  find/m/&lt;key word&gt;         搜索用户 [对 名称,描述 搜索]
   st/kv     查询 KVDB 整体现状
   sum/bk|db|dm|m|e|p
       综合 备份|整体|大妈|成员|活动|文章 信息现状
-  fix/dm/:NM  nm=ZQ       修订/创建指定 大妈 的相关信息
-  fix/m/:UUID nm=ZQ       修订指定 成员 的相关信息
-  fix/e/:CODE pic=***     修订/创建指定 活动 的相关信息
-  fix/p/:TAG/:UUID url=***     增补|指定 文章 信息
+  sum/p/:TAG 综合 分类文章 信息现状
+
+  fix/dm/:NM  nm=ZQ         修订/创建指定 大妈 的相关信息
+  fix/m/:UUID nm=ZQ         修订指定 成员 的相关信息
+  fix/e/:UUID pic=***       修订/创建指定 活动 的相关信息
+  fix/p/:TAG/:UUID url=***  增补|指定 文章 信息
     TAG当前支持 ot|et|gt|dd|gb|dm|hd
     UUID 为 null 时,指创建文章信息
-  sum/p/:TAG 综合 分类文章 信息现状
-  del/p/:UUID          删除指定文章
+  del/p/:UUID               删除指定文章
 
   !!! 小心:大规模数据I/O操作 !!!
-  push/p json=path/2/xxx.json   提交批量文章数据文件
-  del/bk/:UUID          删除指定备份 dump
+  push/p json=path/2/x.json 提交批量文章数据文件
   bkup/db|dm|m|e|p
      备份 KVDB|大妈|成员|活动|文章 数据到Storage
-
+  del/bk/:UUID              删除指定备份 dump
   revert/db|dm|m|e|p    set=备份dump
      恢复 KVDB|大妈|成员|活动|文章 数据到Storage
+
 益rz...
+  wx/t|ls|usr 通过 公众号接口进一步操作 
 """
 </t>
 <t tx="zoomq.20130925103854.4959">import sys
@@ -1827,6 +1851,9 @@ import os
 import base64
 from subprocess import Popen
 from time import time, gmtime, strftime, localtime
+
+import httplib
+import json
 
 from docopt import docopt
 
@@ -1847,6 +1874,8 @@ from module.auth import _genQueryArgs, _genArgsStr
         &lt;&lt;PUT&gt;&gt;
     elif 'POST' == method:
         &lt;&lt;POST&gt;&gt;
+    elif 'HTTPS' == method:
+        &lt;&lt;HTTPS&gt;&gt;
     else:
         if "echo" == uri:
             &lt;&lt;echo matters&gt;&gt;
@@ -1868,6 +1897,9 @@ from module.auth import _genQueryArgs, _genArgsStr
         # 服务端的指令只有两节,其它的是动态数据,所以,进行净化
         if 2 &lt; len(mess):
             matter = "/".join(mess[:-1])
+        elif 'info' == mess[0]:
+            matter = mess[0]
+        
         # 然后进行分拣 协议情况生成请求
         if matter in CFG.CLI_MATTERS.keys():  
             method = CFG.CLI_MATTERS[matter]      
@@ -2450,7 +2482,6 @@ content = args.split("=")[-1].strip()
 xml = CFG.TPL_TEXT % locals()
 cmd = "curl -d '%s' %s/%s "% (xml, AS_LOCAL, uri)
 #print cmd
-
 #return None
 
 
@@ -2472,16 +2503,29 @@ cmd = "http -f -b %s %s "% (method, uri)
 
 
 </t>
-<t tx="zoomq.20130925103854.6452">get_args = _genQueryArgs(uri, rest_method=method)
-#print "get_args\n\t", get_args
-get_str = "&amp;".join(["%s=%s"% (g[0], g[1]) for g in get_args])
-#print get_str
-uri = "%s%s/%s/%s"% (host
-    , CFG.APIPRE
-    , uri
-    , base64.urlsafe_b64encode(get_str)
+<t tx="zoomq.20130925103854.6452">#get_args = _genQueryArgs(uri, rest_method=method)
+print uri
+#cmd = "http -b --verify=no '%s' "% wx_uri
+data = _https_get(CFG.CLI_URI[uri][0]
+    , CFG.CLI_URI[uri][1]
+    , appid = XCFG.WX_APPID
+    , secret = XCFG.WX_SECRET
     )
-cmd = "http -b %s %s "% (method, uri)
+#print data
+js = json.loads(data)
+print "access_token: ", js['access_token']
+uri = 'wx/ls'
+data = _https_get(CFG.CLI_URI[uri][0]
+    , CFG.CLI_URI[uri][1]
+    , token = js['access_token']
+    )
+print data
+
+return None
+'''经测试,订阅号同公众号的接口用户完全不同,
+无法共用接口!
+'''
+
 
 
 
@@ -3098,6 +3142,8 @@ BK = Bucket('bkup')</t>
 </t>
 <t tx="zoomq.20130927104354.6049">@APP.get('/cli/st/kv/&lt;qstr&gt;')
 def st_kv(qstr):
+    '''查询 KVDB 整体现状
+    '''
     q_dict = _query2dict(qstr)
     if _chkQueryArgs("/cli/st/kv", q_dict, "GET"):
         feed_back = {'data':[]}
@@ -3117,20 +3163,16 @@ def bkup_dump(matter):
         feed_back = {'data':[]}
         if 'db' ==  matter:
             print "try dumps all nodes from KVDB"
+            &lt;&lt;dump 所有内容&gt;&gt;
+            msg = "bkup KVDB dumped"
         else:
-            kb_objs = {}
-            kb_objs[CFG.K4D[matter] ] = KV.get(CFG.K4D[matter])
-            if 0 != len(kb_objs[CFG.K4D[matter] ] ):
-                for k in kb_objs[CFG.K4D[matter] ]:
-                    kb_objs[k] = KV.get(k)
-            dumps = cPickle.dumps(kb_objs)
-            feed_back['data'].append("%s pointed %s nodes"%(CFG.K4D[matter] 
-                , len(kb_objs[CFG.K4D[matter] ] )))
-            #print kb_objs
-        sid, uri = PUT2SS(dumps, name=matter)
+            &lt;&lt;dump 指定内容&gt;&gt;
+            msg = "bkup %s dumped"% CFG.K4D[matter]
         
+        sid, uri = PUT2SS(dumps, name=matter)
         feed_back['data'].append( BK.stat_object(sid) )
-        feed_back['msg'] = "bkup %s dump as %s"% (CFG.K4D[matter], uri)
+        feed_back['msg'] = msg
+        feed_back['uri'] = uri
         #data.append(KV.get_info())
         return feed_back
     else:
@@ -3187,12 +3229,14 @@ def revert_dump(matter):
         else:
             dumps = BK.get_object_contents(set_var)
             re_obj = cPickle.loads(dumps)
-            KV.replace(CFG.K4D[matter], re_obj[CFG.K4D[matter]])
+            #print CFG.K4D[matter]#, re_obj[CFG.K4D[matter]]
+            #return None
+            # replace global idx K/V
             uuids = re_obj[CFG.K4D[matter]]
+            KV.replace(CFG.K4D[matter], uuids)
             for uuid in uuids:
-                #print uuid, re_obj[uuid]
+                print uuid, re_obj[uuid]
                 KV.replace(uuid, re_obj[uuid])
-            
         feed_back['data'].append( BK.stat_object(set_var) )
         feed_back['msg'] = "reverted %s nodes as %s "% (len(re_obj[CFG.K4D[matter]])
             , CFG.K4D[matter]
@@ -3504,8 +3548,10 @@ def st_p_tag(tag, qstr):
         all_papers.sort()
         tmp = {}
         for puuid in KV.get(CFG.K4D['p']):
+            print puuid, " --&gt; ", KV.get(puuid)
             if tag ==  puuid[:2]:
                 p = KV.get(puuid)
+                print p
                 if 0 == p['del']:
                     exp = "%s:%-28s"%(p['code'], puuid)
                     tmp[exp] = p['title']
@@ -3582,5 +3628,81 @@ def niuniu(self, wxreq):
     return WxTextResponse(CFG.TXT_NN% (_today-CFG.NIUNIU).days, wxreq).as_xml()
 
 </t>
+<t tx="zoomq.20131223160728.4901">get_args = _genQueryArgs(uri, rest_method=method)
+#print "get_args\n\t", get_args
+get_str = "&amp;".join(["%s=%s"% (g[0], g[1]) for g in get_args])
+#print get_str
+uri = "%s%s/%s/%s"% (host
+    , CFG.APIPRE
+    , uri
+    , base64.urlsafe_b64encode(get_str)
+    )
+cmd = "http -b %s %s "% (method, uri)
+
+#print uri
+
+#return None
+</t>
+<t tx="zoomq.20131223160728.4902">def _https_get(uri, tpl, **args):
+    c = httplib.HTTPSConnection(uri)
+    #print args
+    c.request("GET", tpl % args)
+    response = c.getresponse()
+    print response.status, response.reason
+    data = response.read()
+    return data
+</t>
+<t tx="zoomq.20131223160728.4904">@APP.get('/cli/info/&lt;uuid&gt;/&lt;qstr&gt;')
+def info_kv(uuid, qstr):
+    '''查询 UUID 的信息
+    '''
+    q_dict = _query2dict(qstr)
+    if _chkQueryArgs("/cli/info/%s"% uuid, q_dict, "GET"):
+        print uuid
+        print KV.get(uuid)
+        return None
+
+        feed_back['msg'] = "safe quary;-)"
+        feed_back['data'] = KV.get_info()
+        return feed_back
+    else:
+        return "alert quary!-("
+
+</t>
+<t tx="zoomq.20131223160728.4905">kb_objs = {}
+total = 0
+for k in CFG.K4D:
+    #print k
+    if 'incr' == k:
+        # 只要替换一个自增值
+        kb_objs[k] = CFG.K4D[k]
+        kb_objs[CFG.K4D[k] ] = KV.get(CFG.K4D[k])
+        total += 1
+    else:
+        # 需要根据索引值列逐一提取数据
+        kb_objs[k] = CFG.K4D[k]
+        kb_objs[CFG.K4D[k] ] = KV.get(CFG.K4D[k])
+        total += 1
+        if 0 != len(kb_objs[CFG.K4D[k] ] ):
+            for k4v in kb_objs[CFG.K4D[k] ]:
+                crt_v = KV.get(k4v)
+                if None != crt_v:
+                    kb_objs[k4v] = crt_v
+                    total += 1
+dumps = cPickle.dumps(kb_objs)
+feed_back['data'].append("%s pointed %s nodes"%(CFG.K4D, total) )
+
+#print kb_objs
+
+</t>
+<t tx="zoomq.20131223160728.4907">kb_objs = {}
+kb_objs[CFG.K4D[matter] ] = KV.get(CFG.K4D[matter])
+if 0 != len(kb_objs[CFG.K4D[matter] ] ):
+    for k in kb_objs[CFG.K4D[matter] ]:
+        kb_objs[k] = KV.get(k)
+dumps = cPickle.dumps(kb_objs)
+feed_back['data'].append("%s pointed %s nodes"%(CFG.K4D[matter] 
+    , len(kb_objs[CFG.K4D[matter] ] )))
+#print kb_objs</t>
 </tnodes>
 </leo_file>

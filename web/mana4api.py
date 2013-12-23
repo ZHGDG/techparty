@@ -62,6 +62,22 @@ def wechat(request):
 query_string 
 '''
 
+@APP.get('/cli/info/<uuid>/<qstr>')
+def info_kv(uuid, qstr):
+    '''查询 UUID 的信息
+    '''
+    q_dict = _query2dict(qstr)
+    if _chkQueryArgs("/cli/info/%s"% uuid, q_dict, "GET"):
+        print uuid
+        print KV.get(uuid)
+        return None
+
+        feed_back['msg'] = "safe quary;-)"
+        feed_back['data'] = KV.get_info()
+        return feed_back
+    else:
+        return "alert quary!-("
+
 # collection KVDB mana. matters
 '''
 '''
@@ -72,6 +88,32 @@ def bkup_dump(matter):
         feed_back = {'data':[]}
         if 'db' ==  matter:
             print "try dumps all nodes from KVDB"
+            kb_objs = {}
+            total = 0
+            for k in CFG.K4D:
+                #print k
+                if 'incr' == k:
+                    # 只要替换一个自增值
+                    kb_objs[k] = CFG.K4D[k]
+                    kb_objs[CFG.K4D[k] ] = KV.get(CFG.K4D[k])
+                    total += 1
+                else:
+                    # 需要根据索引值列逐一提取数据
+                    kb_objs[k] = CFG.K4D[k]
+                    kb_objs[CFG.K4D[k] ] = KV.get(CFG.K4D[k])
+                    total += 1
+                    if 0 != len(kb_objs[CFG.K4D[k] ] ):
+                        for k4v in kb_objs[CFG.K4D[k] ]:
+                            crt_v = KV.get(k4v)
+                            if None != crt_v:
+                                kb_objs[k4v] = crt_v
+                                total += 1
+            dumps = cPickle.dumps(kb_objs)
+            feed_back['data'].append("%s pointed %s nodes"%(CFG.K4D, total) )
+
+            #print kb_objs
+
+            msg = "bkup KVDB dumped"
         else:
             kb_objs = {}
             kb_objs[CFG.K4D[matter] ] = KV.get(CFG.K4D[matter])
@@ -82,10 +124,12 @@ def bkup_dump(matter):
             feed_back['data'].append("%s pointed %s nodes"%(CFG.K4D[matter] 
                 , len(kb_objs[CFG.K4D[matter] ] )))
             #print kb_objs
-        sid, uri = PUT2SS(dumps, name=matter)
+            msg = "bkup %s dumped"% CFG.K4D[matter]
         
+        sid, uri = PUT2SS(dumps, name=matter)
         feed_back['data'].append( BK.stat_object(sid) )
-        feed_back['msg'] = "bkup %s dump as %s"% (CFG.K4D[matter], uri)
+        feed_back['msg'] = msg
+        feed_back['uri'] = uri
         #data.append(KV.get_info())
         return feed_back
     else:
@@ -104,12 +148,14 @@ def revert_dump(matter):
         else:
             dumps = BK.get_object_contents(set_var)
             re_obj = cPickle.loads(dumps)
-            KV.replace(CFG.K4D[matter], re_obj[CFG.K4D[matter]])
+            #print CFG.K4D[matter]#, re_obj[CFG.K4D[matter]]
+            #return None
+            # replace global idx K/V
             uuids = re_obj[CFG.K4D[matter]]
+            KV.replace(CFG.K4D[matter], uuids)
             for uuid in uuids:
-                #print uuid, re_obj[uuid]
+                print uuid, re_obj[uuid]
                 KV.replace(uuid, re_obj[uuid])
-            
         feed_back['data'].append( BK.stat_object(set_var) )
         feed_back['msg'] = "reverted %s nodes as %s "% (len(re_obj[CFG.K4D[matter]])
             , CFG.K4D[matter]
@@ -164,6 +210,8 @@ def st_kv(matter, qstr):
 
 @APP.get('/cli/st/kv/<qstr>')
 def st_kv(qstr):
+    '''查询 KVDB 整体现状
+    '''
     q_dict = _query2dict(qstr)
     if _chkQueryArgs("/cli/st/kv", q_dict, "GET"):
         feed_back = {'data':[]}
@@ -189,8 +237,10 @@ def st_p_tag(tag, qstr):
         all_papers.sort()
         tmp = {}
         for puuid in KV.get(CFG.K4D['p']):
+            print puuid, " --> ", KV.get(puuid)
             if tag ==  puuid[:2]:
                 p = KV.get(puuid)
+                print p
                 if 0 == p['del']:
                     exp = "%s:%-28s"%(p['code'], puuid)
                     tmp[exp] = p['title']

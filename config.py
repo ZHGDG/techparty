@@ -26,7 +26,7 @@ class Borg():
     def __init__(self):
         self.__dict__ = self.__collective_mind
     
-    VERSION = "weknow v13.10.24.2"
+    VERSION = "weknow v13.12.23.1"
     #管理员邮箱列表
     ADMIN_EMAIL_LIST = ['zoomquiet+gdg@gmail.com']
     NIUNIU = datetime.datetime(2009, 5, 19)
@@ -55,7 +55,7 @@ class Borg():
             else:
                 KV.add(K4D[k], [])
         else:
-            print K4D[k], KV.get(K4D[k])
+            print K4D[k]#, KV.get(K4D[k])
 
     objUSR={"his_id":""   # 更新戮
         , "lasttm": ''  # time.time()
@@ -362,23 +362,24 @@ class Borg():
           "sum/his":    "GET"       # 节点(任意)修订次数
         , "his/last":   "GET"       # 最后一次节点(任意)修订
         
-        , "info/usr":   "GET"       # 查阅用户信息
         , "find/usr":   "GET"       # 搜索用户
         , "del/usr":    "DELETE"    # 软删除所有用户 (包含tag 信息)
         , "reliv/usr":  "PUT"       # 恢复指定用户
         , "acl/usr":    "PUT"       # 设置用户权限
         , "list/usr":   "GET"       # 列出指定级别用户
         
+        , "info":   "GET"          # 查阅 指定 信息
+        
         , "fix/dm":     "PUT"       # 修订 大妈 信息
         , "fix/m":      "PUT"       # 修订 成员 信息
         , "fix/e":      "PUT"       # 增补 活动 信息
-        , "fix/p/gb":   "PUT"       # 增补 文章 信息
-        , "fix/p/dd":   "PUT"       # 增补 文章 信息
-        , "fix/p/gt":   "PUT"       # 增补 文章 信息
-        , "fix/p/dm":   "PUT"       # 增补 文章 信息
-        , "fix/p/hd":   "PUT"       # 增补 文章 信息
-        , "fix/p/ot":   "PUT"       # 增补 文章 信息
-        , "fix/p/et":   "PUT"       # 增补 活动 文章
+        , "fix/p/gb":   "PUT"       # 增补 gb文章 信息
+        , "fix/p/dd":   "PUT"       # 增补 dd文章 信息
+        , "fix/p/gt":   "PUT"       # 增补 gt文章 信息
+        , "fix/p/dm":   "PUT"       # 增补 dm文章 信息
+        , "fix/p/hd":   "PUT"       # 增补 hd文章 信息
+        , "fix/p/ot":   "PUT"       # 增补 其它文章 信息
+        , "fix/p/et":   "PUT"       # 增补 活动文章 文章
         
         , "echo":       "GET"       # 模拟wechat 问答
         
@@ -411,15 +412,31 @@ class Borg():
 
         , "revert/db":  "PUT"      # 恢复整个 KVDB
         , "revert/dm":  "PUT"      # 恢复 大妈 数据
-        , "revert/m":   "PUT"      # 恢复 大妈 数据
-        , "revert/e":   "PUT"      # 恢复 大妈 数据
-        , "revert/p":   "PUT"      # 恢复 大妈 数据
+        , "revert/m":   "PUT"      # 恢复 成员 数据
+        , "revert/e":   "PUT"      # 恢复 活动 数据
+        , "revert/p":   "PUT"      # 恢复 文章 数据
+        
+        , "wx/t":       "HTTPS"     # 获取 token
+        , "wx/usr":     "HTTPS"     # 获取关注列表
+        }
+
+    CLI_URI = {     # 命令行 请求外部系统URI 速查字典
+        "wx/t":     ("api.weixin.qq.com"
+            , "/cgi-bin/token?grant_type=client_credential&appid=%(appid)s&secret=%(secret)s"
+            )     # 获取 token
+        , "wx/ls":  ("api.weixin.qq.com"
+            , "/cgi-bin/user/get?access_token=%(token)s"
+            )     # 获取关注列表
+        , "wx/usr": ("api.weixin.qq.com"
+            , "/cgi-bin/user/info?access_token=%(token)s&openid=%(openid)s"
+            )     # 获取成员信息
         }
 
     LEVEL4USR = {"mana":0
         , "up":1
         , "api":2
         }
+
 
 
     

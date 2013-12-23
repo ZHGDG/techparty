@@ -1,4 +1,5 @@
 .ropeproject
+_chaos
 media
 site-packages
 *.dump
@@ -10,4 +11,3 @@ site-packages
 *.wsgic
 logs
 xsettings.py
-module/xsettings.py
