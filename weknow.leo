@@ -25,7 +25,7 @@
 <v t="zoomq.20130923093950.8569"><vh>&lt;&lt;大妈们&gt;&gt;</vh></v>
 <v t="zoomq.20130923093950.5396"><vh>&lt;&lt;HISTORIC&gt;&gt;</vh></v>
 </v>
-<v t="zoomq.20130918155053.7084"><vh>4wechat</vh>
+<v t="zoomq.20130918155053.7084" a="E"><vh>4wechat</vh>
 <v t="zoomq.20130923093950.7285"><vh>&lt;&lt;XML模板&gt;&gt;</vh></v>
 <v t="zoomq.20130925103854.6457"><vh>活动报名</vh></v>
 <v t="zoomq.20130925103854.6455"><vh>帮助.系统</vh></v>
@@ -36,7 +36,7 @@
 <v t="zoomq.20130925103854.4951"><vh>RESTful</vh></v>
 </v>
 </v>
-<v t="zoomq.20130925103854.4957" a="E"><vh>@nosent CLI.py</vh>
+<v t="zoomq.20130925103854.4957"><vh>@nosent CLI.py</vh>
 <v t="zoomq.20130925103854.4958"><vh>&lt;&lt;docopt&gt;&gt;</vh></v>
 <v t="zoomq.20130925103854.4959"><vh>&lt;&lt;declarations&gt;&gt;</vh></v>
 <v t="zoomq.20130925103854.4961"><vh>smart_rest()</vh></v>
@@ -80,7 +80,7 @@
 <v t="zoomq.20120723102156.5548"><vh>/</vh></v>
 <v t="zoomq.20120727213305.14707"><vh>404+各种默认处理</vh></v>
 </v>
-<v t="zoomq.20120723102156.5561" a="E"><vh>@nosent mana4api.py</vh>
+<v t="zoomq.20120723102156.5561" a="EO"><vh>@nosent mana4api.py</vh>
 <v t="zoomq.20120723102156.5562"><vh>&lt;&lt;declarations&gt;&gt;</vh></v>
 <v t="zoomq.20130918155053.5760"><vh>GET  /echo</vh></v>
 <v t="zoomq.20130925103854.5007"><vh>CLI 远程管理</vh>
@@ -133,10 +133,10 @@
 <v t="zoomq.20130925103854.6427"><vh>__update_usr()</vh></v>
 <v t="zoomq.20130925103854.6430" a="E"><vh>FSM</vh>
 <v t="zoomq.20130925103854.6461"><vh>&lt;&lt;大妈联系&gt;&gt;</vh></v>
-<v t="zoomq.20130925103854.6431" a="E"><vh>s 查阅文章</vh>
+<v t="zoomq.20130925103854.6431"><vh>s 查阅文章</vh>
 <v t="zoomq.20130926092950.5443"><vh>&lt;&lt;seek&gt;&gt;</vh></v>
 <v t="zoomq.20130926092950.5444"><vh>&lt;&lt;tags&gt;&gt;</vh></v>
-<v t="zoomq.20130926092950.5445" a="E"><vh>&lt;&lt;no_paper&gt;&gt;</vh>
+<v t="zoomq.20130926092950.5445"><vh>&lt;&lt;no_paper&gt;&gt;</vh>
 <v t="zoomq.20131007093121.31624"><vh>&lt;&lt;tag paper No.&gt;&gt;</vh></v>
 </v>
 </v>
@@ -146,10 +146,17 @@
 <v t="zoomq.20130926092950.5436"><vh>&lt;&lt;info_alias&gt;&gt;</vh></v>
 <v t="zoomq.20130926092950.5435"><vh>&lt;&lt;info_mail&gt;&gt;</vh></v>
 </v>
-<v t="zoomq.20130925103854.6441"><vh>系统信息</vh></v>
+<v t="zoomq.20130925103854.6441"><vh>系统信息</vh>
+<v t="zoomq.20131223160728.5954"><vh>&lt;&lt;helpme&gt;&gt;</vh></v>
+<v t="zoomq.20131223160728.5956"><vh>&lt;&lt;status&gt;&gt;</vh></v>
+<v t="zoomq.20131223160728.5955"><vh>&lt;&lt;version&gt;&gt;</vh></v>
+</v>
 <v t="zoomq.20131024165032.5626"><vh>nn今天</vh></v>
-<v t="zoomq.20130925103854.6437"><vh>e 活动查询</vh></v>
-<v t="zoomq.20130925103854.6435"><vh>活动报名</vh></v>
+<v t="zoomq.20130925103854.6437"><vh>e 活动查询</vh>
+<v t="zoomq.20131223160728.5957"><vh>&lt;&lt;reg_event&gt;&gt;</vh></v>
+<v t="zoomq.20131223160728.5958"><vh>&lt;&lt;reg_cancel&gt;&gt;</vh></v>
+<v t="zoomq.20131223160728.5959"><vh>&lt;&lt;reg_info&gt;&gt;</vh></v>
+</v>
 </v>
 <v t="zoomq.20130923093950.8570"><vh>__echo_txt()</vh></v>
 <v t="zoomq.20120727213305.13050"><vh>/api/sysincr</vh></v>
@@ -1342,11 +1349,14 @@ from bottle import request, HTTPError
 <t tx="zoomq.20130918155053.5760">@APP.get('/echo')
 @APP.get('/echo/')
 def echo_wechat():
-    print request.query.keys()
-    print request.query.echostr
+    '''wechat app token echo
+    '''
+    #print request.query.keys()
+    #print request.query.echostr
     #print request.query_string
     #print dir(BaseRequest.query_string)
     return request.query.echostr
+
 '''
 def wechat(request):
     app = EchoApp()
@@ -2259,31 +2269,6 @@ resp = WxNewsResponse([WxArticle(Title="iPhone 6 is here!",
 &lt;&lt;info_mail&gt;&gt;
 
 </t>
-<t tx="zoomq.20130925103854.6435">@state('weknow')
-@transition('end', 'end')
-def reg_event(self, crt_usr):
-    print 'setup-&gt;reg_event-&gt;end'
-    crt_usr = wxreq.crt_usr
-    crt_usr['fsm'] = "setup"
-    __update_usr(crt_usr)
-
-@state('weknow')
-@transition('end', 'end')
-def reg_cancel(self, crt_usr):
-    print 'setup-&gt;reg_cancel-&gt;end'
-    crt_usr = wxreq.crt_usr
-    crt_usr['fsm'] = "setup"
-    __update_usr(crt_usr)
-
-@state('weknow')
-@transition('end', 'end')
-def reg_info(self, crt_usr):
-    print 'setup-&gt;info_reg-&gt;end'
-    crt_usr = wxreq.crt_usr
-    crt_usr['fsm'] = "setup"
-    __update_usr(crt_usr)
-
-</t>
 <t tx="zoomq.20130925103854.6437">@state('weknow')
 @transition('end', 'end')
 def events(self, wxreq):
@@ -2317,47 +2302,11 @@ def events(self, wxreq):
 
 
 </t>
-<t tx="zoomq.20130925103854.6441">@state('weknow')
-@transition('end', 'end')
-def helpme(self, wxreq):
-    print 'setup-&gt;helpme-&gt;end'
-    crt_usr = wxreq.crt_usr
-    crt_usr['fsm'] = "setup"
-    __update_usr(crt_usr)
-    return WxTextResponse(CFG.TXT_HELP, wxreq).as_xml()
-    
-    return __echo_txt(crt_usr['fromUser']
-        , crt_usr['toUser']
-        , CFG.TXT_HELP
-        )
+<t tx="zoomq.20130925103854.6441">&lt;&lt;helpme&gt;&gt;
 
-@state('weknow')
-@transition('end', 'end')
-def version(self, wxreq):
-    print 'setup-&gt;version-&gt;end'
-    crt_usr = wxreq.crt_usr
-    crt_usr['fsm'] = "setup"
-    __update_usr(crt_usr)
-    return WxTextResponse(CFG.TXT_VER, wxreq).as_xml()
+&lt;&lt;status&gt;&gt;
 
-    return __echo_txt(crt_usr['fromUser']
-        , crt_usr['toUser']
-        , CFG.TXT_VER
-        )
-
-@state('weknow')
-@transition('end', 'end')
-def status(self, wxreq):
-    print 'setup-&gt;status-&gt;end'
-    crt_usr = wxreq.crt_usr
-    crt_usr['fsm'] = "setup"
-    __update_usr(crt_usr)
-    return WxTextResponse(KV.get_info(), wxreq).as_xml()
-
-    return __echo_txt(crt_usr['fromUser']
-        , crt_usr['toUser']
-        , KV.get_info()
-        )
+&lt;&lt;version&gt;&gt;
 
 </t>
 <t tx="zoomq.20130925103854.6443">def _query2dict(qstr):
@@ -2637,7 +2586,7 @@ TXT_PLS_EM = u'''请输入亲常用邮箱:
 TXT_REALY_EM = u'''亲! 得给邮箱哪!
 (成员信息增补流程 2/2)
 
-也可以输入 * 退出 ;-)
+也可以输入 q 退出 ;-)
 
 更多细节,请惯性地输入 h 继续吧 :)
 '''
@@ -2645,7 +2594,7 @@ TXT_REALY_EM = u'''亲! 得给邮箱哪!
 CN_TXT_REALY_EM = u'''亲! 要请输入邮箱格式吼!
 (成员信息增补流程 2/2)
 
-也可以输入 * 退出成员信息增补流程;-)
+也可以输入 q 退出成员信息增补流程;-)
 
 更多细节,请惯性地输入 h 继续吧 :)
 '''
@@ -2680,7 +2629,7 @@ TXT_PLS_TAG = u'''亲! 请输入文章类别编码(类似 dm 的2字母):
 
 %s
 
-也可以输入 * 退出文章查阅流程;-)
+也可以输入 q 退出文章查阅流程;-)
 
 更多细节,请惯性地输入 h 继续吧 :)
 '''% TXT_TAG_DEFINE
@@ -2690,7 +2639,7 @@ TXT_OUT_TAG = u'''亲! 目测输错了类别编码,再试?
 
 %s
 
-也可以输入 * 退出文章查阅流程;-)
+也可以输入 q 退出文章查阅流程;-)
 
 更多细节,请惯性地输入 h 继续吧 :)
 '''% TXT_TAG_DEFINE
@@ -2699,14 +2648,14 @@ TXT_TAG_PAPERS = u'''%s ::
 
 %s
 
-可输入 * 退出文章查阅流程;-)
+可输入 q 退出文章查阅流程;-)
 
 更多细节,请惯性地输入 h 继续吧 :)
 '''
 
 TXT_PLS_INT = u'''亲! 请输入类型文章的编号,仅数字就好:
 
-也可以输入 * 退出文章查阅流程;-)
+也可以输入 q 退出文章查阅流程;-)
 
 更多细节,请惯性地输入 h 继续吧 :)
 '''
@@ -2714,7 +2663,7 @@ TXT_PLS_INT = u'''亲! 请输入类型文章的编号,仅数字就好:
 TXT_PUB_LIST = u'''%s ::
 %s
 
-也可以输入 * 退出文章查阅流程;-)
+也可以输入 q 退出文章查阅流程;-)
 
 更多细节,请惯性地输入 h 继续吧 :)
 '''
@@ -2756,7 +2705,7 @@ else:
     AS_SAE = False
 </t>
 <t tx="zoomq.20130926092950.5433">@state('weknow')
-@transition('*', 'end')
+@transition('q', 'end')
 def info_me(self, wxreq):
     print 'setup-&gt;info_me-&gt;end'
     crt_usr = wxreq.crt_usr
@@ -2781,7 +2730,7 @@ def info_me(self, wxreq):
 
 </t>
 <t tx="zoomq.20130926092950.5434">@state('weknow')
-@transition('*', 'end')
+@transition('q', 'end')
 @transition('ia', 'info_alias')
 def edit_info(self, wxreq):
     print 'setup-&gt;edit_info-&gt;info_alias 提醒输入妮称'
@@ -2808,7 +2757,7 @@ def edit_info(self, wxreq):
 
 </t>
 <t tx="zoomq.20130926092950.5435">@state('weknow')
-@transition('*', 'end')
+@transition('q', 'end')
 def info_mail(self, wxreq):
     print 'setup-&gt;edit_info-&gt;info_alias-&gt;info_mail-&gt;end 回报收集的'
     crt_usr = wxreq.crt_usr
@@ -2859,7 +2808,7 @@ UnicodeEncodeError: 'ascii' codec can't encode character u'\u4eb2' in position 2
 
 </t>
 <t tx="zoomq.20130926092950.5436">@state('weknow')
-@transition('*', 'end')
+@transition('q', 'end')
 @transition('im', 'info_mail')
 def info_alias(self, wxreq):
     print 'setup-&gt;edit_info-&gt;info_alias-&gt;info_mail 提醒输入邮箱'
@@ -2960,7 +2909,7 @@ def seek(self, wxreq):
 </t>
 <t tx="zoomq.20130926092950.5444">@state('weknow')
 @transition('no', 'no_paper')
-@transition('*', 'helpme')
+@transition('q', 'helpme')
 @transition('h', 'helpme')
 def papers(self, wxreq):
     print 'setup-&gt;seek-&gt;[papers]-&gt;no'
@@ -3026,7 +2975,7 @@ def papers(self, wxreq):
 </t>
 <t tx="zoomq.20130926092950.5445">@state('weknow')
 @transition('end', 'end')
-@transition('*', 'helpme')
+@transition('q', 'helpme')
 @transition('h', 'helpme')
 def number_paper(self, wxreq):
     print 'setup-&gt;seek-&gt;...-&gt;no-&gt;end'
@@ -3757,6 +3706,82 @@ for k in re_obj.keys():
 KV.set(CFG.K4D['his'], list(_his) )
 #print KV.get(CFG.K4D['his'])
 
+
+
+</t>
+<t tx="zoomq.20131223160728.5954">@state('weknow')
+@transition('end', 'end')
+def helpme(self, wxreq):
+    print 'setup-&gt;helpme-&gt;end'
+    crt_usr = wxreq.crt_usr
+    crt_usr['fsm'] = "setup"
+    __update_usr(crt_usr)
+    return WxTextResponse(CFG.TXT_HELP, wxreq).as_xml()
+    
+    return __echo_txt(crt_usr['fromUser']
+        , crt_usr['toUser']
+        , CFG.TXT_HELP
+        )
+
+</t>
+<t tx="zoomq.20131223160728.5955">@state('weknow')
+@transition('end', 'end')
+def version(self, wxreq):
+    print 'setup-&gt;version-&gt;end'
+    crt_usr = wxreq.crt_usr
+    crt_usr['fsm'] = "setup"
+    __update_usr(crt_usr)
+    return WxTextResponse(CFG.TXT_VER, wxreq).as_xml()
+
+    return __echo_txt(crt_usr['fromUser']
+        , crt_usr['toUser']
+        , CFG.TXT_VER
+        )
+</t>
+<t tx="zoomq.20131223160728.5956">
+@state('weknow')
+@transition('end', 'end')
+def status(self, wxreq):
+    print 'setup-&gt;status-&gt;end'
+    crt_usr = wxreq.crt_usr
+    crt_usr['fsm'] = "setup"
+    __update_usr(crt_usr)
+    return WxTextResponse(KV.get_info(), wxreq).as_xml()
+
+    return __echo_txt(crt_usr['fromUser']
+        , crt_usr['toUser']
+        , KV.get_info()
+        )
+
+</t>
+<t tx="zoomq.20131223160728.5957">@state('weknow')
+@transition('end', 'end')
+def reg_event(self, crt_usr):
+    print 'setup-&gt;reg_event-&gt;end'
+    crt_usr = wxreq.crt_usr
+    crt_usr['fsm'] = "setup"
+    __update_usr(crt_usr)
+
+
+
+</t>
+<t tx="zoomq.20131223160728.5958">@state('weknow')
+@transition('end', 'end')
+def reg_cancel(self, crt_usr):
+    print 'setup-&gt;reg_cancel-&gt;end'
+    crt_usr = wxreq.crt_usr
+    crt_usr['fsm'] = "setup"
+    __update_usr(crt_usr)
+
+</t>
+<t tx="zoomq.20131223160728.5959">
+@state('weknow')
+@transition('end', 'end')
+def reg_info(self, crt_usr):
+    print 'setup-&gt;info_reg-&gt;end'
+    crt_usr = wxreq.crt_usr
+    crt_usr['fsm'] = "setup"
+    __update_usr(crt_usr)
 
 
 </t>

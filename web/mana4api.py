@@ -832,7 +832,7 @@ def seek(self, wxreq):
 
 @state('weknow')
 @transition('no', 'no_paper')
-@transition('*', 'helpme')
+@transition('q', 'helpme')
 @transition('h', 'helpme')
 def papers(self, wxreq):
     print 'setup->seek->[papers]->no'
@@ -897,7 +897,7 @@ def papers(self, wxreq):
 
 @state('weknow')
 @transition('end', 'end')
-@transition('*', 'helpme')
+@transition('q', 'helpme')
 @transition('h', 'helpme')
 def number_paper(self, wxreq):
     print 'setup->seek->...->no->end'
@@ -961,7 +961,7 @@ resp = WxNewsResponse([WxArticle(Title="iPhone 6 is here!",
 
     
 @state('weknow')
-@transition('*', 'end')
+@transition('q', 'end')
 def info_me(self, wxreq):
     print 'setup->info_me->end'
     crt_usr = wxreq.crt_usr
@@ -986,7 +986,7 @@ def info_me(self, wxreq):
 
 
 @state('weknow')
-@transition('*', 'end')
+@transition('q', 'end')
 @transition('ia', 'info_alias')
 def edit_info(self, wxreq):
     print 'setup->edit_info->info_alias 提醒输入妮称'
@@ -1013,7 +1013,7 @@ def edit_info(self, wxreq):
 
 
 @state('weknow')
-@transition('*', 'end')
+@transition('q', 'end')
 @transition('im', 'info_mail')
 def info_alias(self, wxreq):
     print 'setup->edit_info->info_alias->info_mail 提醒输入邮箱'
@@ -1029,7 +1029,7 @@ def info_alias(self, wxreq):
         )
 
 @state('weknow')
-@transition('*', 'end')
+@transition('q', 'end')
 def info_mail(self, wxreq):
     print 'setup->edit_info->info_alias->info_mail->end 回报收集的'
     crt_usr = wxreq.crt_usr
@@ -1093,19 +1093,7 @@ def helpme(self, wxreq):
         , CFG.TXT_HELP
         )
 
-@state('weknow')
-@transition('end', 'end')
-def version(self, wxreq):
-    print 'setup->version->end'
-    crt_usr = wxreq.crt_usr
-    crt_usr['fsm'] = "setup"
-    __update_usr(crt_usr)
-    return WxTextResponse(CFG.TXT_VER, wxreq).as_xml()
 
-    return __echo_txt(crt_usr['fromUser']
-        , crt_usr['toUser']
-        , CFG.TXT_VER
-        )
 
 @state('weknow')
 @transition('end', 'end')
@@ -1119,6 +1107,21 @@ def status(self, wxreq):
     return __echo_txt(crt_usr['fromUser']
         , crt_usr['toUser']
         , KV.get_info()
+        )
+
+
+@state('weknow')
+@transition('end', 'end')
+def version(self, wxreq):
+    print 'setup->version->end'
+    crt_usr = wxreq.crt_usr
+    crt_usr['fsm'] = "setup"
+    __update_usr(crt_usr)
+    return WxTextResponse(CFG.TXT_VER, wxreq).as_xml()
+
+    return __echo_txt(crt_usr['fromUser']
+        , crt_usr['toUser']
+        , CFG.TXT_VER
         )
 
 @state('weknow')
