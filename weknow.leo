@@ -36,7 +36,7 @@
 <v t="zoomq.20130925103854.4951"><vh>RESTful</vh></v>
 </v>
 </v>
-<v t="zoomq.20130925103854.4957"><vh>@nosent CLI.py</vh>
+<v t="zoomq.20130925103854.4957" a="E"><vh>@nosent CLI.py</vh>
 <v t="zoomq.20130925103854.4958"><vh>&lt;&lt;docopt&gt;&gt;</vh></v>
 <v t="zoomq.20130925103854.4959"><vh>&lt;&lt;declarations&gt;&gt;</vh></v>
 <v t="zoomq.20130925103854.4961"><vh>smart_rest()</vh></v>
@@ -83,18 +83,21 @@
 <v t="zoomq.20120723102156.5561" a="E"><vh>@nosent mana4api.py</vh>
 <v t="zoomq.20120723102156.5562"><vh>&lt;&lt;declarations&gt;&gt;</vh></v>
 <v t="zoomq.20130918155053.5760"><vh>GET  /echo</vh></v>
-<v t="zoomq.20130925103854.5007" a="E"><vh>CLI 远程管理</vh>
+<v t="zoomq.20130925103854.5007"><vh>CLI 远程管理</vh>
 <v t="zoomq.20131223160728.4904"><vh>GET info/:UUID</vh></v>
-<v t="zoomq.20131007093121.5602" a="E"><vh>数据管理</vh>
-<v t="zoomq.20130927104354.6051" a="E"><vh>POST bkup/db|dm|m|e|p</vh>
+<v t="zoomq.20130925103854.5049"><vh>GET sum/db|dm|m|e|p</vh></v>
+<v t="zoomq.20130927104354.6049"><vh>GET st/kv</vh></v>
+<v t="zoomq.20131007093121.5602"><vh>数据管理</vh>
+<v t="zoomq.20130927104354.6051"><vh>POST bkup/db|dm|m|e|p</vh>
 <v t="zoomq.20131223160728.4905"><vh>&lt;&lt;dump 所有内容&gt;&gt;</vh></v>
 <v t="zoomq.20131223160728.4907"><vh>&lt;&lt;dump 指定内容&gt;&gt;</vh></v>
 </v>
-<v t="zoomq.20130927104354.6062"><vh>PUT revert/db|dm|m|e|p</vh></v>
+<v t="zoomq.20130927104354.6062"><vh>PUT revert/db|dm|m|e|p</vh>
+<v t="zoomq.20131223160728.4909"><vh>&lt;&lt;恢复KVDB&gt;&gt;</vh></v>
+<v t="zoomq.20131223160728.4908"><vh>&lt;&lt;恢复指定数据&gt;&gt;</vh></v>
+</v>
 <v t="zoomq.20130927104354.6055"><vh>DELETE del/bk/:UUID</vh></v>
 </v>
-<v t="zoomq.20130925103854.5049"><vh>GET sum/db|dm|m|e|p</vh></v>
-<v t="zoomq.20130927104354.6049"><vh>GET st/kv</vh></v>
 <v t="zoomq.20131007093121.5601"><vh>文章管理</vh>
 <v t="zoomq.20131010225811.3726"><vh>GET sum/p/:TAG</vh></v>
 <v t="zoomq.20131010225811.3728"><vh>DELETE del/p/:UUID</vh></v>
@@ -128,12 +131,12 @@
 </v>
 <v t="zoomq.20130925103854.6426"><vh>__chkRegUsr()</vh></v>
 <v t="zoomq.20130925103854.6427"><vh>__update_usr()</vh></v>
-<v t="zoomq.20130925103854.6430"><vh>FSM</vh>
+<v t="zoomq.20130925103854.6430" a="E"><vh>FSM</vh>
 <v t="zoomq.20130925103854.6461"><vh>&lt;&lt;大妈联系&gt;&gt;</vh></v>
-<v t="zoomq.20130925103854.6431"><vh>s 查阅文章</vh>
+<v t="zoomq.20130925103854.6431" a="E"><vh>s 查阅文章</vh>
 <v t="zoomq.20130926092950.5443"><vh>&lt;&lt;seek&gt;&gt;</vh></v>
 <v t="zoomq.20130926092950.5444"><vh>&lt;&lt;tags&gt;&gt;</vh></v>
-<v t="zoomq.20130926092950.5445"><vh>&lt;&lt;no_paper&gt;&gt;</vh>
+<v t="zoomq.20130926092950.5445" a="E"><vh>&lt;&lt;no_paper&gt;&gt;</vh>
 <v t="zoomq.20131007093121.31624"><vh>&lt;&lt;tag paper No.&gt;&gt;</vh></v>
 </v>
 </v>
@@ -513,7 +516,7 @@ class Borg():
     def __init__(self):
         self.__dict__ = self.__collective_mind
     
-    VERSION = "weknow v13.12.23.1"
+    VERSION = "weknow v13.12.24.1"
     &lt;&lt;cfg4Borg&gt;&gt;
     
 CFG = Borg()
@@ -1473,6 +1476,7 @@ K4D = {'incr':"SYS_TOT"     # int
     ,'dm':"SYS_dama_ALL"    # [] 所有 组委 (包含已经 del 的)
     ,'e':"SYS_eves_ALL"     # [] 所有 活动 (包含已经 del 的)
     ,'p':"SYS_pubs_ALL"     # [] 所有 文章 (包含已经 del 的)
+    ,'his':"SYS_pubs_HIS"   # set() 所有 节点的K索引 (包含已经 del/覆盖 的)
 }
 #KEY4_incr = K4D['incr']
 for k in K4D:
@@ -1733,11 +1737,11 @@ CLI_MATTERS = {     # 命令行响应方式速查字典
     , "sum/bk":     "GET"       # 综合 备份 数据现状
     , "del/bk":     "DELETE"    # 删除指定备份 dump
 
-    , "bkup/db":    "POST"      # 备份整个 KVDB
-    , "bkup/dm":    "POST"      # 备份所有 大妈
-    , "bkup/m":     "POST"      # 备份所有 成员
-    , "bkup/e":     "POST"      # 备份所有 活动
-    , "bkup/p":     "POST"      # 备份所有 文章
+    , "bk/db":    "POST"      # 备份整个 KVDB
+    , "bk/dm":    "POST"      # 备份所有 大妈
+    , "bk/m":     "POST"      # 备份所有 成员
+    , "bk/e":     "POST"      # 备份所有 活动
+    , "bk/p":     "POST"      # 备份所有 文章
 
     , "push/p":     "POST"      # 推送批量文章数据 可以根据 url 判定是否有重复 
 
@@ -1836,7 +1840,7 @@ e.g:
 
   !!! 小心:大规模数据I/O操作 !!!
   push/p json=path/2/x.json 提交批量文章数据文件
-  bkup/db|dm|m|e|p
+  bk/db|dm|m|e|p
      备份 KVDB|大妈|成员|活动|文章 数据到Storage
   del/bk/:UUID              删除指定备份 dump
   revert/db|dm|m|e|p    set=备份dump
@@ -3156,10 +3160,10 @@ def st_kv(qstr):
         return "alert quary!-("
 
 </t>
-<t tx="zoomq.20130927104354.6051">@APP.post('/cli/bkup/&lt;matter&gt;')
+<t tx="zoomq.20130927104354.6051">@APP.post('/cli/bk/&lt;matter&gt;')
 def bkup_dump(matter):
     q_dict = request.forms
-    if _chkQueryArgs("/cli/bkup/%s"% matter, q_dict, "PUT"):
+    if _chkQueryArgs("/cli/bk/%s"% matter, q_dict, "PUT"):
         feed_back = {'data':[]}
         if 'db' ==  matter:
             print "try dumps all nodes from KVDB"
@@ -3223,24 +3227,14 @@ def revert_dump(matter):
         feed_back = {'data':[]}
         set_key = list(set(q_dict.keys())-set(CFG.SECURE_ARGS))[0]
         set_var = base64.urlsafe_b64decode(request.forms[set_key])
-        print set_key, set_var
+        #print set_key, set_var
         if 'db' ==  matter:
             print "try revert ALL date from KVDB"
+            &lt;&lt;恢复KVDB&gt;&gt;
         else:
-            dumps = BK.get_object_contents(set_var)
-            re_obj = cPickle.loads(dumps)
-            #print CFG.K4D[matter]#, re_obj[CFG.K4D[matter]]
-            #return None
-            # replace global idx K/V
-            uuids = re_obj[CFG.K4D[matter]]
-            KV.replace(CFG.K4D[matter], uuids)
-            for uuid in uuids:
-                print uuid, re_obj[uuid]
-                KV.replace(uuid, re_obj[uuid])
+            &lt;&lt;恢复指定数据&gt;&gt;
+                    
         feed_back['data'].append( BK.stat_object(set_var) )
-        feed_back['msg'] = "reverted %s nodes as %s "% (len(re_obj[CFG.K4D[matter]])
-            , CFG.K4D[matter]
-            )
         #data.append(KV.get_info())
         return feed_back
     else:
@@ -3342,12 +3336,14 @@ ADD4SYS('p', uuid)
 tag = crt_usr['buffer']
 resp = None
 for puuid in KV.get(CFG.K4D['p']):
+    # 根据指定的类别,逐一从文章索引中过滤出指定代号的文章
+    # 要求, del==0 &amp;&amp; code==指定数
     if tag == puuid[:2]:
         p = KV.get(puuid)
-        #print p['code']
-        if int(code) == int(p['code']):
-            #print p
-            if 0 == p['del']:
+        #print p['code'], "\n\t", p
+        if 0 == p['del']:
+            if int(code) == int(p['code']):
+                #print p
                 resp = WxNewsResponse([WxArticle(p['title'],
                             Description="",
                             Url=p['url'],
@@ -3548,10 +3544,10 @@ def st_p_tag(tag, qstr):
         all_papers.sort()
         tmp = {}
         for puuid in KV.get(CFG.K4D['p']):
-            print puuid, " --&gt; ", KV.get(puuid)
+            #print puuid, " --&gt; ", KV.get(puuid)
             if tag ==  puuid[:2]:
                 p = KV.get(puuid)
-                print p
+                #print p
                 if 0 == p['del']:
                     exp = "%s:%-28s"%(p['code'], puuid)
                     tmp[exp] = p['title']
@@ -3658,12 +3654,12 @@ def info_kv(uuid, qstr):
     '''
     q_dict = _query2dict(qstr)
     if _chkQueryArgs("/cli/info/%s"% uuid, q_dict, "GET"):
-        print uuid
+        feed_back = {'data':[]}
+        print "info_kv()&gt;&gt;&gt; ",uuid
         print KV.get(uuid)
-        return None
-
+        #return KV.get(uuid)
         feed_back['msg'] = "safe quary;-)"
-        feed_back['data'] = KV.get_info()
+        feed_back['data'] = KV.get(uuid)
         return feed_back
     else:
         return "alert quary!-("
@@ -3675,12 +3671,12 @@ for k in CFG.K4D:
     #print k
     if 'incr' == k:
         # 只要替换一个自增值
-        kb_objs[k] = CFG.K4D[k]
+        #kb_objs[k] = CFG.K4D[k]
         kb_objs[CFG.K4D[k] ] = KV.get(CFG.K4D[k])
         total += 1
     else:
         # 需要根据索引值列逐一提取数据
-        kb_objs[k] = CFG.K4D[k]
+        #kb_objs[k] = CFG.K4D[k]
         kb_objs[CFG.K4D[k] ] = KV.get(CFG.K4D[k])
         total += 1
         if 0 != len(kb_objs[CFG.K4D[k] ] ):
@@ -3704,5 +3700,65 @@ dumps = cPickle.dumps(kb_objs)
 feed_back['data'].append("%s pointed %s nodes"%(CFG.K4D[matter] 
     , len(kb_objs[CFG.K4D[matter] ] )))
 #print kb_objs</t>
+<t tx="zoomq.20131223160728.4908">dumps = BK.get_object_contents(set_var)
+re_obj = cPickle.loads(dumps)
+feed_back['msg'] = "reverted %s nodes as %s "% (len(re_obj[CFG.K4D[matter]])
+    , CFG.K4D[matter]
+    )
+# replace global idx K/V, maybe make ghost K/V
+_his = KV.get(CFG.K4D['his'])
+_his.append(re_obj[CFG.K4D[matter]] )
+_his = list(set(CFG.K4D['his']) )
+KV.set(CFG.K4D['his'], _his)
+
+uuids = re_obj[CFG.K4D[matter]]
+KV.replace(CFG.K4D[matter], uuids)
+for uuid in uuids:
+    #print uuid, re_obj[uuid]
+    if None == KV.get(uuid):
+        KV.add(uuid, re_obj[uuid])
+    else:
+        KV.replace(uuid, re_obj[uuid])
+
+
+
+
+
+</t>
+<t tx="zoomq.20131223160728.4909">dumps = BK.get_object_contents(set_var)
+re_obj = cPickle.loads(dumps)
+feed_back['msg'] = "reverted %s nodes for whole KVDB "% len(re_obj.keys())
+_INX_KEYS = [CFG.K4D[k] for k in CFG.K4D.keys()]
+# replace global idx K/V, maybe make ghost K/V
+_his = set()#KV.get(CFG.K4D['his'])            
+for k in re_obj.keys():
+    if k in _INX_KEYS:
+        # 索引键处理
+        if 'SYS_TOT' == k:
+            # 只要替换一个自增值
+            KV.set(k, re_obj[k])
+        elif 'SYS_pubs_HIS' == k:
+            # 统一增替
+            pass
+        else:
+            print "revert -&gt;", k 
+            #print _his
+            #print type(re_obj[k])
+            _his.update(set(re_obj[k]))
+            print "_his ", len(_his)
+            #KV.set(CFG.K4D['his'], KV.get(CFG.K4D['his']).update(set(re_obj[k])) )
+    else:
+        # 数据键恢复
+        #print k, re_obj[k]
+        if None == KV.get(k):
+            KV.add(k, re_obj[k])
+        else:
+            KV.replace(k, re_obj[k])
+KV.set(CFG.K4D['his'], list(_his) )
+#print KV.get(CFG.K4D['his'])
+
+
+
+</t>
 </tnodes>
 </leo_file>

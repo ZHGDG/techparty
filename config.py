@@ -26,7 +26,7 @@ class Borg():
     def __init__(self):
         self.__dict__ = self.__collective_mind
     
-    VERSION = "weknow v13.12.23.1"
+    VERSION = "weknow v13.12.24.1"
     #管理员邮箱列表
     ADMIN_EMAIL_LIST = ['zoomquiet+gdg@gmail.com']
     NIUNIU = datetime.datetime(2009, 5, 19)
@@ -46,6 +46,7 @@ class Borg():
         ,'dm':"SYS_dama_ALL"    # [] 所有 组委 (包含已经 del 的)
         ,'e':"SYS_eves_ALL"     # [] 所有 活动 (包含已经 del 的)
         ,'p':"SYS_pubs_ALL"     # [] 所有 文章 (包含已经 del 的)
+        ,'his':"SYS_pubs_HIS"   # set() 所有 节点的K索引 (包含已经 del/覆盖 的)
     }
     #KEY4_incr = K4D['incr']
     for k in K4D:
@@ -402,11 +403,11 @@ class Borg():
         , "sum/bk":     "GET"       # 综合 备份 数据现状
         , "del/bk":     "DELETE"    # 删除指定备份 dump
 
-        , "bkup/db":    "POST"      # 备份整个 KVDB
-        , "bkup/dm":    "POST"      # 备份所有 大妈
-        , "bkup/m":     "POST"      # 备份所有 成员
-        , "bkup/e":     "POST"      # 备份所有 活动
-        , "bkup/p":     "POST"      # 备份所有 文章
+        , "bk/db":    "POST"      # 备份整个 KVDB
+        , "bk/dm":    "POST"      # 备份所有 大妈
+        , "bk/m":     "POST"      # 备份所有 成员
+        , "bk/e":     "POST"      # 备份所有 活动
+        , "bk/p":     "POST"      # 备份所有 文章
 
         , "push/p":     "POST"      # 推送批量文章数据 可以根据 url 判定是否有重复 
 

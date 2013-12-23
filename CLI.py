@@ -38,7 +38,7 @@ e.g:
 
   !!! 小心:大规模数据I/O操作 !!!
   push/p json=path/2/x.json 提交批量文章数据文件
-  bkup/db|dm|m|e|p
+  bk/db|dm|m|e|p
      备份 KVDB|大妈|成员|活动|文章 数据到Storage
   del/bk/:UUID              删除指定备份 dump
   revert/db|dm|m|e|p    set=备份dump

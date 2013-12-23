@@ -68,111 +68,12 @@ def info_kv(uuid, qstr):
     '''
     q_dict = _query2dict(qstr)
     if _chkQueryArgs("/cli/info/%s"% uuid, q_dict, "GET"):
-        print uuid
+        feed_back = {'data':[]}
+        print "info_kv()>>> ",uuid
         print KV.get(uuid)
-        return None
-
+        #return KV.get(uuid)
         feed_back['msg'] = "safe quary;-)"
-        feed_back['data'] = KV.get_info()
-        return feed_back
-    else:
-        return "alert quary!-("
-
-# collection KVDB mana. matters
-'''
-'''
-@APP.post('/cli/bkup/<matter>')
-def bkup_dump(matter):
-    q_dict = request.forms
-    if _chkQueryArgs("/cli/bkup/%s"% matter, q_dict, "PUT"):
-        feed_back = {'data':[]}
-        if 'db' ==  matter:
-            print "try dumps all nodes from KVDB"
-            kb_objs = {}
-            total = 0
-            for k in CFG.K4D:
-                #print k
-                if 'incr' == k:
-                    # 只要替换一个自增值
-                    kb_objs[k] = CFG.K4D[k]
-                    kb_objs[CFG.K4D[k] ] = KV.get(CFG.K4D[k])
-                    total += 1
-                else:
-                    # 需要根据索引值列逐一提取数据
-                    kb_objs[k] = CFG.K4D[k]
-                    kb_objs[CFG.K4D[k] ] = KV.get(CFG.K4D[k])
-                    total += 1
-                    if 0 != len(kb_objs[CFG.K4D[k] ] ):
-                        for k4v in kb_objs[CFG.K4D[k] ]:
-                            crt_v = KV.get(k4v)
-                            if None != crt_v:
-                                kb_objs[k4v] = crt_v
-                                total += 1
-            dumps = cPickle.dumps(kb_objs)
-            feed_back['data'].append("%s pointed %s nodes"%(CFG.K4D, total) )
-
-            #print kb_objs
-
-            msg = "bkup KVDB dumped"
-        else:
-            kb_objs = {}
-            kb_objs[CFG.K4D[matter] ] = KV.get(CFG.K4D[matter])
-            if 0 != len(kb_objs[CFG.K4D[matter] ] ):
-                for k in kb_objs[CFG.K4D[matter] ]:
-                    kb_objs[k] = KV.get(k)
-            dumps = cPickle.dumps(kb_objs)
-            feed_back['data'].append("%s pointed %s nodes"%(CFG.K4D[matter] 
-                , len(kb_objs[CFG.K4D[matter] ] )))
-            #print kb_objs
-            msg = "bkup %s dumped"% CFG.K4D[matter]
-        
-        sid, uri = PUT2SS(dumps, name=matter)
-        feed_back['data'].append( BK.stat_object(sid) )
-        feed_back['msg'] = msg
-        feed_back['uri'] = uri
-        #data.append(KV.get_info())
-        return feed_back
-    else:
-        return "alert quary!-("
-
-@APP.put('/cli/revert/<matter>')
-def revert_dump(matter):
-    q_dict = request.forms
-    if _chkQueryArgs("/cli/revert/%s"% matter, q_dict, "PUT"):
-        feed_back = {'data':[]}
-        set_key = list(set(q_dict.keys())-set(CFG.SECURE_ARGS))[0]
-        set_var = base64.urlsafe_b64decode(request.forms[set_key])
-        print set_key, set_var
-        if 'db' ==  matter:
-            print "try revert ALL date from KVDB"
-        else:
-            dumps = BK.get_object_contents(set_var)
-            re_obj = cPickle.loads(dumps)
-            #print CFG.K4D[matter]#, re_obj[CFG.K4D[matter]]
-            #return None
-            # replace global idx K/V
-            uuids = re_obj[CFG.K4D[matter]]
-            KV.replace(CFG.K4D[matter], uuids)
-            for uuid in uuids:
-                print uuid, re_obj[uuid]
-                KV.replace(uuid, re_obj[uuid])
-        feed_back['data'].append( BK.stat_object(set_var) )
-        feed_back['msg'] = "reverted %s nodes as %s "% (len(re_obj[CFG.K4D[matter]])
-            , CFG.K4D[matter]
-            )
-        #data.append(KV.get_info())
-        return feed_back
-    else:
-        return "alert quary!-("
-
-@APP.delete('/cli/del/bk/<uuid>/<qstr>')
-def del_bk(uuid, qstr):
-    q_dict = _query2dict(qstr)
-    if _chkQueryArgs("/cli/del/bk/%s"% uuid, q_dict, "DELETE"):
-        feed_back = {'data':[]}
-        feed_back['msg'] = "deleted: %s"% uuid
-        feed_back['data'].append( BK.stat_object(uuid) )
-        BK.delete_object(uuid)
+        feed_back['data'] = KV.get(uuid)
         return feed_back
     else:
         return "alert quary!-("
@@ -223,6 +124,151 @@ def st_kv(qstr):
     else:
         return "alert quary!-("
 
+# collection KVDB mana. matters
+'''
+'''
+@APP.post('/cli/bk/<matter>')
+def bkup_dump(matter):
+    q_dict = request.forms
+    if _chkQueryArgs("/cli/bk/%s"% matter, q_dict, "PUT"):
+        feed_back = {'data':[]}
+        if 'db' ==  matter:
+            print "try dumps all nodes from KVDB"
+            kb_objs = {}
+            total = 0
+            for k in CFG.K4D:
+                #print k
+                if 'incr' == k:
+                    # 只要替换一个自增值
+                    #kb_objs[k] = CFG.K4D[k]
+                    kb_objs[CFG.K4D[k] ] = KV.get(CFG.K4D[k])
+                    total += 1
+                else:
+                    # 需要根据索引值列逐一提取数据
+                    #kb_objs[k] = CFG.K4D[k]
+                    kb_objs[CFG.K4D[k] ] = KV.get(CFG.K4D[k])
+                    total += 1
+                    if 0 != len(kb_objs[CFG.K4D[k] ] ):
+                        for k4v in kb_objs[CFG.K4D[k] ]:
+                            crt_v = KV.get(k4v)
+                            if None != crt_v:
+                                kb_objs[k4v] = crt_v
+                                total += 1
+            dumps = cPickle.dumps(kb_objs)
+            feed_back['data'].append("%s pointed %s nodes"%(CFG.K4D, total) )
+
+            #print kb_objs
+
+            msg = "bkup KVDB dumped"
+        else:
+            kb_objs = {}
+            kb_objs[CFG.K4D[matter] ] = KV.get(CFG.K4D[matter])
+            if 0 != len(kb_objs[CFG.K4D[matter] ] ):
+                for k in kb_objs[CFG.K4D[matter] ]:
+                    kb_objs[k] = KV.get(k)
+            dumps = cPickle.dumps(kb_objs)
+            feed_back['data'].append("%s pointed %s nodes"%(CFG.K4D[matter] 
+                , len(kb_objs[CFG.K4D[matter] ] )))
+            #print kb_objs
+            msg = "bkup %s dumped"% CFG.K4D[matter]
+        
+        sid, uri = PUT2SS(dumps, name=matter)
+        feed_back['data'].append( BK.stat_object(sid) )
+        feed_back['msg'] = msg
+        feed_back['uri'] = uri
+        #data.append(KV.get_info())
+        return feed_back
+    else:
+        return "alert quary!-("
+
+@APP.put('/cli/revert/<matter>')
+def revert_dump(matter):
+    q_dict = request.forms
+    if _chkQueryArgs("/cli/revert/%s"% matter, q_dict, "PUT"):
+        feed_back = {'data':[]}
+        set_key = list(set(q_dict.keys())-set(CFG.SECURE_ARGS))[0]
+        set_var = base64.urlsafe_b64decode(request.forms[set_key])
+        #print set_key, set_var
+        if 'db' ==  matter:
+            print "try revert ALL date from KVDB"
+            dumps = BK.get_object_contents(set_var)
+            re_obj = cPickle.loads(dumps)
+            feed_back['msg'] = "reverted %s nodes for whole KVDB "% len(re_obj.keys())
+            _INX_KEYS = [CFG.K4D[k] for k in CFG.K4D.keys()]
+            # replace global idx K/V, maybe make ghost K/V
+            _his = set()#KV.get(CFG.K4D['his'])            
+            for k in re_obj.keys():
+                if k in _INX_KEYS:
+                    # 索引键处理
+                    if 'SYS_TOT' == k:
+                        # 只要替换一个自增值
+                        KV.set(k, re_obj[k])
+                    elif 'SYS_pubs_HIS' == k:
+                        # 统一增替
+                        pass
+                    else:
+                        print "revert ->", k 
+                        #print _his
+                        #print type(re_obj[k])
+                        _his.update(set(re_obj[k]))
+                        print "_his ", len(_his)
+                        #KV.set(CFG.K4D['his'], KV.get(CFG.K4D['his']).update(set(re_obj[k])) )
+                else:
+                    # 数据键恢复
+                    #print k, re_obj[k]
+                    if None == KV.get(k):
+                        KV.add(k, re_obj[k])
+                    else:
+                        KV.replace(k, re_obj[k])
+            KV.set(CFG.K4D['his'], list(_his) )
+            #print KV.get(CFG.K4D['his'])
+
+
+
+        else:
+            dumps = BK.get_object_contents(set_var)
+            re_obj = cPickle.loads(dumps)
+            feed_back['msg'] = "reverted %s nodes as %s "% (len(re_obj[CFG.K4D[matter]])
+                , CFG.K4D[matter]
+                )
+            # replace global idx K/V, maybe make ghost K/V
+            _his = KV.get(CFG.K4D['his'])
+            _his.append(re_obj[CFG.K4D[matter]] )
+            _his = list(set(CFG.K4D['his']) )
+            KV.set(CFG.K4D['his'], _his)
+
+            uuids = re_obj[CFG.K4D[matter]]
+            KV.replace(CFG.K4D[matter], uuids)
+            for uuid in uuids:
+                #print uuid, re_obj[uuid]
+                if None == KV.get(uuid):
+                    KV.add(uuid, re_obj[uuid])
+                else:
+                    KV.replace(uuid, re_obj[uuid])
+
+
+
+
+
+                    
+        feed_back['data'].append( BK.stat_object(set_var) )
+        #data.append(KV.get_info())
+        return feed_back
+    else:
+        return "alert quary!-("
+
+@APP.delete('/cli/del/bk/<uuid>/<qstr>')
+def del_bk(uuid, qstr):
+    q_dict = _query2dict(qstr)
+    if _chkQueryArgs("/cli/del/bk/%s"% uuid, q_dict, "DELETE"):
+        feed_back = {'data':[]}
+        feed_back['msg'] = "deleted: %s"% uuid
+        feed_back['data'].append( BK.stat_object(uuid) )
+        BK.delete_object(uuid)
+        return feed_back
+    else:
+        return "alert quary!-("
+
 # collection wechat papers mana. matters
 '''
 '''
@@ -237,10 +283,10 @@ def st_p_tag(tag, qstr):
         all_papers.sort()
         tmp = {}
         for puuid in KV.get(CFG.K4D['p']):
-            print puuid, " --> ", KV.get(puuid)
+            #print puuid, " --> ", KV.get(puuid)
             if tag ==  puuid[:2]:
                 p = KV.get(puuid)
-                print p
+                #print p
                 if 0 == p['del']:
                     exp = "%s:%-28s"%(p['code'], puuid)
                     tmp[exp] = p['title']
@@ -864,12 +910,14 @@ def number_paper(self, wxreq):
         tag = crt_usr['buffer']
         resp = None
         for puuid in KV.get(CFG.K4D['p']):
+            # 根据指定的类别,逐一从文章索引中过滤出指定代号的文章
+            # 要求, del==0 && code==指定数
             if tag == puuid[:2]:
                 p = KV.get(puuid)
-                #print p['code']
-                if int(code) == int(p['code']):
-                    #print p
-                    if 0 == p['del']:
+                #print p['code'], "\n\t", p
+                if 0 == p['del']:
+                    if int(code) == int(p['code']):
+                        #print p
                         resp = WxNewsResponse([WxArticle(p['title'],
                                     Description="",
                                     Url=p['url'],
