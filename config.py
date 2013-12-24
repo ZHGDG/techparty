@@ -26,7 +26,7 @@ class Borg():
     def __init__(self):
         self.__dict__ = self.__collective_mind
     
-    VERSION = "weknow v13.12.24.1"
+    VERSION = "weknow v13.12.24.3"
     #管理员邮箱列表
     ADMIN_EMAIL_LIST = ['zoomquiet+gdg@gmail.com']
     NIUNIU = datetime.datetime(2009, 5, 19)
@@ -43,11 +43,15 @@ class Borg():
     #   系统索引名-UUID 字典; KVDB 无法Mongo 样搜索,只能人工建立索引
     K4D = {'incr':"SYS_TOT"     # int
         ,'m':"SYS_usrs_ALL"     # [] 所有 成员 (包含已经 del 的)
-        ,'dm':"SYS_dama_ALL"    # [] 所有 组委 (包含已经 del 的)
+        #,'wx':"SYS_uuid_WX"     # [] 所有 wx_Passport->m_UUID 的反向映射 
+        ,'dm':"SYS_dama_ALL"    # [] 所有 组委->uuid (包含已经 del 的)
+        
         ,'e':"SYS_eves_ALL"     # [] 所有 活动 (包含已经 del 的)
         ,'p':"SYS_pubs_ALL"     # [] 所有 文章 (包含已经 del 的)
-        ,'his':"SYS_pubs_HIS"   # set() 所有 节点的K索引 (包含已经 del/覆盖 的)
+        
+        ,'his':"SYS_pubs_HIS"   # [] 所有 节点的K索引 (包含已经 del/覆盖 的)
     }
+
     #KEY4_incr = K4D['incr']
     for k in K4D:
         if None == KV.get(K4D[k]):
@@ -56,20 +60,25 @@ class Borg():
             else:
                 KV.add(K4D[k], [])
         else:
-            print K4D[k]#, KV.get(K4D[k])
+            if 'incr' == k:
+                print K4D[k], '%s as '% KV.get(K4D[k])
+            else:
+                print K4D[k], 'hold %s nodes'% len(KV.get(K4D[k]))
 
     objUSR={"his_id":""   # 更新戮
         , "lasttm": ''  # time.time()
         , "del":0
         , "acl":1       # ban:0 usr:1 staff:10 api:42 admin:100
-        , "desc":""     # 解释
-
+        
         , "fsm":""      # 有限状态机 当前状态
         , "buffer":""   # 有限状态机 前次选择指令
         , "pp":''       # Passport 
+
         , "nm":""       # NickName "Zoom.Quiet"
+        , "desc":""     # 自述
         , 'em':''       #'zhouqi@ijinshan.com',
-        }
+        , "mo":""       # Mobile Phone
+    }
         
 
 
@@ -77,9 +86,10 @@ class Borg():
     # 大妈们的联系方式
     K4DM = {"his_id":""   # 更新戮
         , "del":0
+        , "pp":''       # Passport "kswl662773786"
+
         , "nm":""       # NickName "Zoom.Quiet"
         , "desc":""     # 解释
-        , "pp":''       # Passport "kswl662773786"
         , 'em':''       # 'zhouqi@ijinshan.com',
         , 'mo':''       # Mobile
         }
@@ -150,6 +160,7 @@ class Borg():
     %s
 
     Changelog:
+    - 131224 追加数据远程管理以及成员消息抄发大妈功能
     - 130928 启用Storage 服务,数据可备份/下载/恢复
     - 130926 启用 Jeff 的SDK,配合运营CLI 工具简化代码
     - 130923 初始可用,并发布 42分钟乱入 wechat 手册!-)
@@ -360,10 +371,9 @@ class Borg():
 
     SECURE_ARGS = ('appkey', 'ts', 'sign')
     CLI_MATTERS = {     # 命令行响应方式速查字典
-          "sum/his":    "GET"       # 节点(任意)修订次数
-        , "his/last":   "GET"       # 最后一次节点(任意)修订
+        "his/last":   "GET"       # 最后一次节点(任意)修订
         
-        , "find/usr":   "GET"       # 搜索用户
+        , "find/m":     "GET"       # 搜索用户
         , "del/usr":    "DELETE"    # 软删除所有用户 (包含tag 信息)
         , "reliv/usr":  "PUT"       # 恢复指定用户
         , "acl/usr":    "PUT"       # 设置用户权限
@@ -386,6 +396,7 @@ class Borg():
         
         , "st/kv":      "GET"       # 查阅 KVDB 信息
 
+        , "sum/his":    "GET"       # 统计 历史 索引现状
         , "sum/db":     "GET"       # 统计 整体 信息现状
         , "sum/dm":     "GET"       # 统计 大妈 信息现状
         , "sum/m":      "GET"       # 统计 成员 信息现状
@@ -417,8 +428,13 @@ class Borg():
         , "revert/e":   "PUT"      # 恢复 活动 数据
         , "revert/p":   "PUT"      # 恢复 文章 数据
         
+        , "resolve/his":  "PUT"    # 重建 HIS 索引
+        , "resolve/wx":  "PUT"     # 重建 wx_Passpord 索引
+
         , "wx/t":       "HTTPS"     # 获取 token
-        , "wx/usr":     "HTTPS"     # 获取关注列表
+        , "wx/ls":      "HTTPS"    # 获取关注列表
+        , "wx/usr":     "HTTPS"     # 获取 用户信息
+        , "wx/msg":     "HTTPS"     # 获取 用户信息
         }
 
     CLI_URI = {     # 命令行 请求外部系统URI 速查字典
@@ -431,7 +447,11 @@ class Borg():
         , "wx/usr": ("api.weixin.qq.com"
             , "/cgi-bin/user/info?access_token=%(token)s&openid=%(openid)s"
             )     # 获取成员信息
+        , "wx/msg": ("api.weixin.qq.com"
+            , "cgi-bin/message/custom/send?access_token=%(token)s"
+            , "POST")     # 发送消息
         }
+    #https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token=ACCESS_TOKEN
 
     LEVEL4USR = {"mana":0
         , "up":1

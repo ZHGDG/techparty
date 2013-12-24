@@ -21,11 +21,11 @@
 <v t="zoomq.20130927104354.5456"><vh>storage</vh></v>
 <v t="zoomq.20130923093950.3647"><vh>KVDB</vh>
 <v t="zoomq.20130923093950.5397"><vh>&lt;&lt;MEMBER&gt;&gt;</vh></v>
-<v t="zoomq.20130923093950.5395"><vh>&lt;&lt;CONTENT&gt;&gt;</vh></v>
 <v t="zoomq.20130923093950.8569"><vh>&lt;&lt;大妈们&gt;&gt;</vh></v>
+<v t="zoomq.20130923093950.5395"><vh>&lt;&lt;CONTENT&gt;&gt;</vh></v>
 <v t="zoomq.20130923093950.5396"><vh>&lt;&lt;HISTORIC&gt;&gt;</vh></v>
 </v>
-<v t="zoomq.20130918155053.7084" a="E"><vh>4wechat</vh>
+<v t="zoomq.20130918155053.7084"><vh>4wechat</vh>
 <v t="zoomq.20130923093950.7285"><vh>&lt;&lt;XML模板&gt;&gt;</vh></v>
 <v t="zoomq.20130925103854.6457"><vh>活动报名</vh></v>
 <v t="zoomq.20130925103854.6455"><vh>帮助.系统</vh></v>
@@ -36,13 +36,19 @@
 <v t="zoomq.20130925103854.4951"><vh>RESTful</vh></v>
 </v>
 </v>
-<v t="zoomq.20130925103854.4957"><vh>@nosent CLI.py</vh>
+<v t="zoomq.20130925103854.4957" a="E"><vh>@nosent CLI.py</vh>
 <v t="zoomq.20130925103854.4958"><vh>&lt;&lt;docopt&gt;&gt;</vh></v>
 <v t="zoomq.20130925103854.4959"><vh>&lt;&lt;declarations&gt;&gt;</vh></v>
 <v t="zoomq.20130925103854.4961"><vh>smart_rest()</vh></v>
 <v t="zoomq.20131223160728.4902"><vh>_https_get()</vh></v>
-<v t="zoomq.20130925103854.4960"><vh>_rest_main()</vh>
-<v t="zoomq.20130925103854.6452"><vh>&lt;&lt;HTTPS&gt;&gt;</vh></v>
+<v t="zoomq.20131224083725.5909"><vh>_https_post()</vh></v>
+<v t="zoomq.20131224083725.5906"><vh>_wx_token_get()</vh></v>
+<v t="zoomq.20130925103854.4960" a="E"><vh>_rest_main()</vh>
+<v t="zoomq.20130925103854.6452" a="E"><vh>&lt;&lt;HTTPS&gt;&gt;</vh>
+<v t="zoomq.20131224083725.5907"><vh>&lt;&lt;消息发送&gt;&gt;</vh></v>
+<v t="zoomq.20131224083725.5904"><vh>&lt;&lt;获取指定用户信息&gt;&gt;</vh></v>
+<v t="zoomq.20131224083725.5903"><vh>&lt;&lt;列表获得&gt;&gt;</vh></v>
+</v>
 <v t="zoomq.20130925103854.6450"><vh>&lt;&lt;echo matters&gt;&gt;</vh></v>
 <v t="zoomq.20131223160728.4901"><vh>&lt;&lt;GET DEL&gt;&gt;</vh></v>
 <v t="zoomq.20130925103854.6451"><vh>&lt;&lt;PUT&gt;&gt;</vh></v>
@@ -80,7 +86,7 @@
 <v t="zoomq.20120723102156.5548"><vh>/</vh></v>
 <v t="zoomq.20120727213305.14707"><vh>404+各种默认处理</vh></v>
 </v>
-<v t="zoomq.20120723102156.5561" a="EO"><vh>@nosent mana4api.py</vh>
+<v t="zoomq.20120723102156.5561" a="E"><vh>@nosent mana4api.py</vh>
 <v t="zoomq.20120723102156.5562"><vh>&lt;&lt;declarations&gt;&gt;</vh></v>
 <v t="zoomq.20130918155053.5760"><vh>GET  /echo</vh></v>
 <v t="zoomq.20130925103854.5007"><vh>CLI 远程管理</vh>
@@ -96,6 +102,10 @@
 <v t="zoomq.20131223160728.4909"><vh>&lt;&lt;恢复KVDB&gt;&gt;</vh></v>
 <v t="zoomq.20131223160728.4908"><vh>&lt;&lt;恢复指定数据&gt;&gt;</vh></v>
 </v>
+<v t="zoomq.20131224083725.4925"><vh>PUT resolve/his|wx</vh>
+<v t="zoomq.20131224083725.4926"><vh>&lt;&lt;重并 Passpord&gt;&gt;</vh></v>
+<v t="zoomq.20131224083725.4930"><vh>&lt;&lt;重并 HIS&gt;&gt;</vh></v>
+</v>
 <v t="zoomq.20130927104354.6055"><vh>DELETE del/bk/:UUID</vh></v>
 </v>
 <v t="zoomq.20131007093121.5601"><vh>文章管理</vh>
@@ -109,7 +119,7 @@
 <v t="zoomq.20130926092950.5438"><vh>PUT fix/e/:CODE</vh></v>
 </v>
 <v t="zoomq.20130925103854.5041"><vh>用户管理</vh>
-<v t="zoomq.20130925103854.6454"><vh>GET cli/sum/usr</vh></v>
+<v t="zoomq.20130925103854.6454"><vh>GET find/m</vh></v>
 <v t="zoomq.20130928090931.3708"><vh>PUT fix/dm/:NM</vh></v>
 <v t="zoomq.20130928090931.3710"><vh>PUT fix/m/:UUID</vh></v>
 <v t="zoomq.20130926092950.5440"><vh>__chkDMID()</vh></v>
@@ -129,7 +139,9 @@
 <v t="zoomq.20130923093950.8565"><vh>&lt;&lt;SEARCH&gt;&gt;</vh></v>
 <v t="zoomq.20130923093950.8566"><vh>&lt;&lt;THANKS&gt;&gt;</vh></v>
 </v>
-<v t="zoomq.20130925103854.6426"><vh>__chkRegUsr()</vh></v>
+<v t="zoomq.20130925103854.6426"><vh>__chkRegUsr()</vh>
+<v t="zoomq.20131224083725.4931"><vh>&lt;&lt;chk USR2PP&gt;&gt;</vh></v>
+</v>
 <v t="zoomq.20130925103854.6427"><vh>__update_usr()</vh></v>
 <v t="zoomq.20130925103854.6430" a="E"><vh>FSM</vh>
 <v t="zoomq.20130925103854.6461"><vh>&lt;&lt;大妈联系&gt;&gt;</vh></v>
@@ -146,9 +158,11 @@
 <v t="zoomq.20130926092950.5436"><vh>&lt;&lt;info_alias&gt;&gt;</vh></v>
 <v t="zoomq.20130926092950.5435"><vh>&lt;&lt;info_mail&gt;&gt;</vh></v>
 </v>
-<v t="zoomq.20130925103854.6441"><vh>系统信息</vh>
+<v t="zoomq.20130925103854.6441" a="E"><vh>系统信息</vh>
+<v t="zoomq.20131223160728.5956" a="E"><vh>&lt;&lt;status&gt;&gt;</vh>
+<v t="zoomq.20131224083725.4928"><vh>&lt;&lt;sys msg&gt;&gt;</vh></v>
+</v>
 <v t="zoomq.20131223160728.5954"><vh>&lt;&lt;helpme&gt;&gt;</vh></v>
-<v t="zoomq.20131223160728.5956"><vh>&lt;&lt;status&gt;&gt;</vh></v>
 <v t="zoomq.20131223160728.5955"><vh>&lt;&lt;version&gt;&gt;</vh></v>
 </v>
 <v t="zoomq.20131024165032.5626"><vh>nn今天</vh></v>
@@ -158,6 +172,7 @@
 <v t="zoomq.20131223160728.5959"><vh>&lt;&lt;reg_info&gt;&gt;</vh></v>
 </v>
 </v>
+<v t="zoomq.20131224083725.5906"></v>
 <v t="zoomq.20130923093950.8570"><vh>__echo_txt()</vh></v>
 <v t="zoomq.20120727213305.13050"><vh>/api/sysincr</vh></v>
 <v t="zoomq.20120727213305.14707"></v>
@@ -523,7 +538,7 @@ class Borg():
     def __init__(self):
         self.__dict__ = self.__collective_mind
     
-    VERSION = "weknow v13.12.24.1"
+    VERSION = "weknow v13.12.24.3"
     &lt;&lt;cfg4Borg&gt;&gt;
     
 CFG = Borg()
@@ -1379,6 +1394,9 @@ def wechat_post():
     else:
         print "Debugging localhost..."
     wxreq = WxRequest(request.forms.keys()[0])
+    print "FromUserName-&gt;%s\nToUserName-&gt;%s"%( wxreq.FromUserName
+        , wxreq.FromUserName
+        )
     #print "WxTextResponse:\n", WxTextResponse("hello world", wxreq).as_xml()
     G_CRT_USR = __chkRegUsr(wxreq.FromUserName)
     wxreq.crt_usr = G_CRT_USR
@@ -1392,6 +1410,9 @@ def wechat_post():
         __update_usr(G_CRT_USR)
     #print "weknow.send2:\n"
     return weknow.send2(wxreq.Content.strip(), wxreq)
+
+
+
 
     return None
     '''collected old code for doc.
@@ -1483,11 +1504,15 @@ KV = sae.kvdb.KVClient()
 #   系统索引名-UUID 字典; KVDB 无法Mongo 样搜索,只能人工建立索引
 K4D = {'incr':"SYS_TOT"     # int
     ,'m':"SYS_usrs_ALL"     # [] 所有 成员 (包含已经 del 的)
-    ,'dm':"SYS_dama_ALL"    # [] 所有 组委 (包含已经 del 的)
+    #,'wx':"SYS_uuid_WX"     # [] 所有 wx_Passport-&gt;m_UUID 的反向映射 
+    ,'dm':"SYS_dama_ALL"    # [] 所有 组委-&gt;uuid (包含已经 del 的)
+    
     ,'e':"SYS_eves_ALL"     # [] 所有 活动 (包含已经 del 的)
     ,'p':"SYS_pubs_ALL"     # [] 所有 文章 (包含已经 del 的)
-    ,'his':"SYS_pubs_HIS"   # set() 所有 节点的K索引 (包含已经 del/覆盖 的)
+    
+    ,'his':"SYS_pubs_HIS"   # [] 所有 节点的K索引 (包含已经 del/覆盖 的)
 }
+
 #KEY4_incr = K4D['incr']
 for k in K4D:
     if None == KV.get(K4D[k]):
@@ -1496,7 +1521,10 @@ for k in K4D:
         else:
             KV.add(K4D[k], [])
     else:
-        print K4D[k]#, KV.get(K4D[k])
+        if 'incr' == k:
+            print K4D[k], '%s as '% KV.get(K4D[k])
+        else:
+            print K4D[k], 'hold %s nodes'% len(KV.get(K4D[k]))
 
 &lt;&lt;MEMBER&gt;&gt;
 
@@ -1548,14 +1576,16 @@ objHis = {'hisobj':""
     , "lasttm": ''  # time.time()
     , "del":0
     , "acl":1       # ban:0 usr:1 staff:10 api:42 admin:100
-    , "desc":""     # 解释
-
+    
     , "fsm":""      # 有限状态机 当前状态
     , "buffer":""   # 有限状态机 前次选择指令
     , "pp":''       # Passport 
+
     , "nm":""       # NickName "Zoom.Quiet"
+    , "desc":""     # 自述
     , 'em':''       #'zhouqi@ijinshan.com',
-    }
+    , "mo":""       # Mobile Phone
+}
     
 
 
@@ -1639,9 +1669,10 @@ TypeError: object of type 'generator' has no len() yq34
 <t tx="zoomq.20130923093950.8569"># 大妈们的联系方式
 K4DM = {"his_id":""   # 更新戮
     , "del":0
+    , "pp":''       # Passport "kswl662773786"
+
     , "nm":""       # NickName "Zoom.Quiet"
     , "desc":""     # 解释
-    , "pp":''       # Passport "kswl662773786"
     , 'em':''       # 'zhouqi@ijinshan.com',
     , 'mo':''       # Mobile
     }
@@ -1704,10 +1735,9 @@ STLIMI = 4.2    # 请求安全时限(秒)
 
 SECURE_ARGS = ('appkey', 'ts', 'sign')
 CLI_MATTERS = {     # 命令行响应方式速查字典
-      "sum/his":    "GET"       # 节点(任意)修订次数
-    , "his/last":   "GET"       # 最后一次节点(任意)修订
+    "his/last":   "GET"       # 最后一次节点(任意)修订
     
-    , "find/usr":   "GET"       # 搜索用户
+    , "find/m":     "GET"       # 搜索用户
     , "del/usr":    "DELETE"    # 软删除所有用户 (包含tag 信息)
     , "reliv/usr":  "PUT"       # 恢复指定用户
     , "acl/usr":    "PUT"       # 设置用户权限
@@ -1730,6 +1760,7 @@ CLI_MATTERS = {     # 命令行响应方式速查字典
     
     , "st/kv":      "GET"       # 查阅 KVDB 信息
 
+    , "sum/his":    "GET"       # 统计 历史 索引现状
     , "sum/db":     "GET"       # 统计 整体 信息现状
     , "sum/dm":     "GET"       # 统计 大妈 信息现状
     , "sum/m":      "GET"       # 统计 成员 信息现状
@@ -1761,8 +1792,13 @@ CLI_MATTERS = {     # 命令行响应方式速查字典
     , "revert/e":   "PUT"      # 恢复 活动 数据
     , "revert/p":   "PUT"      # 恢复 文章 数据
     
+    , "resolve/his":  "PUT"    # 重建 HIS 索引
+    , "resolve/wx":  "PUT"     # 重建 wx_Passpord 索引
+
     , "wx/t":       "HTTPS"     # 获取 token
-    , "wx/usr":     "HTTPS"     # 获取关注列表
+    , "wx/ls":      "HTTPS"    # 获取关注列表
+    , "wx/usr":     "HTTPS"     # 获取 用户信息
+    , "wx/msg":     "HTTPS"     # 获取 用户信息
     }
 
 CLI_URI = {     # 命令行 请求外部系统URI 速查字典
@@ -1775,7 +1811,11 @@ CLI_URI = {     # 命令行 请求外部系统URI 速查字典
     , "wx/usr": ("api.weixin.qq.com"
         , "/cgi-bin/user/info?access_token=%(token)s&amp;openid=%(openid)s"
         )     # 获取成员信息
+    , "wx/msg": ("api.weixin.qq.com"
+        , "cgi-bin/message/custom/send?access_token=%(token)s"
+        , "POST")     # 发送消息
     }
+#https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token=ACCESS_TOKEN
 
 LEVEL4USR = {"mana":0
     , "up":1
@@ -1836,8 +1876,8 @@ e.g:
   info/:UUID                查阅指定 信息
   find/m/&lt;key word&gt;         搜索用户 [对 名称,描述 搜索]
   st/kv     查询 KVDB 整体现状
-  sum/bk|db|dm|m|e|p
-      综合 备份|整体|大妈|成员|活动|文章 信息现状
+  sum/bk|db|dm|m|e|p|his
+      综合 备份|整体|大妈|成员|活动|文章|历史 信息现状
   sum/p/:TAG 综合 分类文章 信息现状
 
   fix/dm/:NM  nm=ZQ         修订/创建指定 大妈 的相关信息
@@ -1855,9 +1895,12 @@ e.g:
   del/bk/:UUID              删除指定备份 dump
   revert/db|dm|m|e|p    set=备份dump
      恢复 KVDB|大妈|成员|活动|文章 数据到Storage
+  resolve/his|wx        set=all       
+    重建 HIS|Passpord 全局历史索引
 
 益rz...
-  wx/t|ls|usr 通过 公众号接口进一步操作 
+  wx/ls             通过 服务号测试接口 获取关注列表 
+  wx/usr/:openid    通过 服务号测试接口 获取指定关注用户信息
 """
 </t>
 <t tx="zoomq.20130925103854.4959">import sys
@@ -1866,7 +1909,7 @@ import base64
 from subprocess import Popen
 from time import time, gmtime, strftime, localtime
 
-import httplib
+import httplib, urllib
 import json
 
 from docopt import docopt
@@ -2004,7 +2047,7 @@ def st_kv(matter, qstr):
         else:
             if matter in CFG.K4D.keys():
                 feed_back['msg'] = "base %s data."% CFG.K4D[matter]
-                feed_back['data'] = "%s hold %s node info."% (matter
+                feed_back['data'] = "%s hold %s node info."% (CFG.K4D[matter]
                     , len(KV.get(CFG.K4D[matter] )) 
                     )
             else:
@@ -2169,29 +2212,23 @@ return None
 
 return None
 </t>
-<t tx="zoomq.20130925103854.6426">def __chkRegUsr(openid):
+<t tx="zoomq.20130925103854.6426">def __chkRegUsr(passport):
     '''chk or init. webchat usr.:
         - gen KV uuid, try get
         - if no-exited, init. fsm
     '''
-    sha1_name = hashlib.sha1(openid).hexdigest()
+    sha1_name = hashlib.sha1(passport).hexdigest()
     uuid = USRID(sha1_name)
     ADD4SYS('m', uuid)  # for old sys, collected uuid into idx node!
     usr = KV.get(uuid)
-    if usr:
-        print usr
-        return usr
-    else:
+    # 检查反向索引键对
+    ppu = KV.get(passport)
+    if not ppu:
         # inti.
-        new_usr = deepcopy(CFG.objUSR)
-        new_usr['his_id'] = GENID('his')
-        new_usr['pp'] = openid
-        new_usr['lasttm'] = time.time()
-        new_usr['fsm'] = None
-        KV.add(uuid, new_usr)
-        #ADD4SYS('m', uuid)
-        print new_usr
-        return new_usr
+        KV.add(passport, uuid)
+    # 检查用户键值对
+    &lt;&lt;chk USR2PP&gt;&gt;
+
 
 
 
@@ -2220,6 +2257,7 @@ return None
 @transition('s', 'seek')
 @transition('S', 'seek')
 @transition('h', 'helpme')
+@transition('H', 'helpme')
 @transition('?', 'helpme')
 @transition('help', 'helpme')
 @transition('V', 'version')
@@ -2279,6 +2317,12 @@ def events(self, wxreq):
     __update_usr(crt_usr)
     return WxTextResponse(CFG.TXT_EVENT_NULL, wxreq).as_xml()
 
+
+&lt;&lt;reg_event&gt;&gt;
+
+&lt;&lt;reg_cancel&gt;&gt;
+
+&lt;&lt;reg_info&gt;&gt;
 
 </t>
 <t tx="zoomq.20130925103854.6439">def ADD4SYS(k4sys, uuid):
@@ -2456,25 +2500,20 @@ cmd = "http -f -b %s %s "% (method, uri)
 
 
 </t>
-<t tx="zoomq.20130925103854.6452">#get_args = _genQueryArgs(uri, rest_method=method)
-print uri
-#cmd = "http -b --verify=no '%s' "% wx_uri
-data = _https_get(CFG.CLI_URI[uri][0]
-    , CFG.CLI_URI[uri][1]
-    , appid = XCFG.WX_APPID
-    , secret = XCFG.WX_SECRET
-    )
-#print data
-js = json.loads(data)
-print "access_token: ", js['access_token']
-uri = 'wx/ls'
-data = _https_get(CFG.CLI_URI[uri][0]
-    , CFG.CLI_URI[uri][1]
-    , token = js['access_token']
-    )
-print data
-
-return None
+<t tx="zoomq.20130925103854.6452">access_token = _wx_token_get()
+_url = uri.split('/')
+if 2 &lt; len(_url):
+    # 有具体参数时
+    if 'usr' == _url[1]:
+        #print "获取指定用户信息"
+        &lt;&lt;获取指定用户信息&gt;&gt;
+    elif 'msg' == _url[1]:
+        print "消息发送"
+        &lt;&lt;消息发送&gt;&gt;
+else:
+    &lt;&lt;列表获得&gt;&gt; 
+    
+#return None
 '''经测试,订阅号同公众号的接口用户完全不同,
 无法共用接口!
 '''
@@ -2484,21 +2523,26 @@ return None
 
 
 </t>
-<t tx="zoomq.20130925103854.6454">@APP.get('/cli/sum/m/&lt;qstr&gt;')
-def sum_usr(qstr):
+<t tx="zoomq.20130925103854.6454">@APP.get('/cli/find/m/&lt;kword&gt;/&lt;qstr&gt;')
+def find_m(kword, qstr):
     #print request.query_string #query.keys()#.appkey
     q_dict = _query2dict(qstr)
-    if _chkQueryArgs("/cli/sum/m", q_dict, "GET"):
-        data = []
+    if _chkQueryArgs("/cli/find/m/%s"% kword, q_dict, "GET"):
+        feed_back = {'data':[]}
+        print "find_m-&gt; ", kword
         usrs = KV.get(CFG.K4D['m'])
-        print usrs
-        for u in usrs[:3]:
-            data.append(KV.get(u))
+        #print usrs
+        for u in usrs:
+            m = KV.get(u)
+            m_info = "%s %s %s"%(m['em'].strip()
+                , m['nm'].strip()
+                , m['desc'].strip()
+                )
+            if kword in m_info.lower():
+                feed_back['data'].append(m)
     
-        return {'msg':"safe quary;-)"
-            , 'data':data
-            , 'count': len(usrs)
-            }
+        feed_back['msg'] = "safe quary;-)"
+        return feed_back
     else:
         return "alert quary!-("
 
@@ -2511,6 +2555,7 @@ TXT_VER = u'''珠海GDG 公众号应答系统当前版本:
 %s
 
 Changelog:
+- 131224 追加数据远程管理以及成员消息抄发大妈功能
 - 130928 启用Storage 服务,数据可备份/下载/恢复
 - 130926 启用 Jeff 的SDK,配合运营CLI 工具简化代码
 - 130923 初始可用,并发布 42分钟乱入 wechat 手册!-)
@@ -2705,7 +2750,10 @@ else:
     AS_SAE = False
 </t>
 <t tx="zoomq.20130926092950.5433">@state('weknow')
-@transition('q', 'end')
+@transition('q', 'helpme')
+@transition('Q', 'helpme')
+@transition('h', 'helpme')
+@transition('H', 'helpme')
 def info_me(self, wxreq):
     print 'setup-&gt;info_me-&gt;end'
     crt_usr = wxreq.crt_usr
@@ -2730,8 +2778,11 @@ def info_me(self, wxreq):
 
 </t>
 <t tx="zoomq.20130926092950.5434">@state('weknow')
-@transition('q', 'end')
 @transition('ia', 'info_alias')
+@transition('q', 'helpme')
+@transition('Q', 'helpme')
+@transition('h', 'helpme')
+@transition('H', 'helpme')
 def edit_info(self, wxreq):
     print 'setup-&gt;edit_info-&gt;info_alias 提醒输入妮称'
     crt_usr = wxreq.crt_usr
@@ -2757,7 +2808,10 @@ def edit_info(self, wxreq):
 
 </t>
 <t tx="zoomq.20130926092950.5435">@state('weknow')
-@transition('q', 'end')
+@transition('q', 'helpme')
+@transition('Q', 'helpme')
+@transition('h', 'helpme')
+@transition('H', 'helpme')
 def info_mail(self, wxreq):
     print 'setup-&gt;edit_info-&gt;info_alias-&gt;info_mail-&gt;end 回报收集的'
     crt_usr = wxreq.crt_usr
@@ -2808,8 +2862,11 @@ UnicodeEncodeError: 'ascii' codec can't encode character u'\u4eb2' in position 2
 
 </t>
 <t tx="zoomq.20130926092950.5436">@state('weknow')
-@transition('q', 'end')
 @transition('im', 'info_mail')
+@transition('q', 'helpme')
+@transition('Q', 'helpme')
+@transition('h', 'helpme')
+@transition('H', 'helpme')
 def info_alias(self, wxreq):
     print 'setup-&gt;edit_info-&gt;info_alias-&gt;info_mail 提醒输入邮箱'
     crt_usr = wxreq.crt_usr
@@ -2891,9 +2948,12 @@ def fix_event(code):
 @transition('hd', 'papers')
 @transition('et', 'papers')
 @transition('ot', 'papers')
+@transition('q', 'helpme')
+@transition('Q', 'helpme')
 @transition('h', 'helpme')
+@transition('H', 'helpme')
 def seek(self, wxreq):
-    print 'setup-&gt;seek-&gt;{gb dd gt dm ot}'
+    print 'setup-&gt;seek-&gt;{gb dd gt dm ot q h} '
     crt_usr = wxreq.crt_usr
     #print "G_CRT_USR", crt_usr
     if wxreq.Content in CFG.PAPER_TAGS:
@@ -2910,7 +2970,9 @@ def seek(self, wxreq):
 <t tx="zoomq.20130926092950.5444">@state('weknow')
 @transition('no', 'no_paper')
 @transition('q', 'helpme')
+@transition('Q', 'helpme')
 @transition('h', 'helpme')
+@transition('H', 'helpme')
 def papers(self, wxreq):
     print 'setup-&gt;seek-&gt;[papers]-&gt;no'
     crt_usr = wxreq.crt_usr
@@ -2976,7 +3038,9 @@ def papers(self, wxreq):
 <t tx="zoomq.20130926092950.5445">@state('weknow')
 @transition('end', 'end')
 @transition('q', 'helpme')
+@transition('Q', 'helpme')
 @transition('h', 'helpme')
+@transition('H', 'helpme')
 def number_paper(self, wxreq):
     print 'setup-&gt;seek-&gt;...-&gt;no-&gt;end'
     crt_usr = wxreq.crt_usr
@@ -3686,13 +3750,15 @@ for k in re_obj.keys():
         if 'SYS_TOT' == k:
             # 只要替换一个自增值
             KV.set(k, re_obj[k])
+            _his.add(k)
         elif 'SYS_pubs_HIS' == k:
             # 统一增替
-            pass
+            _his.add(k)
         else:
             print "revert -&gt;", k 
             #print _his
             #print type(re_obj[k])
+            _his.add(k)
             _his.update(set(re_obj[k]))
             print "_his ", len(_his)
             #KV.set(CFG.K4D['his'], KV.get(CFG.K4D['his']).update(set(re_obj[k])) )
@@ -3746,12 +3812,24 @@ def status(self, wxreq):
     crt_usr = wxreq.crt_usr
     crt_usr['fsm'] = "setup"
     __update_usr(crt_usr)
-    return WxTextResponse(KV.get_info(), wxreq).as_xml()
+    _msg = ""
+    &lt;&lt;sys msg&gt;&gt;
+    _msg += "\n\t usr:: %s"% crt_usr
+    _msg += "\n\t FromUserName:: %s"% wxreq.FromUserName
+    _msg += "\n\t ToUserName:: %s"% wxreq.ToUserName
+    wxreq.FromUserName = XCFG.WX_ZQ
+    print "rewrite as onoK2t_msg&gt;&gt;&gt; %s"% wxreq.FromUserName
+    print WxTextResponse(_msg, wxreq).as_xml()
+    
+    return WxTextResponse(_msg, wxreq).as_xml()
 
     return __echo_txt(crt_usr['fromUser']
         , crt_usr['toUser']
         , KV.get_info()
         )
+
+
+
 
 </t>
 <t tx="zoomq.20131223160728.5957">@state('weknow')
@@ -3784,6 +3862,233 @@ def reg_info(self, crt_usr):
     __update_usr(crt_usr)
 
 
+</t>
+<t tx="zoomq.20131224083725.4925">@APP.put('/cli/resolve/&lt;matter&gt;')
+def resolve_his(matter):
+    q_dict = request.forms
+    if _chkQueryArgs("/cli/resolve/%s"% matter, q_dict, "PUT"):
+        feed_back = {'data':[]}
+        set_key = list(set(q_dict.keys())-set(CFG.SECURE_ARGS))[0]
+        set_var = base64.urlsafe_b64decode(request.forms[set_key])
+        print "resolve_his()  ", set_key, set_var
+        if 'his' ==  matter:
+            print "try resolve_his ALL from KVDB"
+            &lt;&lt;重并 HIS&gt;&gt;
+            feed_back['data'] = "re-merged all KVDB info into %s nodes"% len(_his)
+        elif 'wx' ==  matter:
+            print "try rebuild Passpord-&gt;UUID"
+            &lt;&lt;重并 Passpord&gt;&gt;
+            feed_back['msg'] = "re-build Passpord-&gt;UUID" 
+        #data.append(KV.get_info())
+        return feed_back
+    else:
+        return "alert quary!-("
+
+</t>
+<t tx="zoomq.20131224083725.4926"># 根据 K4D['m'] 的索引,建立 成员 Passpord-&gt;UUID 的索引字典
+users = KV.get(CFG.K4D['m'])
+for m in users:
+    upp = KV.get(m)['pp']
+    #print "%s -&gt; %s"%(m, upp)
+    ppu = KV.get(upp)
+    if not ppu:
+        KV.add(upp, m)
+#KV.set(CFG.K4D['his'], list(_his) )
+#print KV.get(CFG.K4D['his'])
+feed_back['data'] = "re-point all Member key %s nodes"% len(users)
+
+
+
+
+
+</t>
+<t tx="zoomq.20131224083725.4928">_msg += "\nget_info()-&gt; "+str(KV.get_info())
+_INX_KEYS = [CFG.K4D[k] for k in CFG.K4D.keys()]
+for k in _INX_KEYS:
+    # 索引键处理
+    if 'SYS_TOT' == k:
+        _msg += "\n SYS_TOT-&gt;"+str(KV.get(k))
+    else :
+        # 统一合并
+        _msg += "\n %s -&gt; %snodes"%(k, len(KV.get(k)))
+
+#print "pp2u--&gt;", KV.get(KV.get('oFNShjiOhclfJ-CtOO81p2sPrBfs'))
+</t>
+<t tx="zoomq.20131224083725.4930">_INX_KEYS = [CFG.K4D[k] for k in CFG.K4D.keys()]
+_his = set() #KV.get(CFG.K4D['his'])  
+feed_back['msg'] = []
+#print _INX_KEYS, type(_INX_KEYS)
+for k in _INX_KEYS:
+    # 索引键处理
+    print k
+    if 'SYS_TOT' == k:
+        _his.add(k)
+    elif 'SYS_pubs_HIS' == k:
+        # 统一合并
+        _his.add(k)
+    else:
+        _idx = KV.get(k)
+        print "revert -&gt; %s &lt;- %s nodes"% (k, len(_idx) ) 
+        _his.add(k)
+        _his.update(set(_idx) )
+        #KV.set(CFG.K4D['his'], KV.get(CFG.K4D['his']).update(set(re_obj[k])) )
+        feed_back['msg'].append("%s &gt;&gt;&gt; %s nodes"% (k, len(_idx) ) ) 
+
+KV.set(CFG.K4D['his'], list(_his) )
+#print KV.get(CFG.K4D['his'])
+
+
+
+
+</t>
+<t tx="zoomq.20131224083725.4931">if usr:
+    #print usr
+    return usr
+else:
+    # inti.
+    new_usr = deepcopy(CFG.objUSR)
+    new_usr['his_id'] = GENID('his')
+    new_usr['pp'] = passport
+    new_usr['lasttm'] = time.time()
+    new_usr['fsm'] = None
+    KV.add(uuid, new_usr)
+    #ADD4SYS('m', uuid)
+    #print new_usr
+    return new_usr
+
+</t>
+<t tx="zoomq.20131224083725.5903"># 列表获得
+#uri = 'wx/ls'
+data = _https_get(CFG.CLI_URI[uri][0]
+    , CFG.CLI_URI[uri][1]
+    , token = access_token
+    )
+print data
+
+
+return None
+
+'''发送文本消息
+{
+    "touser":"OPENID",
+    "msgtype":"text",
+    "text":
+    {
+         "content":"Hello World"
+    }
+}
+'''
+</t>
+<t tx="zoomq.20131224083725.5904">#openid = _url[-1]
+wx_uri = "/".join(_url[:2])
+data = _https_get(CFG.CLI_URI[wx_uri][0]
+    , CFG.CLI_URI[wx_uri][1]
+    , token = access_token
+    , openid = _url[-1]
+    )
+print data
+
+return None</t>
+<t tx="zoomq.20131224083725.5906">def _wx_token_get():
+    data = _https_get(CFG.CLI_URI['wx/t'][0]
+        , CFG.CLI_URI['wx/t'][1]
+        , appid = XCFG.WX_APPID
+        , secret = XCFG.WX_SECRET
+        )
+    #print data
+    js = json.loads(data)
+    print "access_token: ", js['access_token']
+    return js['access_token']
+</t>
+<t tx="zoomq.20131224083725.5907">openid = _url[-1]
+wx_uri = "/".join(_url[:2])
+
+host = CFG.CLI_URI[wx_uri][0]
+url = "%s=%s"% (CFG.CLI_URI[wx_uri][1], access_token)
+tpl_msg = '''{
+    "touser": "%s", 
+    "msgtype": "text", 
+    "text": {
+        "content": "%s"
+    }
+}'''
+
+_msg = tpl_msg% (openid, "sayeahoo...")#u'#细思恐极....'
+data = _https_post(CFG.CLI_URI[wx_uri][0]
+    , CFG.CLI_URI[wx_uri][1]
+    , _msg
+    , token = access_token
+    )
+print data
+return None 
+_msg = {
+    "touser":access_token,
+    "msgtype":"text",
+    "text":
+    {
+         "content":"Hello World"
+    }
+}
+
+headers = {
+    'User-Agent': 'python',
+    'Content-Type': 'application/x-www-form-urlencoded',
+}
+values = urllib.urlencode(_msg)
+#urllib.quote(_msg) #urllib.urlencode(_msg)
+conn = httplib.HTTPSConnection(host)
+conn.request("POST", url, values, headers)
+response = conn.getresponse()
+data = response.read()
+print 'Response: ', response.status, response.reason
+print 'Data:'
+print data
+
+return None
+
+tpl_msg = '''{
+    "touser": "%s", 
+    "msgtype": "text", 
+    "text": {
+        "content": "%s"
+    }
+}'''
+
+_msg = tpl_msg% (openid, u'是也乎,是也乎')
+
+_curl = "curl --data '%s' -3 http://%s/%s=%s"%( _msg
+    , CFG.CLI_URI[wx_uri][0]
+    , CFG.CLI_URI[wx_uri][1]
+    , access_token
+    )
+#curl -3 URL
+#curl --data-urlencode "date=April 1" example.com/form.cgi
+#print _curl
+cmd = _curl
+return None
+
+''' 发送文本消息
+
+{
+    "touser":"OPENID",
+    "msgtype":"text",
+    "text":
+    {
+         "content":"Hello World"
+    }
+}
+'''</t>
+<t tx="zoomq.20131224083725.5909">def _https_post(uri, tpl, values, **args):
+    c = httplib.HTTPSConnection(uri)
+    #print args
+    print uri
+    print tpl % args
+    
+    c.request("POST", tpl % args, values)
+    response = c.getresponse()
+    print response.status, response.reason
+    data = response.read()
+    return data
 </t>
 </tnodes>
 </leo_file>

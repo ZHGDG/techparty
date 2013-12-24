@@ -40,11 +40,14 @@ APP = Bottle()
 @APP.get('/echo')
 @APP.get('/echo/')
 def echo_wechat():
-    print request.query.keys()
-    print request.query.echostr
+    '''wechat app token echo
+    '''
+    #print request.query.keys()
+    #print request.query.echostr
     #print request.query_string
     #print dir(BaseRequest.query_string)
     return request.query.echostr
+
 '''
 def wechat(request):
     app = EchoApp()
@@ -99,7 +102,7 @@ def st_kv(matter, qstr):
         else:
             if matter in CFG.K4D.keys():
                 feed_back['msg'] = "base %s data."% CFG.K4D[matter]
-                feed_back['data'] = "%s hold %s node info."% (matter
+                feed_back['data'] = "%s hold %s node info."% (CFG.K4D[matter]
                     , len(KV.get(CFG.K4D[matter] )) 
                     )
             else:
@@ -203,13 +206,15 @@ def revert_dump(matter):
                     if 'SYS_TOT' == k:
                         # 只要替换一个自增值
                         KV.set(k, re_obj[k])
+                        _his.add(k)
                     elif 'SYS_pubs_HIS' == k:
                         # 统一增替
-                        pass
+                        _his.add(k)
                     else:
                         print "revert ->", k 
                         #print _his
                         #print type(re_obj[k])
+                        _his.add(k)
                         _his.update(set(re_obj[k]))
                         print "_his ", len(_his)
                         #KV.set(CFG.K4D['his'], KV.get(CFG.K4D['his']).update(set(re_obj[k])) )
@@ -252,6 +257,67 @@ def revert_dump(matter):
 
                     
         feed_back['data'].append( BK.stat_object(set_var) )
+        #data.append(KV.get_info())
+        return feed_back
+    else:
+        return "alert quary!-("
+
+@APP.put('/cli/resolve/<matter>')
+def resolve_his(matter):
+    q_dict = request.forms
+    if _chkQueryArgs("/cli/resolve/%s"% matter, q_dict, "PUT"):
+        feed_back = {'data':[]}
+        set_key = list(set(q_dict.keys())-set(CFG.SECURE_ARGS))[0]
+        set_var = base64.urlsafe_b64decode(request.forms[set_key])
+        print "resolve_his()  ", set_key, set_var
+        if 'his' ==  matter:
+            print "try resolve_his ALL from KVDB"
+            _INX_KEYS = [CFG.K4D[k] for k in CFG.K4D.keys()]
+            _his = set() #KV.get(CFG.K4D['his'])  
+            feed_back['msg'] = []
+            #print _INX_KEYS, type(_INX_KEYS)
+            for k in _INX_KEYS:
+                # 索引键处理
+                print k
+                if 'SYS_TOT' == k:
+                    _his.add(k)
+                elif 'SYS_pubs_HIS' == k:
+                    # 统一合并
+                    _his.add(k)
+                else:
+                    _idx = KV.get(k)
+                    print "revert -> %s <- %s nodes"% (k, len(_idx) ) 
+                    _his.add(k)
+                    _his.update(set(_idx) )
+                    #KV.set(CFG.K4D['his'], KV.get(CFG.K4D['his']).update(set(re_obj[k])) )
+                    feed_back['msg'].append("%s >>> %s nodes"% (k, len(_idx) ) ) 
+
+            KV.set(CFG.K4D['his'], list(_his) )
+            #print KV.get(CFG.K4D['his'])
+
+
+
+
+            feed_back['data'] = "re-merged all KVDB info into %s nodes"% len(_his)
+        elif 'wx' ==  matter:
+            print "try rebuild Passpord->UUID"
+            # 根据 K4D['m'] 的索引,建立 成员 Passpord->UUID 的索引字典
+            users = KV.get(CFG.K4D['m'])
+            for m in users:
+                upp = KV.get(m)['pp']
+                #print "%s -> %s"%(m, upp)
+                ppu = KV.get(upp)
+                if not ppu:
+                    KV.add(upp, m)
+            #KV.set(CFG.K4D['his'], list(_his) )
+            #print KV.get(CFG.K4D['his'])
+            feed_back['data'] = "re-point all Member key %s nodes"% len(users)
+
+
+
+
+
+            feed_back['msg'] = "re-build Passpord->UUID" 
         #data.append(KV.get_info())
         return feed_back
     else:
@@ -447,21 +513,26 @@ def fix_event(code):
 # collection usr ACL matter
 '''
 '''
-@APP.get('/cli/sum/m/<qstr>')
-def sum_usr(qstr):
+@APP.get('/cli/find/m/<kword>/<qstr>')
+def find_m(kword, qstr):
     #print request.query_string #query.keys()#.appkey
     q_dict = _query2dict(qstr)
-    if _chkQueryArgs("/cli/sum/m", q_dict, "GET"):
-        data = []
+    if _chkQueryArgs("/cli/find/m/%s"% kword, q_dict, "GET"):
+        feed_back = {'data':[]}
+        print "find_m-> ", kword
         usrs = KV.get(CFG.K4D['m'])
-        print usrs
-        for u in usrs[:3]:
-            data.append(KV.get(u))
+        #print usrs
+        for u in usrs:
+            m = KV.get(u)
+            m_info = "%s %s %s"%(m['em'].strip()
+                , m['nm'].strip()
+                , m['desc'].strip()
+                )
+            if kword in m_info.lower():
+                feed_back['data'].append(m)
     
-        return {'msg':"safe quary;-)"
-            , 'data':data
-            , 'count': len(usrs)
-            }
+        feed_back['msg'] = "safe quary;-)"
+        return feed_back
     else:
         return "alert quary!-("
 
@@ -598,6 +669,9 @@ def wechat_post():
     else:
         print "Debugging localhost..."
     wxreq = WxRequest(request.forms.keys()[0])
+    print "FromUserName->%s\nToUserName->%s"%( wxreq.FromUserName
+        , wxreq.FromUserName
+        )
     #print "WxTextResponse:\n", WxTextResponse("hello world", wxreq).as_xml()
     G_CRT_USR = __chkRegUsr(wxreq.FromUserName)
     wxreq.crt_usr = G_CRT_USR
@@ -611,6 +685,9 @@ def wechat_post():
         __update_usr(G_CRT_USR)
     #print "weknow.send2:\n"
     return weknow.send2(wxreq.Content.strip(), wxreq)
+
+
+
 
     return None
     '''collected old code for doc.
@@ -725,29 +802,37 @@ def wechat_post():
 
 
 
-def __chkRegUsr(openid):
+def __chkRegUsr(passport):
     '''chk or init. webchat usr.:
         - gen KV uuid, try get
         - if no-exited, init. fsm
     '''
-    sha1_name = hashlib.sha1(openid).hexdigest()
+    sha1_name = hashlib.sha1(passport).hexdigest()
     uuid = USRID(sha1_name)
     ADD4SYS('m', uuid)  # for old sys, collected uuid into idx node!
     usr = KV.get(uuid)
+    # 检查反向索引键对
+    ppu = KV.get(passport)
+    if not ppu:
+        # inti.
+        KV.add(passport, uuid)
+    # 检查用户键值对
     if usr:
-        print usr
+        #print usr
         return usr
     else:
         # inti.
         new_usr = deepcopy(CFG.objUSR)
         new_usr['his_id'] = GENID('his')
-        new_usr['pp'] = openid
+        new_usr['pp'] = passport
         new_usr['lasttm'] = time.time()
         new_usr['fsm'] = None
         KV.add(uuid, new_usr)
         #ADD4SYS('m', uuid)
-        print new_usr
+        #print new_usr
         return new_usr
+
+
 
 
 
@@ -769,6 +854,7 @@ def __update_usr(objUsr):
 @transition('s', 'seek')
 @transition('S', 'seek')
 @transition('h', 'helpme')
+@transition('H', 'helpme')
 @transition('?', 'helpme')
 @transition('help', 'helpme')
 @transition('V', 'version')
@@ -815,9 +901,12 @@ def end(self, wxreq):
 @transition('hd', 'papers')
 @transition('et', 'papers')
 @transition('ot', 'papers')
+@transition('q', 'helpme')
+@transition('Q', 'helpme')
 @transition('h', 'helpme')
+@transition('H', 'helpme')
 def seek(self, wxreq):
-    print 'setup->seek->{gb dd gt dm ot}'
+    print 'setup->seek->{gb dd gt dm ot q h} '
     crt_usr = wxreq.crt_usr
     #print "G_CRT_USR", crt_usr
     if wxreq.Content in CFG.PAPER_TAGS:
@@ -833,7 +922,9 @@ def seek(self, wxreq):
 @state('weknow')
 @transition('no', 'no_paper')
 @transition('q', 'helpme')
+@transition('Q', 'helpme')
 @transition('h', 'helpme')
+@transition('H', 'helpme')
 def papers(self, wxreq):
     print 'setup->seek->[papers]->no'
     crt_usr = wxreq.crt_usr
@@ -898,7 +989,9 @@ def papers(self, wxreq):
 @state('weknow')
 @transition('end', 'end')
 @transition('q', 'helpme')
+@transition('Q', 'helpme')
 @transition('h', 'helpme')
+@transition('H', 'helpme')
 def number_paper(self, wxreq):
     print 'setup->seek->...->no->end'
     crt_usr = wxreq.crt_usr
@@ -961,7 +1054,10 @@ resp = WxNewsResponse([WxArticle(Title="iPhone 6 is here!",
 
     
 @state('weknow')
-@transition('q', 'end')
+@transition('q', 'helpme')
+@transition('Q', 'helpme')
+@transition('h', 'helpme')
+@transition('H', 'helpme')
 def info_me(self, wxreq):
     print 'setup->info_me->end'
     crt_usr = wxreq.crt_usr
@@ -986,8 +1082,11 @@ def info_me(self, wxreq):
 
 
 @state('weknow')
-@transition('q', 'end')
 @transition('ia', 'info_alias')
+@transition('q', 'helpme')
+@transition('Q', 'helpme')
+@transition('h', 'helpme')
+@transition('H', 'helpme')
 def edit_info(self, wxreq):
     print 'setup->edit_info->info_alias 提醒输入妮称'
     crt_usr = wxreq.crt_usr
@@ -1013,8 +1112,11 @@ def edit_info(self, wxreq):
 
 
 @state('weknow')
-@transition('q', 'end')
 @transition('im', 'info_mail')
+@transition('q', 'helpme')
+@transition('Q', 'helpme')
+@transition('h', 'helpme')
+@transition('H', 'helpme')
 def info_alias(self, wxreq):
     print 'setup->edit_info->info_alias->info_mail 提醒输入邮箱'
     crt_usr = wxreq.crt_usr
@@ -1029,7 +1131,10 @@ def info_alias(self, wxreq):
         )
 
 @state('weknow')
-@transition('q', 'end')
+@transition('q', 'helpme')
+@transition('Q', 'helpme')
+@transition('h', 'helpme')
+@transition('H', 'helpme')
 def info_mail(self, wxreq):
     print 'setup->edit_info->info_alias->info_mail->end 回报收集的'
     crt_usr = wxreq.crt_usr
@@ -1102,12 +1207,34 @@ def status(self, wxreq):
     crt_usr = wxreq.crt_usr
     crt_usr['fsm'] = "setup"
     __update_usr(crt_usr)
-    return WxTextResponse(KV.get_info(), wxreq).as_xml()
+    _msg = ""
+    _msg += "\nget_info()-> "+str(KV.get_info())
+    _INX_KEYS = [CFG.K4D[k] for k in CFG.K4D.keys()]
+    for k in _INX_KEYS:
+        # 索引键处理
+        if 'SYS_TOT' == k:
+            _msg += "\n SYS_TOT->"+str(KV.get(k))
+        else :
+            # 统一合并
+            _msg += "\n %s -> %snodes"%(k, len(KV.get(k)))
+
+    #print "pp2u-->", KV.get(KV.get('oFNShjiOhclfJ-CtOO81p2sPrBfs'))
+    _msg += "\n\t usr:: %s"% crt_usr
+    _msg += "\n\t FromUserName:: %s"% wxreq.FromUserName
+    _msg += "\n\t ToUserName:: %s"% wxreq.ToUserName
+    wxreq.FromUserName = XCFG.WX_ZQ
+    print "rewrite as onoK2t_msg>>> %s"% wxreq.FromUserName
+    print WxTextResponse(_msg, wxreq).as_xml()
+    
+    return WxTextResponse(_msg, wxreq).as_xml()
 
     return __echo_txt(crt_usr['fromUser']
         , crt_usr['toUser']
         , KV.get_info()
         )
+
+
+
 
 
 @state('weknow')
@@ -1153,6 +1280,9 @@ def reg_event(self, crt_usr):
     crt_usr['fsm'] = "setup"
     __update_usr(crt_usr)
 
+
+
+
 @state('weknow')
 @transition('end', 'end')
 def reg_cancel(self, crt_usr):
@@ -1160,6 +1290,8 @@ def reg_cancel(self, crt_usr):
     crt_usr = wxreq.crt_usr
     crt_usr['fsm'] = "setup"
     __update_usr(crt_usr)
+
+
 
 @state('weknow')
 @transition('end', 'end')
@@ -1169,6 +1301,18 @@ def reg_info(self, crt_usr):
     crt_usr['fsm'] = "setup"
     __update_usr(crt_usr)
 
+
+
+def _wx_token_get():
+    data = _https_get(CFG.CLI_URI['wx/t'][0]
+        , CFG.CLI_URI['wx/t'][1]
+        , appid = XCFG.WX_APPID
+        , secret = XCFG.WX_SECRET
+        )
+    #print data
+    js = json.loads(data)
+    print "access_token: ", js['access_token']
+    return js['access_token']
 def __echo_txt(fromUsr, toUsr, text):
     '''zip xml exp.
     '''

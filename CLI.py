@@ -24,8 +24,8 @@ e.g:
   info/:UUID                查阅指定 信息
   find/m/<key word>         搜索用户 [对 名称,描述 搜索]
   st/kv     查询 KVDB 整体现状
-  sum/bk|db|dm|m|e|p
-      综合 备份|整体|大妈|成员|活动|文章 信息现状
+  sum/bk|db|dm|m|e|p|his
+      综合 备份|整体|大妈|成员|活动|文章|历史 信息现状
   sum/p/:TAG 综合 分类文章 信息现状
 
   fix/dm/:NM  nm=ZQ         修订/创建指定 大妈 的相关信息
@@ -43,9 +43,12 @@ e.g:
   del/bk/:UUID              删除指定备份 dump
   revert/db|dm|m|e|p    set=备份dump
      恢复 KVDB|大妈|成员|活动|文章 数据到Storage
+  resolve/his|wx        set=all       
+    重建 HIS|Passpord 全局历史索引
 
 益rz...
-  wx/t|ls|usr 通过 公众号接口进一步操作 
+  wx/ls             通过 服务号测试接口 获取关注列表 
+  wx/usr/:openid    通过 服务号测试接口 获取指定关注用户信息
 """
 import sys
 import os
@@ -53,7 +56,7 @@ import base64
 from subprocess import Popen
 from time import time, gmtime, strftime, localtime
 
-import httplib
+import httplib, urllib
 import json
 
 from docopt import docopt
@@ -97,6 +100,27 @@ def _https_get(uri, tpl, **args):
     print response.status, response.reason
     data = response.read()
     return data
+def _https_post(uri, tpl, values, **args):
+    c = httplib.HTTPSConnection(uri)
+    #print args
+    print uri
+    print tpl % args
+    
+    c.request("POST", tpl % args, values)
+    response = c.getresponse()
+    print response.status, response.reason
+    data = response.read()
+    return data
+def _wx_token_get():
+    data = _https_get(CFG.CLI_URI['wx/t'][0]
+        , CFG.CLI_URI['wx/t'][1]
+        , appid = XCFG.WX_APPID
+        , secret = XCFG.WX_SECRET
+        )
+    #print data
+    js = json.loads(data)
+    print "access_token: ", js['access_token']
+    return js['access_token']
 def _rest_main(method, uri, args, host=AS_LOCAL):
     '''接受事务指令+数据, 合理拼成 hhtp 命令行:
         - GET/DELETE 时将参数拼为统一间隔字串
@@ -148,25 +172,126 @@ def _rest_main(method, uri, args, host=AS_LOCAL):
 
 
     elif 'HTTPS' == method:
-        #get_args = _genQueryArgs(uri, rest_method=method)
-        print uri
-        #cmd = "http -b --verify=no '%s' "% wx_uri
-        data = _https_get(CFG.CLI_URI[uri][0]
-            , CFG.CLI_URI[uri][1]
-            , appid = XCFG.WX_APPID
-            , secret = XCFG.WX_SECRET
-            )
-        #print data
-        js = json.loads(data)
-        print "access_token: ", js['access_token']
-        uri = 'wx/ls'
-        data = _https_get(CFG.CLI_URI[uri][0]
-            , CFG.CLI_URI[uri][1]
-            , token = js['access_token']
-            )
-        print data
+        access_token = _wx_token_get()
+        _url = uri.split('/')
+        if 2 < len(_url):
+            # 有具体参数时
+            if 'usr' == _url[1]:
+                #print "获取指定用户信息"
+                #openid = _url[-1]
+                wx_uri = "/".join(_url[:2])
+                data = _https_get(CFG.CLI_URI[wx_uri][0]
+                    , CFG.CLI_URI[wx_uri][1]
+                    , token = access_token
+                    , openid = _url[-1]
+                    )
+                print data
 
-        return None
+                return None
+            elif 'msg' == _url[1]:
+                print "消息发送"
+                openid = _url[-1]
+                wx_uri = "/".join(_url[:2])
+
+                host = CFG.CLI_URI[wx_uri][0]
+                url = "%s=%s"% (CFG.CLI_URI[wx_uri][1], access_token)
+                tpl_msg = '''{
+                    "touser": "%s", 
+                    "msgtype": "text", 
+                    "text": {
+                        "content": "%s"
+                    }
+                }'''
+
+                _msg = tpl_msg% (openid, "sayeahoo...")#u'#细思恐极....'
+                data = _https_post(CFG.CLI_URI[wx_uri][0]
+                    , CFG.CLI_URI[wx_uri][1]
+                    , _msg
+                    , token = access_token
+                    )
+                print data
+                return None 
+                _msg = {
+                    "touser":access_token,
+                    "msgtype":"text",
+                    "text":
+                    {
+                         "content":"Hello World"
+                    }
+                }
+
+                headers = {
+                    'User-Agent': 'python',
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                }
+                values = urllib.urlencode(_msg)
+                #urllib.quote(_msg) #urllib.urlencode(_msg)
+                conn = httplib.HTTPSConnection(host)
+                conn.request("POST", url, values, headers)
+                response = conn.getresponse()
+                data = response.read()
+                print 'Response: ', response.status, response.reason
+                print 'Data:'
+                print data
+
+                return None
+
+                tpl_msg = '''{
+                    "touser": "%s", 
+                    "msgtype": "text", 
+                    "text": {
+                        "content": "%s"
+                    }
+                }'''
+
+                _msg = tpl_msg% (openid, u'是也乎,是也乎')
+
+                _curl = "curl --data '%s' -3 http://%s/%s=%s"%( _msg
+                    , CFG.CLI_URI[wx_uri][0]
+                    , CFG.CLI_URI[wx_uri][1]
+                    , access_token
+                    )
+                #curl -3 URL
+                #curl --data-urlencode "date=April 1" example.com/form.cgi
+                #print _curl
+                cmd = _curl
+                return None
+
+                ''' 发送文本消息
+
+                {
+                    "touser":"OPENID",
+                    "msgtype":"text",
+                    "text":
+                    {
+                         "content":"Hello World"
+                    }
+                }
+                '''
+        else:
+            # 列表获得
+            #uri = 'wx/ls'
+            data = _https_get(CFG.CLI_URI[uri][0]
+                , CFG.CLI_URI[uri][1]
+                , token = access_token
+                )
+            print data
+
+
+            return None
+
+            '''发送文本消息
+            {
+                "touser":"OPENID",
+                "msgtype":"text",
+                "text":
+                {
+                     "content":"Hello World"
+                }
+            }
+            '''
+            
+        #return None
         '''经测试,订阅号同公众号的接口用户完全不同,
         无法共用接口!
         '''
