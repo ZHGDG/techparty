@@ -319,6 +319,13 @@ class Borg():
     更多细节,请惯性地输入 h 继续吧 :)
     '''
 
+    SRV_TXT_JSON = '''{
+        "touser": "%(openid)s", 
+        "msgtype": "text", 
+        "text": {
+            "content": "%(content)s"
+        }
+    }'''
 
 
     '''
@@ -448,7 +455,7 @@ class Borg():
             , "/cgi-bin/user/info?access_token=%(token)s&openid=%(openid)s"
             )     # 获取成员信息
         , "wx/msg": ("api.weixin.qq.com"
-            , "cgi-bin/message/custom/send?access_token=%(token)s"
+            , "/cgi-bin/message/custom/send?access_token=%(token)s"
             , "POST")     # 发送消息
         }
     #https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token=ACCESS_TOKEN

@@ -25,13 +25,14 @@
 <v t="zoomq.20130923093950.5395"><vh>&lt;&lt;CONTENT&gt;&gt;</vh></v>
 <v t="zoomq.20130923093950.5396"><vh>&lt;&lt;HISTORIC&gt;&gt;</vh></v>
 </v>
-<v t="zoomq.20130918155053.7084"><vh>4wechat</vh>
+<v t="zoomq.20130918155053.7084" a="E"><vh>4wechat</vh>
 <v t="zoomq.20130923093950.7285"><vh>&lt;&lt;XML模板&gt;&gt;</vh></v>
 <v t="zoomq.20130925103854.6457"><vh>活动报名</vh></v>
 <v t="zoomq.20130925103854.6455"><vh>帮助.系统</vh></v>
 <v t="zoomq.20130925103854.6456"><vh>用户信息</vh></v>
 <v t="zoomq.20130923093950.8818"><vh>&lt;&lt;ALIAS&gt;&gt;</vh></v>
 <v t="zoomq.20130925103854.6458"><vh>文章查询</vh></v>
+<v t="zoomq.20131224083725.5910"><vh>公众号</vh></v>
 </v>
 <v t="zoomq.20130925103854.4951"><vh>RESTful</vh></v>
 </v>
@@ -1812,7 +1813,7 @@ CLI_URI = {     # 命令行 请求外部系统URI 速查字典
         , "/cgi-bin/user/info?access_token=%(token)s&amp;openid=%(openid)s"
         )     # 获取成员信息
     , "wx/msg": ("api.weixin.qq.com"
-        , "cgi-bin/message/custom/send?access_token=%(token)s"
+        , "/cgi-bin/message/custom/send?access_token=%(token)s"
         , "POST")     # 发送消息
     }
 #https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token=ACCESS_TOKEN
@@ -4000,27 +4001,31 @@ return None</t>
     print "access_token: ", js['access_token']
     return js['access_token']
 </t>
-<t tx="zoomq.20131224083725.5907">openid = _url[-1]
-wx_uri = "/".join(_url[:2])
+<t tx="zoomq.20131224083725.5907">wx_uri = "/".join(_url[:2])
 
 host = CFG.CLI_URI[wx_uri][0]
 url = "%s=%s"% (CFG.CLI_URI[wx_uri][1], access_token)
-tpl_msg = '''{
-    "touser": "%s", 
-    "msgtype": "text", 
-    "text": {
-        "content": "%s"
-    }
-}'''
 
-_msg = tpl_msg% (openid, "sayeahoo...")#u'#细思恐极....'
+openid = _url[-1]
+content = u'#细思恐极....'#.encode('utf-8')
+#.encode('utf-8')#"sayeahoo..."
+_msg = CFG.SRV_TXT_JSON% locals()
+#(openid, u'#细思恐极....')
+#   "sayeahoo..."   u'#细思恐极....'
+params  = urllib.urlencode({"msgtype": "text"
+    , "touser": openid
+    , "text": {"content": "sayeahoo..."}
+    })
+#print params
 data = _https_post(CFG.CLI_URI[wx_uri][0]
     , CFG.CLI_URI[wx_uri][1]
-    , _msg
+    , _msg  #bytearray(_msg.encode('utf-8'))
     , token = access_token
     )
-print data
+#print data
 return None 
+
+
 _msg = {
     "touser":access_token,
     "msgtype":"text",
@@ -4079,16 +4084,39 @@ return None
 }
 '''</t>
 <t tx="zoomq.20131224083725.5909">def _https_post(uri, tpl, values, **args):
-    c = httplib.HTTPSConnection(uri)
+    c = httplib.HTTPSConnection(uri, 443)
     #print args
     print uri
     print tpl % args
     
-    c.request("POST", tpl % args, values)
+    c.request("POST"
+        , tpl % args
+        , bytearray(values.encode('utf-8'))
+        #values#.encode('utf-16be') #.decode("utf-8")
+        , {'Content-Type': 'text/plain; charset=utf-8'}
+        )
     response = c.getresponse()
     print response.status, response.reason
     data = response.read()
     return data
+    
+'''
+conn = httplib.HTTPSConnection(host='www.site.com', port=443, cert_file=_certfile)
+   params  = urllib.urlencode({'cmd': 'token', 'device_id_st': 'AAAA-BBBB-CCCC',
+                                'token_id_st':'DDDD-EEEE_FFFF', 'product_id':'Unit Test',
+                                'product_ver':"1.6.3"})
+    conn.request("POST", "servlet/datadownload", params)
+    content = conn.getresponse().read()
+    #print response.status, response.reason
+    conn.close()
+'''</t>
+<t tx="zoomq.20131224083725.5910">SRV_TXT_JSON = '''{
+    "touser": "%(openid)s", 
+    "msgtype": "text", 
+    "text": {
+        "content": "%(content)s"
+    }
+}'''
 </t>
 </tnodes>
 </leo_file>
