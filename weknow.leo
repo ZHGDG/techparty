@@ -19,7 +19,7 @@
 <v t="zoomq.20120710140424.5456" a="E"><vh>&lt;&lt;cfg4Borg&gt;&gt;</vh>
 <v t="zoomq.20130926092950.5432"><vh>环境切换</vh></v>
 <v t="zoomq.20130927104354.5456"><vh>storage</vh></v>
-<v t="zoomq.20130923093950.3647"><vh>KVDB</vh>
+<v t="zoomq.20130923093950.3647" a="E"><vh>KVDB</vh>
 <v t="zoomq.20130923093950.5397"><vh>&lt;&lt;MEMBER&gt;&gt;</vh></v>
 <v t="zoomq.20130923093950.8569"><vh>&lt;&lt;大妈们&gt;&gt;</vh></v>
 <v t="zoomq.20130923093950.5395"><vh>&lt;&lt;CONTENT&gt;&gt;</vh></v>
@@ -145,7 +145,9 @@
 </v>
 <v t="zoomq.20130925103854.6427"><vh>__update_usr()</vh></v>
 <v t="zoomq.20130925103854.6430" a="E"><vh>FSM</vh>
-<v t="zoomq.20130925103854.6461"><vh>&lt;&lt;大妈联系&gt;&gt;</vh></v>
+<v t="zoomq.20130925103854.6461" a="E"><vh>&lt;&lt;大妈联系&gt;&gt;</vh>
+<v t="zoomq.20131225115522.4948"><vh>&lt;&lt;CC ZQ&gt;&gt;</vh></v>
+</v>
 <v t="zoomq.20130925103854.6431"><vh>s 查阅文章</vh>
 <v t="zoomq.20130926092950.5443"><vh>&lt;&lt;seek&gt;&gt;</vh></v>
 <v t="zoomq.20130926092950.5444"><vh>&lt;&lt;tags&gt;&gt;</vh></v>
@@ -159,21 +161,24 @@
 <v t="zoomq.20130926092950.5436"><vh>&lt;&lt;info_alias&gt;&gt;</vh></v>
 <v t="zoomq.20130926092950.5435"><vh>&lt;&lt;info_mail&gt;&gt;</vh></v>
 </v>
-<v t="zoomq.20130925103854.6441" a="E"><vh>系统信息</vh>
-<v t="zoomq.20131223160728.5956" a="E"><vh>&lt;&lt;status&gt;&gt;</vh>
-<v t="zoomq.20131224083725.4928"><vh>&lt;&lt;sys msg&gt;&gt;</vh></v>
-</v>
-<v t="zoomq.20131223160728.5954"><vh>&lt;&lt;helpme&gt;&gt;</vh></v>
-<v t="zoomq.20131223160728.5955"><vh>&lt;&lt;version&gt;&gt;</vh></v>
-</v>
 <v t="zoomq.20131024165032.5626"><vh>nn今天</vh></v>
 <v t="zoomq.20130925103854.6437"><vh>e 活动查询</vh>
 <v t="zoomq.20131223160728.5957"><vh>&lt;&lt;reg_event&gt;&gt;</vh></v>
 <v t="zoomq.20131223160728.5958"><vh>&lt;&lt;reg_cancel&gt;&gt;</vh></v>
 <v t="zoomq.20131223160728.5959"><vh>&lt;&lt;reg_info&gt;&gt;</vh></v>
 </v>
+<v t="zoomq.20130925103854.6441"><vh>系统信息</vh>
+<v t="zoomq.20131223160728.5954"><vh>&lt;&lt;helpme&gt;&gt;</vh></v>
+<v t="zoomq.20131223160728.5955"><vh>&lt;&lt;version&gt;&gt;</vh></v>
+<v t="zoomq.20131223160728.5956"><vh>&lt;&lt;status&gt;&gt;</vh>
+<v t="zoomq.20131224083725.5911"><vh>&lt;&lt;CC ZQ&gt;&gt;</vh></v>
+<v t="zoomq.20131224083725.4928"><vh>&lt;&lt;sys msg&gt;&gt;</vh></v>
+</v>
+</v>
 </v>
 <v t="zoomq.20131224083725.5906"></v>
+<v t="zoomq.20131224083725.5909"></v>
+<v t="zoomq.20131223160728.4902"></v>
 <v t="zoomq.20130923093950.8570"><vh>__echo_txt()</vh></v>
 <v t="zoomq.20120727213305.13050"><vh>/api/sysincr</vh></v>
 <v t="zoomq.20120727213305.14707"></v>
@@ -606,10 +611,12 @@ APP = Bottle()
 import time #import time, gmtime, strftime, localtime
 from datetime import datetime
 import traceback
-import hashlib
+import httplib, urllib, hashlib
+import json
+
 import base64
 import cPickle
-import ConfigParser
+#import ConfigParser
 from os.path import splitext as os_splitext
 from os.path import exists as os_exists
 
@@ -1580,7 +1587,8 @@ objHis = {'hisobj':""
     
     , "fsm":""      # 有限状态机 当前状态
     , "buffer":""   # 有限状态机 前次选择指令
-    , "pp":''       # Passport 
+    , "pp":''       # 订阅号 关注者 Passport 
+    , 'openid':''   # 公众号 关注人 openid
 
     , "nm":""       # NickName "Zoom.Quiet"
     , "desc":""     # 自述
@@ -2727,15 +2735,23 @@ TXT_PUB_WAIT = u'''对不起亲!
 cmd = wxreq.Content
 if cmd not in CFG.CMD_ALIAS:
     #if 8 &gt; len(crt_usr['msg']):
+    #print cmd
     if cmd.isdigit():
-        pass
-    elif 8 &gt; len(wxreq.Content):
-        #print "try march dama"
-        uuid, dm = __chkDAMA(wxreq.Content)
+        pass    #忽略过程中的数字输入
+    #print len(cmd)
+    if 8 &gt; len(cmd):
+        print "try march dama"
+        uuid, dm = __chkDAMA(cmd)
         if uuid:
             #print dm
             msg = CFG.TXT_CRT_DM% (dm['nm'], dm['desc'])
             return WxTextResponse(msg, wxreq).as_xml()
+    else:
+        print type(cmd.decode('utf-8'))
+        #return None
+        &lt;&lt;CC ZQ&gt;&gt;
+
+
 </t>
 <t tx="zoomq.20130925103854.6463">def DAMAID(name):
     return 'm_%s_DM'% name
@@ -3813,17 +3829,21 @@ def status(self, wxreq):
     crt_usr = wxreq.crt_usr
     crt_usr['fsm'] = "setup"
     __update_usr(crt_usr)
-    _msg = ""
+    _msg = ""   #u"是也乎 "
     &lt;&lt;sys msg&gt;&gt;
-    _msg += "\n\t usr:: %s"% crt_usr
-    _msg += "\n\t FromUserName:: %s"% wxreq.FromUserName
-    _msg += "\n\t ToUserName:: %s"% wxreq.ToUserName
+    #_msg += "\n\t usr:: %s"% crt_usr
+    #_msg += "\n\t FromUserName:: %s"% wxreq.FromUserName
+    #_msg += "\n\t ToUserName:: %s"% wxreq.ToUserName
+    #return WxTextResponse(_msg, wxreq).as_xml()
+    #&lt;&lt;CC ZQ&gt;&gt;
+    
+    return WxTextResponse(_msg, wxreq).as_xml()
+    
+    # 确认订阅号无法指向发送
     wxreq.FromUserName = XCFG.WX_ZQ
     print "rewrite as onoK2t_msg&gt;&gt;&gt; %s"% wxreq.FromUserName
     print WxTextResponse(_msg, wxreq).as_xml()
     
-    return WxTextResponse(_msg, wxreq).as_xml()
-
     return __echo_txt(crt_usr['fromUser']
         , crt_usr['toUser']
         , KV.get_info()
@@ -3903,15 +3923,15 @@ feed_back['data'] = "re-point all Member key %s nodes"% len(users)
 
 
 </t>
-<t tx="zoomq.20131224083725.4928">_msg += "\nget_info()-&gt; "+str(KV.get_info())
+<t tx="zoomq.20131224083725.4928">#_msg += "\nget_info()-&gt; "+str(KV.get_info())
 _INX_KEYS = [CFG.K4D[k] for k in CFG.K4D.keys()]
 for k in _INX_KEYS:
     # 索引键处理
     if 'SYS_TOT' == k:
-        _msg += "\n SYS_TOT-&gt;"+str(KV.get(k))
+        _msg += u"SYS_TOT::"+str(KV.get(k))
     else :
         # 统一合并
-        _msg += "\n %s -&gt; %snodes"%(k, len(KV.get(k)))
+        _msg += u"; %s :: %snodes"%(k, len(KV.get(k)))
 
 #print "pp2u--&gt;", KV.get(KV.get('oFNShjiOhclfJ-CtOO81p2sPrBfs'))
 </t>
@@ -3968,17 +3988,6 @@ print data
 
 
 return None
-
-'''发送文本消息
-{
-    "touser":"OPENID",
-    "msgtype":"text",
-    "text":
-    {
-         "content":"Hello World"
-    }
-}
-'''
 </t>
 <t tx="zoomq.20131224083725.5904">#openid = _url[-1]
 wx_uri = "/".join(_url[:2])
@@ -4009,7 +4018,10 @@ url = "%s=%s"% (CFG.CLI_URI[wx_uri][1], access_token)
 openid = _url[-1]
 content = u'#细思恐极....'#.encode('utf-8')
 #.encode('utf-8')#"sayeahoo..."
+title = u'如何使用社区服务号'
 _msg = CFG.SRV_TXT_JSON% locals()
+#CFG.SRV_FAQ_JSON% locals()
+#CFG.SRV_TXT_JSON% locals()
 #(openid, u'#细思恐极....')
 #   "sayeahoo..."   u'#细思恐极....'
 params  = urllib.urlencode({"msgtype": "text"
@@ -4082,7 +4094,9 @@ return None
          "content":"Hello World"
     }
 }
-'''</t>
+'''
+
+</t>
 <t tx="zoomq.20131224083725.5909">def _https_post(uri, tpl, values, **args):
     c = httplib.HTTPSConnection(uri, 443)
     #print args
@@ -4095,11 +4109,12 @@ return None
         #values#.encode('utf-16be') #.decode("utf-8")
         , {'Content-Type': 'text/plain; charset=utf-8'}
         )
+    #return None
     response = c.getresponse()
     print response.status, response.reason
     data = response.read()
     return data
-    
+
 '''
 conn = httplib.HTTPSConnection(host='www.site.com', port=443, cert_file=_certfile)
    params  = urllib.urlencode({'cmd': 'token', 'device_id_st': 'AAAA-BBBB-CCCC',
@@ -4117,6 +4132,73 @@ conn = httplib.HTTPSConnection(host='www.site.com', port=443, cert_file=_certfil
         "content": "%(content)s"
     }
 }'''
+
+SRV_NEW_JSON = '''{
+    "touser":"%(openid)s",
+    "msgtype":"news",
+    "news":{
+        "articles": [
+         {
+             "title":"%(title)s",
+             "description":"%(desc)s",
+             "url":"%(url)s",
+             "picurl":"%(picurl)s"
+         }
+         ]
+    }
+}'''
+#u'如何使用社区服务号' How to usage public srv.
+#u'\u5982\u4f55\u4f7f\u7528\u793e\u533a\u670d\u52a1\u53f7'
+SRV_FAQ_JSON = '''{
+    "touser":"%(openid)s",
+    "msgtype":"news",
+    "news":{
+        "articles": [
+         {
+             "title":"%(title)s",
+             "description":"",
+             "url":"http://zhgdg.gitcafe.com/2013-12/howto-pubsrv/",
+             "picurl":"http://mmbiz.qpic.cn/mmbiz/xCpd6WgWqOCZG5ey4Va6XfxNpz1BbBV1JUicNG1DUJZYLGM7tiaaWVs7YEEv80iaM8fMticTghY44HP2ZafJIwbMPA/0"
+         }
+         ]
+    }
+}'''
+</t>
+<t tx="zoomq.20131224083725.5911">access_token = _wx_token_get()
+wx_uri = 'wx/msg'
+host = CFG.CLI_URI[wx_uri][0]
+url = CFG.CLI_URI[wx_uri][1]    #"%s=%s"% (CFG.CLI_URI[wx_uri][1], access_token)
+
+openid = XCFG.WX_ZQ
+content = _msg  #u'#细思恐极....'
+cc_msg = CFG.SRV_TXT_JSON% locals()
+print cc_msg
+data = _https_post(host
+    , url
+    , cc_msg  #bytearray(_msg.encode('utf-8'))
+    , token = access_token
+    )
+print data
+
+
+</t>
+<t tx="zoomq.20131225115522.4948">access_token = _wx_token_get()
+wx_uri = 'wx/msg'
+host = CFG.CLI_URI[wx_uri][0]
+url = CFG.CLI_URI[wx_uri][1]    #"%s=%s"% (CFG.CLI_URI[wx_uri][1], access_token)
+
+openid = XCFG.WX_ZQ
+content = cmd.decode('utf-8') #_msg  #u'#细思恐极....'
+cc_msg = CFG.SRV_TXT_JSON% locals()
+print cc_msg
+data = _https_post(host
+    , url
+    , cc_msg  #bytearray(_msg.encode('utf-8'))
+    , token = access_token
+    )
+print data
+
+
 </t>
 </tnodes>
 </leo_file>

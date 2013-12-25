@@ -72,7 +72,8 @@ class Borg():
         
         , "fsm":""      # 有限状态机 当前状态
         , "buffer":""   # 有限状态机 前次选择指令
-        , "pp":''       # Passport 
+        , "pp":''       # 订阅号 关注者 Passport 
+        , 'openid':''   # 公众号 关注人 openid
 
         , "nm":""       # NickName "Zoom.Quiet"
         , "desc":""     # 自述
@@ -324,6 +325,37 @@ class Borg():
         "msgtype": "text", 
         "text": {
             "content": "%(content)s"
+        }
+    }'''
+
+    SRV_NEW_JSON = '''{
+        "touser":"%(openid)s",
+        "msgtype":"news",
+        "news":{
+            "articles": [
+             {
+                 "title":"%(title)s",
+                 "description":"%(desc)s",
+                 "url":"%(url)s",
+                 "picurl":"%(picurl)s"
+             }
+             ]
+        }
+    }'''
+    #u'如何使用社区服务号' How to usage public srv.
+    #u'\u5982\u4f55\u4f7f\u7528\u793e\u533a\u670d\u52a1\u53f7'
+    SRV_FAQ_JSON = '''{
+        "touser":"%(openid)s",
+        "msgtype":"news",
+        "news":{
+            "articles": [
+             {
+                 "title":"%(title)s",
+                 "description":"",
+                 "url":"http://zhgdg.gitcafe.com/2013-12/howto-pubsrv/",
+                 "picurl":"http://mmbiz.qpic.cn/mmbiz/xCpd6WgWqOCZG5ey4Va6XfxNpz1BbBV1JUicNG1DUJZYLGM7tiaaWVs7YEEv80iaM8fMticTghY44HP2ZafJIwbMPA/0"
+             }
+             ]
         }
     }'''
 

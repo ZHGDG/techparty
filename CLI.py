@@ -112,11 +112,12 @@ def _https_post(uri, tpl, values, **args):
         #values#.encode('utf-16be') #.decode("utf-8")
         , {'Content-Type': 'text/plain; charset=utf-8'}
         )
+    #return None
     response = c.getresponse()
     print response.status, response.reason
     data = response.read()
     return data
-    
+
 '''
 conn = httplib.HTTPSConnection(host='www.site.com', port=443, cert_file=_certfile)
    params  = urllib.urlencode({'cmd': 'token', 'device_id_st': 'AAAA-BBBB-CCCC',
@@ -214,7 +215,10 @@ def _rest_main(method, uri, args, host=AS_LOCAL):
                 openid = _url[-1]
                 content = u'#细思恐极....'#.encode('utf-8')
                 #.encode('utf-8')#"sayeahoo..."
+                title = u'如何使用社区服务号'
                 _msg = CFG.SRV_TXT_JSON% locals()
+                #CFG.SRV_FAQ_JSON% locals()
+                #CFG.SRV_TXT_JSON% locals()
                 #(openid, u'#细思恐极....')
                 #   "sayeahoo..."   u'#细思恐极....'
                 params  = urllib.urlencode({"msgtype": "text"
@@ -288,6 +292,7 @@ def _rest_main(method, uri, args, host=AS_LOCAL):
                     }
                 }
                 '''
+
         else:
             # 列表获得
             #uri = 'wx/ls'
@@ -299,17 +304,6 @@ def _rest_main(method, uri, args, host=AS_LOCAL):
 
 
             return None
-
-            '''发送文本消息
-            {
-                "touser":"OPENID",
-                "msgtype":"text",
-                "text":
-                {
-                     "content":"Hello World"
-                }
-            }
-            '''
             
         #return None
         '''经测试,订阅号同公众号的接口用户完全不同,

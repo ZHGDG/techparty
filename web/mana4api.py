@@ -3,10 +3,12 @@ import sys
 import time #import time, gmtime, strftime, localtime
 from datetime import datetime
 import traceback
-import hashlib
+import httplib, urllib, hashlib
+import json
+
 import base64
 import cPickle
-import ConfigParser
+#import ConfigParser
 from os.path import splitext as os_splitext
 from os.path import exists as os_exists
 
@@ -871,15 +873,39 @@ def setup(self, wxreq):
     cmd = wxreq.Content
     if cmd not in CFG.CMD_ALIAS:
         #if 8 > len(crt_usr['msg']):
+        #print cmd
         if cmd.isdigit():
-            pass
-        elif 8 > len(wxreq.Content):
-            #print "try march dama"
-            uuid, dm = __chkDAMA(wxreq.Content)
+            pass    #忽略过程中的数字输入
+        #print len(cmd)
+        if 8 > len(cmd):
+            print "try march dama"
+            uuid, dm = __chkDAMA(cmd)
             if uuid:
                 #print dm
                 msg = CFG.TXT_CRT_DM% (dm['nm'], dm['desc'])
                 return WxTextResponse(msg, wxreq).as_xml()
+        else:
+            print type(cmd.decode('utf-8'))
+            #return None
+            access_token = _wx_token_get()
+            wx_uri = 'wx/msg'
+            host = CFG.CLI_URI[wx_uri][0]
+            url = CFG.CLI_URI[wx_uri][1]    #"%s=%s"% (CFG.CLI_URI[wx_uri][1], access_token)
+
+            openid = XCFG.WX_ZQ
+            content = cmd.decode('utf-8') #_msg  #u'#细思恐极....'
+            cc_msg = CFG.SRV_TXT_JSON% locals()
+            print cc_msg
+            data = _https_post(host
+                , url
+                , cc_msg  #bytearray(_msg.encode('utf-8'))
+                , token = access_token
+                )
+            print data
+
+
+
+
 
 @state('weknow')
 def end(self, wxreq):
@@ -1186,73 +1212,6 @@ UnicodeEncodeError: 'ascii' codec can't encode character u'\u4eb2' in position 2
 
 @state('weknow')
 @transition('end', 'end')
-def helpme(self, wxreq):
-    print 'setup->helpme->end'
-    crt_usr = wxreq.crt_usr
-    crt_usr['fsm'] = "setup"
-    __update_usr(crt_usr)
-    return WxTextResponse(CFG.TXT_HELP, wxreq).as_xml()
-    
-    return __echo_txt(crt_usr['fromUser']
-        , crt_usr['toUser']
-        , CFG.TXT_HELP
-        )
-
-
-
-@state('weknow')
-@transition('end', 'end')
-def status(self, wxreq):
-    print 'setup->status->end'
-    crt_usr = wxreq.crt_usr
-    crt_usr['fsm'] = "setup"
-    __update_usr(crt_usr)
-    _msg = ""
-    _msg += "\nget_info()-> "+str(KV.get_info())
-    _INX_KEYS = [CFG.K4D[k] for k in CFG.K4D.keys()]
-    for k in _INX_KEYS:
-        # 索引键处理
-        if 'SYS_TOT' == k:
-            _msg += "\n SYS_TOT->"+str(KV.get(k))
-        else :
-            # 统一合并
-            _msg += "\n %s -> %snodes"%(k, len(KV.get(k)))
-
-    #print "pp2u-->", KV.get(KV.get('oFNShjiOhclfJ-CtOO81p2sPrBfs'))
-    _msg += "\n\t usr:: %s"% crt_usr
-    _msg += "\n\t FromUserName:: %s"% wxreq.FromUserName
-    _msg += "\n\t ToUserName:: %s"% wxreq.ToUserName
-    wxreq.FromUserName = XCFG.WX_ZQ
-    print "rewrite as onoK2t_msg>>> %s"% wxreq.FromUserName
-    print WxTextResponse(_msg, wxreq).as_xml()
-    
-    return WxTextResponse(_msg, wxreq).as_xml()
-
-    return __echo_txt(crt_usr['fromUser']
-        , crt_usr['toUser']
-        , KV.get_info()
-        )
-
-
-
-
-
-@state('weknow')
-@transition('end', 'end')
-def version(self, wxreq):
-    print 'setup->version->end'
-    crt_usr = wxreq.crt_usr
-    crt_usr['fsm'] = "setup"
-    __update_usr(crt_usr)
-    return WxTextResponse(CFG.TXT_VER, wxreq).as_xml()
-
-    return __echo_txt(crt_usr['fromUser']
-        , crt_usr['toUser']
-        , CFG.TXT_VER
-        )
-
-@state('weknow')
-@transition('end', 'end')
 def niuniu(self, wxreq):
     print 'setup->niuniu->end'
     crt_usr = wxreq.crt_usr
@@ -1303,6 +1262,93 @@ def reg_info(self, crt_usr):
 
 
 
+@state('weknow')
+@transition('end', 'end')
+def helpme(self, wxreq):
+    print 'setup->helpme->end'
+    crt_usr = wxreq.crt_usr
+    crt_usr['fsm'] = "setup"
+    __update_usr(crt_usr)
+    return WxTextResponse(CFG.TXT_HELP, wxreq).as_xml()
+    
+    return __echo_txt(crt_usr['fromUser']
+        , crt_usr['toUser']
+        , CFG.TXT_HELP
+        )
+
+
+
+@state('weknow')
+@transition('end', 'end')
+def status(self, wxreq):
+    print 'setup->status->end'
+    crt_usr = wxreq.crt_usr
+    crt_usr['fsm'] = "setup"
+    __update_usr(crt_usr)
+    _msg = ""   #u"是也乎 "
+    #_msg += "\nget_info()-> "+str(KV.get_info())
+    _INX_KEYS = [CFG.K4D[k] for k in CFG.K4D.keys()]
+    for k in _INX_KEYS:
+        # 索引键处理
+        if 'SYS_TOT' == k:
+            _msg += u"SYS_TOT::"+str(KV.get(k))
+        else :
+            # 统一合并
+            _msg += u"; %s :: %snodes"%(k, len(KV.get(k)))
+
+    #print "pp2u-->", KV.get(KV.get('oFNShjiOhclfJ-CtOO81p2sPrBfs'))
+    #_msg += "\n\t usr:: %s"% crt_usr
+    #_msg += "\n\t FromUserName:: %s"% wxreq.FromUserName
+    #_msg += "\n\t ToUserName:: %s"% wxreq.ToUserName
+    #return WxTextResponse(_msg, wxreq).as_xml()
+    #    access_token = _wx_token_get()
+    wx_uri = 'wx/msg'
+    host = CFG.CLI_URI[wx_uri][0]
+    url = CFG.CLI_URI[wx_uri][1]    #"%s=%s"% (CFG.CLI_URI[wx_uri][1], access_token)
+
+    openid = XCFG.WX_ZQ
+    content = _msg  #u'#细思恐极....'
+    cc_msg = CFG.SRV_TXT_JSON% locals()
+    print cc_msg
+    data = _https_post(host
+        , url
+        , cc_msg  #bytearray(_msg.encode('utf-8'))
+        , token = access_token
+        )
+    print data
+
+
+    
+    return WxTextResponse(_msg, wxreq).as_xml()
+    
+    # 确认订阅号无法指向发送
+    wxreq.FromUserName = XCFG.WX_ZQ
+    print "rewrite as onoK2t_msg>>> %s"% wxreq.FromUserName
+    print WxTextResponse(_msg, wxreq).as_xml()
+    
+    return __echo_txt(crt_usr['fromUser']
+        , crt_usr['toUser']
+        , KV.get_info()
+        )
+
+
+
+
+
+@state('weknow')
+@transition('end', 'end')
+def version(self, wxreq):
+    print 'setup->version->end'
+    crt_usr = wxreq.crt_usr
+    crt_usr['fsm'] = "setup"
+    __update_usr(crt_usr)
+    return WxTextResponse(CFG.TXT_VER, wxreq).as_xml()
+
+    return __echo_txt(crt_usr['fromUser']
+        , crt_usr['toUser']
+        , CFG.TXT_VER
+        )
+
 def _wx_token_get():
     data = _https_get(CFG.CLI_URI['wx/t'][0]
         , CFG.CLI_URI['wx/t'][1]
@@ -1313,6 +1359,42 @@ def _wx_token_get():
     js = json.loads(data)
     print "access_token: ", js['access_token']
     return js['access_token']
+def _https_post(uri, tpl, values, **args):
+    c = httplib.HTTPSConnection(uri, 443)
+    #print args
+    print uri
+    print tpl % args
+    
+    c.request("POST"
+        , tpl % args
+        , bytearray(values.encode('utf-8'))
+        #values#.encode('utf-16be') #.decode("utf-8")
+        , {'Content-Type': 'text/plain; charset=utf-8'}
+        )
+    #return None
+    response = c.getresponse()
+    print response.status, response.reason
+    data = response.read()
+    return data
+
+'''
+conn = httplib.HTTPSConnection(host='www.site.com', port=443, cert_file=_certfile)
+   params  = urllib.urlencode({'cmd': 'token', 'device_id_st': 'AAAA-BBBB-CCCC',
+                                'token_id_st':'DDDD-EEEE_FFFF', 'product_id':'Unit Test',
+                                'product_ver':"1.6.3"})
+    conn.request("POST", "servlet/datadownload", params)
+    content = conn.getresponse().read()
+    #print response.status, response.reason
+    conn.close()
+'''
+def _https_get(uri, tpl, **args):
+    c = httplib.HTTPSConnection(uri)
+    #print args
+    c.request("GET", tpl % args)
+    response = c.getresponse()
+    print response.status, response.reason
+    data = response.read()
+    return data
 def __echo_txt(fromUsr, toUsr, text):
     '''zip xml exp.
     '''
