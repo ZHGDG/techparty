@@ -105,11 +105,14 @@ def _https_post(uri, tpl, values, **args):
     - values MUST 'unicode'
     '''
     url = "https://%s%s"% (uri, tpl % args)
-    #print url
+    print url
     #return None
     data = bytearray(values.encode('utf-8'))    #urllib.urlencode(values)
     req = urllib2.Request(url, data)
     response = urllib2.urlopen(req)
+    #print dir(response)
+    #return None
+    print response.code, response.msg
     result = response.read()
     print result
     return result
