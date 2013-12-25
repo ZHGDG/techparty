@@ -282,7 +282,9 @@ class task(object):
         self.exit = []
         self._locals = {}
         return self.current_state.enter2(self, obj)
-
+        #return None
+        #   just set FSM action, not need realy do !
+        
     def send2(self, event, obj):
         """
         Sends an event to this task.

@@ -3,7 +3,11 @@ import sys
 import time #import time, gmtime, strftime, localtime
 from datetime import datetime
 import traceback
-import httplib, urllib, hashlib
+import httplib
+import urllib 
+import urllib2 
+
+import hashlib
 import json
 
 import base64
@@ -657,153 +661,6 @@ def sum_tag(qstr):
     else:
         return "alert quary!-("
 
-@APP.post('/echo')
-@APP.post('/echo/')
-def wechat_post():
-    #print "wechat GET\n ",request.query.keys()
-    #print "wechat GET type\n ",type(request.query)
-    # usage jeff SDK for wechat...
-    if CFG.AS_SAE:
-        wxa = WxApplication(token=XCFG.TOKEN)
-        chkwx = wxa.is_valid_params(request.query)
-        if not chkwx:
-            return None
-    else:
-        print "Debugging localhost..."
-    wxreq = WxRequest(request.forms.keys()[0])
-    print "FromUserName->%s\nToUserName->%s"%( wxreq.FromUserName
-        , wxreq.FromUserName
-        )
-    #print "WxTextResponse:\n", WxTextResponse("hello world", wxreq).as_xml()
-    G_CRT_USR = __chkRegUsr(wxreq.FromUserName)
-    wxreq.crt_usr = G_CRT_USR
-    # usage pyfsm as FSM echo all kinds of usr ask
-    weknow = pyfsm.Registry.get_task('weknow')
-    if G_CRT_USR['fsm']:
-        weknow.start2(G_CRT_USR['fsm'], wxreq)
-    else:
-        weknow.start2('setup', wxreq)
-        G_CRT_USR['fsm'] = "setup"
-        __update_usr(G_CRT_USR)
-    #print "weknow.send2:\n"
-    return weknow.send2(wxreq.Content.strip(), wxreq)
-
-
-
-
-    return None
-    '''collected old code for doc.
-    '''
-    # base hard code for all 
-    xml = etree.XML(request.forms.keys()[0])
-    __MsgType = xml.findtext("MsgType")
-    __Content = xml.findtext("Content") #.encode('utf8')
-    fromUser = xml.findtext("ToUserName")
-    toUser = xml.findtext("FromUserName")
-    G_CRT_USR = __chkRegUsr(toUser)
-    G_CRT_USR['msg'] = __Content
-    G_CRT_USR['fromUser'] = fromUser
-    G_CRT_USR['toUser'] = toUser
-    # usage pyfsm as FSM echo all kinds of usr ask
-    weknow = pyfsm.Registry.get_task('weknow')
-    if G_CRT_USR['fsm']:
-        weknow.start2(G_CRT_USR['fsm'], G_CRT_USR)
-        __update_usr(G_CRT_USR)
-    else:
-        weknow.start2('setup', G_CRT_USR)
-        G_CRT_USR['fsm'] = "setup"
-        __update_usr(G_CRT_USR)
-    print "weknow.send2:\n", weknow.send2(__Content, G_CRT_USR)
-    return None
-    
-    # base choas if elif else
-    if isinstance(Content, unicode):
-        print "可能是中文"
-        #__Content = Content.encode('utf-8')
-    else:
-        __Content = Content
-        print __Content #.encode('utf8')
-
-        if "text" == __MsgType:
-            #print CFG.CMD_ALIAS['help']
-            if __Content in CFG.CMD_ALIAS['help'] :
-
-                return __echo_txt(fromUser, toUser, CFG.TXT_HELP)
-
-                return None
-            elif __Content in CFG.CMD_ALIAS['version']:
-                return __echo_txt(fromUser, toUser, CFG.VERSION)
-
-                return None
-            elif __Content in CFG.CMD_ALIAS['info']:
-                if "" == crt_usr['em']:
-                    # 1st ping
-                    return __echo_txt(fromUser, toUser, CFG.TXT_NEW_USR)
-                else:
-                    # had reg.
-                    return __echo_txt(fromUser, toUser, CFG.TXT_CRT_EM% crt_usr['em'])
-
-
-                return None
-
-                '''Traceback (most recent call last):
-                  File "/data1/www/htdocs/466/weknow/2/bottle.py", line 764, in _handle
-                    return route.call(**args)
-                  File "/data1/www/htdocs/466/weknow/2/bottle.py", line 1575, in wrapper
-                    rv = callback(*a, **ka)
-                  File "/data1/www/htdocs/466/weknow/2/web/mana4api.py", line 68, in wechat_post
-                    if 0 == len(usr):
-                TypeError: object of type 'generator' has no len() yq34 
-                '''
-
-            elif "em" in __Content.split(":"):
-                em = __Content[3:]
-                print em
-                if " " in em:
-                    print "canceled +"
-                    em = "+".join(em.split())
-                #return None
-                crt_usr['em'] = em
-                KV.replace(usrs[0][0] , crt_usr)
-                print KV.get(usrs[0][0])
-
-                return __echo_txt(fromUser, toUser, CFG.TXT_CRT_EM% em)
-
-                return None
-
-
-            elif __Content in CFG.CMD_ALIAS['search']:
-                item_count = 1
-                title = "是也乎"
-                description = "G术图书:5 超级聊天术"
-                picurl = "http://mmsns.qpic.cn/mmsns/LkTfzZ1ialTo0ibaAicYJwQkqXyEJXEdhnhpZOD2PlnX69w3ESxibQ3vfw/0"
-                url = "http://mp.weixin.qq.com/mp/appmsg/show?__biz=MjM5Mjk3MDI2MA==&appmsgid=10000132&itemidx=1&sign=dcb49b00b0773aee85c67810385a1b19#wechat_redirect"
-                items = CFG.TPL_ITEM% locals()
-                print CFG.TPL_URIS% locals()
-                return CFG.TPL_URIS% locals()
-
-
-                return None
-            elif __Content in CFG.CMD_ALIAS['sayeahoo']:
-                print KV.get_info()
-                return __echo_txt(fromUser, toUser, KV.get_info())
-
-
-                #return None
-
-
-            else:
-                return __echo_txt(fromUser, toUser, CFG.TXT_WELCOME)
-
-                return None
-        
-
-
-
-
-
-
-
 def __chkRegUsr(passport):
     '''chk or init. webchat usr.:
         - gen KV uuid, try get
@@ -843,6 +700,51 @@ def __update_usr(objUsr):
     sha1_name = hashlib.sha1(objUsr['pp']).hexdigest()
     uuid = USRID(sha1_name)
     KV.replace(uuid, objUsr)
+@APP.post('/echo/')
+@APP.post('/echo')
+def wechat_post():
+    # usage jeff SDK for wechat...
+    if CFG.AS_SAE:
+        wxa = WxApplication(token=XCFG.TOKEN)
+        chkwx = wxa.is_valid_params(request.query)
+        if not chkwx:
+            return None
+    else:
+        print "Debugging localhost..."
+    wxreq = WxRequest(request.forms.keys()[0])
+    #print "FromUserName->%s\nToUserName->%s"%( wxreq.FromUserName
+    #    , wxreq.FromUserName )
+    #print "WxTextResponse:\n", WxTextResponse("hello world", wxreq).as_xml()
+    G_CRT_USR = __chkRegUsr(wxreq.FromUserName)
+    wxreq.crt_usr = G_CRT_USR
+    # usage pyfsm as FSM echo all kinds of usr ask
+    weknow = pyfsm.Registry.get_task('weknow')
+    #print G_CRT_USR
+    wxreq.FSM = "start2" # 使用对象加载状态区分后续处理
+    # 恢复用户 FSM 状态
+    if G_CRT_USR['fsm']:
+        #print "if G_CRT_USR"
+        weknow.start2(G_CRT_USR['fsm'], wxreq)
+    else:
+        #print "else G_CRT_USR"
+        weknow.start2('setup', wxreq)
+        G_CRT_USR['fsm'] = "setup"
+        __update_usr(G_CRT_USR)
+    #print dir(wxreq)
+    #return None
+    # 执行用户 FSM 业务
+    wxreq.FSM = "send2"
+    return weknow.send2(wxreq.Content.strip(), wxreq)
+
+
+
+
+
+
+
+
+
+
 @state('weknow')
 @transition('e', 'events')
 @transition('E', 'events')
@@ -868,40 +770,48 @@ def __update_usr(objUsr):
 @transition('nn', 'niuniu')
 def setup(self, wxreq):
     print 'setup->{h V e re rc ir i ei s}|大妈信息'
-    #print crt_usr['msg']
-    #print wxreq.Content
-    cmd = wxreq.Content
-    if cmd not in CFG.CMD_ALIAS:
-        #if 8 > len(crt_usr['msg']):
-        #print cmd
-        if cmd.isdigit():
-            pass    #忽略过程中的数字输入
-        #print len(cmd)
-        if 8 > len(cmd):
-            print "try march dama"
-            uuid, dm = __chkDAMA(cmd)
-            if uuid:
-                #print dm
-                msg = CFG.TXT_CRT_DM% (dm['nm'], dm['desc'])
-                return WxTextResponse(msg, wxreq).as_xml()
-        else:
-            print type(cmd.decode('utf-8'))
-            #return None
-            access_token = _wx_token_get()
-            wx_uri = 'wx/msg'
-            host = CFG.CLI_URI[wx_uri][0]
-            url = CFG.CLI_URI[wx_uri][1]    #"%s=%s"% (CFG.CLI_URI[wx_uri][1], access_token)
+    if wxreq.FSM == "send2":
+        # 使用对象加载状态 放弃 FSM 状态恢复时的回调 执行
+        #print crt_usr['msg']
+        #print wxreq.Content
+        cmd = wxreq.Content
+        if cmd not in CFG.CMD_ALIAS:
+            #if 8 > len(crt_usr['msg']):
+            #print cmd
+            if cmd.isdigit():
+                pass    #忽略过程中的数字输入
+            #print len(cmd)
+            if 8 > len(cmd):
+                print "try march dama"
+                uuid, dm = __chkDAMA(cmd)
+                if uuid:
+                    #print dm
+                    msg = CFG.TXT_CRT_DM% (dm['nm'], dm['desc'])
+                    return WxTextResponse(msg, wxreq).as_xml()
+            else:
+                print "FSM::setup()->cmd.decode ", type(cmd.decode('utf-8'))
+                #return None
+                access_token = _wx_token_get()
+                wx_uri = 'wx/msg'
+                host = CFG.CLI_URI[wx_uri][0]
+                url = CFG.CLI_URI[wx_uri][1]    #"%s=%s"% (CFG.CLI_URI[wx_uri][1], access_token)
 
-            openid = XCFG.WX_ZQ
-            content = cmd.decode('utf-8') #_msg  #u'#细思恐极....'
-            cc_msg = CFG.SRV_TXT_JSON% locals()
-            print cc_msg
-            data = _https_post(host
-                , url
-                , cc_msg  #bytearray(_msg.encode('utf-8'))
-                , token = access_token
-                )
-            print data
+                openid = XCFG.WX_ZQ
+                print cmd
+                print "<<< type(cmd) ", type(cmd)
+                content = CFG.VERSION #u'#细思恐极....'#cmd.decode('utf-8') #_msg  #u'#细思恐极....'
+                print "<<< cmd.decode", type(cmd.decode('utf-8'))
+                cc_msg = CFG.SRV_TXT_JSON% locals()
+                print "<<< type(cc_msg)", type(cc_msg)
+                print cc_msg
+
+                data = _https_post(host
+                    , url
+                    , cc_msg  #bytearray(_msg.encode('utf-8'))
+                    , token = access_token
+                    )
+                print "_https_post()>>> ", data
+
 
 
 
@@ -1349,27 +1259,29 @@ def version(self, wxreq):
         , CFG.TXT_VER
         )
 
-def _wx_token_get():
-    data = _https_get(CFG.CLI_URI['wx/t'][0]
-        , CFG.CLI_URI['wx/t'][1]
-        , appid = XCFG.WX_APPID
-        , secret = XCFG.WX_SECRET
-        )
-    #print data
-    js = json.loads(data)
-    print "access_token: ", js['access_token']
-    return js['access_token']
 def _https_post(uri, tpl, values, **args):
-    c = httplib.HTTPSConnection(uri, 443)
-    #print args
-    print uri
-    print tpl % args
+    '''esp. HTTPSConnection only POST bytearray, means:
+    - values MUST 'unicode'
+    '''
+    url = "https://%s%s"% (uri, tpl % args)
+    #print url
+    #return None
+    data = bytearray(values.encode('utf-8'))    #urllib.urlencode(values)
+    req = urllib2.Request(url, data)
+    response = urllib2.urlopen(req)
+    result = response.read()
+    print result
+    return result
     
+    c = httplib.HTTPSConnection(uri, 443)
+    #print uri
+    #values = "123123"
+    print tpl % args
     c.request("POST"
         , tpl % args
         , bytearray(values.encode('utf-8'))
         #values#.encode('utf-16be') #.decode("utf-8")
-        , {'Content-Type': 'text/plain; charset=utf-8'}
+        #, {'Content-Type': 'text/plain; charset=utf-8'}
         )
     #return None
     response = c.getresponse()
@@ -1387,6 +1299,17 @@ conn = httplib.HTTPSConnection(host='www.site.com', port=443, cert_file=_certfil
     #print response.status, response.reason
     conn.close()
 '''
+def _wx_token_get():
+    data = _https_get(CFG.CLI_URI['wx/t'][0]
+        , CFG.CLI_URI['wx/t'][1]
+        , appid = XCFG.WX_APPID
+        , secret = XCFG.WX_SECRET
+        )
+    #print data
+    js = json.loads(data)
+    print js
+    print "access_token: ", js['access_token']
+    return js['access_token']
 def _https_get(uri, tpl, **args):
     c = httplib.HTTPSConnection(uri)
     #print args

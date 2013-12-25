@@ -19,33 +19,33 @@
 <v t="zoomq.20120710140424.5456" a="E"><vh>&lt;&lt;cfg4Borg&gt;&gt;</vh>
 <v t="zoomq.20130926092950.5432"><vh>环境切换</vh></v>
 <v t="zoomq.20130927104354.5456"><vh>storage</vh></v>
-<v t="zoomq.20130923093950.3647" a="E"><vh>KVDB</vh>
+<v t="zoomq.20130923093950.3647"><vh>KVDB</vh>
 <v t="zoomq.20130923093950.5397"><vh>&lt;&lt;MEMBER&gt;&gt;</vh></v>
 <v t="zoomq.20130923093950.8569"><vh>&lt;&lt;大妈们&gt;&gt;</vh></v>
 <v t="zoomq.20130923093950.5395"><vh>&lt;&lt;CONTENT&gt;&gt;</vh></v>
 <v t="zoomq.20130923093950.5396"><vh>&lt;&lt;HISTORIC&gt;&gt;</vh></v>
 </v>
 <v t="zoomq.20130918155053.7084" a="E"><vh>4wechat</vh>
+<v t="zoomq.20130923093950.8818"><vh>&lt;&lt;ALIAS&gt;&gt;</vh></v>
 <v t="zoomq.20130923093950.7285"><vh>&lt;&lt;XML模板&gt;&gt;</vh></v>
 <v t="zoomq.20130925103854.6457"><vh>活动报名</vh></v>
 <v t="zoomq.20130925103854.6455"><vh>帮助.系统</vh></v>
 <v t="zoomq.20130925103854.6456"><vh>用户信息</vh></v>
-<v t="zoomq.20130923093950.8818"><vh>&lt;&lt;ALIAS&gt;&gt;</vh></v>
 <v t="zoomq.20130925103854.6458"><vh>文章查询</vh></v>
 <v t="zoomq.20131224083725.5910"><vh>公众号</vh></v>
 </v>
 <v t="zoomq.20130925103854.4951"><vh>RESTful</vh></v>
 </v>
 </v>
-<v t="zoomq.20130925103854.4957" a="E"><vh>@nosent CLI.py</vh>
+<v t="zoomq.20130925103854.4957"><vh>@nosent CLI.py</vh>
 <v t="zoomq.20130925103854.4958"><vh>&lt;&lt;docopt&gt;&gt;</vh></v>
 <v t="zoomq.20130925103854.4959"><vh>&lt;&lt;declarations&gt;&gt;</vh></v>
 <v t="zoomq.20130925103854.4961"><vh>smart_rest()</vh></v>
 <v t="zoomq.20131223160728.4902"><vh>_https_get()</vh></v>
 <v t="zoomq.20131224083725.5909"><vh>_https_post()</vh></v>
 <v t="zoomq.20131224083725.5906"><vh>_wx_token_get()</vh></v>
-<v t="zoomq.20130925103854.4960" a="E"><vh>_rest_main()</vh>
-<v t="zoomq.20130925103854.6452" a="E"><vh>&lt;&lt;HTTPS&gt;&gt;</vh>
+<v t="zoomq.20130925103854.4960"><vh>_rest_main()</vh>
+<v t="zoomq.20130925103854.6452"><vh>&lt;&lt;HTTPS&gt;&gt;</vh>
 <v t="zoomq.20131224083725.5907"><vh>&lt;&lt;消息发送&gt;&gt;</vh></v>
 <v t="zoomq.20131224083725.5904"><vh>&lt;&lt;获取指定用户信息&gt;&gt;</vh></v>
 <v t="zoomq.20131224083725.5903"><vh>&lt;&lt;列表获得&gt;&gt;</vh></v>
@@ -69,7 +69,7 @@
 <v t="zoomq.20130925103854.6443"><vh>_query2dict</vh></v>
 <v t="zoomq.20130925103854.6445"><vh>_chkQueryArgs</vh></v>
 </v>
-<v t="zoomq.20120717112543.5481" a="E"><vh>@nosent utility.py</vh>
+<v t="zoomq.20120717112543.5481"><vh>@nosent utility.py</vh>
 <v t="zoomq.20120727213305.14698"><vh>&lt;&lt;declarations&gt;&gt;</vh></v>
 <v t="zoomq.20130927104354.6047"><vh>PUT2SS()</vh></v>
 <v t="zoomq.20120727213305.14756"><vh>INIobjSYS()</vh></v>
@@ -87,10 +87,19 @@
 <v t="zoomq.20120723102156.5548"><vh>/</vh></v>
 <v t="zoomq.20120727213305.14707"><vh>404+各种默认处理</vh></v>
 </v>
+<v t="zoomq.20131225115522.4949"><vh>__choas_POST /echo</vh>
+<v t="zoomq.20130923093950.8817"><vh>&lt;&lt;sayeahoo&gt;&gt;</vh></v>
+<v t="zoomq.20130923093950.8816"><vh>&lt;&lt;InfoMemberEM&gt;&gt;</vh></v>
+<v t="zoomq.20130923093950.8567"><vh>&lt;&lt;InfoMember&gt;&gt;</vh></v>
+<v t="zoomq.20130923093950.8563"><vh>&lt;&lt;HELP&gt;&gt;</vh></v>
+<v t="zoomq.20130923093950.8564"><vh>&lt;&lt;VERSION&gt;&gt;</vh></v>
+<v t="zoomq.20130923093950.8565"><vh>&lt;&lt;SEARCH&gt;&gt;</vh></v>
+<v t="zoomq.20130923093950.8566"><vh>&lt;&lt;THANKS&gt;&gt;</vh></v>
+</v>
 <v t="zoomq.20120723102156.5561" a="E"><vh>@nosent mana4api.py</vh>
 <v t="zoomq.20120723102156.5562"><vh>&lt;&lt;declarations&gt;&gt;</vh></v>
 <v t="zoomq.20130918155053.5760"><vh>GET  /echo</vh></v>
-<v t="zoomq.20130925103854.5007"><vh>CLI 远程管理</vh>
+<v t="zoomq.20130925103854.5007"><vh>CLI 远程管理&gt;&gt;&gt;</vh>
 <v t="zoomq.20131223160728.4904"><vh>GET info/:UUID</vh></v>
 <v t="zoomq.20130925103854.5049"><vh>GET sum/db|dm|m|e|p</vh></v>
 <v t="zoomq.20130927104354.6049"><vh>GET st/kv</vh></v>
@@ -131,20 +140,12 @@
 <v t="zoomq.20130925103854.5035"><vh>GET his/last</vh></v>
 </v>
 </v>
-<v t="zoomq.20130918155053.7083"><vh>POST /echo</vh>
-<v t="zoomq.20130923093950.8817"><vh>&lt;&lt;sayeahoo&gt;&gt;</vh></v>
-<v t="zoomq.20130923093950.8816"><vh>&lt;&lt;InfoMemberEM&gt;&gt;</vh></v>
-<v t="zoomq.20130923093950.8567"><vh>&lt;&lt;InfoMember&gt;&gt;</vh></v>
-<v t="zoomq.20130923093950.8563"><vh>&lt;&lt;HELP&gt;&gt;</vh></v>
-<v t="zoomq.20130923093950.8564"><vh>&lt;&lt;VERSION&gt;&gt;</vh></v>
-<v t="zoomq.20130923093950.8565"><vh>&lt;&lt;SEARCH&gt;&gt;</vh></v>
-<v t="zoomq.20130923093950.8566"><vh>&lt;&lt;THANKS&gt;&gt;</vh></v>
-</v>
 <v t="zoomq.20130925103854.6426"><vh>__chkRegUsr()</vh>
 <v t="zoomq.20131224083725.4931"><vh>&lt;&lt;chk USR2PP&gt;&gt;</vh></v>
 </v>
 <v t="zoomq.20130925103854.6427"><vh>__update_usr()</vh></v>
-<v t="zoomq.20130925103854.6430" a="E"><vh>FSM</vh>
+<v t="zoomq.20130918155053.7083"><vh>POST /echo</vh></v>
+<v t="zoomq.20130925103854.6430" a="E"><vh>FSM 业务逻辑核心</vh>
 <v t="zoomq.20130925103854.6461" a="E"><vh>&lt;&lt;大妈联系&gt;&gt;</vh>
 <v t="zoomq.20131225115522.4948"><vh>&lt;&lt;CC ZQ&gt;&gt;</vh></v>
 </v>
@@ -176,8 +177,8 @@
 </v>
 </v>
 </v>
-<v t="zoomq.20131224083725.5906"></v>
 <v t="zoomq.20131224083725.5909"></v>
+<v t="zoomq.20131224083725.5906"></v>
 <v t="zoomq.20131223160728.4902"></v>
 <v t="zoomq.20130923093950.8570"><vh>__echo_txt()</vh></v>
 <v t="zoomq.20120727213305.13050"><vh>/api/sysincr</vh></v>
@@ -544,10 +545,11 @@ class Borg():
     def __init__(self):
         self.__dict__ = self.__collective_mind
     
-    VERSION = "weknow v13.12.24.3"
+    VERSION = "weknow v13.12.25.21"
     &lt;&lt;cfg4Borg&gt;&gt;
     
 CFG = Borg()
+print CFG.VERSION
 
 </t>
 <t tx="zoomq.20120723102156.5545">@language python
@@ -611,7 +613,11 @@ APP = Bottle()
 import time #import time, gmtime, strftime, localtime
 from datetime import datetime
 import traceback
-import httplib, urllib, hashlib
+import httplib
+import urllib 
+import urllib2 
+
+import hashlib
 import json
 
 import base64
@@ -1388,11 +1394,9 @@ def wechat(request):
 '''
 
 </t>
-<t tx="zoomq.20130918155053.7083">@APP.post('/echo')
-@APP.post('/echo/')
+<t tx="zoomq.20130918155053.7083">@APP.post('/echo/')
+@APP.post('/echo')
 def wechat_post():
-    #print "wechat GET\n ",request.query.keys()
-    #print "wechat GET type\n ",type(request.query)
     # usage jeff SDK for wechat...
     if CFG.AS_SAE:
         wxa = WxApplication(token=XCFG.TOKEN)
@@ -1402,76 +1406,32 @@ def wechat_post():
     else:
         print "Debugging localhost..."
     wxreq = WxRequest(request.forms.keys()[0])
-    print "FromUserName-&gt;%s\nToUserName-&gt;%s"%( wxreq.FromUserName
-        , wxreq.FromUserName
-        )
+    #print "FromUserName-&gt;%s\nToUserName-&gt;%s"%( wxreq.FromUserName
+    #    , wxreq.FromUserName )
     #print "WxTextResponse:\n", WxTextResponse("hello world", wxreq).as_xml()
     G_CRT_USR = __chkRegUsr(wxreq.FromUserName)
     wxreq.crt_usr = G_CRT_USR
     # usage pyfsm as FSM echo all kinds of usr ask
     weknow = pyfsm.Registry.get_task('weknow')
+    #print G_CRT_USR
+    wxreq.FSM = "start2" # 使用对象加载状态区分后续处理
+    # 恢复用户 FSM 状态
     if G_CRT_USR['fsm']:
+        #print "if G_CRT_USR"
         weknow.start2(G_CRT_USR['fsm'], wxreq)
     else:
+        #print "else G_CRT_USR"
         weknow.start2('setup', wxreq)
         G_CRT_USR['fsm'] = "setup"
         __update_usr(G_CRT_USR)
-    #print "weknow.send2:\n"
+    #print dir(wxreq)
+    #return None
+    # 执行用户 FSM 业务
+    wxreq.FSM = "send2"
     return weknow.send2(wxreq.Content.strip(), wxreq)
 
 
 
-
-    return None
-    '''collected old code for doc.
-    '''
-    # base hard code for all 
-    xml = etree.XML(request.forms.keys()[0])
-    __MsgType = xml.findtext("MsgType")
-    __Content = xml.findtext("Content") #.encode('utf8')
-    fromUser = xml.findtext("ToUserName")
-    toUser = xml.findtext("FromUserName")
-    G_CRT_USR = __chkRegUsr(toUser)
-    G_CRT_USR['msg'] = __Content
-    G_CRT_USR['fromUser'] = fromUser
-    G_CRT_USR['toUser'] = toUser
-    # usage pyfsm as FSM echo all kinds of usr ask
-    weknow = pyfsm.Registry.get_task('weknow')
-    if G_CRT_USR['fsm']:
-        weknow.start2(G_CRT_USR['fsm'], G_CRT_USR)
-        __update_usr(G_CRT_USR)
-    else:
-        weknow.start2('setup', G_CRT_USR)
-        G_CRT_USR['fsm'] = "setup"
-        __update_usr(G_CRT_USR)
-    print "weknow.send2:\n", weknow.send2(__Content, G_CRT_USR)
-    return None
-    
-    # base choas if elif else
-    if isinstance(Content, unicode):
-        print "可能是中文"
-        #__Content = Content.encode('utf-8')
-    else:
-        __Content = Content
-        print __Content #.encode('utf8')
-
-        if "text" == __MsgType:
-            #print CFG.CMD_ALIAS['help']
-            if __Content in CFG.CMD_ALIAS['help'] :
-                &lt;&lt;HELP&gt;&gt;
-            elif __Content in CFG.CMD_ALIAS['version']:
-                &lt;&lt;VERSION&gt;&gt;
-            elif __Content in CFG.CMD_ALIAS['info']:
-                &lt;&lt;InfoMember&gt;&gt;
-            elif "em" in __Content.split(":"):
-                &lt;&lt;InfoMemberEM&gt;&gt;
-            elif __Content in CFG.CMD_ALIAS['search']:
-                &lt;&lt;SEARCH&gt;&gt;
-            elif __Content in CFG.CMD_ALIAS['sayeahoo']:
-                &lt;&lt;sayeahoo&gt;&gt;
-            else:
-                &lt;&lt;THANKS&gt;&gt;
-        
 
 
 
@@ -1528,11 +1488,13 @@ for k in K4D:
             KV.add(K4D[k], 0)
         else:
             KV.add(K4D[k], [])
+'''
     else:
         if 'incr' == k:
             print K4D[k], '%s as '% KV.get(K4D[k])
         else:
             print K4D[k], 'hold %s nodes'% len(KV.get(K4D[k]))
+'''
 
 &lt;&lt;MEMBER&gt;&gt;
 
@@ -1541,6 +1503,7 @@ for k in K4D:
 &lt;&lt;CONTENT&gt;&gt;
 
 &lt;&lt;HISTORIC&gt;&gt;
+
 
 </t>
 <t tx="zoomq.20130923093950.5395">ESSAY_TAG = {'ot':u" ~ 其它 (其余文章,AT也很好;)"
@@ -2278,7 +2241,9 @@ return None
 @transition('nn', 'niuniu')
 def setup(self, wxreq):
     print 'setup-&gt;{h V e re rc ir i ei s}|大妈信息'
-    &lt;&lt;大妈联系&gt;&gt;
+    if wxreq.FSM == "send2":
+        # 使用对象加载状态 放弃 FSM 状态恢复时的回调 执行
+        &lt;&lt;大妈联系&gt;&gt;
 
 @state('weknow')
 def end(self, wxreq):
@@ -2564,7 +2529,7 @@ TXT_VER = u'''珠海GDG 公众号应答系统当前版本:
 %s
 
 Changelog:
-- 131224 追加数据远程管理以及成员消息抄发大妈功能
+- 131224 同时绑定公众测试号,尝试更多可能
 - 130928 启用Storage 服务,数据可备份/下载/恢复
 - 130926 启用 Jeff 的SDK,配合运营CLI 工具简化代码
 - 130923 初始可用,并发布 42分钟乱入 wechat 手册!-)
@@ -2747,7 +2712,7 @@ if cmd not in CFG.CMD_ALIAS:
             msg = CFG.TXT_CRT_DM% (dm['nm'], dm['desc'])
             return WxTextResponse(msg, wxreq).as_xml()
     else:
-        print type(cmd.decode('utf-8'))
+        print "FSM::setup()-&gt;cmd.decode ", type(cmd.decode('utf-8'))
         #return None
         &lt;&lt;CC ZQ&gt;&gt;
 
@@ -4007,6 +3972,7 @@ return None</t>
         )
     #print data
     js = json.loads(data)
+    print js
     print "access_token: ", js['access_token']
     return js['access_token']
 </t>
@@ -4098,16 +4064,28 @@ return None
 
 </t>
 <t tx="zoomq.20131224083725.5909">def _https_post(uri, tpl, values, **args):
-    c = httplib.HTTPSConnection(uri, 443)
-    #print args
-    print uri
-    print tpl % args
+    '''esp. HTTPSConnection only POST bytearray, means:
+    - values MUST 'unicode'
+    '''
+    url = "https://%s%s"% (uri, tpl % args)
+    #print url
+    #return None
+    data = bytearray(values.encode('utf-8'))    #urllib.urlencode(values)
+    req = urllib2.Request(url, data)
+    response = urllib2.urlopen(req)
+    result = response.read()
+    print result
+    return result
     
+    c = httplib.HTTPSConnection(uri, 443)
+    #print uri
+    #values = "123123"
+    print tpl % args
     c.request("POST"
         , tpl % args
         , bytearray(values.encode('utf-8'))
         #values#.encode('utf-16be') #.decode("utf-8")
-        , {'Content-Type': 'text/plain; charset=utf-8'}
+        #, {'Content-Type': 'text/plain; charset=utf-8'}
         )
     #return None
     response = c.getresponse()
@@ -4125,13 +4103,7 @@ conn = httplib.HTTPSConnection(host='www.site.com', port=443, cert_file=_certfil
     #print response.status, response.reason
     conn.close()
 '''</t>
-<t tx="zoomq.20131224083725.5910">SRV_TXT_JSON = '''{
-    "touser": "%(openid)s", 
-    "msgtype": "text", 
-    "text": {
-        "content": "%(content)s"
-    }
-}'''
+<t tx="zoomq.20131224083725.5910">SRV_TXT_JSON = '''{"touser": "%(openid)s", "msgtype": "text", "text": {"content": "%(content)s"}}'''
 
 SRV_NEW_JSON = '''{
     "touser":"%(openid)s",
@@ -4188,15 +4160,73 @@ host = CFG.CLI_URI[wx_uri][0]
 url = CFG.CLI_URI[wx_uri][1]    #"%s=%s"% (CFG.CLI_URI[wx_uri][1], access_token)
 
 openid = XCFG.WX_ZQ
-content = cmd.decode('utf-8') #_msg  #u'#细思恐极....'
+print cmd
+print "&lt;&lt;&lt; type(cmd) ", type(cmd)
+content = CFG.VERSION #u'#细思恐极....'#cmd.decode('utf-8') #_msg  #u'#细思恐极....'
+print "&lt;&lt;&lt; cmd.decode", type(cmd.decode('utf-8'))
 cc_msg = CFG.SRV_TXT_JSON% locals()
+print "&lt;&lt;&lt; type(cc_msg)", type(cc_msg)
 print cc_msg
+
 data = _https_post(host
     , url
     , cc_msg  #bytearray(_msg.encode('utf-8'))
     , token = access_token
     )
-print data
+print "_https_post()&gt;&gt;&gt; ", data
+
+
+
+</t>
+<t tx="zoomq.20131225115522.4949">'''collected old code for doc.
+'''
+    # base hard code for all 
+    xml = etree.XML(request.forms.keys()[0])
+    __MsgType = xml.findtext("MsgType")
+    __Content = xml.findtext("Content") #.encode('utf8')
+    fromUser = xml.findtext("ToUserName")
+    toUser = xml.findtext("FromUserName")
+    G_CRT_USR = __chkRegUsr(toUser)
+    G_CRT_USR['msg'] = __Content
+    G_CRT_USR['fromUser'] = fromUser
+    G_CRT_USR['toUser'] = toUser
+    # usage pyfsm as FSM echo all kinds of usr ask
+    weknow = pyfsm.Registry.get_task('weknow')
+    if G_CRT_USR['fsm']:
+        weknow.start2(G_CRT_USR['fsm'], G_CRT_USR)
+        __update_usr(G_CRT_USR)
+    else:
+        weknow.start2('setup', G_CRT_USR)
+        G_CRT_USR['fsm'] = "setup"
+        __update_usr(G_CRT_USR)
+    print "weknow.send2:\n", weknow.send2(__Content, G_CRT_USR)
+    return None
+    
+    # base choas if elif else
+    if isinstance(Content, unicode):
+        print "可能是中文"
+        #__Content = Content.encode('utf-8')
+    else:
+        __Content = Content
+        print __Content #.encode('utf8')
+
+        if "text" == __MsgType:
+            #print CFG.CMD_ALIAS['help']
+            if __Content in CFG.CMD_ALIAS['help'] :
+                &lt;&lt;HELP&gt;&gt;
+            elif __Content in CFG.CMD_ALIAS['version']:
+                &lt;&lt;VERSION&gt;&gt;
+            elif __Content in CFG.CMD_ALIAS['info']:
+                &lt;&lt;InfoMember&gt;&gt;
+            elif "em" in __Content.split(":"):
+                &lt;&lt;InfoMemberEM&gt;&gt;
+            elif __Content in CFG.CMD_ALIAS['search']:
+                &lt;&lt;SEARCH&gt;&gt;
+            elif __Content in CFG.CMD_ALIAS['sayeahoo']:
+                &lt;&lt;sayeahoo&gt;&gt;
+            else:
+                &lt;&lt;THANKS&gt;&gt;
+
 
 
 </t>

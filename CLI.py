@@ -101,16 +101,28 @@ def _https_get(uri, tpl, **args):
     data = response.read()
     return data
 def _https_post(uri, tpl, values, **args):
-    c = httplib.HTTPSConnection(uri, 443)
-    #print args
-    print uri
-    print tpl % args
+    '''esp. HTTPSConnection only POST bytearray, means:
+    - values MUST 'unicode'
+    '''
+    url = "https://%s%s"% (uri, tpl % args)
+    #print url
+    #return None
+    data = bytearray(values.encode('utf-8'))    #urllib.urlencode(values)
+    req = urllib2.Request(url, data)
+    response = urllib2.urlopen(req)
+    result = response.read()
+    print result
+    return result
     
+    c = httplib.HTTPSConnection(uri, 443)
+    #print uri
+    #values = "123123"
+    print tpl % args
     c.request("POST"
         , tpl % args
         , bytearray(values.encode('utf-8'))
         #values#.encode('utf-16be') #.decode("utf-8")
-        , {'Content-Type': 'text/plain; charset=utf-8'}
+        #, {'Content-Type': 'text/plain; charset=utf-8'}
         )
     #return None
     response = c.getresponse()
@@ -136,6 +148,7 @@ def _wx_token_get():
         )
     #print data
     js = json.loads(data)
+    print js
     print "access_token: ", js['access_token']
     return js['access_token']
 def _rest_main(method, uri, args, host=AS_LOCAL):

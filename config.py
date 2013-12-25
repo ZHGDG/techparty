@@ -26,7 +26,7 @@ class Borg():
     def __init__(self):
         self.__dict__ = self.__collective_mind
     
-    VERSION = "weknow v13.12.24.3"
+    VERSION = "weknow v13.12.25.21"
     #管理员邮箱列表
     ADMIN_EMAIL_LIST = ['zoomquiet+gdg@gmail.com']
     NIUNIU = datetime.datetime(2009, 5, 19)
@@ -59,11 +59,13 @@ class Borg():
                 KV.add(K4D[k], 0)
             else:
                 KV.add(K4D[k], [])
+    '''
         else:
             if 'incr' == k:
                 print K4D[k], '%s as '% KV.get(K4D[k])
             else:
                 print K4D[k], 'hold %s nodes'% len(KV.get(K4D[k]))
+    '''
 
     objUSR={"his_id":""   # 更新戮
         , "lasttm": ''  # time.time()
@@ -134,6 +136,7 @@ class Borg():
 
 
 
+
     CMD_ALIAS=('h', 'H', 'help', '?'
         , 'v', 'V', 'version', 'log'
         , 'i', 'I', 'me', 'ei'
@@ -161,7 +164,7 @@ class Borg():
     %s
 
     Changelog:
-    - 131224 追加数据远程管理以及成员消息抄发大妈功能
+    - 131224 同时绑定公众测试号,尝试更多可能
     - 130928 启用Storage 服务,数据可备份/下载/恢复
     - 130926 启用 Jeff 的SDK,配合运营CLI 工具简化代码
     - 130923 初始可用,并发布 42分钟乱入 wechat 手册!-)
@@ -320,13 +323,7 @@ class Borg():
     更多细节,请惯性地输入 h 继续吧 :)
     '''
 
-    SRV_TXT_JSON = '''{
-        "touser": "%(openid)s", 
-        "msgtype": "text", 
-        "text": {
-            "content": "%(content)s"
-        }
-    }'''
+    SRV_TXT_JSON = '''{"touser": "%(openid)s", "msgtype": "text", "text": {"content": "%(content)s"}}'''
 
     SRV_NEW_JSON = '''{
         "touser":"%(openid)s",
@@ -501,4 +498,5 @@ class Borg():
 
     
 CFG = Borg()
+print CFG.VERSION
 
