@@ -25,7 +25,7 @@
 <v t="zoomq.20130923093950.5395"><vh>&lt;&lt;CONTENT&gt;&gt;</vh></v>
 <v t="zoomq.20130923093950.5396"><vh>&lt;&lt;HISTORIC&gt;&gt;</vh></v>
 </v>
-<v t="zoomq.20130918155053.7084" a="E"><vh>4wechat</vh>
+<v t="zoomq.20130918155053.7084"><vh>4wechat</vh>
 <v t="zoomq.20130923093950.8818"><vh>&lt;&lt;ALIAS&gt;&gt;</vh></v>
 <v t="zoomq.20130923093950.7285"><vh>&lt;&lt;XML模板&gt;&gt;</vh></v>
 <v t="zoomq.20130925103854.6457"><vh>活动报名</vh></v>
@@ -37,7 +37,7 @@
 <v t="zoomq.20130925103854.4951"><vh>RESTful</vh></v>
 </v>
 </v>
-<v t="zoomq.20130925103854.4957"><vh>@nosent CLI.py</vh>
+<v t="zoomq.20130925103854.4957" a="E"><vh>@nosent CLI.py</vh>
 <v t="zoomq.20130925103854.4958"><vh>&lt;&lt;docopt&gt;&gt;</vh></v>
 <v t="zoomq.20130925103854.4959"><vh>&lt;&lt;declarations&gt;&gt;</vh></v>
 <v t="zoomq.20130925103854.4961"><vh>smart_rest()</vh></v>
@@ -103,12 +103,12 @@
 <v t="zoomq.20131223160728.4904"><vh>GET info/:UUID</vh></v>
 <v t="zoomq.20130925103854.5049"><vh>GET sum/db|dm|m|e|p</vh></v>
 <v t="zoomq.20130927104354.6049"><vh>GET st/kv</vh></v>
-<v t="zoomq.20131007093121.5602"><vh>数据管理</vh>
+<v t="zoomq.20131007093121.5602" a="E"><vh>数据管理</vh>
 <v t="zoomq.20130927104354.6051"><vh>POST bkup/db|dm|m|e|p</vh>
 <v t="zoomq.20131223160728.4905"><vh>&lt;&lt;dump 所有内容&gt;&gt;</vh></v>
 <v t="zoomq.20131223160728.4907"><vh>&lt;&lt;dump 指定内容&gt;&gt;</vh></v>
 </v>
-<v t="zoomq.20130927104354.6062"><vh>PUT revert/db|dm|m|e|p</vh>
+<v t="zoomq.20130927104354.6062" a="E"><vh>PUT revert/db|dm|m|e|p</vh>
 <v t="zoomq.20131223160728.4909"><vh>&lt;&lt;恢复KVDB&gt;&gt;</vh></v>
 <v t="zoomq.20131223160728.4908"><vh>&lt;&lt;恢复指定数据&gt;&gt;</vh></v>
 </v>
@@ -147,6 +147,8 @@
 <v t="zoomq.20130918155053.7083"><vh>POST /echo</vh></v>
 <v t="zoomq.20130925103854.6430" a="E"><vh>FSM 业务逻辑核心</vh>
 <v t="zoomq.20130925103854.6461" a="E"><vh>&lt;&lt;大妈联系&gt;&gt;</vh>
+<v t="zoomq.20131225115522.4952"><vh>&lt;&lt;doc echo&gt;&gt;</vh></v>
+<v t="zoomq.20131225115522.4951"><vh>&lt;&lt;guess DM&gt;&gt;</vh></v>
 <v t="zoomq.20131225115522.4948"><vh>&lt;&lt;CC ZQ&gt;&gt;</vh></v>
 </v>
 <v t="zoomq.20130925103854.6431"><vh>s 查阅文章</vh>
@@ -163,6 +165,7 @@
 <v t="zoomq.20130926092950.5435"><vh>&lt;&lt;info_mail&gt;&gt;</vh></v>
 </v>
 <v t="zoomq.20131024165032.5626"><vh>nn今天</vh></v>
+<v t="zoomq.20131225115522.4950"><vh>docechor</vh></v>
 <v t="zoomq.20130925103854.6437"><vh>e 活动查询</vh>
 <v t="zoomq.20131223160728.5957"><vh>&lt;&lt;reg_event&gt;&gt;</vh></v>
 <v t="zoomq.20131223160728.5958"><vh>&lt;&lt;reg_cancel&gt;&gt;</vh></v>
@@ -171,7 +174,7 @@
 <v t="zoomq.20130925103854.6441"><vh>系统信息</vh>
 <v t="zoomq.20131223160728.5954"><vh>&lt;&lt;helpme&gt;&gt;</vh></v>
 <v t="zoomq.20131223160728.5955"><vh>&lt;&lt;version&gt;&gt;</vh></v>
-<v t="zoomq.20131223160728.5956"><vh>&lt;&lt;status&gt;&gt;</vh>
+<v t="zoomq.20131223160728.5956" a="E"><vh>&lt;&lt;status&gt;&gt;</vh>
 <v t="zoomq.20131224083725.5911"><vh>&lt;&lt;CC ZQ&gt;&gt;</vh></v>
 <v t="zoomq.20131224083725.4928"><vh>&lt;&lt;sys msg&gt;&gt;</vh></v>
 </v>
@@ -545,7 +548,7 @@ class Borg():
     def __init__(self):
         self.__dict__ = self.__collective_mind
     
-    VERSION = "weknow v13.12.25.21"
+    VERSION = "weknow v13.12.26.12"
     &lt;&lt;cfg4Borg&gt;&gt;
     
 CFG = Borg()
@@ -609,17 +612,23 @@ APP = Bottle()
 
 
 </t>
-<t tx="zoomq.20120723102156.5562">import sys   
+<t tx="zoomq.20120723102156.5562">import os
+#关闭fetchurl，让httplib直接使用socket服务来连接
+os.environ['disable_fetchurl'] = "1" 
+
+import sys   
 import time #import time, gmtime, strftime, localtime
 from datetime import datetime
 import traceback
 import httplib
 import urllib 
-import urllib2 
+import urllib2
+# 打开urllib2的debug开关
+urllib2.install_opener(urllib2.build_opener(urllib2.HTTPSHandler(1)))
 
 import hashlib
 import json
-
+import string
 import base64
 import cPickle
 #import ConfigParser
@@ -643,7 +652,9 @@ from auth import _query2dict, _chkQueryArgs
 from utility import INCR4KV as __incr
 from utility import TSTAMP, GENID, USRID, DAMAID
 from utility import ADD4SYS
-from utility import PUT2SS</t>
+from utility import PUT2SS
+
+</t>
 <t tx="zoomq.20120727213305.13050">@APP.route('/sysincr')
 #@APP.route('/&lt;ddd&gt;/sysincr')
 def sysincr():
@@ -1405,6 +1416,8 @@ def wechat_post():
             return None
     else:
         print "Debugging localhost..."
+    ## 注意! 从公众号来的消息和订阅号完全不同的,需要另外解析!
+    print "request.forms.keys()[0]\t\n", request.forms.keys()[0]
     wxreq = WxRequest(request.forms.keys()[0])
     #print "FromUserName-&gt;%s\nToUserName-&gt;%s"%( wxreq.FromUserName
     #    , wxreq.FromUserName )
@@ -1882,6 +1895,10 @@ from subprocess import Popen
 from time import time, gmtime, strftime, localtime
 
 import httplib, urllib
+import urllib2
+# 打开urllib2的debug开关
+urllib2.install_opener(urllib2.build_opener(urllib2.HTTPSHandler(1)))
+
 import json
 
 from docopt import docopt
@@ -2003,11 +2020,16 @@ def st_kv(matter, qstr):
     q_dict = _query2dict(qstr)
     if _chkQueryArgs("/cli/sum/%s"% matter, q_dict, "GET"):
         feed_back = {'data':[]}
+        
         if 'db' == matter:
             feed_back['msg'] = "all SYS_* status."
-            feed_back['data'] = ["%s hold %s node info."% (k
+            feed_back['data'] = ["%s hold %s nodes,"% (CFG.K4D[k]
                 , len(KV.get(CFG.K4D[k] )) ) for k in CFG.K4D.keys() if "incr"!=k
                 ]
+            feed_back['data'].append("%s is %s "%(CFG.K4D['incr']
+                , KV.get(CFG.K4D['incr'])
+                ))
+        
         elif 'bk' == matter:
             count = 0
             for dump in BK.list():
@@ -2244,6 +2266,7 @@ def setup(self, wxreq):
     if wxreq.FSM == "send2":
         # 使用对象加载状态 放弃 FSM 状态恢复时的回调 执行
         &lt;&lt;大妈联系&gt;&gt;
+#@transition('::', 'docechor')
 
 @state('weknow')
 def end(self, wxreq):
@@ -2703,14 +2726,14 @@ if cmd not in CFG.CMD_ALIAS:
     #print cmd
     if cmd.isdigit():
         pass    #忽略过程中的数字输入
+    '''
+    elif False not in [i in string.printable for i in cmd]:
+        # 全部是 ASCII 字串
+        &lt;&lt;doc echo&gt;&gt;
+    '''
     #print len(cmd)
     if 8 &gt; len(cmd):
-        print "try march dama"
-        uuid, dm = __chkDAMA(cmd)
-        if uuid:
-            #print dm
-            msg = CFG.TXT_CRT_DM% (dm['nm'], dm['desc'])
-            return WxTextResponse(msg, wxreq).as_xml()
+        &lt;&lt;guess DM&gt;&gt;
     else:
         print "FSM::setup()-&gt;cmd.decode ", type(cmd.decode('utf-8'))
         #return None
@@ -3639,7 +3662,7 @@ cmd = "http -b %s %s "% (method, uri)
     #print args
     c.request("GET", tpl % args)
     response = c.getresponse()
-    print response.status, response.reason
+    #print response.status, response.reason
     data = response.read()
     return data
 </t>
@@ -3743,7 +3766,7 @@ for k in re_obj.keys():
             _his.add(k)
             _his.update(set(re_obj[k]))
             print "_his ", len(_his)
-            #KV.set(CFG.K4D['his'], KV.get(CFG.K4D['his']).update(set(re_obj[k])) )
+            KV.set(k, re_obj[k])
     else:
         # 数据键恢复
         #print k, re_obj[k]
@@ -3786,8 +3809,7 @@ def version(self, wxreq):
         , CFG.TXT_VER
         )
 </t>
-<t tx="zoomq.20131223160728.5956">
-@state('weknow')
+<t tx="zoomq.20131223160728.5956">@state('weknow')
 @transition('end', 'end')
 def status(self, wxreq):
     print 'setup-&gt;status-&gt;end'
@@ -3796,11 +3818,6 @@ def status(self, wxreq):
     __update_usr(crt_usr)
     _msg = ""   #u"是也乎 "
     &lt;&lt;sys msg&gt;&gt;
-    #_msg += "\n\t usr:: %s"% crt_usr
-    #_msg += "\n\t FromUserName:: %s"% wxreq.FromUserName
-    #_msg += "\n\t ToUserName:: %s"% wxreq.ToUserName
-    #return WxTextResponse(_msg, wxreq).as_xml()
-    #&lt;&lt;CC ZQ&gt;&gt;
     
     return WxTextResponse(_msg, wxreq).as_xml()
     
@@ -3814,6 +3831,11 @@ def status(self, wxreq):
         , KV.get_info()
         )
 
+    #_msg += "\n\t usr:: %s"% crt_usr
+    #_msg += "\n\t FromUserName:: %s"% wxreq.FromUserName
+    #_msg += "\n\t ToUserName:: %s"% wxreq.ToUserName
+    #return WxTextResponse(_msg, wxreq).as_xml()
+    #&lt;&lt;CC ZQ&gt;&gt;
 
 
 
@@ -3893,10 +3915,10 @@ _INX_KEYS = [CFG.K4D[k] for k in CFG.K4D.keys()]
 for k in _INX_KEYS:
     # 索引键处理
     if 'SYS_TOT' == k:
-        _msg += u"SYS_TOT::"+str(KV.get(k))
+        _msg += u"\n SYS_TOT::"+str(KV.get(k))
     else :
         # 统一合并
-        _msg += u"; %s :: %snodes"%(k, len(KV.get(k)))
+        _msg += u"\n %s :: %snodes"%(k, len(KV.get(k)))
 
 #print "pp2u--&gt;", KV.get(KV.get('oFNShjiOhclfJ-CtOO81p2sPrBfs'))
 </t>
@@ -3970,11 +3992,13 @@ return None</t>
         , appid = XCFG.WX_APPID
         , secret = XCFG.WX_SECRET
         )
-    #print data
+    print data
     js = json.loads(data)
     print js
     print "access_token: ", js['access_token']
     return js['access_token']
+
+
 </t>
 <t tx="zoomq.20131224083725.5907">wx_uri = "/".join(_url[:2])
 
@@ -4080,9 +4104,11 @@ return None
     print result
     return result
     
+    ##########################################################
+    
     c = httplib.HTTPSConnection(uri, 443)
-    #print uri
-    #values = "123123"
+    print uri
+    values = "123123"
     print tpl % args
     c.request("POST"
         , tpl % args
@@ -4095,7 +4121,9 @@ return None
     print response.status, response.reason
     data = response.read()
     return data
-
+    
+    
+    
 '''
 conn = httplib.HTTPSConnection(host='www.site.com', port=443, cert_file=_certfile)
    params  = urllib.urlencode({'cmd': 'token', 'device_id_st': 'AAAA-BBBB-CCCC',
@@ -4165,7 +4193,7 @@ url = CFG.CLI_URI[wx_uri][1]    #"%s=%s"% (CFG.CLI_URI[wx_uri][1], access_token)
 openid = XCFG.WX_ZQ
 print cmd
 print "&lt;&lt;&lt; type(cmd) ", type(cmd)
-content = CFG.VERSION #u'#细思恐极....'#cmd.decode('utf-8') #_msg  #u'#细思恐极....'
+content = cmd.decode('utf-8') #CFG.VERSION #u'#细思恐极....'#cmd.decode('utf-8') #_msg 
 print "&lt;&lt;&lt; cmd.decode", type(cmd.decode('utf-8'))
 cc_msg = CFG.SRV_TXT_JSON% locals()
 print "&lt;&lt;&lt; type(cc_msg)", type(cc_msg)
@@ -4231,6 +4259,34 @@ print "_https_post()&gt;&gt;&gt; ", data
                 &lt;&lt;THANKS&gt;&gt;
 
 
+
+</t>
+<t tx="zoomq.20131225115522.4950">@state('weknow')
+@transition('end', 'end')
+def docechor(self, wxreq):
+    print 'setup-&gt;docechor-&gt;end'
+    crt_usr = wxreq.crt_usr
+    crt_usr['fsm'] = "setup"
+    __update_usr(crt_usr)
+    code = wxreq.Content
+    print code
+    return None
+    _today = datetime.now()
+    return WxTextResponse(CFG.TXT_NN% (_today-CFG.NIUNIU).days, wxreq).as_xml()
+
+</t>
+<t tx="zoomq.20131225115522.4951">print "try march dama"
+uuid, dm = __chkDAMA(cmd)
+if uuid:
+    #print dm
+    msg = CFG.TXT_CRT_DM% (dm['nm'], dm['desc'])
+    return WxTextResponse(msg, wxreq).as_xml()
+
+
+</t>
+<t tx="zoomq.20131225115522.4952">if "::" == cmd[:2]:
+    print cmd[2:]
+    print dir()
 
 </t>
 </tnodes>

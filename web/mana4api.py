@@ -1,15 +1,21 @@
 # -*- coding: utf-8 -*-
+import os
+#关闭fetchurl，让httplib直接使用socket服务来连接
+os.environ['disable_fetchurl'] = "1" 
+
 import sys   
 import time #import time, gmtime, strftime, localtime
 from datetime import datetime
 import traceback
 import httplib
 import urllib 
-import urllib2 
+import urllib2
+# 打开urllib2的debug开关
+urllib2.install_opener(urllib2.build_opener(urllib2.HTTPSHandler(1)))
 
 import hashlib
 import json
-
+import string
 import base64
 import cPickle
 #import ConfigParser
@@ -34,6 +40,7 @@ from utility import INCR4KV as __incr
 from utility import TSTAMP, GENID, USRID, DAMAID
 from utility import ADD4SYS
 from utility import PUT2SS
+
 #print sys.path
 from config import CFG
 from xsettings import XCFG
@@ -92,11 +99,16 @@ def st_kv(matter, qstr):
     q_dict = _query2dict(qstr)
     if _chkQueryArgs("/cli/sum/%s"% matter, q_dict, "GET"):
         feed_back = {'data':[]}
+        
         if 'db' == matter:
             feed_back['msg'] = "all SYS_* status."
-            feed_back['data'] = ["%s hold %s node info."% (k
+            feed_back['data'] = ["%s hold %s nodes,"% (CFG.K4D[k]
                 , len(KV.get(CFG.K4D[k] )) ) for k in CFG.K4D.keys() if "incr"!=k
                 ]
+            feed_back['data'].append("%s is %s "%(CFG.K4D['incr']
+                , KV.get(CFG.K4D['incr'])
+                ))
+        
         elif 'bk' == matter:
             count = 0
             for dump in BK.list():
@@ -223,7 +235,7 @@ def revert_dump(matter):
                         _his.add(k)
                         _his.update(set(re_obj[k]))
                         print "_his ", len(_his)
-                        #KV.set(CFG.K4D['his'], KV.get(CFG.K4D['his']).update(set(re_obj[k])) )
+                        KV.set(k, re_obj[k])
                 else:
                     # 数据键恢复
                     #print k, re_obj[k]
@@ -711,6 +723,8 @@ def wechat_post():
             return None
     else:
         print "Debugging localhost..."
+    ## 注意! 从公众号来的消息和订阅号完全不同的,需要另外解析!
+    print "request.forms.keys()[0]\t\n", request.forms.keys()[0]
     wxreq = WxRequest(request.forms.keys()[0])
     #print "FromUserName->%s\nToUserName->%s"%( wxreq.FromUserName
     #    , wxreq.FromUserName )
@@ -780,6 +794,14 @@ def setup(self, wxreq):
             #print cmd
             if cmd.isdigit():
                 pass    #忽略过程中的数字输入
+            '''
+            elif False not in [i in string.printable for i in cmd]:
+                # 全部是 ASCII 字串
+                if "::" == cmd[:2]:
+                    print cmd[2:]
+                    print dir()
+
+            '''
             #print len(cmd)
             if 8 > len(cmd):
                 print "try march dama"
@@ -788,6 +810,8 @@ def setup(self, wxreq):
                     #print dm
                     msg = CFG.TXT_CRT_DM% (dm['nm'], dm['desc'])
                     return WxTextResponse(msg, wxreq).as_xml()
+
+
             else:
                 print "FSM::setup()->cmd.decode ", type(cmd.decode('utf-8'))
                 #return None
@@ -799,7 +823,7 @@ def setup(self, wxreq):
                 openid = XCFG.WX_ZQ
                 print cmd
                 print "<<< type(cmd) ", type(cmd)
-                content = CFG.VERSION #u'#细思恐极....'#cmd.decode('utf-8') #_msg  #u'#细思恐极....'
+                content = cmd.decode('utf-8') #CFG.VERSION #u'#细思恐极....'#cmd.decode('utf-8') #_msg 
                 print "<<< cmd.decode", type(cmd.decode('utf-8'))
                 cc_msg = CFG.SRV_TXT_JSON% locals()
                 print "<<< type(cc_msg)", type(cc_msg)
@@ -816,6 +840,7 @@ def setup(self, wxreq):
 
 
 
+#@transition('::', 'docechor')
 
 @state('weknow')
 def end(self, wxreq):
@@ -1132,6 +1157,19 @@ def niuniu(self, wxreq):
 
 @state('weknow')
 @transition('end', 'end')
+def docechor(self, wxreq):
+    print 'setup->docechor->end'
+    crt_usr = wxreq.crt_usr
+    crt_usr['fsm'] = "setup"
+    __update_usr(crt_usr)
+    code = wxreq.Content
+    print code
+    return None
+    _today = datetime.now()
+    return WxTextResponse(CFG.TXT_NN% (_today-CFG.NIUNIU).days, wxreq).as_xml()
+
+@state('weknow')
+@transition('end', 'end')
 def events(self, wxreq):
     print 'setup->events->end'
     crt_usr = wxreq.crt_usr
@@ -1187,7 +1225,6 @@ def helpme(self, wxreq):
         )
 
 
-
 @state('weknow')
 @transition('end', 'end')
 def status(self, wxreq):
@@ -1201,12 +1238,25 @@ def status(self, wxreq):
     for k in _INX_KEYS:
         # 索引键处理
         if 'SYS_TOT' == k:
-            _msg += u"SYS_TOT::"+str(KV.get(k))
+            _msg += u"\n SYS_TOT::"+str(KV.get(k))
         else :
             # 统一合并
-            _msg += u"; %s :: %snodes"%(k, len(KV.get(k)))
+            _msg += u"\n %s :: %snodes"%(k, len(KV.get(k)))
 
     #print "pp2u-->", KV.get(KV.get('oFNShjiOhclfJ-CtOO81p2sPrBfs'))
+    
+    return WxTextResponse(_msg, wxreq).as_xml()
+    
+    # 确认订阅号无法指向发送
+    wxreq.FromUserName = XCFG.WX_ZQ
+    print "rewrite as onoK2t_msg>>> %s"% wxreq.FromUserName
+    print WxTextResponse(_msg, wxreq).as_xml()
+    
+    return __echo_txt(crt_usr['fromUser']
+        , crt_usr['toUser']
+        , KV.get_info()
+        )
+
     #_msg += "\n\t usr:: %s"% crt_usr
     #_msg += "\n\t FromUserName:: %s"% wxreq.FromUserName
     #_msg += "\n\t ToUserName:: %s"% wxreq.ToUserName
@@ -1227,19 +1277,6 @@ def status(self, wxreq):
         )
     print data
 
-
-    
-    return WxTextResponse(_msg, wxreq).as_xml()
-    
-    # 确认订阅号无法指向发送
-    wxreq.FromUserName = XCFG.WX_ZQ
-    print "rewrite as onoK2t_msg>>> %s"% wxreq.FromUserName
-    print WxTextResponse(_msg, wxreq).as_xml()
-    
-    return __echo_txt(crt_usr['fromUser']
-        , crt_usr['toUser']
-        , KV.get_info()
-        )
 
 
 
@@ -1276,9 +1313,11 @@ def _https_post(uri, tpl, values, **args):
     print result
     return result
     
+    ##########################################################
+    
     c = httplib.HTTPSConnection(uri, 443)
-    #print uri
-    #values = "123123"
+    print uri
+    values = "123123"
     print tpl % args
     c.request("POST"
         , tpl % args
@@ -1291,7 +1330,9 @@ def _https_post(uri, tpl, values, **args):
     print response.status, response.reason
     data = response.read()
     return data
-
+    
+    
+    
 '''
 conn = httplib.HTTPSConnection(host='www.site.com', port=443, cert_file=_certfile)
    params  = urllib.urlencode({'cmd': 'token', 'device_id_st': 'AAAA-BBBB-CCCC',
@@ -1308,17 +1349,19 @@ def _wx_token_get():
         , appid = XCFG.WX_APPID
         , secret = XCFG.WX_SECRET
         )
-    #print data
+    print data
     js = json.loads(data)
     print js
     print "access_token: ", js['access_token']
     return js['access_token']
+
+
 def _https_get(uri, tpl, **args):
     c = httplib.HTTPSConnection(uri)
     #print args
     c.request("GET", tpl % args)
     response = c.getresponse()
-    print response.status, response.reason
+    #print response.status, response.reason
     data = response.read()
     return data
 def __echo_txt(fromUsr, toUsr, text):

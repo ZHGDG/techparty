@@ -57,6 +57,10 @@ from subprocess import Popen
 from time import time, gmtime, strftime, localtime
 
 import httplib, urllib
+import urllib2
+# 打开urllib2的debug开关
+urllib2.install_opener(urllib2.build_opener(urllib2.HTTPSHandler(1)))
+
 import json
 
 from docopt import docopt
@@ -97,7 +101,7 @@ def _https_get(uri, tpl, **args):
     #print args
     c.request("GET", tpl % args)
     response = c.getresponse()
-    print response.status, response.reason
+    #print response.status, response.reason
     data = response.read()
     return data
 def _https_post(uri, tpl, values, **args):
@@ -117,9 +121,11 @@ def _https_post(uri, tpl, values, **args):
     print result
     return result
     
+    ##########################################################
+    
     c = httplib.HTTPSConnection(uri, 443)
-    #print uri
-    #values = "123123"
+    print uri
+    values = "123123"
     print tpl % args
     c.request("POST"
         , tpl % args
@@ -132,7 +138,9 @@ def _https_post(uri, tpl, values, **args):
     print response.status, response.reason
     data = response.read()
     return data
-
+    
+    
+    
 '''
 conn = httplib.HTTPSConnection(host='www.site.com', port=443, cert_file=_certfile)
    params  = urllib.urlencode({'cmd': 'token', 'device_id_st': 'AAAA-BBBB-CCCC',
@@ -149,11 +157,13 @@ def _wx_token_get():
         , appid = XCFG.WX_APPID
         , secret = XCFG.WX_SECRET
         )
-    #print data
+    print data
     js = json.loads(data)
     print js
     print "access_token: ", js['access_token']
     return js['access_token']
+
+
 def _rest_main(method, uri, args, host=AS_LOCAL):
     '''接受事务指令+数据, 合理拼成 hhtp 命令行:
         - GET/DELETE 时将参数拼为统一间隔字串
