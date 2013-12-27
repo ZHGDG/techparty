@@ -21,10 +21,9 @@
 <v t="zoomq.20120710140424.5456" a="E"><vh>&lt;&lt;cfg4Borg&gt;&gt;</vh>
 <v t="zoomq.20130926092950.5432"><vh>环境切换</vh></v>
 <v t="zoomq.20130927104354.5456"><vh>storage</vh></v>
-<v t="zoomq.20130923093950.3647" a="E"><vh>KVDB</vh>
-<v t="zoomq.20131226095232.5929" a="E"><vh>&lt;&lt;FW POOL&gt;&gt;</vh>
+<v t="zoomq.20130923093950.3647"><vh>KVDB</vh>
 <v t="zoomq.20131226095232.5939"><vh>&lt;&lt;FW actions&gt;&gt;</vh></v>
-</v>
+<v t="zoomq.20131226095232.5929"><vh>&lt;&lt;FW POOL&gt;&gt;</vh></v>
 <v t="zoomq.20130923093950.5397"><vh>&lt;&lt;MEMBER&gt;&gt;</vh></v>
 <v t="zoomq.20130923093950.8569"><vh>&lt;&lt;大妈们&gt;&gt;</vh></v>
 <v t="zoomq.20130923093950.5395"><vh>&lt;&lt;CONTENT&gt;&gt;</vh></v>
@@ -39,7 +38,7 @@
 <v t="zoomq.20130925103854.6458"><vh>文章查询</vh></v>
 <v t="zoomq.20131224083725.5910"><vh>公众号</vh></v>
 </v>
-<v t="zoomq.20130925103854.4951" a="E"><vh>RESTful</vh>
+<v t="zoomq.20130925103854.4951"><vh>RESTful</vh>
 <v t="zoomq.20131226095232.5937"><vh>&lt;&lt;CLI4wx&gt;&gt;</vh></v>
 <v t="zoomq.20131226095232.5936"><vh>&lt;&lt;CLI4sys&gt;&gt;</vh></v>
 <v t="zoomq.20131226095232.5935"><vh>&lt;&lt;CLI4pub&gt;&gt;</vh></v>
@@ -66,7 +65,7 @@
 <v t="zoomq.20130927104354.6053"><vh>&lt;&lt;POST&gt;&gt;</vh></v>
 </v>
 </v>
-<v t="zoomq.20120723102156.5541"><vh>module</vh>
+<v t="zoomq.20120723102156.5541" a="E"><vh>module</vh>
 <v t="zoomq.20130925103854.6406"><vh>@nosent __init__.py</vh></v>
 <v t="zoomq.20120820121523.7422"><vh>@nosent auth.py</vh>
 <v t="zoomq.20120820121523.7423"><vh>&lt;&lt;declarations&gt;&gt;</vh></v>
@@ -111,16 +110,19 @@
 <v t="zoomq.20130925103854.5007" a="E"><vh>CLI 远程管理&gt;&gt;&gt;</vh>
 <v t="zoomq.20131226095232.5946" a="E"><vh>FW 事务</vh>
 <v t="zoomq.20131226095232.5939"></v>
-<v t="zoomq.20131226095232.5947"><vh>GET fw/ll</vh></v>
+<v t="zoomq.20131226095232.5947" a="E"><vh>GET fw/ll</vh>
+<v t="zoomq.20131226095232.5956"><vh>&lt;&lt;提示组织&gt;&gt;</vh></v>
+</v>
 <v t="zoomq.20131226095232.5952"><vh>PUT fw/mm/:zid</vh></v>
 <v t="zoomq.20131226095232.5950"><vh>PUT fw/aa/:zid</vh></v>
 <v t="zoomq.20131226095232.5948"><vh>GET fw/dd/:uuid</vh></v>
 </v>
 <v t="zoomq.20131223160728.4904"><vh>GET info/:UUID</vh></v>
-<v t="zoomq.20130925103854.5049"><vh>GET sum/db|dm|m|e|p</vh>
+<v t="zoomq.20130925103854.5049"><vh>GET sum/db|FW|dm|m|e|p</vh>
+<v t="zoomq.20131226095232.5953"><vh>&lt;&lt;sum fw&gt;&gt;</vh></v>
+<v t="zoomq.20131226095232.5931"><vh>&lt;&lt;sum db&gt;&gt;</vh></v>
 <v t="zoomq.20131226095232.5933"><vh>&lt;&lt;sum bk&gt;&gt;</vh></v>
 <v t="zoomq.20131226095232.5930"><vh>&lt;&lt;sum dm&gt;&gt;</vh></v>
-<v t="zoomq.20131226095232.5931"><vh>&lt;&lt;sum db&gt;&gt;</vh></v>
 <v t="zoomq.20131226095232.5932"><vh>&lt;&lt;sum others&gt;&gt;</vh></v>
 </v>
 <v t="zoomq.20130927104354.6049"><vh>GET st/kv</vh></v>
@@ -167,7 +169,9 @@
 <v t="zoomq.20130925103854.6427"><vh>__update_usr()</vh></v>
 <v t="zoomq.20130918155053.7083"><vh>POST /echo</vh></v>
 <v t="zoomq.20130925103854.6430"><vh>FSM 业务逻辑核心</vh>
-<v t="zoomq.20131226095232.5942"><vh>__putFW()</vh></v>
+<v t="zoomq.20131226095232.5942"><vh>__putFW()</vh>
+<v t="zoomq.20131226095232.5955"><vh>&lt;&lt;init FW msg.&gt;&gt;</vh></v>
+</v>
 <v t="zoomq.20130925103854.6461"><vh>&lt;&lt;大妈联系&gt;&gt;</vh>
 <v t="zoomq.20131226095232.5940"><vh>&lt;&lt;FW2DM&gt;&gt;</vh></v>
 <v t="zoomq.20131226095232.5939"></v>
@@ -182,7 +186,7 @@
 <v t="zoomq.20131007093121.31624"><vh>&lt;&lt;tag paper No.&gt;&gt;</vh></v>
 </v>
 </v>
-<v t="zoomq.20130925103854.6433" a="E"><vh>i 成员信息</vh>
+<v t="zoomq.20130925103854.6433"><vh>i 成员信息</vh>
 <v t="zoomq.20130926092950.5433"><vh>&lt;&lt;info_me&gt;&gt;</vh></v>
 <v t="zoomq.20130926092950.5434"><vh>&lt;&lt;edit_info&gt;&gt;</vh></v>
 <v t="zoomq.20130926092950.5436"><vh>&lt;&lt;info_alias&gt;&gt;</vh></v>
@@ -1164,6 +1168,8 @@ JINJA2TPL_PATH = os.path.abspath(
         return GOBJMAP[obj]% locals()
     else:
         return None
+
+
 </t>
 <t tx="zoomq.20120802192540.7100">def TSTAMP():
     '''通用时间戳生成器:
@@ -1512,19 +1518,20 @@ KV = sae.kvdb.KVClient()
 K4D = {'incr':"SYS_TOT"     # int
     ,'m':"SYS_usrs_ALL"     # [] 所有 成员 (包含已经 del 的)
     ,'dm':"SYS_dama_ALL"    # [] 所有 组委-&gt;uuid (包含已经 del 的)
-    ,'fw':"SYS_fw_ALL"      # [] 所有 组委-&gt;uuid (包含已经 del 的)
-    #,'wx':"SYS_uuid_WX"     # [] 所有 wx_Passport-&gt;m_UUID 的反向映射 
-    ,'pp':"SYS_uuid_WX"     # [] 所有 wx_Passport-&gt;m_UUID 的反向映射 
+    ,'fw':"SYS_fw_ALL"      # { 'pp':[fw_uuid,,],,,} 
+    #,'pp':"SYS_uuid_WX"     # [] 所有 wx_Passport-&gt;m_UUID 的反向映射 不用索引,但是存在!
     ,'p':"SYS_pubs_ALL"     # [] 所有 文章 (包含已经 del 的)
     ,'e':"SYS_eves_ALL"     # [] 所有 活动 (包含已经 del 的)
     ,'his':"SYS_node_HIS"   # [] 所有 节点的K索引 (包含已经 del/覆盖 的)
 }
-
+&lt;&lt;FW actions&gt;&gt;
 #KEY4_incr = K4D['incr']
 for k in K4D:
     if None == KV.get(K4D[k]):
         if 'incr' == k:
             KV.add(K4D[k], 0)
+        elif 'fw' == k:
+            KV.add(K4D[k], {'sequence':[]})
         else:
             KV.add(K4D[k], [])
 '''
@@ -1850,7 +1857,7 @@ e.g:
   del/p/:UUID   删除指定文章
   fw/ll         模拟 大妈 刷 成员抄发消息
   fw/dd/:UUID   模拟 指成员 刷 大妈回复
-  fw/mm/:ZIP set='成员编号'   
+  fw/mm/:ZIP set='订户编号'   
                 模拟 大妈 忽略指定消息
   fw/aa/:ZIP set='回答内容'    
                 模拟 大妈 回复指定消息
@@ -1862,8 +1869,8 @@ e.g:
   del/bk/:UUID              删除指定备份 dump
   revert/db|dm|m|e|p    set=备份dump
      恢复 KVDB|大妈|成员|活动|文章 数据到Storage
-  resolve/his|wx        set=all       
-    重建 HIS|Passpord 全局历史索引
+  resolve/his|wx|fw        set=all       
+    重建 HIS|Passpord|FW 全局索引内容
 
 益rz...
   wx/ls             通过 服务号测试接口 获取关注列表 
@@ -2012,6 +2019,9 @@ def st_kv(matter, qstr):
         elif 'dm' == matter:
             &lt;&lt;sum dm&gt;&gt;
 
+        elif 'fw' == matter:
+            &lt;&lt;sum fw&gt;&gt;
+            
         else:
             &lt;&lt;sum others&gt;&gt;
 
@@ -2180,8 +2190,8 @@ return None
         - gen KV uuid, try get
         - if no-exited, init. fsm
     '''
-    sha1_name = hashlib.sha1(passport).hexdigest()
-    uuid = USRID(sha1_name)
+    #sha1_name = hashlib.sha1(passport).hexdigest()
+    uuid = USRID(passport)
     ADD4SYS('m', uuid)  # for old sys, collected uuid into idx node!
     usr = KV.get(uuid)
     # 检查反向索引键对
@@ -2198,13 +2208,20 @@ return None
 
 </t>
 <t tx="zoomq.20130925103854.6427">def __update_usr(objUsr):
-    sha1_name = hashlib.sha1(objUsr['pp']).hexdigest()
-    uuid = USRID(sha1_name)
+    #sha1_name = hashlib.sha1(objUsr['pp']).hexdigest()
+    uuid = USRID(objUsr['pp'])
     #   stamp updated
     objUsr['his_id'] = GENID('his')
-    KV.replace(uuid, objUsr)</t>
-<t tx="zoomq.20130925103854.6429">def USRID(name):
-    return 'u_%s'% name
+    KV.replace(uuid, objUsr)
+
+
+
+</t>
+<t tx="zoomq.20130925103854.6429">def USRID(Passpord):
+    '''base Passpord make UUID
+    '''
+    sha1_name = hashlib.sha1(Passpord).hexdigest()
+    return 'u_%s'% sha1_name
 
 
 
@@ -3127,7 +3144,10 @@ def fix_paper(tag, uuid):
         
 </t>
 <t tx="zoomq.20130927104354.5456">from sae.storage import Bucket
-BK = Bucket('bkup')</t>
+BK = Bucket('bkup')
+
+
+</t>
 <t tx="zoomq.20130927104354.6047">def PUT2SS(raw, actype='bkup', name='db'):
     if 'bkup' == actype:
         sid = "%s.dump"% GENID('bkup', name)
@@ -3220,6 +3240,12 @@ def del_bk(uuid, qstr):
 </t>
 <t tx="zoomq.20130927104354.6062">@APP.put('/cli/revert/&lt;matter&gt;')
 def revert_dump(matter):
+    '''从服务端恢复数据用, 注意,全部恢复的步骤:
+    - 删除  --kvdb-file=./logs/kv.db
+    - CLI.py -D revert/db set=...   导入备份
+    - CLI.py -D resolve/wx set=all  检查反指 K/V 对
+    '''
+    
     q_dict = request.forms
     if _chkQueryArgs("/cli/revert/%s"% matter, q_dict, "PUT"):
         feed_back = {'data':[]}
@@ -3869,6 +3895,10 @@ def resolve_his(matter):
             print "try rebuild Passpord-&gt;UUID"
             &lt;&lt;重并 Passpord&gt;&gt;
             feed_back['msg'] = "re-build Passpord-&gt;UUID" 
+        elif 'fw' ==  matter:
+            print "reset SYS_fw_ALL [] --&gt; {}"
+            KV.set(CFG.K4D['fw'], {})
+            feed_back['msg'] = "reset SYS_fw_ALL as {}" 
         #data.append(KV.get_info())
         return feed_back
     else:
@@ -3877,15 +3907,19 @@ def resolve_his(matter):
 </t>
 <t tx="zoomq.20131224083725.4926"># 根据 K4D['m'] 的索引,建立 成员 Passpord-&gt;UUID 的索引字典
 users = KV.get(CFG.K4D['m'])
+count = 0
 for m in users:
     upp = KV.get(m)['pp']
-    #print "%s -&gt; %s"%(m, upp)
+    #print "try: %s -&gt; %s"%(m, upp)
     ppu = KV.get(upp)
     if not ppu:
+        count +=1
         KV.add(upp, m)
 #KV.set(CFG.K4D['his'], list(_his) )
 #print KV.get(CFG.K4D['his'])
-feed_back['data'] = "re-point all Member key %s nodes"% len(users)
+feed_back['data'] = "re-point %s pp-&gt;UUID in %s Members"% (count, len(users))
+
+
 
 
 
@@ -3937,7 +3971,7 @@ KV.set(CFG.K4D['his'], list(_his) )
 else:
     # inti.
     new_usr = deepcopy(CFG.objUSR)
-    new_usr['his_id'] =uuid # 对象创建时, 变更时间戳同 UUID
+    new_usr['his_id'] = uuid # 对象创建时, 变更时间戳同 UUID
     new_usr['pp'] = passport
     new_usr['lasttm'] = time.time()
     new_usr['fsm'] = None
@@ -4280,7 +4314,7 @@ K4FW = {"his_id":""   # 更新戮
     , "qa":[]   # [0]&lt;- 消息,[1]&lt;-回答 
     }
 
-&lt;&lt;FW actions&gt;&gt;
+
 
 
 
@@ -4306,12 +4340,31 @@ feed_back['msg'] = "all Storaged %s dumps"% count
 
 </t>
 <t tx="zoomq.20131226095232.5931">feed_back['msg'] = "all SYS_* status."
-feed_back['data'] = ["%s hold %s nodes,"% (CFG.K4D[k]
-    , len(KV.get(CFG.K4D[k] )) ) for k in CFG.K4D.keys() if "incr"!=k
-    ]
-feed_back['data'].append("%s is %s "%(CFG.K4D['incr']
-    , KV.get(CFG.K4D['incr'])
-    ))
+
+for k in CFG.K4D.keys():
+    if "incr" == k:
+        feed_back['data'].append("%s is %s "%(
+            CFG.K4D['incr']
+            , KV.get(CFG.K4D['incr'])
+            ))
+    elif 'fw' == k:
+        tot = 0
+        all_fw = KV.get(CFG.K4D[k])
+        for k in all_fw:
+            tot += len(all_fw[k])
+        feed_back['data'].append("FW %s users %s msg.s"% (
+            len(all_fw)
+            , tot
+            ))
+    else:
+        feed_back['data'].append("%s hold %s nodes,"% (
+            CFG.K4D[k]
+            , len(KV.get(CFG.K4D[k]))
+            ))
+
+
+
+
 </t>
 <t tx="zoomq.20131226095232.5932">if matter in CFG.K4D.keys():
     feed_back['msg'] = "base %s data."% CFG.K4D[matter]
@@ -4384,8 +4437,10 @@ feed_back['msg'] = "all Storaged %s dumps"% count
 , "revert/e":   "PUT"      # 恢复 活动 数据
 , "revert/p":   "PUT"      # 恢复 文章 数据
 
-, "resolve/his":  "PUT"    # 重建 HIS 索引
-, "resolve/wx":  "PUT"     # 重建 wx_Passpord 索引
+, "resolve/his": "PUT"     # 重建 HIS 索引
+, "resolve/wx":  "PUT"     # 重建 wx_Passpord--&gt;UUID 索引
+, "resolve/fw": "PUT"      # 重建 FW 索引容器,从旧的 [] -&gt; {}
+
 </t>
 <t tx="zoomq.20131226095232.5937">, "wx/t":       "HTTPS"     # 获取 token
 , "wx/ls":      "HTTPS"    # 获取关注列表
@@ -4416,13 +4471,14 @@ dm&gt; cc[No.for msg]  ~ answer sting
 usr&gt; dd
 &lt;&lt; echo dm answered msg
 
-data relation::
+data relation:: SYS_fw_ALL is 2 level tree
 writing:
-    SYS_fw_ALL-&gt;UUID:usr
-                +-&gt;UUID:fw msg.s
-
+    SYS_fw_ALL-&gt;{"UUID:usr":[UUID:fw msg.s,,,]}
+为了在 FW 事务的 aa/mm 操作中, 对成员有简短的编号可用
+    必须对字典的键对应上固定的序号!
+    所以,使用临时字典内索引 "sequence"
 cheking:
-    Passpoord -&gt; usrObj
+    Passpoord=&gt;"UUID:usr"
                     ~&gt; SYS_fw_ALL
                         ~&gt; UUID:usr
                             +-&gt; UUID::fw msg.s
@@ -4437,30 +4493,36 @@ CLI FW support:
 '''
 
 </t>
-<t tx="zoomq.20131226095232.5940">if wxreq.FromUserName in XCFG.P__DM:    #XCFG.WX_DM:
+<t tx="zoomq.20131226095232.5940">usr_pp = wxreq.FromUserName
+if usr_pp in XCFG.P__DM:    #XCFG.WX_DM:
     print "FW2DM &gt;&gt;&gt; is ZQ self"
     pass
 else:
     print "FW2DM &gt;&gt;&gt; is usr"
     #print cmd, type(cmd.decode('utf-8'))    #注意将一切字串,变成 unicode 统一储存
-    print __putFW(cmd.decode('utf-8'))
+    print __putFW(usr_pp, cmd.decode('utf-8'))
     
 #pub[set_key] = set_var.decode('utf-8')
 </t>
-<t tx="zoomq.20131226095232.5942">def __putFW(msg):
+<t tx="zoomq.20131226095232.5942">def __putFW(pp, msg):
     '''chk or push usr msg.'s UUID into CFG.K4D['FW']:
-        - gen. UUID
+        - usage pp as UUID 
         - deepcopy tpl. for obj.
-        - return UUID and obj.
+        - return UUID:usr and obj.
+    CFG.K4D['fw'] means:{}
     '''
-    uuid = GENID('fw')
-    # inti.
-    new_fw = deepcopy(CFG.K4FW)
-    new_fw['his_id'] = uuid # 对象创建时, 变更时间戳同 UUID
-    new_fw['qa'].append(msg)
-    #print uuid, new_fw
-    KV.add(uuid, new_fw)
-    ADD4SYS('fw', uuid)
+    fw_uuid = GENID('fw')
+    &lt;&lt;init FW msg.&gt;&gt;
+    #uuid = GENID('fw')
+    all_fw = KV.get(CFG.K4D['fw'])
+    uuid = KV.get(pp)
+    print "pp-&gt;uuid:: ", uuid
+    if uuid in all_fw.keys():
+        all_fw[uuid].append(fw_uuid)
+    else:
+        all_fw[uuid] = []
+        all_fw[uuid].append(fw_uuid)
+    #ADD4SYS('fw', uuid) 是双层结构了!
     return uuid, new_fw
 
 '''K4FW = {"his_id":""   # 更新戮
@@ -4480,21 +4542,28 @@ else:
 def fw_ll(qstr):
     q_dict = _query2dict(qstr)
     if _chkQueryArgs("/cli/fw/ll", q_dict, "GET"):
-        data = []
-        fw_keys = KV.get(CFG.K4D['fw'])
-        for k in fw_keys:
-            _fw = KV.get(k)
-            echo = "%s~%s %s"% (fw_keys.index(k)
-                , _fw['qa'][0]
-                , k )
-            #print echo 
-            data.append(echo)
+        data = {}
+        all_fw = KV.get(CFG.K4D['fw'])
+        # 立即重建临时索引 ???
+        all_fw['sequence'] = all_fw.keys()
+        tot = 0
+        for u in all_fw.keys():
+            all_fw['sequence']
+            if 'sequence' == u:
+                pass
+            else:
+                tmp_seq = all_fw['sequence']
+                data[u] = []
+                &lt;&lt;提示组织&gt;&gt;    
         return {'msg':";-) as DM aa FWmsg.s"
-            , 'data':data
-            , 'count': len(fw_keys)
+            , 'data': data
+            , 'count': "FW %s users %s msg.s"% (
+                len(all_fw.keys())
+                , tot)
             }
     else:
         return "alert quary!-("
+
 
 </t>
 <t tx="zoomq.20131226095232.5948">@APP.get('/cli/fw/dd/&lt;uuid&gt;/&lt;qstr&gt;')
@@ -4543,6 +4612,7 @@ def fw_mm(zid):
         data = []
         print "fw_mm(zid)", zid
         print "q_dict['set'] ", base64.urlsafe_b64decode(q_dict['set'])
+        return None
         fw_keys = KV.get(CFG.K4D['fw'])
         print fw_keys
         uuid_fw = fw_keys[ int(zid) ]
@@ -4555,26 +4625,48 @@ def fw_mm(zid):
         #print _fw
         #&lt;&lt; storded answer
         #&lt;&lt; mv UUID from SYS_fw_ALL -&gt; SYS_pubs_HIS
-        KV.get(CFG.K4D['his']).append(uuid_fw)
+        his_all = KV.get(CFG.K4D['his'])
+        his_all.append(uuid_fw)
+        KV.set(CFG.K4D['his'] ,his_all)
         fw_keys.remove(uuid_fw)
         KV.set(CFG.K4D['fw'] ,fw_keys)
-        return None
-        
-        fw_keys = KV.get(CFG.K4D['fw'])
-        for k in fw_keys:
-            _fw = KV.get(k)
-            echo = "%s~%s %s"% (fw_keys.index(k)
-                , _fw['qa'][0]
-                , k )
-            #print echo 
-            data.append(echo)
-        return {'msg':";-) as DM aa FWmsg.s"
-            , 'data':data
-            , 'count': len(fw_keys)
+        #return None
+        return {'msg':";-) as DM mm msg.s:%s~%s"%("usr", 'uuid_fw')
+            , 'data': "%s =&gt; CFG.K4D['his']%s"% (uuid_fw, his_all.index(uuid_fw))
             }
     else:
         return "alert quary!-("
 
+
+</t>
+<t tx="zoomq.20131226095232.5953">count = 0
+k4dm = KV.get(CFG.K4D[matter] )
+print k4dm
+for k in k4dm.keys():
+    count += 1
+    #feed_back['data'].append(_dm)
+
+feed_back['msg'] = "all Storaged %s dumps"% count
+
+
+</t>
+<t tx="zoomq.20131226095232.5955"># inti.
+new_fw = deepcopy(CFG.K4FW)
+new_fw['his_id'] = fw_uuid # 对象创建时, 变更时间戳同 UUID
+new_fw['qa'].append(msg)
+#print uuid, new_fw
+KV.add(fw_uuid, new_fw)
+
+</t>
+<t tx="zoomq.20131226095232.5956">
+tot += len(all_fw[u])
+for k in all_fw[u]:
+    _fw = KV.get(k)
+    echo = "%s~%s %s"% ( all_fw[u].index(k)
+        , _fw['qa'][0]
+        , k )
+    #print echo , type(echo)
+    data[u].append(echo)
 
 </t>
 </tnodes>

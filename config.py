@@ -39,25 +39,64 @@ class Borg():
         AS_SAE = False
     from sae.storage import Bucket
     BK = Bucket('bkup')
+
+
     import sae.kvdb
     KV = sae.kvdb.KVClient()
     #   系统索引名-UUID 字典; KVDB 无法Mongo 样搜索,只能人工建立索引
     K4D = {'incr':"SYS_TOT"     # int
         ,'m':"SYS_usrs_ALL"     # [] 所有 成员 (包含已经 del 的)
         ,'dm':"SYS_dama_ALL"    # [] 所有 组委->uuid (包含已经 del 的)
-        ,'fw':"SYS_fw_ALL"      # [] 所有 组委->uuid (包含已经 del 的)
-        #,'wx':"SYS_uuid_WX"     # [] 所有 wx_Passport->m_UUID 的反向映射 
-        ,'pp':"SYS_uuid_WX"     # [] 所有 wx_Passport->m_UUID 的反向映射 
+        ,'fw':"SYS_fw_ALL"      # { 'pp':[fw_uuid,,],,,} 
+        #,'pp':"SYS_uuid_WX"     # [] 所有 wx_Passport->m_UUID 的反向映射 不用索引,但是存在!
         ,'p':"SYS_pubs_ALL"     # [] 所有 文章 (包含已经 del 的)
         ,'e':"SYS_eves_ALL"     # [] 所有 活动 (包含已经 del 的)
         ,'his':"SYS_node_HIS"   # [] 所有 节点的K索引 (包含已经 del/覆盖 的)
     }
+    '''FW flow:
+     0.
+    usr> msg
+    << if not cmd/number alert dd command.
+    >> stored msg
+     1.
+    dm> aa 
+    << list no-answer msg.
+    dm> mm[No.for msg]  ~ ingore point msg
+    dm> cc[No.for msg]  ~ answer sting
+    << storded answer
+    << mv UUID from SYS_fw_ALL -> SYS_pubs_HIS
+     2.
+    usr> dd
+    << echo dm answered msg
+
+    data relation:: SYS_fw_ALL is 2 level tree
+    writing:
+        SYS_fw_ALL->{"UUID:usr":[UUID:fw msg.s,,,]}
+    为了在 FW 事务的 aa/mm 操作中, 对成员有简短的编号可用
+        必须对字典的键对应上固定的序号!
+        所以,使用临时字典内索引 "sequence"
+    cheking:
+        Passpoord=>"UUID:usr"
+                        ~> SYS_fw_ALL
+                            ~> UUID:usr
+                                +-> UUID::fw msg.s
+
+    CLI FW support:
+    + GET sum/fw list all fw status
+    + GET fw/dd/:uuid  as member flush answer
+
+    + GET fw/ll  as DM flush member msg.s
+    + PUT fw/mm/:zip  as DM cancel some msg.
+    + PUT fw/aa/:zip aa="" as answer the questin
+    '''
 
     #KEY4_incr = K4D['incr']
     for k in K4D:
         if None == KV.get(K4D[k]):
             if 'incr' == k:
                 KV.add(K4D[k], 0)
+            elif 'fw' == k:
+                KV.add(K4D[k], {'sequence':[]})
             else:
                 KV.add(K4D[k], [])
     '''
@@ -133,41 +172,6 @@ class Borg():
         , "qa":[]   # [0]<- 消息,[1]<-回答 
         }
 
-    '''FW flow:
-     0.
-    usr> msg
-    << if not cmd/number alert dd command.
-    >> stored msg
-     1.
-    dm> aa 
-    << list no-answer msg.
-    dm> mm[No.for msg]  ~ ingore point msg
-    dm> cc[No.for msg]  ~ answer sting
-    << storded answer
-    << mv UUID from SYS_fw_ALL -> SYS_pubs_HIS
-     2.
-    usr> dd
-    << echo dm answered msg
-
-    data relation::
-    writing:
-        SYS_fw_ALL->UUID:usr
-                    +->UUID:fw msg.s
-
-    cheking:
-        Passpoord -> usrObj
-                        ~> SYS_fw_ALL
-                            ~> UUID:usr
-                                +-> UUID::fw msg.s
-
-    CLI FW support:
-    + GET sum/fw list all fw status
-    + GET fw/dd/:uuid  as member flush answer
-
-    + GET fw/ll  as DM flush member msg.s
-    + PUT fw/mm/:zip  as DM cancel some msg.
-    + PUT fw/aa/:zip aa="" as answer the questin
-    '''
 
 
 
@@ -518,8 +522,10 @@ class Borg():
         , "revert/e":   "PUT"      # 恢复 活动 数据
         , "revert/p":   "PUT"      # 恢复 文章 数据
 
-        , "resolve/his":  "PUT"    # 重建 HIS 索引
-        , "resolve/wx":  "PUT"     # 重建 wx_Passpord 索引
+        , "resolve/his": "PUT"     # 重建 HIS 索引
+        , "resolve/wx":  "PUT"     # 重建 wx_Passpord-->UUID 索引
+        , "resolve/fw": "PUT"      # 重建 FW 索引容器,从旧的 [] -> {}
+
         , "wx/t":       "HTTPS"     # 获取 token
         , "wx/ls":      "HTTPS"    # 获取关注列表
         , "wx/usr":     "HTTPS"     # 获取 用户信息

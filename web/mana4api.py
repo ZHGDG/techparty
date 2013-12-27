@@ -94,13 +94,14 @@ dm> cc[No.for msg]  ~ answer sting
 usr> dd
 << echo dm answered msg
 
-data relation::
+data relation:: SYS_fw_ALL is 2 level tree
 writing:
-    SYS_fw_ALL->UUID:usr
-                +->UUID:fw msg.s
-
+    SYS_fw_ALL->{"UUID:usr":[UUID:fw msg.s,,,]}
+为了在 FW 事务的 aa/mm 操作中, 对成员有简短的编号可用
+    必须对字典的键对应上固定的序号!
+    所以,使用临时字典内索引 "sequence"
 cheking:
-    Passpoord -> usrObj
+    Passpoord=>"UUID:usr"
                     ~> SYS_fw_ALL
                         ~> UUID:usr
                             +-> UUID::fw msg.s
@@ -118,21 +119,37 @@ CLI FW support:
 def fw_ll(qstr):
     q_dict = _query2dict(qstr)
     if _chkQueryArgs("/cli/fw/ll", q_dict, "GET"):
-        data = []
-        fw_keys = KV.get(CFG.K4D['fw'])
-        for k in fw_keys:
-            _fw = KV.get(k)
-            echo = "%s~%s %s"% (fw_keys.index(k)
-                , _fw['qa'][0]
-                , k )
-            #print echo 
-            data.append(echo)
+        data = {}
+        all_fw = KV.get(CFG.K4D['fw'])
+        # 立即重建临时索引 ???
+        all_fw['sequence'] = all_fw.keys()
+        tot = 0
+        for u in all_fw.keys():
+            all_fw['sequence']
+            if 'sequence' == u:
+                pass
+            else:
+                tmp_seq = all_fw['sequence']
+                data[u] = []
+
+                tot += len(all_fw[u])
+                for k in all_fw[u]:
+                    _fw = KV.get(k)
+                    echo = "%s~%s %s"% ( all_fw[u].index(k)
+                        , _fw['qa'][0]
+                        , k )
+                    #print echo , type(echo)
+                    data[u].append(echo)
+
         return {'msg':";-) as DM aa FWmsg.s"
-            , 'data':data
-            , 'count': len(fw_keys)
+            , 'data': data
+            , 'count': "FW %s users %s msg.s"% (
+                len(all_fw.keys())
+                , tot)
             }
     else:
         return "alert quary!-("
+
 
 @APP.put('/cli/fw/mm/<zid>')
 def fw_mm(zid):
@@ -141,6 +158,7 @@ def fw_mm(zid):
         data = []
         print "fw_mm(zid)", zid
         print "q_dict['set'] ", base64.urlsafe_b64decode(q_dict['set'])
+        return None
         fw_keys = KV.get(CFG.K4D['fw'])
         print fw_keys
         uuid_fw = fw_keys[ int(zid) ]
@@ -153,22 +171,14 @@ def fw_mm(zid):
         #print _fw
         #<< storded answer
         #<< mv UUID from SYS_fw_ALL -> SYS_pubs_HIS
-        KV.get(CFG.K4D['his']).append(uuid_fw)
+        his_all = KV.get(CFG.K4D['his'])
+        his_all.append(uuid_fw)
+        KV.set(CFG.K4D['his'] ,his_all)
         fw_keys.remove(uuid_fw)
         KV.set(CFG.K4D['fw'] ,fw_keys)
-        return None
-        
-        fw_keys = KV.get(CFG.K4D['fw'])
-        for k in fw_keys:
-            _fw = KV.get(k)
-            echo = "%s~%s %s"% (fw_keys.index(k)
-                , _fw['qa'][0]
-                , k )
-            #print echo 
-            data.append(echo)
-        return {'msg':";-) as DM aa FWmsg.s"
-            , 'data':data
-            , 'count': len(fw_keys)
+        #return None
+        return {'msg':";-) as DM mm msg.s:%s~%s"%("usr", 'uuid_fw')
+            , 'data': "%s => CFG.K4D['his']%s"% (uuid_fw, his_all.index(uuid_fw))
             }
     else:
         return "alert quary!-("
@@ -235,12 +245,31 @@ def st_kv(matter, qstr):
 
         if 'db' == matter:
             feed_back['msg'] = "all SYS_* status."
-            feed_back['data'] = ["%s hold %s nodes,"% (CFG.K4D[k]
-                , len(KV.get(CFG.K4D[k] )) ) for k in CFG.K4D.keys() if "incr"!=k
-                ]
-            feed_back['data'].append("%s is %s "%(CFG.K4D['incr']
-                , KV.get(CFG.K4D['incr'])
-                ))
+
+            for k in CFG.K4D.keys():
+                if "incr" == k:
+                    feed_back['data'].append("%s is %s "%(
+                        CFG.K4D['incr']
+                        , KV.get(CFG.K4D['incr'])
+                        ))
+                elif 'fw' == k:
+                    tot = 0
+                    all_fw = KV.get(CFG.K4D[k])
+                    for k in all_fw:
+                        tot += len(all_fw[k])
+                    feed_back['data'].append("FW %s users %s msg.s"% (
+                        len(all_fw)
+                        , tot
+                        ))
+                else:
+                    feed_back['data'].append("%s hold %s nodes,"% (
+                        CFG.K4D[k]
+                        , len(KV.get(CFG.K4D[k]))
+                        ))
+
+
+
+
 
         elif 'bk' == matter:
             count = 0
@@ -274,6 +303,18 @@ def st_kv(matter, qstr):
 
 
 
+        elif 'fw' == matter:
+            count = 0
+            k4dm = KV.get(CFG.K4D[matter] )
+            print k4dm
+            for k in k4dm.keys():
+                count += 1
+                #feed_back['data'].append(_dm)
+
+            feed_back['msg'] = "all Storaged %s dumps"% count
+
+
+            
         else:
             if matter in CFG.K4D.keys():
                 feed_back['msg'] = "base %s data."% CFG.K4D[matter]
@@ -362,6 +403,12 @@ def bkup_dump(matter):
 
 @APP.put('/cli/revert/<matter>')
 def revert_dump(matter):
+    '''从服务端恢复数据用, 注意,全部恢复的步骤:
+    - 删除  --kvdb-file=./logs/kv.db
+    - CLI.py -D revert/db set=...   导入备份
+    - CLI.py -D resolve/wx set=all  检查反指 K/V 对
+    '''
+    
     q_dict = request.forms
     if _chkQueryArgs("/cli/revert/%s"% matter, q_dict, "PUT"):
         feed_back = {'data':[]}
@@ -479,21 +526,29 @@ def resolve_his(matter):
             print "try rebuild Passpord->UUID"
             # 根据 K4D['m'] 的索引,建立 成员 Passpord->UUID 的索引字典
             users = KV.get(CFG.K4D['m'])
+            count = 0
             for m in users:
                 upp = KV.get(m)['pp']
-                #print "%s -> %s"%(m, upp)
+                #print "try: %s -> %s"%(m, upp)
                 ppu = KV.get(upp)
                 if not ppu:
+                    count +=1
                     KV.add(upp, m)
             #KV.set(CFG.K4D['his'], list(_his) )
             #print KV.get(CFG.K4D['his'])
-            feed_back['data'] = "re-point all Member key %s nodes"% len(users)
+            feed_back['data'] = "re-point %s pp->UUID in %s Members"% (count, len(users))
+
+
 
 
 
 
 
             feed_back['msg'] = "re-build Passpord->UUID" 
+        elif 'fw' ==  matter:
+            print "reset SYS_fw_ALL [] --> {}"
+            KV.set(CFG.K4D['fw'], {})
+            feed_back['msg'] = "reset SYS_fw_ALL as {}" 
         #data.append(KV.get_info())
         return feed_back
     else:
@@ -835,8 +890,8 @@ def __chkRegUsr(passport):
         - gen KV uuid, try get
         - if no-exited, init. fsm
     '''
-    sha1_name = hashlib.sha1(passport).hexdigest()
-    uuid = USRID(sha1_name)
+    #sha1_name = hashlib.sha1(passport).hexdigest()
+    uuid = USRID(passport)
     ADD4SYS('m', uuid)  # for old sys, collected uuid into idx node!
     usr = KV.get(uuid)
     # 检查反向索引键对
@@ -851,7 +906,7 @@ def __chkRegUsr(passport):
     else:
         # inti.
         new_usr = deepcopy(CFG.objUSR)
-        new_usr['his_id'] =uuid # 对象创建时, 变更时间戳同 UUID
+        new_usr['his_id'] = uuid # 对象创建时, 变更时间戳同 UUID
         new_usr['pp'] = passport
         new_usr['lasttm'] = time.time()
         new_usr['fsm'] = None
@@ -866,11 +921,14 @@ def __chkRegUsr(passport):
 
 
 def __update_usr(objUsr):
-    sha1_name = hashlib.sha1(objUsr['pp']).hexdigest()
-    uuid = USRID(sha1_name)
+    #sha1_name = hashlib.sha1(objUsr['pp']).hexdigest()
+    uuid = USRID(objUsr['pp'])
     #   stamp updated
     objUsr['his_id'] = GENID('his')
     KV.replace(uuid, objUsr)
+
+
+
 @APP.post('/echo/')
 @APP.post('/echo')
 def wechat_post():
@@ -970,13 +1028,14 @@ def setup(self, wxreq):
 
 
             else:
-                if wxreq.FromUserName in XCFG.P__DM:    #XCFG.WX_DM:
+                usr_pp = wxreq.FromUserName
+                if usr_pp in XCFG.P__DM:    #XCFG.WX_DM:
                     print "FW2DM >>> is ZQ self"
                     pass
                 else:
                     print "FW2DM >>> is usr"
                     #print cmd, type(cmd.decode('utf-8'))    #注意将一切字串,变成 unicode 统一储存
-                    print __putFW(cmd.decode('utf-8'))
+                    print __putFW(usr_pp, cmd.decode('utf-8'))
                     
                 #pub[set_key] = set_var.decode('utf-8')
                 
@@ -1023,13 +1082,14 @@ def setup(self, wxreq):
         usr> dd
         << echo dm answered msg
 
-        data relation::
+        data relation:: SYS_fw_ALL is 2 level tree
         writing:
-            SYS_fw_ALL->UUID:usr
-                        +->UUID:fw msg.s
-
+            SYS_fw_ALL->{"UUID:usr":[UUID:fw msg.s,,,]}
+        为了在 FW 事务的 aa/mm 操作中, 对成员有简短的编号可用
+            必须对字典的键对应上固定的序号!
+            所以,使用临时字典内索引 "sequence"
         cheking:
-            Passpoord -> usrObj
+            Passpoord=>"UUID:usr"
                             ~> SYS_fw_ALL
                                 ~> UUID:usr
                                     +-> UUID::fw msg.s
@@ -1063,20 +1123,31 @@ def end(self, wxreq):
 
 
 
-def __putFW(msg):
+def __putFW(pp, msg):
     '''chk or push usr msg.'s UUID into CFG.K4D['FW']:
-        - gen. UUID
+        - usage pp as UUID 
         - deepcopy tpl. for obj.
-        - return UUID and obj.
+        - return UUID:usr and obj.
+    CFG.K4D['fw'] means:{}
     '''
-    uuid = GENID('fw')
+    fw_uuid = GENID('fw')
     # inti.
     new_fw = deepcopy(CFG.K4FW)
-    new_fw['his_id'] = uuid # 对象创建时, 变更时间戳同 UUID
+    new_fw['his_id'] = fw_uuid # 对象创建时, 变更时间戳同 UUID
     new_fw['qa'].append(msg)
     #print uuid, new_fw
-    KV.add(uuid, new_fw)
-    ADD4SYS('fw', uuid)
+    KV.add(fw_uuid, new_fw)
+
+    #uuid = GENID('fw')
+    all_fw = KV.get(CFG.K4D['fw'])
+    uuid = KV.get(pp)
+    print "pp->uuid:: ", uuid
+    if uuid in all_fw.keys():
+        all_fw[uuid].append(fw_uuid)
+    else:
+        all_fw[uuid] = []
+        all_fw[uuid].append(fw_uuid)
+    #ADD4SYS('fw', uuid) 是双层结构了!
     return uuid, new_fw
 
 '''K4FW = {"his_id":""   # 更新戮

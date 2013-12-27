@@ -35,7 +35,7 @@ e.g:
   del/p/:UUID   删除指定文章
   fw/ll         模拟 大妈 刷 成员抄发消息
   fw/dd/:UUID   模拟 指成员 刷 大妈回复
-  fw/mm/:ZIP set='成员编号'   
+  fw/mm/:ZIP set='订户编号'   
                 模拟 大妈 忽略指定消息
   fw/aa/:ZIP set='回答内容'    
                 模拟 大妈 回复指定消息
@@ -47,8 +47,8 @@ e.g:
   del/bk/:UUID              删除指定备份 dump
   revert/db|dm|m|e|p    set=备份dump
      恢复 KVDB|大妈|成员|活动|文章 数据到Storage
-  resolve/his|wx        set=all       
-    重建 HIS|Passpord 全局历史索引
+  resolve/his|wx|fw        set=all       
+    重建 HIS|Passpord|FW 全局索引内容
 
 益rz...
   wx/ls             通过 服务号测试接口 获取关注列表 

@@ -106,8 +106,13 @@ def GENID(obj, name=""):
         return GOBJMAP[obj]% locals()
     else:
         return None
-def USRID(name):
-    return 'u_%s'% name
+
+
+def USRID(Passpord):
+    '''base Passpord make UUID
+    '''
+    sha1_name = hashlib.sha1(Passpord).hexdigest()
+    return 'u_%s'% sha1_name
 
 
 
