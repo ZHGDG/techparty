@@ -99,7 +99,7 @@ def st_kv(matter, qstr):
     q_dict = _query2dict(qstr)
     if _chkQueryArgs("/cli/sum/%s"% matter, q_dict, "GET"):
         feed_back = {'data':[]}
-        
+
         if 'db' == matter:
             feed_back['msg'] = "all SYS_* status."
             feed_back['data'] = ["%s hold %s nodes,"% (CFG.K4D[k]
@@ -108,7 +108,7 @@ def st_kv(matter, qstr):
             feed_back['data'].append("%s is %s "%(CFG.K4D['incr']
                 , KV.get(CFG.K4D['incr'])
                 ))
-        
+
         elif 'bk' == matter:
             count = 0
             for dump in BK.list():
@@ -116,7 +116,31 @@ def st_kv(matter, qstr):
                 feed_back['data'].append("%s ~ %s"%(dump['name']
                     , dump['bytes']
                     ))
+
             feed_back['msg'] = "all Storaged %s dumps"% count
+
+
+
+
+        elif 'dm' == matter:
+            count = 0
+            k4dm = KV.get(CFG.K4D[matter] )
+            for k in k4dm:
+                count += 1
+                crt_dm = KV.get(k)
+                _dm = {}
+                _dm['UUID'] = k
+                _dm['pp'] = crt_dm['pp']
+                _dm['nm'] = crt_dm['nm']
+                _dm['desc'] = crt_dm['desc']
+                _dm['em'] = crt_dm['em']
+                _dm['mo'] = crt_dm['mo']    # Mobile
+                feed_back['data'].append(_dm)
+                
+            feed_back['msg'] = "all Storaged %s dumps"% count
+
+
+
         else:
             if matter in CFG.K4D.keys():
                 feed_back['msg'] = "base %s data."% CFG.K4D[matter]
@@ -125,10 +149,11 @@ def st_kv(matter, qstr):
                     )
             else:
                 feed_back['msg'] = "sum key is OUT CFG.K4D !-("
+
         return feed_back
-        
     else:
         return "alert quary !-("
+
 
 @APP.get('/cli/st/kv/<qstr>')
 def st_kv(qstr):
@@ -221,11 +246,11 @@ def revert_dump(matter):
             for k in re_obj.keys():
                 if k in _INX_KEYS:
                     # 索引键处理
-                    if 'SYS_TOT' == k:
+                    if k == CFG.K4D['incr']:
                         # 只要替换一个自增值
                         KV.set(k, re_obj[k])
                         _his.add(k)
-                    elif 'SYS_pubs_HIS' == k:
+                    elif k == CFG.K4D['his']:
                         # 统一增替
                         _his.add(k)
                     else:
@@ -789,6 +814,7 @@ def setup(self, wxreq):
         #print crt_usr['msg']
         #print wxreq.Content
         cmd = wxreq.Content
+        # 只对非命令进行处理
         if cmd not in CFG.CMD_ALIAS:
             #if 8 > len(crt_usr['msg']):
             #print cmd

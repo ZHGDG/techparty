@@ -19,7 +19,8 @@
 <v t="zoomq.20120710140424.5456" a="E"><vh>&lt;&lt;cfg4Borg&gt;&gt;</vh>
 <v t="zoomq.20130926092950.5432"><vh>环境切换</vh></v>
 <v t="zoomq.20130927104354.5456"><vh>storage</vh></v>
-<v t="zoomq.20130923093950.3647"><vh>KVDB</vh>
+<v t="zoomq.20130923093950.3647" a="E"><vh>KVDB</vh>
+<v t="zoomq.20131226095232.5929"><vh>&lt;&lt;FW POOL&gt;&gt;</vh></v>
 <v t="zoomq.20130923093950.5397"><vh>&lt;&lt;MEMBER&gt;&gt;</vh></v>
 <v t="zoomq.20130923093950.8569"><vh>&lt;&lt;大妈们&gt;&gt;</vh></v>
 <v t="zoomq.20130923093950.5395"><vh>&lt;&lt;CONTENT&gt;&gt;</vh></v>
@@ -37,7 +38,7 @@
 <v t="zoomq.20130925103854.4951"><vh>RESTful</vh></v>
 </v>
 </v>
-<v t="zoomq.20130925103854.4957" a="E"><vh>@nosent CLI.py</vh>
+<v t="zoomq.20130925103854.4957"><vh>@nosent CLI.py</vh>
 <v t="zoomq.20130925103854.4958"><vh>&lt;&lt;docopt&gt;&gt;</vh></v>
 <v t="zoomq.20130925103854.4959"><vh>&lt;&lt;declarations&gt;&gt;</vh></v>
 <v t="zoomq.20130925103854.4961"><vh>smart_rest()</vh></v>
@@ -56,7 +57,6 @@
 <v t="zoomq.20130927104354.6053"><vh>&lt;&lt;POST&gt;&gt;</vh></v>
 </v>
 </v>
-<v t="zoomq.20131011103836.16656"><vh>chaos_CLI.py</vh></v>
 <v t="zoomq.20120723102156.5541"><vh>module</vh>
 <v t="zoomq.20130925103854.6406"><vh>@nosent __init__.py</vh></v>
 <v t="zoomq.20120820121523.7422"><vh>@nosent auth.py</vh>
@@ -99,9 +99,14 @@
 <v t="zoomq.20120723102156.5561" a="E"><vh>@nosent mana4api.py</vh>
 <v t="zoomq.20120723102156.5562"><vh>&lt;&lt;declarations&gt;&gt;</vh></v>
 <v t="zoomq.20130918155053.5760"><vh>GET  /echo</vh></v>
-<v t="zoomq.20130925103854.5007"><vh>CLI 远程管理&gt;&gt;&gt;</vh>
+<v t="zoomq.20130925103854.5007" a="E"><vh>CLI 远程管理&gt;&gt;&gt;</vh>
 <v t="zoomq.20131223160728.4904"><vh>GET info/:UUID</vh></v>
-<v t="zoomq.20130925103854.5049"><vh>GET sum/db|dm|m|e|p</vh></v>
+<v t="zoomq.20130925103854.5049"><vh>GET sum/db|dm|m|e|p</vh>
+<v t="zoomq.20131226095232.5933"><vh>&lt;&lt;sum bk&gt;&gt;</vh></v>
+<v t="zoomq.20131226095232.5930"><vh>&lt;&lt;sum dm&gt;&gt;</vh></v>
+<v t="zoomq.20131226095232.5931"><vh>&lt;&lt;sum db&gt;&gt;</vh></v>
+<v t="zoomq.20131226095232.5932"><vh>&lt;&lt;sum others&gt;&gt;</vh></v>
+</v>
 <v t="zoomq.20130927104354.6049"><vh>GET st/kv</vh></v>
 <v t="zoomq.20131007093121.5602" a="E"><vh>数据管理</vh>
 <v t="zoomq.20130927104354.6051"><vh>POST bkup/db|dm|m|e|p</vh>
@@ -145,8 +150,8 @@
 </v>
 <v t="zoomq.20130925103854.6427"><vh>__update_usr()</vh></v>
 <v t="zoomq.20130918155053.7083"><vh>POST /echo</vh></v>
-<v t="zoomq.20130925103854.6430" a="E"><vh>FSM 业务逻辑核心</vh>
-<v t="zoomq.20130925103854.6461" a="E"><vh>&lt;&lt;大妈联系&gt;&gt;</vh>
+<v t="zoomq.20130925103854.6430"><vh>FSM 业务逻辑核心</vh>
+<v t="zoomq.20130925103854.6461"><vh>&lt;&lt;大妈联系&gt;&gt;</vh>
 <v t="zoomq.20131225115522.4952"><vh>&lt;&lt;doc echo&gt;&gt;</vh></v>
 <v t="zoomq.20131225115522.4951"><vh>&lt;&lt;guess DM&gt;&gt;</vh></v>
 <v t="zoomq.20131225115522.4948"><vh>&lt;&lt;CC ZQ&gt;&gt;</vh></v>
@@ -208,6 +213,9 @@
 </v>
 <v t="zoomq.20120727213305.14717"><vh>@nosent index.html</vh></v>
 </v>
+<v t="zoomq.20120723102156.5539"><vh>3party</vh>
+<v t="zoomq.20130918155053.8973"><vh>@nosent __init__.py</vh></v>
+</v>
 <v t="zoomq.20120717112543.5493"><vh>__chaos</vh>
 <v t="zoomq.20131007093121.5614"><vh>用户管理</vh>
 <v t="zoomq.20131007093121.5615"><vh>GET cli/sum/usr</vh></v>
@@ -239,9 +247,7 @@
 <v t="zoomq.20130925103854.6425"><vh>&lt;&lt;THANKS&gt;&gt;</vh></v>
 </v>
 </v>
-<v t="zoomq.20120723102156.5539"><vh>3party</vh>
-<v t="zoomq.20130918155053.8973"><vh>@nosent __init__.py</vh></v>
-</v>
+<v t="zoomq.20131011103836.16656"><vh>chaos_CLI.py</vh></v>
 </v>
 </vnodes>
 <tnodes>
@@ -1487,11 +1493,12 @@ K4D = {'incr':"SYS_TOT"     # int
     ,'m':"SYS_usrs_ALL"     # [] 所有 成员 (包含已经 del 的)
     #,'wx':"SYS_uuid_WX"     # [] 所有 wx_Passport-&gt;m_UUID 的反向映射 
     ,'dm':"SYS_dama_ALL"    # [] 所有 组委-&gt;uuid (包含已经 del 的)
+    ,'fw':"SYS_fw_ALL"      # [] 所有 组委-&gt;uuid (包含已经 del 的)
     
     ,'e':"SYS_eves_ALL"     # [] 所有 活动 (包含已经 del 的)
     ,'p':"SYS_pubs_ALL"     # [] 所有 文章 (包含已经 del 的)
     
-    ,'his':"SYS_pubs_HIS"   # [] 所有 节点的K索引 (包含已经 del/覆盖 的)
+    ,'his':"SYS_node_HIS"   # [] 所有 节点的K索引 (包含已经 del/覆盖 的)
 }
 
 #KEY4_incr = K4D['incr']
@@ -1514,6 +1521,8 @@ for k in K4D:
 &lt;&lt;大妈们&gt;&gt;
 
 &lt;&lt;CONTENT&gt;&gt;
+
+&lt;&lt;FW POOL&gt;&gt;
 
 &lt;&lt;HISTORIC&gt;&gt;
 
@@ -1699,13 +1708,17 @@ return __echo_txt(fromUser, toUser, KV.get_info())
 
 
 </t>
-<t tx="zoomq.20130923093950.8818">CMD_ALIAS=('h', 'H', 'help', '?'
-    , 'v', 'V', 'version', 'log'
-    , 'i', 'I', 'me', 'ei'
-    , 'e', 'E'
-    , 're', 'rc', 'ri'
-    , 's', 'S'
-    , 'st', 'stat'
+<t tx="zoomq.20130923093950.8818">CMD_ALIAS=('h', 'H', 'help', '?'    # 帮助
+    , 'v', 'V', 'version', 'log'    # 版本
+    , 'i', 'I', 'me', 'ei'          # 订户信息
+    , 's', 'S'                      # 文章检索
+    #   开发中:::
+    , 'aa', 'dd', 'cc'              # FW 回答
+    #   隐藏功能:::
+    , 'e', 'E'                      # 活动问询
+    , 're', 'rc', 'ri'              # 活动报名
+    , 'st', 'stat'                  # 系统状态
+    , 'nn'                          # 牛妞日记
     )
 
 DM_ALIAS = {"LXC": ['Bonnie', 'liuxinchen', 'lxc', 'LXC', u'刘星辰']
@@ -1726,7 +1739,7 @@ CLI_MATTERS = {     # 命令行响应方式速查字典
     , "del/usr":    "DELETE"    # 软删除所有用户 (包含tag 信息)
     , "reliv/usr":  "PUT"       # 恢复指定用户
     , "acl/usr":    "PUT"       # 设置用户权限
-    , "list/usr":   "GET"       # 列出指定级别用户
+    , "ls/usr":   "GET"       # 列出指定级别用户
     
     , "info":   "GET"          # 查阅 指定 信息
     
@@ -2020,36 +2033,23 @@ def st_kv(matter, qstr):
     q_dict = _query2dict(qstr)
     if _chkQueryArgs("/cli/sum/%s"% matter, q_dict, "GET"):
         feed_back = {'data':[]}
-        
+
         if 'db' == matter:
-            feed_back['msg'] = "all SYS_* status."
-            feed_back['data'] = ["%s hold %s nodes,"% (CFG.K4D[k]
-                , len(KV.get(CFG.K4D[k] )) ) for k in CFG.K4D.keys() if "incr"!=k
-                ]
-            feed_back['data'].append("%s is %s "%(CFG.K4D['incr']
-                , KV.get(CFG.K4D['incr'])
-                ))
-        
+            &lt;&lt;sum db&gt;&gt;        
+
         elif 'bk' == matter:
-            count = 0
-            for dump in BK.list():
-                count += 1
-                feed_back['data'].append("%s ~ %s"%(dump['name']
-                    , dump['bytes']
-                    ))
-            feed_back['msg'] = "all Storaged %s dumps"% count
+            &lt;&lt;sum bk&gt;&gt;
+
+        elif 'dm' == matter:
+            &lt;&lt;sum dm&gt;&gt;
+
         else:
-            if matter in CFG.K4D.keys():
-                feed_back['msg'] = "base %s data."% CFG.K4D[matter]
-                feed_back['data'] = "%s hold %s node info."% (CFG.K4D[matter]
-                    , len(KV.get(CFG.K4D[matter] )) 
-                    )
-            else:
-                feed_back['msg'] = "sum key is OUT CFG.K4D !-("
+            &lt;&lt;sum others&gt;&gt;
+
         return feed_back
-        
     else:
         return "alert quary !-("
+
 
 </t>
 <t tx="zoomq.20130925103854.6406">@language python
@@ -2721,6 +2721,7 @@ TXT_PUB_WAIT = u'''对不起亲!
 <t tx="zoomq.20130925103854.6461">#print crt_usr['msg']
 #print wxreq.Content
 cmd = wxreq.Content
+# 只对非命令进行处理
 if cmd not in CFG.CMD_ALIAS:
     #if 8 &gt; len(crt_usr['msg']):
     #print cmd
@@ -3752,11 +3753,11 @@ _his = set()#KV.get(CFG.K4D['his'])
 for k in re_obj.keys():
     if k in _INX_KEYS:
         # 索引键处理
-        if 'SYS_TOT' == k:
+        if k == CFG.K4D['incr']:
             # 只要替换一个自增值
             KV.set(k, re_obj[k])
             _his.add(k)
-        elif 'SYS_pubs_HIS' == k:
+        elif k == CFG.K4D['his']:
             # 统一增替
             _his.add(k)
         else:
@@ -4287,6 +4288,86 @@ if uuid:
 <t tx="zoomq.20131225115522.4952">if "::" == cmd[:2]:
     print cmd[2:]
     print dir()
+
+</t>
+<t tx="zoomq.20131226095232.5929"># 消息 转抄 池 SYS_fw_ALL-&gt;索引所有 aa=0 的消息
+K4FW = {"his_id":""   # 更新戮
+    , "del":0
+    , "aa":0    # 是否回答了
+    , "dm":""   # 回答的大妈 uuid
+    , "qa":[]   # [0]&lt;- 消息,[1]&lt;-回答 
+    }
+
+'''FW flow:
+usr&gt; msg
+&lt;&lt; if not cmd/number alert dd command.
+&gt;&gt; stored msg
+
+dm&gt; aa 
+&lt;&lt; list no-answer msg.
+dm&gt; cc[No.for msg]
+&lt;&lt; storded answer
+&lt;&lt; mv UUID from SYS_fw_ALL -&gt; SYS_pubs_HIS
+
+usr&gt; dd
+&lt;&lt; echo dm answered msg
+
+CLI FW support:
++ GET ll/fw list all fw status
++ GET ll/fw/new list no-answer msg.
++ PUT set/fw/a/:zip  as answer
++ PUT set/fw/cc/:zip aa="" as answer the questin
+'''
+
+
+
+
+
+</t>
+<t tx="zoomq.20131226095232.5930">count = 0
+k4dm = KV.get(CFG.K4D[matter] )
+for k in k4dm:
+    count += 1
+    crt_dm = KV.get(k)
+    _dm = {}
+    _dm['UUID'] = k
+    _dm['pp'] = crt_dm['pp']
+    _dm['nm'] = crt_dm['nm']
+    _dm['desc'] = crt_dm['desc']
+    _dm['em'] = crt_dm['em']
+    _dm['mo'] = crt_dm['mo']    # Mobile
+    feed_back['data'].append(_dm)
+    
+feed_back['msg'] = "all Storaged %s dumps"% count
+
+
+</t>
+<t tx="zoomq.20131226095232.5931">feed_back['msg'] = "all SYS_* status."
+feed_back['data'] = ["%s hold %s nodes,"% (CFG.K4D[k]
+    , len(KV.get(CFG.K4D[k] )) ) for k in CFG.K4D.keys() if "incr"!=k
+    ]
+feed_back['data'].append("%s is %s "%(CFG.K4D['incr']
+    , KV.get(CFG.K4D['incr'])
+    ))
+</t>
+<t tx="zoomq.20131226095232.5932">if matter in CFG.K4D.keys():
+    feed_back['msg'] = "base %s data."% CFG.K4D[matter]
+    feed_back['data'] = "%s hold %s node info."% (CFG.K4D[matter]
+        , len(KV.get(CFG.K4D[matter] )) 
+        )
+else:
+    feed_back['msg'] = "sum key is OUT CFG.K4D !-("
+</t>
+<t tx="zoomq.20131226095232.5933">count = 0
+for dump in BK.list():
+    count += 1
+    feed_back['data'].append("%s ~ %s"%(dump['name']
+        , dump['bytes']
+        ))
+
+feed_back['msg'] = "all Storaged %s dumps"% count
+
+
 
 </t>
 </tnodes>

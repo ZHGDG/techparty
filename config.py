@@ -45,11 +45,12 @@ class Borg():
         ,'m':"SYS_usrs_ALL"     # [] 所有 成员 (包含已经 del 的)
         #,'wx':"SYS_uuid_WX"     # [] 所有 wx_Passport->m_UUID 的反向映射 
         ,'dm':"SYS_dama_ALL"    # [] 所有 组委->uuid (包含已经 del 的)
+        ,'fw':"SYS_fw_ALL"      # [] 所有 组委->uuid (包含已经 del 的)
         
         ,'e':"SYS_eves_ALL"     # [] 所有 活动 (包含已经 del 的)
         ,'p':"SYS_pubs_ALL"     # [] 所有 文章 (包含已经 del 的)
         
-        ,'his':"SYS_pubs_HIS"   # [] 所有 节点的K索引 (包含已经 del/覆盖 的)
+        ,'his':"SYS_node_HIS"   # [] 所有 节点的K索引 (包含已经 del/覆盖 的)
     }
 
     #KEY4_incr = K4D['incr']
@@ -123,6 +124,40 @@ class Borg():
 
 
 
+    # 消息 转抄 池 SYS_fw_ALL->索引所有 aa=0 的消息
+    K4FW = {"his_id":""   # 更新戮
+        , "del":0
+        , "aa":0    # 是否回答了
+        , "dm":""   # 回答的大妈 uuid
+        , "qa":[]   # [0]<- 消息,[1]<-回答 
+        }
+
+    '''FW flow:
+    usr> msg
+    << if not cmd/number alert dd command.
+    >> stored msg
+
+    dm> aa 
+    << list no-answer msg.
+    dm> cc[No.for msg]
+    << storded answer
+    << mv UUID from SYS_fw_ALL -> SYS_pubs_HIS
+
+    usr> dd
+    << echo dm answered msg
+
+    CLI FW support:
+    + GET ll/fw list all fw status
+    + GET ll/fw/new list no-answer msg.
+    + PUT set/fw/a/:zip  as answer
+    + PUT set/fw/cc/:zip aa="" as answer the questin
+    '''
+
+
+
+
+
+
     #   历史操作 键-名字典
     K4H = {'C':"Create"
         ,'D':"Delete"
@@ -137,13 +172,17 @@ class Borg():
 
 
 
-    CMD_ALIAS=('h', 'H', 'help', '?'
-        , 'v', 'V', 'version', 'log'
-        , 'i', 'I', 'me', 'ei'
-        , 'e', 'E'
-        , 're', 'rc', 'ri'
-        , 's', 'S'
-        , 'st', 'stat'
+    CMD_ALIAS=('h', 'H', 'help', '?'    # 帮助
+        , 'v', 'V', 'version', 'log'    # 版本
+        , 'i', 'I', 'me', 'ei'          # 订户信息
+        , 's', 'S'                      # 文章检索
+        #   开发中:::
+        , 'aa', 'dd', 'cc'              # FW 回答
+        #   隐藏功能:::
+        , 'e', 'E'                      # 活动问询
+        , 're', 'rc', 'ri'              # 活动报名
+        , 'st', 'stat'                  # 系统状态
+        , 'nn'                          # 牛妞日记
         )
 
     DM_ALIAS = {"LXC": ['Bonnie', 'liuxinchen', 'lxc', 'LXC', u'刘星辰']
@@ -413,7 +452,7 @@ class Borg():
         , "del/usr":    "DELETE"    # 软删除所有用户 (包含tag 信息)
         , "reliv/usr":  "PUT"       # 恢复指定用户
         , "acl/usr":    "PUT"       # 设置用户权限
-        , "list/usr":   "GET"       # 列出指定级别用户
+        , "ls/usr":   "GET"       # 列出指定级别用户
         
         , "info":   "GET"          # 查阅 指定 信息
         
