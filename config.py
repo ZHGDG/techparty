@@ -47,6 +47,7 @@ class Borg():
         ,'dm':"SYS_dama_ALL"    # [] 所有 组委->uuid (包含已经 del 的)
         ,'fw':"SYS_fw_ALL"      # [] 所有 组委->uuid (包含已经 del 的)
         #,'wx':"SYS_uuid_WX"     # [] 所有 wx_Passport->m_UUID 的反向映射 
+        ,'pp':"SYS_uuid_WX"     # [] 所有 wx_Passport->m_UUID 的反向映射 
         ,'p':"SYS_pubs_ALL"     # [] 所有 文章 (包含已经 del 的)
         ,'e':"SYS_eves_ALL"     # [] 所有 活动 (包含已经 del 的)
         ,'his':"SYS_node_HIS"   # [] 所有 节点的K索引 (包含已经 del/覆盖 的)
@@ -127,6 +128,7 @@ class Borg():
     K4FW = {"his_id":""   # 更新戮
         , "del":0
         , "aa":0    # 是否回答了
+        , "usrid":""# 谁的消息
         , "dm":""   # 回答的大妈 uuid
         , "qa":[]   # [0]<- 消息,[1]<-回答 
         }
@@ -147,13 +149,24 @@ class Borg():
     usr> dd
     << echo dm answered msg
 
+    data relation::
+    writing:
+        SYS_fw_ALL->UUID:usr
+                    +->UUID:fw msg.s
+
+    cheking:
+        Passpoord -> usrObj
+                        ~> SYS_fw_ALL
+                            ~> UUID:usr
+                                +-> UUID::fw msg.s
+
     CLI FW support:
     + GET sum/fw list all fw status
-    + GET fw/aa  as DM flush member msg.s
     + GET fw/dd/:uuid  as member flush answer
-    + PUT set/fw/mm/:zip  as DM cancel some msg.
-    + PUT set/fw/cc/:zip aa="" as answer the questin
 
+    + GET fw/ll  as DM flush member msg.s
+    + PUT fw/mm/:zip  as DM cancel some msg.
+    + PUT fw/aa/:zip aa="" as answer the questin
     '''
 
 
@@ -513,10 +526,10 @@ class Borg():
         , "wx/msg":     "HTTPS"     # 获取 用户信息
 
         , "sum/fw":     "GET"     # 获取 转抄 状态
-        , "fw/aa":      "GET"     # 模拟 大妈 刷转抄
+        , "fw/ll":      "GET"     # 模拟 大妈 刷转抄
         , "fw/dd":      "GET"     # 模拟 订户 刷回复
         , "fw/mm":  "PUT"     # 忽略 订户 消息
-        , "fw/cc":  "PUT"     # 转复 订户 消息
+        , "fw/aa":  "PUT"     # 转复 订户 消息
 
         }
 

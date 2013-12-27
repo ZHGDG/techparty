@@ -33,10 +33,11 @@ e.g:
     TAG当前支持 ot|et|gt|dd|gb|dm|hd
     UUID 为 null 时,指创建文章信息
   del/p/:UUID   删除指定文章
-  fw/aa         模拟 大妈 刷 成员抄发消息
+  fw/ll         模拟 大妈 刷 成员抄发消息
   fw/dd/:UUID   模拟 指成员 刷 大妈回复
-  fw/mm/:ZIP    模拟 大妈 忽略指定消息
-  fw/cc/:ZIP aa='回答'    
+  fw/mm/:ZIP set='成员编号'   
+                模拟 大妈 忽略指定消息
+  fw/aa/:ZIP set='回答内容'    
                 模拟 大妈 回复指定消息
   
   !!! 小心:大规模数据I/O操作 !!!

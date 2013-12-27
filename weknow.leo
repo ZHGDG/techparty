@@ -22,7 +22,7 @@
 <v t="zoomq.20130926092950.5432"><vh>环境切换</vh></v>
 <v t="zoomq.20130927104354.5456"><vh>storage</vh></v>
 <v t="zoomq.20130923093950.3647" a="E"><vh>KVDB</vh>
-<v t="zoomq.20131226095232.5929"><vh>&lt;&lt;FW POOL&gt;&gt;</vh>
+<v t="zoomq.20131226095232.5929" a="E"><vh>&lt;&lt;FW POOL&gt;&gt;</vh>
 <v t="zoomq.20131226095232.5939"><vh>&lt;&lt;FW actions&gt;&gt;</vh></v>
 </v>
 <v t="zoomq.20130923093950.5397"><vh>&lt;&lt;MEMBER&gt;&gt;</vh></v>
@@ -39,7 +39,7 @@
 <v t="zoomq.20130925103854.6458"><vh>文章查询</vh></v>
 <v t="zoomq.20131224083725.5910"><vh>公众号</vh></v>
 </v>
-<v t="zoomq.20130925103854.4951"><vh>RESTful</vh>
+<v t="zoomq.20130925103854.4951" a="E"><vh>RESTful</vh>
 <v t="zoomq.20131226095232.5937"><vh>&lt;&lt;CLI4wx&gt;&gt;</vh></v>
 <v t="zoomq.20131226095232.5936"><vh>&lt;&lt;CLI4sys&gt;&gt;</vh></v>
 <v t="zoomq.20131226095232.5935"><vh>&lt;&lt;CLI4pub&gt;&gt;</vh></v>
@@ -47,7 +47,7 @@
 </v>
 </v>
 </v>
-<v t="zoomq.20130925103854.4957"><vh>@nosent CLI.py</vh>
+<v t="zoomq.20130925103854.4957" a="E"><vh>@nosent CLI.py</vh>
 <v t="zoomq.20130925103854.4958"><vh>&lt;&lt;docopt&gt;&gt;</vh></v>
 <v t="zoomq.20130925103854.4959"><vh>&lt;&lt;declarations&gt;&gt;</vh></v>
 <v t="zoomq.20130925103854.4961"><vh>smart_rest()</vh></v>
@@ -66,7 +66,7 @@
 <v t="zoomq.20130927104354.6053"><vh>&lt;&lt;POST&gt;&gt;</vh></v>
 </v>
 </v>
-<v t="zoomq.20120723102156.5541" a="E"><vh>module</vh>
+<v t="zoomq.20120723102156.5541"><vh>module</vh>
 <v t="zoomq.20130925103854.6406"><vh>@nosent __init__.py</vh></v>
 <v t="zoomq.20120820121523.7422"><vh>@nosent auth.py</vh>
 <v t="zoomq.20120820121523.7423"><vh>&lt;&lt;declarations&gt;&gt;</vh></v>
@@ -78,7 +78,7 @@
 <v t="zoomq.20130925103854.6443"><vh>_query2dict</vh></v>
 <v t="zoomq.20130925103854.6445"><vh>_chkQueryArgs</vh></v>
 </v>
-<v t="zoomq.20120717112543.5481" a="E"><vh>@nosent utility.py</vh>
+<v t="zoomq.20120717112543.5481"><vh>@nosent utility.py</vh>
 <v t="zoomq.20120727213305.14698"><vh>&lt;&lt;declarations&gt;&gt;</vh></v>
 <v t="zoomq.20130927104354.6047"><vh>PUT2SS()</vh></v>
 <v t="zoomq.20120727213305.14756"><vh>INIobjSYS()</vh></v>
@@ -109,6 +109,13 @@
 <v t="zoomq.20120723102156.5562"><vh>&lt;&lt;declarations&gt;&gt;</vh></v>
 <v t="zoomq.20130918155053.5760"><vh>GET  /echo</vh></v>
 <v t="zoomq.20130925103854.5007" a="E"><vh>CLI 远程管理&gt;&gt;&gt;</vh>
+<v t="zoomq.20131226095232.5946" a="E"><vh>FW 事务</vh>
+<v t="zoomq.20131226095232.5939"></v>
+<v t="zoomq.20131226095232.5947"><vh>GET fw/ll</vh></v>
+<v t="zoomq.20131226095232.5952"><vh>PUT fw/mm/:zid</vh></v>
+<v t="zoomq.20131226095232.5950"><vh>PUT fw/aa/:zid</vh></v>
+<v t="zoomq.20131226095232.5948"><vh>GET fw/dd/:uuid</vh></v>
+</v>
 <v t="zoomq.20131223160728.4904"><vh>GET info/:UUID</vh></v>
 <v t="zoomq.20130925103854.5049"><vh>GET sum/db|dm|m|e|p</vh>
 <v t="zoomq.20131226095232.5933"><vh>&lt;&lt;sum bk&gt;&gt;</vh></v>
@@ -135,7 +142,7 @@
 <v t="zoomq.20131007093121.5601"><vh>文章管理</vh>
 <v t="zoomq.20131010225811.3726"><vh>GET sum/p/:TAG</vh></v>
 <v t="zoomq.20131010225811.3728"><vh>DELETE del/p/:UUID</vh></v>
-<v t="zoomq.20130929203117.3712"><vh>POST push/p</vh>
+<v t="zoomq.20130929203117.3712" a="E"><vh>POST push/p</vh>
 <v t="zoomq.20131007093121.31623"><vh>&lt;&lt;检验导入&gt;&gt;</vh></v>
 </v>
 <v t="zoomq.20130926092950.5447"><vh>PUT fix/p/:tag/:UUID</vh></v>
@@ -149,7 +156,7 @@
 <v t="zoomq.20130926092950.5440"><vh>__chkDMID()</vh></v>
 <v t="zoomq.20130926092950.5442"><vh>__chkDAMA()</vh></v>
 </v>
-<v t="zoomq.20130925103854.5033"><vh>his事务</vh>
+<v t="zoomq.20130925103854.5033"><vh>his 事务</vh>
 <v t="zoomq.20130925103854.5034"><vh>GET sum/his</vh></v>
 <v t="zoomq.20130925103854.5035"><vh>GET his/last</vh></v>
 </v>
@@ -159,9 +166,9 @@
 </v>
 <v t="zoomq.20130925103854.6427"><vh>__update_usr()</vh></v>
 <v t="zoomq.20130918155053.7083"><vh>POST /echo</vh></v>
-<v t="zoomq.20130925103854.6430" a="E"><vh>FSM 业务逻辑核心</vh>
+<v t="zoomq.20130925103854.6430"><vh>FSM 业务逻辑核心</vh>
 <v t="zoomq.20131226095232.5942"><vh>__putFW()</vh></v>
-<v t="zoomq.20130925103854.6461" a="E"><vh>&lt;&lt;大妈联系&gt;&gt;</vh>
+<v t="zoomq.20130925103854.6461"><vh>&lt;&lt;大妈联系&gt;&gt;</vh>
 <v t="zoomq.20131226095232.5940"><vh>&lt;&lt;FW2DM&gt;&gt;</vh></v>
 <v t="zoomq.20131226095232.5939"></v>
 <v t="zoomq.20131225115522.4952"><vh>&lt;&lt;doc echo&gt;&gt;</vh></v>
@@ -175,7 +182,7 @@
 <v t="zoomq.20131007093121.31624"><vh>&lt;&lt;tag paper No.&gt;&gt;</vh></v>
 </v>
 </v>
-<v t="zoomq.20130925103854.6433"><vh>i 成员信息</vh>
+<v t="zoomq.20130925103854.6433" a="E"><vh>i 成员信息</vh>
 <v t="zoomq.20130926092950.5433"><vh>&lt;&lt;info_me&gt;&gt;</vh></v>
 <v t="zoomq.20130926092950.5434"><vh>&lt;&lt;edit_info&gt;&gt;</vh></v>
 <v t="zoomq.20130926092950.5436"><vh>&lt;&lt;info_alias&gt;&gt;</vh></v>
@@ -188,10 +195,10 @@
 <v t="zoomq.20131223160728.5958"><vh>&lt;&lt;reg_cancel&gt;&gt;</vh></v>
 <v t="zoomq.20131223160728.5959"><vh>&lt;&lt;reg_info&gt;&gt;</vh></v>
 </v>
-<v t="zoomq.20130925103854.6441" a="E"><vh>系统信息</vh>
+<v t="zoomq.20130925103854.6441"><vh>系统信息</vh>
 <v t="zoomq.20131223160728.5954"><vh>&lt;&lt;helpme&gt;&gt;</vh></v>
 <v t="zoomq.20131223160728.5955"><vh>&lt;&lt;version&gt;&gt;</vh></v>
-<v t="zoomq.20131223160728.5956" a="E"><vh>&lt;&lt;status&gt;&gt;</vh>
+<v t="zoomq.20131223160728.5956"><vh>&lt;&lt;status&gt;&gt;</vh>
 <v t="zoomq.20131224083725.4928"><vh>&lt;&lt;sys msg&gt;&gt;</vh></v>
 <v t="zoomq.20131224083725.5911"><vh>&lt;&lt;CC ZQ&gt;&gt;</vh></v>
 </v>
@@ -1507,6 +1514,7 @@ K4D = {'incr':"SYS_TOT"     # int
     ,'dm':"SYS_dama_ALL"    # [] 所有 组委-&gt;uuid (包含已经 del 的)
     ,'fw':"SYS_fw_ALL"      # [] 所有 组委-&gt;uuid (包含已经 del 的)
     #,'wx':"SYS_uuid_WX"     # [] 所有 wx_Passport-&gt;m_UUID 的反向映射 
+    ,'pp':"SYS_uuid_WX"     # [] 所有 wx_Passport-&gt;m_UUID 的反向映射 
     ,'p':"SYS_pubs_ALL"     # [] 所有 文章 (包含已经 del 的)
     ,'e':"SYS_eves_ALL"     # [] 所有 活动 (包含已经 del 的)
     ,'his':"SYS_node_HIS"   # [] 所有 节点的K索引 (包含已经 del/覆盖 的)
@@ -1840,10 +1848,11 @@ e.g:
     TAG当前支持 ot|et|gt|dd|gb|dm|hd
     UUID 为 null 时,指创建文章信息
   del/p/:UUID   删除指定文章
-  fw/aa         模拟 大妈 刷 成员抄发消息
+  fw/ll         模拟 大妈 刷 成员抄发消息
   fw/dd/:UUID   模拟 指成员 刷 大妈回复
-  fw/mm/:ZIP    模拟 大妈 忽略指定消息
-  fw/cc/:ZIP aa='回答'    
+  fw/mm/:ZIP set='成员编号'   
+                模拟 大妈 忽略指定消息
+  fw/aa/:ZIP set='回答内容'    
                 模拟 大妈 回复指定消息
   
   !!! 小心:大规模数据I/O操作 !!!
@@ -2191,6 +2200,8 @@ return None
 <t tx="zoomq.20130925103854.6427">def __update_usr(objUsr):
     sha1_name = hashlib.sha1(objUsr['pp']).hexdigest()
     uuid = USRID(sha1_name)
+    #   stamp updated
+    objUsr['his_id'] = GENID('his')
     KV.replace(uuid, objUsr)</t>
 <t tx="zoomq.20130925103854.6429">def USRID(name):
     return 'u_%s'% name
@@ -2904,7 +2915,7 @@ def fix_event(code):
     else:
         # inti.
         new_usr = deepcopy(CFG.K4DM)
-        new_usr['his_id'] = GENID('his')
+        new_usr['his_id'] = uuid # 对象创建时, 变更时间戳同 UUID #GENID('his')
         new_usr['lasttm'] = time.time()
         new_usr['nm'] = CFG.DM_ALIAS[k4dm][0]
         KV.add(uuid, new_usr)
@@ -3306,7 +3317,7 @@ def push_papers(qstr):
 feed_back['data'].append(uuid)
 #print uuid
 new_paper = deepcopy(CFG.K4WD)
-new_paper['uuid'] = uuid
+new_paper['uuid'] = uuid # 对象创建时, 变更时间戳同 UUID
 new_paper['his_id'] = uuid
 new_paper['lasttm'] = time.time()
 new_paper['tag'] = p_tag
@@ -3926,7 +3937,7 @@ KV.set(CFG.K4D['his'], list(_his) )
 else:
     # inti.
     new_usr = deepcopy(CFG.objUSR)
-    new_usr['his_id'] = GENID('his')
+    new_usr['his_id'] =uuid # 对象创建时, 变更时间戳同 UUID
     new_usr['pp'] = passport
     new_usr['lasttm'] = time.time()
     new_usr['fsm'] = None
@@ -4264,6 +4275,7 @@ if uuid:
 K4FW = {"his_id":""   # 更新戮
     , "del":0
     , "aa":0    # 是否回答了
+    , "usrid":""# 谁的消息
     , "dm":""   # 回答的大妈 uuid
     , "qa":[]   # [0]&lt;- 消息,[1]&lt;-回答 
     }
@@ -4381,10 +4393,10 @@ feed_back['msg'] = "all Storaged %s dumps"% count
 , "wx/msg":     "HTTPS"     # 获取 用户信息
 
 , "sum/fw":     "GET"     # 获取 转抄 状态
-, "fw/aa":      "GET"     # 模拟 大妈 刷转抄
+, "fw/ll":      "GET"     # 模拟 大妈 刷转抄
 , "fw/dd":      "GET"     # 模拟 订户 刷回复
 , "fw/mm":  "PUT"     # 忽略 订户 消息
-, "fw/cc":  "PUT"     # 转复 订户 消息
+, "fw/aa":  "PUT"     # 转复 订户 消息
 
 </t>
 <t tx="zoomq.20131226095232.5938">VERSION = "weknow v13.12.27.2"</t>
@@ -4404,13 +4416,24 @@ dm&gt; cc[No.for msg]  ~ answer sting
 usr&gt; dd
 &lt;&lt; echo dm answered msg
 
+data relation::
+writing:
+    SYS_fw_ALL-&gt;UUID:usr
+                +-&gt;UUID:fw msg.s
+
+cheking:
+    Passpoord -&gt; usrObj
+                    ~&gt; SYS_fw_ALL
+                        ~&gt; UUID:usr
+                            +-&gt; UUID::fw msg.s
+
 CLI FW support:
 + GET sum/fw list all fw status
-+ GET fw/aa  as DM flush member msg.s
 + GET fw/dd/:uuid  as member flush answer
-+ PUT set/fw/mm/:zip  as DM cancel some msg.
-+ PUT set/fw/cc/:zip aa="" as answer the questin
 
++ GET fw/ll  as DM flush member msg.s
++ PUT fw/mm/:zip  as DM cancel some msg.
++ PUT fw/aa/:zip aa="" as answer the questin
 '''
 
 </t>
@@ -4433,7 +4456,7 @@ else:
     uuid = GENID('fw')
     # inti.
     new_fw = deepcopy(CFG.K4FW)
-    new_fw['his_id'] = uuid # 创建时同主键
+    new_fw['his_id'] = uuid # 对象创建时, 变更时间戳同 UUID
     new_fw['qa'].append(msg)
     #print uuid, new_fw
     KV.add(uuid, new_fw)
@@ -4448,6 +4471,109 @@ else:
     }
 '''
 
+
+
+</t>
+<t tx="zoomq.20131226095232.5946">&lt;&lt;FW actions&gt;&gt;
+</t>
+<t tx="zoomq.20131226095232.5947">@APP.get('/cli/fw/ll/&lt;qstr&gt;')
+def fw_ll(qstr):
+    q_dict = _query2dict(qstr)
+    if _chkQueryArgs("/cli/fw/ll", q_dict, "GET"):
+        data = []
+        fw_keys = KV.get(CFG.K4D['fw'])
+        for k in fw_keys:
+            _fw = KV.get(k)
+            echo = "%s~%s %s"% (fw_keys.index(k)
+                , _fw['qa'][0]
+                , k )
+            #print echo 
+            data.append(echo)
+        return {'msg':";-) as DM aa FWmsg.s"
+            , 'data':data
+            , 'count': len(fw_keys)
+            }
+    else:
+        return "alert quary!-("
+
+</t>
+<t tx="zoomq.20131226095232.5948">@APP.get('/cli/fw/dd/&lt;uuid&gt;/&lt;qstr&gt;')
+def fw_dd(uuid, qstr):
+    q_dict = _query2dict(qstr)
+    if _chkQueryArgs("/cli/fw/dd/%s"% uuid, q_dict, "GET"):
+        #data = []
+        return None
+        q_mongo = CFG.HIS.find({},{'_id':0},limit=1).sort("uuid", pymongo.DESCENDING)
+        #print q_mongo[0] cPickle.loads('N.')
+        return {'msg':"safe quary;-)"
+            , 'data':q_mongo[0]
+            , 'count': CFG.HIS.find({}).count()
+            }
+    else:
+        return "alert quary!-("
+
+</t>
+<t tx="zoomq.20131226095232.5950">@APP.put('/cli/fw/aa/&lt;zid&gt;')
+def fw_aa(zid):
+    q_dict = request.forms
+    if _chkQueryArgs("/cli/fw/aa/%s"% zid, q_dict, "PUT"):
+        data = []
+        return None
+        
+        fw_keys = KV.get(CFG.K4D['fw'])
+        for k in fw_keys:
+            _fw = KV.get(k)
+            echo = "%s~%s %s"% (fw_keys.index(k)
+                , _fw['qa'][0]
+                , k )
+            #print echo 
+            data.append(echo)
+        return {'msg':";-) as DM aa FWmsg.s"
+            , 'data':data
+            , 'count': len(fw_keys)
+            }
+    else:
+        return "alert quary!-("
+
+</t>
+<t tx="zoomq.20131226095232.5952">@APP.put('/cli/fw/mm/&lt;zid&gt;')
+def fw_mm(zid):
+    q_dict = request.forms
+    if _chkQueryArgs("/cli/fw/mm/%s"% zid, q_dict, "PUT"):
+        data = []
+        print "fw_mm(zid)", zid
+        print "q_dict['set'] ", base64.urlsafe_b64decode(q_dict['set'])
+        fw_keys = KV.get(CFG.K4D['fw'])
+        print fw_keys
+        uuid_fw = fw_keys[ int(zid) ]
+        _fw = KV.get(uuid_fw)
+        #print _fw
+        _fw['dm'] = XCFG.AS_USR
+        _fw['aa'] = 1
+        _fw['del'] = 1
+        _fw['his_id'] = GENID('his')#   stamp updated
+        #print _fw
+        #&lt;&lt; storded answer
+        #&lt;&lt; mv UUID from SYS_fw_ALL -&gt; SYS_pubs_HIS
+        KV.get(CFG.K4D['his']).append(uuid_fw)
+        fw_keys.remove(uuid_fw)
+        KV.set(CFG.K4D['fw'] ,fw_keys)
+        return None
+        
+        fw_keys = KV.get(CFG.K4D['fw'])
+        for k in fw_keys:
+            _fw = KV.get(k)
+            echo = "%s~%s %s"% (fw_keys.index(k)
+                , _fw['qa'][0]
+                , k )
+            #print echo 
+            data.append(echo)
+        return {'msg':";-) as DM aa FWmsg.s"
+            , 'data':data
+            , 'count': len(fw_keys)
+            }
+    else:
+        return "alert quary!-("
 
 
 </t>

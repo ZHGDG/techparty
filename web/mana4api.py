@@ -78,6 +78,139 @@ def wechat(request):
 query_string 
 '''
 
+'''FW flow:
+ 0.
+usr> msg
+<< if not cmd/number alert dd command.
+>> stored msg
+ 1.
+dm> aa 
+<< list no-answer msg.
+dm> mm[No.for msg]  ~ ingore point msg
+dm> cc[No.for msg]  ~ answer sting
+<< storded answer
+<< mv UUID from SYS_fw_ALL -> SYS_pubs_HIS
+ 2.
+usr> dd
+<< echo dm answered msg
+
+data relation::
+writing:
+    SYS_fw_ALL->UUID:usr
+                +->UUID:fw msg.s
+
+cheking:
+    Passpoord -> usrObj
+                    ~> SYS_fw_ALL
+                        ~> UUID:usr
+                            +-> UUID::fw msg.s
+
+CLI FW support:
++ GET sum/fw list all fw status
++ GET fw/dd/:uuid  as member flush answer
+
++ GET fw/ll  as DM flush member msg.s
++ PUT fw/mm/:zip  as DM cancel some msg.
++ PUT fw/aa/:zip aa="" as answer the questin
+'''
+
+@APP.get('/cli/fw/ll/<qstr>')
+def fw_ll(qstr):
+    q_dict = _query2dict(qstr)
+    if _chkQueryArgs("/cli/fw/ll", q_dict, "GET"):
+        data = []
+        fw_keys = KV.get(CFG.K4D['fw'])
+        for k in fw_keys:
+            _fw = KV.get(k)
+            echo = "%s~%s %s"% (fw_keys.index(k)
+                , _fw['qa'][0]
+                , k )
+            #print echo 
+            data.append(echo)
+        return {'msg':";-) as DM aa FWmsg.s"
+            , 'data':data
+            , 'count': len(fw_keys)
+            }
+    else:
+        return "alert quary!-("
+
+@APP.put('/cli/fw/mm/<zid>')
+def fw_mm(zid):
+    q_dict = request.forms
+    if _chkQueryArgs("/cli/fw/mm/%s"% zid, q_dict, "PUT"):
+        data = []
+        print "fw_mm(zid)", zid
+        print "q_dict['set'] ", base64.urlsafe_b64decode(q_dict['set'])
+        fw_keys = KV.get(CFG.K4D['fw'])
+        print fw_keys
+        uuid_fw = fw_keys[ int(zid) ]
+        _fw = KV.get(uuid_fw)
+        #print _fw
+        _fw['dm'] = XCFG.AS_USR
+        _fw['aa'] = 1
+        _fw['del'] = 1
+        _fw['his_id'] = GENID('his')#   stamp updated
+        #print _fw
+        #<< storded answer
+        #<< mv UUID from SYS_fw_ALL -> SYS_pubs_HIS
+        KV.get(CFG.K4D['his']).append(uuid_fw)
+        fw_keys.remove(uuid_fw)
+        KV.set(CFG.K4D['fw'] ,fw_keys)
+        return None
+        
+        fw_keys = KV.get(CFG.K4D['fw'])
+        for k in fw_keys:
+            _fw = KV.get(k)
+            echo = "%s~%s %s"% (fw_keys.index(k)
+                , _fw['qa'][0]
+                , k )
+            #print echo 
+            data.append(echo)
+        return {'msg':";-) as DM aa FWmsg.s"
+            , 'data':data
+            , 'count': len(fw_keys)
+            }
+    else:
+        return "alert quary!-("
+
+
+@APP.put('/cli/fw/aa/<zid>')
+def fw_aa(zid):
+    q_dict = request.forms
+    if _chkQueryArgs("/cli/fw/aa/%s"% zid, q_dict, "PUT"):
+        data = []
+        return None
+        
+        fw_keys = KV.get(CFG.K4D['fw'])
+        for k in fw_keys:
+            _fw = KV.get(k)
+            echo = "%s~%s %s"% (fw_keys.index(k)
+                , _fw['qa'][0]
+                , k )
+            #print echo 
+            data.append(echo)
+        return {'msg':";-) as DM aa FWmsg.s"
+            , 'data':data
+            , 'count': len(fw_keys)
+            }
+    else:
+        return "alert quary!-("
+
+@APP.get('/cli/fw/dd/<uuid>/<qstr>')
+def fw_dd(uuid, qstr):
+    q_dict = _query2dict(qstr)
+    if _chkQueryArgs("/cli/fw/dd/%s"% uuid, q_dict, "GET"):
+        #data = []
+        return None
+        q_mongo = CFG.HIS.find({},{'_id':0},limit=1).sort("uuid", pymongo.DESCENDING)
+        #print q_mongo[0] cPickle.loads('N.')
+        return {'msg':"safe quary;-)"
+            , 'data':q_mongo[0]
+            , 'count': CFG.HIS.find({}).count()
+            }
+    else:
+        return "alert quary!-("
+
 @APP.get('/cli/info/<uuid>/<qstr>')
 def info_kv(uuid, qstr):
     '''查询 UUID 的信息
@@ -445,7 +578,7 @@ def push_papers(qstr):
             feed_back['data'].append(uuid)
             #print uuid
             new_paper = deepcopy(CFG.K4WD)
-            new_paper['uuid'] = uuid
+            new_paper['uuid'] = uuid # 对象创建时, 变更时间戳同 UUID
             new_paper['his_id'] = uuid
             new_paper['lasttm'] = time.time()
             new_paper['tag'] = p_tag
@@ -649,7 +782,7 @@ def __chkDAMA(zipname):
     else:
         # inti.
         new_usr = deepcopy(CFG.K4DM)
-        new_usr['his_id'] = GENID('his')
+        new_usr['his_id'] = uuid # 对象创建时, 变更时间戳同 UUID #GENID('his')
         new_usr['lasttm'] = time.time()
         new_usr['nm'] = CFG.DM_ALIAS[k4dm][0]
         KV.add(uuid, new_usr)
@@ -718,7 +851,7 @@ def __chkRegUsr(passport):
     else:
         # inti.
         new_usr = deepcopy(CFG.objUSR)
-        new_usr['his_id'] = GENID('his')
+        new_usr['his_id'] =uuid # 对象创建时, 变更时间戳同 UUID
         new_usr['pp'] = passport
         new_usr['lasttm'] = time.time()
         new_usr['fsm'] = None
@@ -735,6 +868,8 @@ def __chkRegUsr(passport):
 def __update_usr(objUsr):
     sha1_name = hashlib.sha1(objUsr['pp']).hexdigest()
     uuid = USRID(sha1_name)
+    #   stamp updated
+    objUsr['his_id'] = GENID('his')
     KV.replace(uuid, objUsr)
 @APP.post('/echo/')
 @APP.post('/echo')
@@ -888,13 +1023,24 @@ def setup(self, wxreq):
         usr> dd
         << echo dm answered msg
 
+        data relation::
+        writing:
+            SYS_fw_ALL->UUID:usr
+                        +->UUID:fw msg.s
+
+        cheking:
+            Passpoord -> usrObj
+                            ~> SYS_fw_ALL
+                                ~> UUID:usr
+                                    +-> UUID::fw msg.s
+
         CLI FW support:
         + GET sum/fw list all fw status
-        + GET fw/aa  as DM flush member msg.s
         + GET fw/dd/:uuid  as member flush answer
-        + PUT set/fw/mm/:zip  as DM cancel some msg.
-        + PUT set/fw/cc/:zip aa="" as answer the questin
 
+        + GET fw/ll  as DM flush member msg.s
+        + PUT fw/mm/:zip  as DM cancel some msg.
+        + PUT fw/aa/:zip aa="" as answer the questin
         '''
 
 
@@ -926,7 +1072,7 @@ def __putFW(msg):
     uuid = GENID('fw')
     # inti.
     new_fw = deepcopy(CFG.K4FW)
-    new_fw['his_id'] = uuid # 创建时同主键
+    new_fw['his_id'] = uuid # 对象创建时, 变更时间戳同 UUID
     new_fw['qa'].append(msg)
     #print uuid, new_fw
     KV.add(uuid, new_fw)
