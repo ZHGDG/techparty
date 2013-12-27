@@ -108,15 +108,6 @@
 <v t="zoomq.20120723102156.5562"><vh>&lt;&lt;declarations&gt;&gt;</vh></v>
 <v t="zoomq.20130918155053.5760"><vh>GET  /echo</vh></v>
 <v t="zoomq.20130925103854.5007" a="E"><vh>CLI 远程管理&gt;&gt;&gt;</vh>
-<v t="zoomq.20131226095232.5946" a="E"><vh>FW 事务</vh>
-<v t="zoomq.20131226095232.5939"></v>
-<v t="zoomq.20131226095232.5947" a="E"><vh>GET fw/ll</vh>
-<v t="zoomq.20131226095232.5956"><vh>&lt;&lt;提示组织&gt;&gt;</vh></v>
-</v>
-<v t="zoomq.20131226095232.5952"><vh>PUT fw/mm/:zid</vh></v>
-<v t="zoomq.20131226095232.5950"><vh>PUT fw/aa/:zid</vh></v>
-<v t="zoomq.20131226095232.5948"><vh>GET fw/dd/:uuid</vh></v>
-</v>
 <v t="zoomq.20131223160728.4904"><vh>GET info/:UUID</vh></v>
 <v t="zoomq.20130925103854.5049"><vh>GET sum/db|FW|dm|m|e|p</vh>
 <v t="zoomq.20131226095232.5953"><vh>&lt;&lt;sum fw&gt;&gt;</vh></v>
@@ -162,17 +153,29 @@
 <v t="zoomq.20130925103854.5034"><vh>GET sum/his</vh></v>
 <v t="zoomq.20130925103854.5035"><vh>GET his/last</vh></v>
 </v>
+<v t="zoomq.20131226095232.5946" a="E"><vh>FW 事务</vh>
+<v t="zoomq.20131226095232.5939"></v>
+<v t="zoomq.20131226095232.5947" a="E"><vh>GET fw/ll</vh>
+<v t="zoomq.20131226095232.5956"><vh>&lt;&lt;提示组织&gt;&gt;</vh></v>
+</v>
+<v t="zoomq.20131226095232.5952" a="E"><vh>PUT fw/mm/:zid</vh>
+<v t="zoomq.20131228000540.4029"><vh>&lt;&lt;mv FWmsg.&gt;&gt;</vh></v>
+<v t="zoomq.20131228000540.4028"><vh>&lt;&lt;mm FW&gt;&gt;</vh></v>
+</v>
+<v t="zoomq.20131226095232.5950"><vh>PUT fw/aa/:zid</vh></v>
+<v t="zoomq.20131226095232.5948"><vh>GET fw/dd/:uuid</vh></v>
+</v>
 </v>
 <v t="zoomq.20130925103854.6426"><vh>__chkRegUsr()</vh>
 <v t="zoomq.20131224083725.4931"><vh>&lt;&lt;chk USR2PP&gt;&gt;</vh></v>
 </v>
 <v t="zoomq.20130925103854.6427"><vh>__update_usr()</vh></v>
 <v t="zoomq.20130918155053.7083"><vh>POST /echo</vh></v>
-<v t="zoomq.20130925103854.6430"><vh>FSM 业务逻辑核心</vh>
-<v t="zoomq.20131226095232.5942"><vh>__putFW()</vh>
+<v t="zoomq.20130925103854.6430" a="E"><vh>FSM 业务逻辑核心</vh>
+<v t="zoomq.20131226095232.5942" a="E"><vh>__putFW()</vh>
 <v t="zoomq.20131226095232.5955"><vh>&lt;&lt;init FW msg.&gt;&gt;</vh></v>
 </v>
-<v t="zoomq.20130925103854.6461"><vh>&lt;&lt;大妈联系&gt;&gt;</vh>
+<v t="zoomq.20130925103854.6461" a="E"><vh>&lt;&lt;大妈联系&gt;&gt;</vh>
 <v t="zoomq.20131226095232.5940"><vh>&lt;&lt;FW2DM&gt;&gt;</vh></v>
 <v t="zoomq.20131226095232.5939"></v>
 <v t="zoomq.20131225115522.4952"><vh>&lt;&lt;doc echo&gt;&gt;</vh></v>
@@ -4514,14 +4517,18 @@ else:
     fw_uuid = GENID('fw')
     &lt;&lt;init FW msg.&gt;&gt;
     #uuid = GENID('fw')
-    all_fw = KV.get(CFG.K4D['fw'])
     uuid = KV.get(pp)
     print "pp-&gt;uuid:: ", uuid
-    if uuid in all_fw.keys():
-        all_fw[uuid].append(fw_uuid)
-    else:
+    all_fw = KV.get(CFG.K4D['fw'])
+    if uuid not in all_fw.keys():
         all_fw[uuid] = []
-        all_fw[uuid].append(fw_uuid)
+    all_fw[uuid].append(fw_uuid)
+    
+    tmp_seq = all_fw['sequence'] # 为内部用户临时索引,为了精简码号
+    #all_fw['sequence'] = []
+    tmp_seq.append(uuid)
+    all_fw['sequence'] = list(set(tmp_seq))
+    #print all_fw
     #ADD4SYS('fw', uuid) 是双层结构了!
     return uuid, new_fw
 
@@ -4544,21 +4551,24 @@ def fw_ll(qstr):
     if _chkQueryArgs("/cli/fw/ll", q_dict, "GET"):
         data = {}
         all_fw = KV.get(CFG.K4D['fw'])
+        _seq = all_fw['sequence']
         # 立即重建临时索引 ???
-        all_fw['sequence'] = all_fw.keys()
+        # KV.set(CFG.K4D['fw'],{'sequence':[]})
+        #print type(_seq), _seq
         tot = 0
+        #print type(all_fw['sequence']) -&gt;&lt;type 'list'&gt;
         for u in all_fw.keys():
-            all_fw['sequence']
             if 'sequence' == u:
                 pass
             else:
-                tmp_seq = all_fw['sequence']
-                data[u] = []
+                #print "%s as %s"% (u, _seq.index(u))
+                usr_as = "usr~%s"% _seq.index(u)
+                data[usr_as] = []
                 &lt;&lt;提示组织&gt;&gt;    
         return {'msg':";-) as DM aa FWmsg.s"
             , 'data': data
             , 'count': "FW %s users %s msg.s"% (
-                len(all_fw.keys())
+                len(all_fw.keys())-1
                 , tot)
             }
     else:
@@ -4605,32 +4615,27 @@ def fw_aa(zid):
         return "alert quary!-("
 
 </t>
-<t tx="zoomq.20131226095232.5952">@APP.put('/cli/fw/mm/&lt;zid&gt;')
-def fw_mm(zid):
+<t tx="zoomq.20131226095232.5952">@APP.put('/cli/fw/mm/&lt;zip_id&gt;')
+def fw_mm(zip_id):
     q_dict = request.forms
-    if _chkQueryArgs("/cli/fw/mm/%s"% zid, q_dict, "PUT"):
+    if _chkQueryArgs("/cli/fw/mm/%s"% zip_id, q_dict, "PUT"):
         data = []
-        print "fw_mm(zid)", zid
-        print "q_dict['set'] ", base64.urlsafe_b64decode(q_dict['set'])
-        return None
-        fw_keys = KV.get(CFG.K4D['fw'])
-        print fw_keys
-        uuid_fw = fw_keys[ int(zid) ]
-        _fw = KV.get(uuid_fw)
-        #print _fw
-        _fw['dm'] = XCFG.AS_USR
-        _fw['aa'] = 1
-        _fw['del'] = 1
-        _fw['his_id'] = GENID('his')#   stamp updated
-        #print _fw
+        #print "fw_mm(zid)", zid
+        #print "q_dict['set'] ", base64.urlsafe_b64decode(q_dict['set'])
+        usr_as = base64.urlsafe_b64decode(q_dict['set'])
+        _zid = int(zip_id)
+        all_fw = KV.get(CFG.K4D['fw'])
+        _seq = all_fw['sequence']
+        uuid_usr = _seq[_zid]
+        #print all_fw[_seq[_zid]]
+        uuid_fw = all_fw[_seq[_zid]][_zid]
+        #uuid_usr = all_fw[ int(zid) ]
+        #uuid_fw = all_fw[ int(zid) ]
+        &lt;&lt;mm FW&gt;&gt;
         #&lt;&lt; storded answer
         #&lt;&lt; mv UUID from SYS_fw_ALL -&gt; SYS_pubs_HIS
-        his_all = KV.get(CFG.K4D['his'])
-        his_all.append(uuid_fw)
-        KV.set(CFG.K4D['his'] ,his_all)
-        fw_keys.remove(uuid_fw)
-        KV.set(CFG.K4D['fw'] ,fw_keys)
-        #return None
+        &lt;&lt;mv FWmsg.&gt;&gt;
+        
         return {'msg':";-) as DM mm msg.s:%s~%s"%("usr", 'uuid_fw')
             , 'data': "%s =&gt; CFG.K4D['his']%s"% (uuid_fw, his_all.index(uuid_fw))
             }
@@ -4666,7 +4671,24 @@ for k in all_fw[u]:
         , _fw['qa'][0]
         , k )
     #print echo , type(echo)
-    data[u].append(echo)
+    data[usr_as].append(echo)
+
+</t>
+<t tx="zoomq.20131228000540.4028">_fw = KV.get(uuid_fw)
+#print _fw
+_fw['dm'] = XCFG.AS_USR
+_fw['aa'] = 1
+_fw['del'] = 1
+_fw['his_id'] = GENID('his')#   stamp updated
+
+</t>
+<t tx="zoomq.20131228000540.4029">his_all = KV.get(CFG.K4D['his'])
+his_all.append(uuid_fw)
+KV.set(CFG.K4D['his'] ,his_all)
+fw_keys.remove(uuid_fw)
+KV.set(CFG.K4D['fw'] ,fw_keys)
+#return None
+
 
 </t>
 </tnodes>

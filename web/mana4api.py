@@ -78,149 +78,6 @@ def wechat(request):
 query_string 
 '''
 
-'''FW flow:
- 0.
-usr> msg
-<< if not cmd/number alert dd command.
->> stored msg
- 1.
-dm> aa 
-<< list no-answer msg.
-dm> mm[No.for msg]  ~ ingore point msg
-dm> cc[No.for msg]  ~ answer sting
-<< storded answer
-<< mv UUID from SYS_fw_ALL -> SYS_pubs_HIS
- 2.
-usr> dd
-<< echo dm answered msg
-
-data relation:: SYS_fw_ALL is 2 level tree
-writing:
-    SYS_fw_ALL->{"UUID:usr":[UUID:fw msg.s,,,]}
-为了在 FW 事务的 aa/mm 操作中, 对成员有简短的编号可用
-    必须对字典的键对应上固定的序号!
-    所以,使用临时字典内索引 "sequence"
-cheking:
-    Passpoord=>"UUID:usr"
-                    ~> SYS_fw_ALL
-                        ~> UUID:usr
-                            +-> UUID::fw msg.s
-
-CLI FW support:
-+ GET sum/fw list all fw status
-+ GET fw/dd/:uuid  as member flush answer
-
-+ GET fw/ll  as DM flush member msg.s
-+ PUT fw/mm/:zip  as DM cancel some msg.
-+ PUT fw/aa/:zip aa="" as answer the questin
-'''
-
-@APP.get('/cli/fw/ll/<qstr>')
-def fw_ll(qstr):
-    q_dict = _query2dict(qstr)
-    if _chkQueryArgs("/cli/fw/ll", q_dict, "GET"):
-        data = {}
-        all_fw = KV.get(CFG.K4D['fw'])
-        # 立即重建临时索引 ???
-        all_fw['sequence'] = all_fw.keys()
-        tot = 0
-        for u in all_fw.keys():
-            all_fw['sequence']
-            if 'sequence' == u:
-                pass
-            else:
-                tmp_seq = all_fw['sequence']
-                data[u] = []
-
-                tot += len(all_fw[u])
-                for k in all_fw[u]:
-                    _fw = KV.get(k)
-                    echo = "%s~%s %s"% ( all_fw[u].index(k)
-                        , _fw['qa'][0]
-                        , k )
-                    #print echo , type(echo)
-                    data[u].append(echo)
-
-        return {'msg':";-) as DM aa FWmsg.s"
-            , 'data': data
-            , 'count': "FW %s users %s msg.s"% (
-                len(all_fw.keys())
-                , tot)
-            }
-    else:
-        return "alert quary!-("
-
-
-@APP.put('/cli/fw/mm/<zid>')
-def fw_mm(zid):
-    q_dict = request.forms
-    if _chkQueryArgs("/cli/fw/mm/%s"% zid, q_dict, "PUT"):
-        data = []
-        print "fw_mm(zid)", zid
-        print "q_dict['set'] ", base64.urlsafe_b64decode(q_dict['set'])
-        return None
-        fw_keys = KV.get(CFG.K4D['fw'])
-        print fw_keys
-        uuid_fw = fw_keys[ int(zid) ]
-        _fw = KV.get(uuid_fw)
-        #print _fw
-        _fw['dm'] = XCFG.AS_USR
-        _fw['aa'] = 1
-        _fw['del'] = 1
-        _fw['his_id'] = GENID('his')#   stamp updated
-        #print _fw
-        #<< storded answer
-        #<< mv UUID from SYS_fw_ALL -> SYS_pubs_HIS
-        his_all = KV.get(CFG.K4D['his'])
-        his_all.append(uuid_fw)
-        KV.set(CFG.K4D['his'] ,his_all)
-        fw_keys.remove(uuid_fw)
-        KV.set(CFG.K4D['fw'] ,fw_keys)
-        #return None
-        return {'msg':";-) as DM mm msg.s:%s~%s"%("usr", 'uuid_fw')
-            , 'data': "%s => CFG.K4D['his']%s"% (uuid_fw, his_all.index(uuid_fw))
-            }
-    else:
-        return "alert quary!-("
-
-
-@APP.put('/cli/fw/aa/<zid>')
-def fw_aa(zid):
-    q_dict = request.forms
-    if _chkQueryArgs("/cli/fw/aa/%s"% zid, q_dict, "PUT"):
-        data = []
-        return None
-        
-        fw_keys = KV.get(CFG.K4D['fw'])
-        for k in fw_keys:
-            _fw = KV.get(k)
-            echo = "%s~%s %s"% (fw_keys.index(k)
-                , _fw['qa'][0]
-                , k )
-            #print echo 
-            data.append(echo)
-        return {'msg':";-) as DM aa FWmsg.s"
-            , 'data':data
-            , 'count': len(fw_keys)
-            }
-    else:
-        return "alert quary!-("
-
-@APP.get('/cli/fw/dd/<uuid>/<qstr>')
-def fw_dd(uuid, qstr):
-    q_dict = _query2dict(qstr)
-    if _chkQueryArgs("/cli/fw/dd/%s"% uuid, q_dict, "GET"):
-        #data = []
-        return None
-        q_mongo = CFG.HIS.find({},{'_id':0},limit=1).sort("uuid", pymongo.DESCENDING)
-        #print q_mongo[0] cPickle.loads('N.')
-        return {'msg':"safe quary;-)"
-            , 'data':q_mongo[0]
-            , 'count': CFG.HIS.find({}).count()
-            }
-    else:
-        return "alert quary!-("
-
 @APP.get('/cli/info/<uuid>/<qstr>')
 def info_kv(uuid, qstr):
     '''查询 UUID 的信息
@@ -885,6 +742,160 @@ def sum_tag(qstr):
     else:
         return "alert quary!-("
 
+'''FW flow:
+ 0.
+usr> msg
+<< if not cmd/number alert dd command.
+>> stored msg
+ 1.
+dm> aa 
+<< list no-answer msg.
+dm> mm[No.for msg]  ~ ingore point msg
+dm> cc[No.for msg]  ~ answer sting
+<< storded answer
+<< mv UUID from SYS_fw_ALL -> SYS_pubs_HIS
+ 2.
+usr> dd
+<< echo dm answered msg
+
+data relation:: SYS_fw_ALL is 2 level tree
+writing:
+    SYS_fw_ALL->{"UUID:usr":[UUID:fw msg.s,,,]}
+为了在 FW 事务的 aa/mm 操作中, 对成员有简短的编号可用
+    必须对字典的键对应上固定的序号!
+    所以,使用临时字典内索引 "sequence"
+cheking:
+    Passpoord=>"UUID:usr"
+                    ~> SYS_fw_ALL
+                        ~> UUID:usr
+                            +-> UUID::fw msg.s
+
+CLI FW support:
++ GET sum/fw list all fw status
++ GET fw/dd/:uuid  as member flush answer
+
++ GET fw/ll  as DM flush member msg.s
++ PUT fw/mm/:zip  as DM cancel some msg.
++ PUT fw/aa/:zip aa="" as answer the questin
+'''
+
+@APP.get('/cli/fw/ll/<qstr>')
+def fw_ll(qstr):
+    q_dict = _query2dict(qstr)
+    if _chkQueryArgs("/cli/fw/ll", q_dict, "GET"):
+        data = {}
+        all_fw = KV.get(CFG.K4D['fw'])
+        _seq = all_fw['sequence']
+        # 立即重建临时索引 ???
+        # KV.set(CFG.K4D['fw'],{'sequence':[]})
+        #print type(_seq), _seq
+        tot = 0
+        #print type(all_fw['sequence']) -><type 'list'>
+        for u in all_fw.keys():
+            if 'sequence' == u:
+                pass
+            else:
+                #print "%s as %s"% (u, _seq.index(u))
+                usr_as = "usr~%s"% _seq.index(u)
+                data[usr_as] = []
+
+                tot += len(all_fw[u])
+                for k in all_fw[u]:
+                    _fw = KV.get(k)
+                    echo = "%s~%s %s"% ( all_fw[u].index(k)
+                        , _fw['qa'][0]
+                        , k )
+                    #print echo , type(echo)
+                    data[usr_as].append(echo)
+
+        return {'msg':";-) as DM aa FWmsg.s"
+            , 'data': data
+            , 'count': "FW %s users %s msg.s"% (
+                len(all_fw.keys())-1
+                , tot)
+            }
+    else:
+        return "alert quary!-("
+
+
+@APP.put('/cli/fw/mm/<zip_id>')
+def fw_mm(zip_id):
+    q_dict = request.forms
+    if _chkQueryArgs("/cli/fw/mm/%s"% zip_id, q_dict, "PUT"):
+        data = []
+        #print "fw_mm(zid)", zid
+        #print "q_dict['set'] ", base64.urlsafe_b64decode(q_dict['set'])
+        usr_as = base64.urlsafe_b64decode(q_dict['set'])
+        _zid = int(zip_id)
+        all_fw = KV.get(CFG.K4D['fw'])
+        _seq = all_fw['sequence']
+        uuid_usr = _seq[_zid]
+        #print all_fw[_seq[_zid]]
+        uuid_fw = all_fw[_seq[_zid]][_zid]
+        #uuid_usr = all_fw[ int(zid) ]
+        #uuid_fw = all_fw[ int(zid) ]
+        _fw = KV.get(uuid_fw)
+        #print _fw
+        _fw['dm'] = XCFG.AS_USR
+        _fw['aa'] = 1
+        _fw['del'] = 1
+        _fw['his_id'] = GENID('his')#   stamp updated
+
+        #<< storded answer
+        #<< mv UUID from SYS_fw_ALL -> SYS_pubs_HIS
+        his_all = KV.get(CFG.K4D['his'])
+        his_all.append(uuid_fw)
+        KV.set(CFG.K4D['his'] ,his_all)
+        fw_keys.remove(uuid_fw)
+        KV.set(CFG.K4D['fw'] ,fw_keys)
+        #return None
+
+
+        
+        return {'msg':";-) as DM mm msg.s:%s~%s"%("usr", 'uuid_fw')
+            , 'data': "%s => CFG.K4D['his']%s"% (uuid_fw, his_all.index(uuid_fw))
+            }
+    else:
+        return "alert quary!-("
+
+
+@APP.put('/cli/fw/aa/<zid>')
+def fw_aa(zid):
+    q_dict = request.forms
+    if _chkQueryArgs("/cli/fw/aa/%s"% zid, q_dict, "PUT"):
+        data = []
+        return None
+        
+        fw_keys = KV.get(CFG.K4D['fw'])
+        for k in fw_keys:
+            _fw = KV.get(k)
+            echo = "%s~%s %s"% (fw_keys.index(k)
+                , _fw['qa'][0]
+                , k )
+            #print echo 
+            data.append(echo)
+        return {'msg':";-) as DM aa FWmsg.s"
+            , 'data':data
+            , 'count': len(fw_keys)
+            }
+    else:
+        return "alert quary!-("
+
+@APP.get('/cli/fw/dd/<uuid>/<qstr>')
+def fw_dd(uuid, qstr):
+    q_dict = _query2dict(qstr)
+    if _chkQueryArgs("/cli/fw/dd/%s"% uuid, q_dict, "GET"):
+        #data = []
+        return None
+        q_mongo = CFG.HIS.find({},{'_id':0},limit=1).sort("uuid", pymongo.DESCENDING)
+        #print q_mongo[0] cPickle.loads('N.')
+        return {'msg':"safe quary;-)"
+            , 'data':q_mongo[0]
+            , 'count': CFG.HIS.find({}).count()
+            }
+    else:
+        return "alert quary!-("
+
 def __chkRegUsr(passport):
     '''chk or init. webchat usr.:
         - gen KV uuid, try get
@@ -1139,14 +1150,18 @@ def __putFW(pp, msg):
     KV.add(fw_uuid, new_fw)
 
     #uuid = GENID('fw')
-    all_fw = KV.get(CFG.K4D['fw'])
     uuid = KV.get(pp)
     print "pp->uuid:: ", uuid
-    if uuid in all_fw.keys():
-        all_fw[uuid].append(fw_uuid)
-    else:
+    all_fw = KV.get(CFG.K4D['fw'])
+    if uuid not in all_fw.keys():
         all_fw[uuid] = []
-        all_fw[uuid].append(fw_uuid)
+    all_fw[uuid].append(fw_uuid)
+    
+    tmp_seq = all_fw['sequence'] # 为内部用户临时索引,为了精简码号
+    #all_fw['sequence'] = []
+    tmp_seq.append(uuid)
+    all_fw['sequence'] = list(set(tmp_seq))
+    #print all_fw
     #ADD4SYS('fw', uuid) 是双层结构了!
     return uuid, new_fw
 
