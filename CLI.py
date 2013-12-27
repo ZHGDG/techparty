@@ -17,25 +17,28 @@ Options:
 
 e.g:
   一般形式::
-  $ python lbTCLI.py 事务指令 [可能的值设定 set=** 形式]
+  $ python CLI.py 事务指令 [可能的值设定 set=** 形式]
   详细操作::
   echo set=i                模拟微信的消息交互
 
   info/:UUID                查阅指定 信息
   find/m/<key word>         搜索用户 [对 名称,描述 搜索]
   st/kv     查询 KVDB 整体现状
-  sum/bk|db|dm|m|e|p|his
-      综合 备份|整体|大妈|成员|活动|文章|历史 信息现状
-  sum/p/:TAG 综合 分类文章 信息现状
-
+  sum/bk|db|dm|m|e|p|his|fw
+            查询 备份|整体|大妈|成员|活动|文章|历史|转抄 现状
+    sum/p/:TAG 综合 分类文章 信息现状
   fix/dm/:NM  nm=ZQ         修订/创建指定 大妈 的相关信息
-  fix/m/:UUID nm=ZQ         修订指定 成员 的相关信息
-  fix/e/:UUID pic=***       修订/创建指定 活动 的相关信息
+  fix/m|e/:UUID nm=ZQ       修订指定 成员|活动 的相关信息
   fix/p/:TAG/:UUID url=***  增补|指定 文章 信息
     TAG当前支持 ot|et|gt|dd|gb|dm|hd
     UUID 为 null 时,指创建文章信息
-  del/p/:UUID               删除指定文章
-
+  del/p/:UUID   删除指定文章
+  fw/aa         模拟 大妈 刷 成员抄发消息
+  fw/dd/:UUID   模拟 指成员 刷 大妈回复
+  fw/mm/:ZIP    模拟 大妈 忽略指定消息
+  fw/cc/:ZIP aa='回答'    
+                模拟 大妈 回复指定消息
+  
   !!! 小心:大规模数据I/O操作 !!!
   push/p json=path/2/x.json 提交批量文章数据文件
   bk/db|dm|m|e|p

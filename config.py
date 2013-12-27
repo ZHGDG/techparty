@@ -26,7 +26,8 @@ class Borg():
     def __init__(self):
         self.__dict__ = self.__collective_mind
     
-    VERSION = "weknow v13.12.26.12"
+    VERSION = "weknow v13.12.27.2"
+    
     #管理员邮箱列表
     ADMIN_EMAIL_LIST = ['zoomquiet+gdg@gmail.com']
     NIUNIU = datetime.datetime(2009, 5, 19)
@@ -43,13 +44,11 @@ class Borg():
     #   系统索引名-UUID 字典; KVDB 无法Mongo 样搜索,只能人工建立索引
     K4D = {'incr':"SYS_TOT"     # int
         ,'m':"SYS_usrs_ALL"     # [] 所有 成员 (包含已经 del 的)
-        #,'wx':"SYS_uuid_WX"     # [] 所有 wx_Passport->m_UUID 的反向映射 
         ,'dm':"SYS_dama_ALL"    # [] 所有 组委->uuid (包含已经 del 的)
         ,'fw':"SYS_fw_ALL"      # [] 所有 组委->uuid (包含已经 del 的)
-        
-        ,'e':"SYS_eves_ALL"     # [] 所有 活动 (包含已经 del 的)
+        #,'wx':"SYS_uuid_WX"     # [] 所有 wx_Passport->m_UUID 的反向映射 
         ,'p':"SYS_pubs_ALL"     # [] 所有 文章 (包含已经 del 的)
-        
+        ,'e':"SYS_eves_ALL"     # [] 所有 活动 (包含已经 del 的)
         ,'his':"SYS_node_HIS"   # [] 所有 节点的K索引 (包含已经 del/覆盖 的)
     }
 
@@ -133,25 +132,30 @@ class Borg():
         }
 
     '''FW flow:
+     0.
     usr> msg
     << if not cmd/number alert dd command.
     >> stored msg
-
+     1.
     dm> aa 
     << list no-answer msg.
-    dm> cc[No.for msg]
+    dm> mm[No.for msg]  ~ ingore point msg
+    dm> cc[No.for msg]  ~ answer sting
     << storded answer
     << mv UUID from SYS_fw_ALL -> SYS_pubs_HIS
-
+     2.
     usr> dd
     << echo dm answered msg
 
     CLI FW support:
-    + GET ll/fw list all fw status
-    + GET ll/fw/new list no-answer msg.
-    + PUT set/fw/a/:zip  as answer
+    + GET sum/fw list all fw status
+    + GET fw/aa  as DM flush member msg.s
+    + GET fw/dd/:uuid  as member flush answer
+    + PUT set/fw/mm/:zip  as DM cancel some msg.
     + PUT set/fw/cc/:zip aa="" as answer the questin
+
     '''
+
 
 
 
@@ -177,7 +181,8 @@ class Borg():
         , 'i', 'I', 'me', 'ei'          # 订户信息
         , 's', 'S'                      # 文章检索
         #   开发中:::
-        , 'aa', 'dd', 'cc'              # FW 回答
+        , 'dd', 'aa', 'cc', 'mm'        # FW 回答
+        
         #   隐藏功能:::
         , 'e', 'E'                      # 活动问询
         , 're', 'rc', 'ri'              # 活动报名
@@ -443,19 +448,17 @@ class Borg():
 
     APIPRE = "/cli" #% _API_ROOT
     STLIMI = 4.2    # 请求安全时限(秒)
-
     SECURE_ARGS = ('appkey', 'ts', 'sign')
     CLI_MATTERS = {     # 命令行响应方式速查字典
         "his/last":   "GET"       # 最后一次节点(任意)修订
-        
+        , "echo":       "GET"       # 模拟wechat 问答
+        , "info":   "GET"          # 查阅 指定 信息
         , "find/m":     "GET"       # 搜索用户
         , "del/usr":    "DELETE"    # 软删除所有用户 (包含tag 信息)
         , "reliv/usr":  "PUT"       # 恢复指定用户
         , "acl/usr":    "PUT"       # 设置用户权限
         , "ls/usr":   "GET"       # 列出指定级别用户
-        
-        , "info":   "GET"          # 查阅 指定 信息
-        
+
         , "fix/dm":     "PUT"       # 修订 大妈 信息
         , "fix/m":      "PUT"       # 修订 成员 信息
         , "fix/e":      "PUT"       # 增补 活动 信息
@@ -466,10 +469,6 @@ class Borg():
         , "fix/p/hd":   "PUT"       # 增补 hd文章 信息
         , "fix/p/ot":   "PUT"       # 增补 其它文章 信息
         , "fix/p/et":   "PUT"       # 增补 活动文章 文章
-        
-        , "echo":       "GET"       # 模拟wechat 问答
-        
-        , "st/kv":      "GET"       # 查阅 KVDB 信息
 
         , "sum/his":    "GET"       # 统计 历史 索引现状
         , "sum/db":     "GET"       # 统计 整体 信息现状
@@ -486,6 +485,11 @@ class Borg():
         , "sum/p/et":   "GET"       # 统计 分类文章 信息现状
         , "del/p":      "DELETE"    # 删除指定文章
 
+        
+        , "st/kv":      "GET"       # 查阅 KVDB 信息
+        
+        , "push/p":     "POST"      # 推送批量文章数据 可以根据 url 判定是否有重复 
+
         , "sum/bk":     "GET"       # 综合 备份 数据现状
         , "del/bk":     "DELETE"    # 删除指定备份 dump
 
@@ -495,21 +499,25 @@ class Borg():
         , "bk/e":     "POST"      # 备份所有 活动
         , "bk/p":     "POST"      # 备份所有 文章
 
-        , "push/p":     "POST"      # 推送批量文章数据 可以根据 url 判定是否有重复 
-
         , "revert/db":  "PUT"      # 恢复整个 KVDB
         , "revert/dm":  "PUT"      # 恢复 大妈 数据
         , "revert/m":   "PUT"      # 恢复 成员 数据
         , "revert/e":   "PUT"      # 恢复 活动 数据
         , "revert/p":   "PUT"      # 恢复 文章 数据
-        
+
         , "resolve/his":  "PUT"    # 重建 HIS 索引
         , "resolve/wx":  "PUT"     # 重建 wx_Passpord 索引
-
         , "wx/t":       "HTTPS"     # 获取 token
         , "wx/ls":      "HTTPS"    # 获取关注列表
         , "wx/usr":     "HTTPS"     # 获取 用户信息
         , "wx/msg":     "HTTPS"     # 获取 用户信息
+
+        , "sum/fw":     "GET"     # 获取 转抄 状态
+        , "fw/aa":      "GET"     # 模拟 大妈 刷转抄
+        , "fw/dd":      "GET"     # 模拟 订户 刷回复
+        , "fw/mm":  "PUT"     # 忽略 订户 消息
+        , "fw/cc":  "PUT"     # 转复 订户 消息
+
         }
 
     CLI_URI = {     # 命令行 请求外部系统URI 速查字典

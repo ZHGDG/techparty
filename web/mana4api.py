@@ -483,7 +483,7 @@ def fix_paper(tag, uuid):
             if not uuid:
                 feed_back['msg'] = "BAD tag: %s out pre-defined"% tag
             else:
-                pub[set_key] = set_var.decode('utf-8')
+                pub[set_key] = set_var.decode('utf-8')#注意将一切字串,变成 unicode 统一储存
                 KV.replace(uuid, pub)
                 #print pub
                 feed_back['data'].append(pub)
@@ -544,7 +544,6 @@ def fix_event(code):
         if set_key in CFG.K4DM.keys():
             print set_key, set_var
             feed_back['msg'] = "func. not working now..." 
-            
         else:
             feed_back['msg'] = "out keys, NULL fixed!" 
             feed_back['can_fix_keys'] = CFG.K4DM.keys()
@@ -592,7 +591,7 @@ def fix_dm(nm):
             uuid, dm = __chkDAMA(nm.strip())
             #print uuid,dm
             if uuid:
-                dm[set_key] = set_var.decode('utf-8')
+                dm[set_key] = set_var.decode('utf-8')#注意将一切字串,变成 unicode 统一储存
                 KV.replace(uuid, dm)
                 feed_back['data'].append(dm)
                 feed_back['uuid'] = uuid
@@ -749,11 +748,8 @@ def wechat_post():
     else:
         print "Debugging localhost..."
     ## 注意! 从公众号来的消息和订阅号完全不同的,需要另外解析!
-    print "request.forms.keys()[0]\t\n", request.forms.keys()[0]
+    #print "request.forms.keys()[0]\t\n", request.forms.keys()[0]
     wxreq = WxRequest(request.forms.keys()[0])
-    #print "FromUserName->%s\nToUserName->%s"%( wxreq.FromUserName
-    #    , wxreq.FromUserName )
-    #print "WxTextResponse:\n", WxTextResponse("hello world", wxreq).as_xml()
     G_CRT_USR = __chkRegUsr(wxreq.FromUserName)
     wxreq.crt_usr = G_CRT_USR
     # usage pyfsm as FSM echo all kinds of usr ask
@@ -769,11 +765,11 @@ def wechat_post():
         weknow.start2('setup', wxreq)
         G_CRT_USR['fsm'] = "setup"
         __update_usr(G_CRT_USR)
-    #print dir(wxreq)
     #return None
     # 执行用户 FSM 业务
     wxreq.FSM = "send2"
     return weknow.send2(wxreq.Content.strip(), wxreq)
+
 
 
 
@@ -839,28 +835,69 @@ def setup(self, wxreq):
 
 
             else:
-                print "FSM::setup()->cmd.decode ", type(cmd.decode('utf-8'))
+                if wxreq.FromUserName in XCFG.P__DM:    #XCFG.WX_DM:
+                    print "FW2DM >>> is ZQ self"
+                    pass
+                else:
+                    print "FW2DM >>> is usr"
+                    #print cmd, type(cmd.decode('utf-8'))    #注意将一切字串,变成 unicode 统一储存
+                    print __putFW(cmd.decode('utf-8'))
+                    
+                #pub[set_key] = set_var.decode('utf-8')
+                
+                #print "FSM::setup()->cmd.decode ", type(cmd.decode('utf-8'))
                 #return None
-                access_token = _wx_token_get()
-                wx_uri = 'wx/msg'
-                host = CFG.CLI_URI[wx_uri][0]
-                url = CFG.CLI_URI[wx_uri][1]    #"%s=%s"% (CFG.CLI_URI[wx_uri][1], access_token)
+                if 0:
+                    access_token = _wx_token_get()
+                    wx_uri = 'wx/msg'
+                    host = CFG.CLI_URI[wx_uri][0]
+                    url = CFG.CLI_URI[wx_uri][1]    #"%s=%s"% (CFG.CLI_URI[wx_uri][1], access_token)
 
-                openid = XCFG.WX_ZQ
-                print cmd
-                print "<<< type(cmd) ", type(cmd)
-                content = cmd.decode('utf-8') #CFG.VERSION #u'#细思恐极....'#cmd.decode('utf-8') #_msg 
-                print "<<< cmd.decode", type(cmd.decode('utf-8'))
-                cc_msg = CFG.SRV_TXT_JSON% locals()
-                print "<<< type(cc_msg)", type(cc_msg)
-                print cc_msg
+                    openid = XCFG.WX_ZQ
+                    print cmd
+                    print "<<< type(cmd) ", type(cmd)
+                    content = cmd.decode('utf-8') #CFG.VERSION #u'#细思恐极....'#cmd.decode('utf-8') #_msg 
+                    print "<<< cmd.decode", type(cmd.decode('utf-8'))
+                    cc_msg = CFG.SRV_TXT_JSON% locals()
+                    print "<<< type(cc_msg)", type(cc_msg)
+                    print cc_msg
 
-                data = _https_post(host
-                    , url
-                    , cc_msg  #bytearray(_msg.encode('utf-8'))
-                    , token = access_token
-                    )
-                print "_https_post()>>> ", data
+                    data = _https_post(host
+                        , url
+                        , cc_msg  #bytearray(_msg.encode('utf-8'))
+                        , token = access_token
+                        )
+                    print "_https_post()>>> ", data
+
+
+
+
+        '''FW flow:
+         0.
+        usr> msg
+        << if not cmd/number alert dd command.
+        >> stored msg
+         1.
+        dm> aa 
+        << list no-answer msg.
+        dm> mm[No.for msg]  ~ ingore point msg
+        dm> cc[No.for msg]  ~ answer sting
+        << storded answer
+        << mv UUID from SYS_fw_ALL -> SYS_pubs_HIS
+         2.
+        usr> dd
+        << echo dm answered msg
+
+        CLI FW support:
+        + GET sum/fw list all fw status
+        + GET fw/aa  as DM flush member msg.s
+        + GET fw/dd/:uuid  as member flush answer
+        + PUT set/fw/mm/:zip  as DM cancel some msg.
+        + PUT set/fw/cc/:zip aa="" as answer the questin
+
+        '''
+
+
 
 
 
@@ -877,6 +914,32 @@ def end(self, wxreq):
     return None
 
 
+
+
+
+def __putFW(msg):
+    '''chk or push usr msg.'s UUID into CFG.K4D['FW']:
+        - gen. UUID
+        - deepcopy tpl. for obj.
+        - return UUID and obj.
+    '''
+    uuid = GENID('fw')
+    # inti.
+    new_fw = deepcopy(CFG.K4FW)
+    new_fw['his_id'] = uuid # 创建时同主键
+    new_fw['qa'].append(msg)
+    #print uuid, new_fw
+    KV.add(uuid, new_fw)
+    ADD4SYS('fw', uuid)
+    return uuid, new_fw
+
+'''K4FW = {"his_id":""   # 更新戮
+    , "del":0
+    , "aa":0    # 是否回答了
+    , "dm":""   # 回答的大妈 uuid
+    , "qa":[]   # [0]<- 消息,[1]<-回答 
+    }
+'''
 
 
 
@@ -1270,6 +1333,8 @@ def status(self, wxreq):
             _msg += u"\n %s :: %snodes"%(k, len(KV.get(k)))
 
     #print "pp2u-->", KV.get(KV.get('oFNShjiOhclfJ-CtOO81p2sPrBfs'))
+    _msg += "\n\t FromUserName:: %s"% wxreq.FromUserName
+    _msg += "\n\t ToUserName:: %s"% wxreq.ToUserName
     
     return WxTextResponse(_msg, wxreq).as_xml()
     

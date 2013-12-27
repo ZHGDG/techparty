@@ -14,13 +14,17 @@
 <v t="zoomq.20120710140424.5447"><vh>@nosent README.md</vh></v>
 <v t="zoomq.20120710140424.5454"><vh>@nosent config.yaml</vh></v>
 <v t="zoomq.20120710140424.5455"><vh>@nosent index.wsgi</vh></v>
+<v t="zoomq.20131226095232.5938"><vh>&lt;&lt;VERSION&gt;&gt;</vh></v>
 <v t="zoomq.20120723102156.5544" a="E"><vh>@nosent config.py</vh>
+<v t="zoomq.20131226095232.5938"></v>
 <v t="zoomq.20120727213305.14750"><vh>&lt;&lt;declarations&gt;&gt;</vh></v>
 <v t="zoomq.20120710140424.5456" a="E"><vh>&lt;&lt;cfg4Borg&gt;&gt;</vh>
 <v t="zoomq.20130926092950.5432"><vh>环境切换</vh></v>
 <v t="zoomq.20130927104354.5456"><vh>storage</vh></v>
 <v t="zoomq.20130923093950.3647" a="E"><vh>KVDB</vh>
-<v t="zoomq.20131226095232.5929"><vh>&lt;&lt;FW POOL&gt;&gt;</vh></v>
+<v t="zoomq.20131226095232.5929"><vh>&lt;&lt;FW POOL&gt;&gt;</vh>
+<v t="zoomq.20131226095232.5939"><vh>&lt;&lt;FW actions&gt;&gt;</vh></v>
+</v>
 <v t="zoomq.20130923093950.5397"><vh>&lt;&lt;MEMBER&gt;&gt;</vh></v>
 <v t="zoomq.20130923093950.8569"><vh>&lt;&lt;大妈们&gt;&gt;</vh></v>
 <v t="zoomq.20130923093950.5395"><vh>&lt;&lt;CONTENT&gt;&gt;</vh></v>
@@ -35,7 +39,12 @@
 <v t="zoomq.20130925103854.6458"><vh>文章查询</vh></v>
 <v t="zoomq.20131224083725.5910"><vh>公众号</vh></v>
 </v>
-<v t="zoomq.20130925103854.4951"><vh>RESTful</vh></v>
+<v t="zoomq.20130925103854.4951"><vh>RESTful</vh>
+<v t="zoomq.20131226095232.5937"><vh>&lt;&lt;CLI4wx&gt;&gt;</vh></v>
+<v t="zoomq.20131226095232.5936"><vh>&lt;&lt;CLI4sys&gt;&gt;</vh></v>
+<v t="zoomq.20131226095232.5935"><vh>&lt;&lt;CLI4pub&gt;&gt;</vh></v>
+<v t="zoomq.20131226095232.5934"><vh>&lt;&lt;CLI4usr&gt;&gt;</vh></v>
+</v>
 </v>
 </v>
 <v t="zoomq.20130925103854.4957"><vh>@nosent CLI.py</vh>
@@ -57,7 +66,7 @@
 <v t="zoomq.20130927104354.6053"><vh>&lt;&lt;POST&gt;&gt;</vh></v>
 </v>
 </v>
-<v t="zoomq.20120723102156.5541"><vh>module</vh>
+<v t="zoomq.20120723102156.5541" a="E"><vh>module</vh>
 <v t="zoomq.20130925103854.6406"><vh>@nosent __init__.py</vh></v>
 <v t="zoomq.20120820121523.7422"><vh>@nosent auth.py</vh>
 <v t="zoomq.20120820121523.7423"><vh>&lt;&lt;declarations&gt;&gt;</vh></v>
@@ -69,7 +78,7 @@
 <v t="zoomq.20130925103854.6443"><vh>_query2dict</vh></v>
 <v t="zoomq.20130925103854.6445"><vh>_chkQueryArgs</vh></v>
 </v>
-<v t="zoomq.20120717112543.5481"><vh>@nosent utility.py</vh>
+<v t="zoomq.20120717112543.5481" a="E"><vh>@nosent utility.py</vh>
 <v t="zoomq.20120727213305.14698"><vh>&lt;&lt;declarations&gt;&gt;</vh></v>
 <v t="zoomq.20130927104354.6047"><vh>PUT2SS()</vh></v>
 <v t="zoomq.20120727213305.14756"><vh>INIobjSYS()</vh></v>
@@ -108,12 +117,12 @@
 <v t="zoomq.20131226095232.5932"><vh>&lt;&lt;sum others&gt;&gt;</vh></v>
 </v>
 <v t="zoomq.20130927104354.6049"><vh>GET st/kv</vh></v>
-<v t="zoomq.20131007093121.5602" a="E"><vh>数据管理</vh>
+<v t="zoomq.20131007093121.5602"><vh>数据管理</vh>
 <v t="zoomq.20130927104354.6051"><vh>POST bkup/db|dm|m|e|p</vh>
 <v t="zoomq.20131223160728.4905"><vh>&lt;&lt;dump 所有内容&gt;&gt;</vh></v>
 <v t="zoomq.20131223160728.4907"><vh>&lt;&lt;dump 指定内容&gt;&gt;</vh></v>
 </v>
-<v t="zoomq.20130927104354.6062" a="E"><vh>PUT revert/db|dm|m|e|p</vh>
+<v t="zoomq.20130927104354.6062"><vh>PUT revert/db|dm|m|e|p</vh>
 <v t="zoomq.20131223160728.4909"><vh>&lt;&lt;恢复KVDB&gt;&gt;</vh></v>
 <v t="zoomq.20131223160728.4908"><vh>&lt;&lt;恢复指定数据&gt;&gt;</vh></v>
 </v>
@@ -150,8 +159,11 @@
 </v>
 <v t="zoomq.20130925103854.6427"><vh>__update_usr()</vh></v>
 <v t="zoomq.20130918155053.7083"><vh>POST /echo</vh></v>
-<v t="zoomq.20130925103854.6430"><vh>FSM 业务逻辑核心</vh>
-<v t="zoomq.20130925103854.6461"><vh>&lt;&lt;大妈联系&gt;&gt;</vh>
+<v t="zoomq.20130925103854.6430" a="E"><vh>FSM 业务逻辑核心</vh>
+<v t="zoomq.20131226095232.5942"><vh>__putFW()</vh></v>
+<v t="zoomq.20130925103854.6461" a="E"><vh>&lt;&lt;大妈联系&gt;&gt;</vh>
+<v t="zoomq.20131226095232.5940"><vh>&lt;&lt;FW2DM&gt;&gt;</vh></v>
+<v t="zoomq.20131226095232.5939"></v>
 <v t="zoomq.20131225115522.4952"><vh>&lt;&lt;doc echo&gt;&gt;</vh></v>
 <v t="zoomq.20131225115522.4951"><vh>&lt;&lt;guess DM&gt;&gt;</vh></v>
 <v t="zoomq.20131225115522.4948"><vh>&lt;&lt;CC ZQ&gt;&gt;</vh></v>
@@ -176,12 +188,12 @@
 <v t="zoomq.20131223160728.5958"><vh>&lt;&lt;reg_cancel&gt;&gt;</vh></v>
 <v t="zoomq.20131223160728.5959"><vh>&lt;&lt;reg_info&gt;&gt;</vh></v>
 </v>
-<v t="zoomq.20130925103854.6441"><vh>系统信息</vh>
+<v t="zoomq.20130925103854.6441" a="E"><vh>系统信息</vh>
 <v t="zoomq.20131223160728.5954"><vh>&lt;&lt;helpme&gt;&gt;</vh></v>
 <v t="zoomq.20131223160728.5955"><vh>&lt;&lt;version&gt;&gt;</vh></v>
 <v t="zoomq.20131223160728.5956" a="E"><vh>&lt;&lt;status&gt;&gt;</vh>
-<v t="zoomq.20131224083725.5911"><vh>&lt;&lt;CC ZQ&gt;&gt;</vh></v>
 <v t="zoomq.20131224083725.4928"><vh>&lt;&lt;sys msg&gt;&gt;</vh></v>
+<v t="zoomq.20131224083725.5911"><vh>&lt;&lt;CC ZQ&gt;&gt;</vh></v>
 </v>
 </v>
 </v>
@@ -257,6 +269,7 @@
 ~ base 珠三角技术沙龙活动综合管理应用
 
 ## 主要开发人员：
+- ZQ @ZoomQuiet
 - jeff @jeff_kit
 
 ## 主要功能
@@ -270,6 +283,7 @@
 ## Change logging
 
 - 130806 frok from gztechparty/techparty
+
 
 </t>
 <t tx="zoomq.20120710140424.5449">@language html
@@ -554,7 +568,8 @@ class Borg():
     def __init__(self):
         self.__dict__ = self.__collective_mind
     
-    VERSION = "weknow v13.12.26.12"
+    &lt;&lt;VERSION&gt;&gt;
+    
     &lt;&lt;cfg4Borg&gt;&gt;
     
 CFG = Borg()
@@ -1136,6 +1151,7 @@ JINJA2TPL_PATH = os.path.abspath(
         ,'hd':'hd_%(timestamp)s_PUB%(tot)d'
         ,'et':'et_%(timestamp)s_PUB%(tot)d'
         #,'dm':'m:%(timestamp)s:DM%(tot)d'
+        ,'fw':'fw_%(timestamp)s_PUB%(tot)d'
         }
     if obj in GOBJMAP.keys():
         return GOBJMAP[obj]% locals()
@@ -1423,11 +1439,8 @@ def wechat_post():
     else:
         print "Debugging localhost..."
     ## 注意! 从公众号来的消息和订阅号完全不同的,需要另外解析!
-    print "request.forms.keys()[0]\t\n", request.forms.keys()[0]
+    #print "request.forms.keys()[0]\t\n", request.forms.keys()[0]
     wxreq = WxRequest(request.forms.keys()[0])
-    #print "FromUserName-&gt;%s\nToUserName-&gt;%s"%( wxreq.FromUserName
-    #    , wxreq.FromUserName )
-    #print "WxTextResponse:\n", WxTextResponse("hello world", wxreq).as_xml()
     G_CRT_USR = __chkRegUsr(wxreq.FromUserName)
     wxreq.crt_usr = G_CRT_USR
     # usage pyfsm as FSM echo all kinds of usr ask
@@ -1443,11 +1456,11 @@ def wechat_post():
         weknow.start2('setup', wxreq)
         G_CRT_USR['fsm'] = "setup"
         __update_usr(G_CRT_USR)
-    #print dir(wxreq)
     #return None
     # 执行用户 FSM 业务
     wxreq.FSM = "send2"
     return weknow.send2(wxreq.Content.strip(), wxreq)
+
 
 
 
@@ -1491,13 +1504,11 @@ KV = sae.kvdb.KVClient()
 #   系统索引名-UUID 字典; KVDB 无法Mongo 样搜索,只能人工建立索引
 K4D = {'incr':"SYS_TOT"     # int
     ,'m':"SYS_usrs_ALL"     # [] 所有 成员 (包含已经 del 的)
-    #,'wx':"SYS_uuid_WX"     # [] 所有 wx_Passport-&gt;m_UUID 的反向映射 
     ,'dm':"SYS_dama_ALL"    # [] 所有 组委-&gt;uuid (包含已经 del 的)
     ,'fw':"SYS_fw_ALL"      # [] 所有 组委-&gt;uuid (包含已经 del 的)
-    
-    ,'e':"SYS_eves_ALL"     # [] 所有 活动 (包含已经 del 的)
+    #,'wx':"SYS_uuid_WX"     # [] 所有 wx_Passport-&gt;m_UUID 的反向映射 
     ,'p':"SYS_pubs_ALL"     # [] 所有 文章 (包含已经 del 的)
-    
+    ,'e':"SYS_eves_ALL"     # [] 所有 活动 (包含已经 del 的)
     ,'his':"SYS_node_HIS"   # [] 所有 节点的K索引 (包含已经 del/覆盖 的)
 }
 
@@ -1713,7 +1724,8 @@ return __echo_txt(fromUser, toUser, KV.get_info())
     , 'i', 'I', 'me', 'ei'          # 订户信息
     , 's', 'S'                      # 文章检索
     #   开发中:::
-    , 'aa', 'dd', 'cc'              # FW 回答
+    , 'dd', 'aa', 'cc', 'mm'        # FW 回答
+    
     #   隐藏功能:::
     , 'e', 'E'                      # 活动问询
     , 're', 'rc', 'ri'              # 活动报名
@@ -1730,73 +1742,18 @@ DM_ALIAS = {"LXC": ['Bonnie', 'liuxinchen', 'lxc', 'LXC', u'刘星辰']
 </t>
 <t tx="zoomq.20130925103854.4951">APIPRE = "/cli" #% _API_ROOT
 STLIMI = 4.2    # 请求安全时限(秒)
-
 SECURE_ARGS = ('appkey', 'ts', 'sign')
 CLI_MATTERS = {     # 命令行响应方式速查字典
     "his/last":   "GET"       # 最后一次节点(任意)修订
-    
-    , "find/m":     "GET"       # 搜索用户
-    , "del/usr":    "DELETE"    # 软删除所有用户 (包含tag 信息)
-    , "reliv/usr":  "PUT"       # 恢复指定用户
-    , "acl/usr":    "PUT"       # 设置用户权限
-    , "ls/usr":   "GET"       # 列出指定级别用户
-    
-    , "info":   "GET"          # 查阅 指定 信息
-    
-    , "fix/dm":     "PUT"       # 修订 大妈 信息
-    , "fix/m":      "PUT"       # 修订 成员 信息
-    , "fix/e":      "PUT"       # 增补 活动 信息
-    , "fix/p/gb":   "PUT"       # 增补 gb文章 信息
-    , "fix/p/dd":   "PUT"       # 增补 dd文章 信息
-    , "fix/p/gt":   "PUT"       # 增补 gt文章 信息
-    , "fix/p/dm":   "PUT"       # 增补 dm文章 信息
-    , "fix/p/hd":   "PUT"       # 增补 hd文章 信息
-    , "fix/p/ot":   "PUT"       # 增补 其它文章 信息
-    , "fix/p/et":   "PUT"       # 增补 活动文章 文章
-    
     , "echo":       "GET"       # 模拟wechat 问答
+    , "info":   "GET"          # 查阅 指定 信息
+    &lt;&lt;CLI4usr&gt;&gt;
+    &lt;&lt;CLI4pub&gt;&gt;
     
     , "st/kv":      "GET"       # 查阅 KVDB 信息
-
-    , "sum/his":    "GET"       # 统计 历史 索引现状
-    , "sum/db":     "GET"       # 统计 整体 信息现状
-    , "sum/dm":     "GET"       # 统计 大妈 信息现状
-    , "sum/m":      "GET"       # 统计 成员 信息现状
-    , "sum/e":      "GET"       # 统计 活动 信息现状
-    , "sum/p":      "GET"       # 统计 文章 信息现状
-    , "sum/p/gb":   "GET"       # 统计 分类文章 信息现状
-    , "sum/p/dd":   "GET"       # 统计 分类文章 信息现状
-    , "sum/p/gt":   "GET"       # 统计 分类文章 信息现状
-    , "sum/p/dm":   "GET"       # 统计 分类文章 信息现状
-    , "sum/p/hd":   "GET"       # 统计 分类文章 信息现状
-    , "sum/p/ot":   "GET"       # 统计 分类文章 信息现状
-    , "sum/p/et":   "GET"       # 统计 分类文章 信息现状
-    , "del/p":      "DELETE"    # 删除指定文章
-
-    , "sum/bk":     "GET"       # 综合 备份 数据现状
-    , "del/bk":     "DELETE"    # 删除指定备份 dump
-
-    , "bk/db":    "POST"      # 备份整个 KVDB
-    , "bk/dm":    "POST"      # 备份所有 大妈
-    , "bk/m":     "POST"      # 备份所有 成员
-    , "bk/e":     "POST"      # 备份所有 活动
-    , "bk/p":     "POST"      # 备份所有 文章
-
-    , "push/p":     "POST"      # 推送批量文章数据 可以根据 url 判定是否有重复 
-
-    , "revert/db":  "PUT"      # 恢复整个 KVDB
-    , "revert/dm":  "PUT"      # 恢复 大妈 数据
-    , "revert/m":   "PUT"      # 恢复 成员 数据
-    , "revert/e":   "PUT"      # 恢复 活动 数据
-    , "revert/p":   "PUT"      # 恢复 文章 数据
     
-    , "resolve/his":  "PUT"    # 重建 HIS 索引
-    , "resolve/wx":  "PUT"     # 重建 wx_Passpord 索引
-
-    , "wx/t":       "HTTPS"     # 获取 token
-    , "wx/ls":      "HTTPS"    # 获取关注列表
-    , "wx/usr":     "HTTPS"     # 获取 用户信息
-    , "wx/msg":     "HTTPS"     # 获取 用户信息
+    &lt;&lt;CLI4sys&gt;&gt;
+    &lt;&lt;CLI4wx&gt;&gt;    
     }
 
 CLI_URI = {     # 命令行 请求外部系统URI 速查字典
@@ -1867,25 +1824,28 @@ Options:
 
 e.g:
   一般形式::
-  $ python lbTCLI.py 事务指令 [可能的值设定 set=** 形式]
+  $ python CLI.py 事务指令 [可能的值设定 set=** 形式]
   详细操作::
   echo set=i                模拟微信的消息交互
 
   info/:UUID                查阅指定 信息
   find/m/&lt;key word&gt;         搜索用户 [对 名称,描述 搜索]
   st/kv     查询 KVDB 整体现状
-  sum/bk|db|dm|m|e|p|his
-      综合 备份|整体|大妈|成员|活动|文章|历史 信息现状
-  sum/p/:TAG 综合 分类文章 信息现状
-
+  sum/bk|db|dm|m|e|p|his|fw
+            查询 备份|整体|大妈|成员|活动|文章|历史|转抄 现状
+    sum/p/:TAG 综合 分类文章 信息现状
   fix/dm/:NM  nm=ZQ         修订/创建指定 大妈 的相关信息
-  fix/m/:UUID nm=ZQ         修订指定 成员 的相关信息
-  fix/e/:UUID pic=***       修订/创建指定 活动 的相关信息
+  fix/m|e/:UUID nm=ZQ       修订指定 成员|活动 的相关信息
   fix/p/:TAG/:UUID url=***  增补|指定 文章 信息
     TAG当前支持 ot|et|gt|dd|gb|dm|hd
     UUID 为 null 时,指创建文章信息
-  del/p/:UUID               删除指定文章
-
+  del/p/:UUID   删除指定文章
+  fw/aa         模拟 大妈 刷 成员抄发消息
+  fw/dd/:UUID   模拟 指成员 刷 大妈回复
+  fw/mm/:ZIP    模拟 大妈 忽略指定消息
+  fw/cc/:ZIP aa='回答'    
+                模拟 大妈 回复指定消息
+  
   !!! 小心:大规模数据I/O操作 !!!
   push/p json=path/2/x.json 提交批量文章数据文件
   bk/db|dm|m|e|p
@@ -2736,9 +2696,18 @@ if cmd not in CFG.CMD_ALIAS:
     if 8 &gt; len(cmd):
         &lt;&lt;guess DM&gt;&gt;
     else:
-        print "FSM::setup()-&gt;cmd.decode ", type(cmd.decode('utf-8'))
+        &lt;&lt;FW2DM&gt;&gt;
+        
+        #print "FSM::setup()-&gt;cmd.decode ", type(cmd.decode('utf-8'))
         #return None
-        &lt;&lt;CC ZQ&gt;&gt;
+        if 0:
+            &lt;&lt;CC ZQ&gt;&gt;
+
+&lt;&lt;FW actions&gt;&gt;
+
+
+
+
 
 
 </t>
@@ -2898,7 +2867,6 @@ def fix_event(code):
         if set_key in CFG.K4DM.keys():
             print set_key, set_var
             feed_back['msg'] = "func. not working now..." 
-            
         else:
             feed_back['msg'] = "out keys, NULL fixed!" 
             feed_back['can_fix_keys'] = CFG.K4DM.keys()
@@ -3096,7 +3064,7 @@ def fix_paper(tag, uuid):
             if not uuid:
                 feed_back['msg'] = "BAD tag: %s out pre-defined"% tag
             else:
-                pub[set_key] = set_var.decode('utf-8')
+                pub[set_key] = set_var.decode('utf-8')#注意将一切字串,变成 unicode 统一储存
                 KV.replace(uuid, pub)
                 #print pub
                 feed_back['data'].append(pub)
@@ -3273,7 +3241,7 @@ def fix_dm(nm):
             uuid, dm = __chkDAMA(nm.strip())
             #print uuid,dm
             if uuid:
-                dm[set_key] = set_var.decode('utf-8')
+                dm[set_key] = set_var.decode('utf-8')#注意将一切字串,变成 unicode 统一储存
                 KV.replace(uuid, dm)
                 feed_back['data'].append(dm)
                 feed_back['uuid'] = uuid
@@ -3819,6 +3787,8 @@ def status(self, wxreq):
     __update_usr(crt_usr)
     _msg = ""   #u"是也乎 "
     &lt;&lt;sys msg&gt;&gt;
+    _msg += "\n\t FromUserName:: %s"% wxreq.FromUserName
+    _msg += "\n\t ToUserName:: %s"% wxreq.ToUserName
     
     return WxTextResponse(_msg, wxreq).as_xml()
     
@@ -4298,26 +4268,7 @@ K4FW = {"his_id":""   # 更新戮
     , "qa":[]   # [0]&lt;- 消息,[1]&lt;-回答 
     }
 
-'''FW flow:
-usr&gt; msg
-&lt;&lt; if not cmd/number alert dd command.
-&gt;&gt; stored msg
-
-dm&gt; aa 
-&lt;&lt; list no-answer msg.
-dm&gt; cc[No.for msg]
-&lt;&lt; storded answer
-&lt;&lt; mv UUID from SYS_fw_ALL -&gt; SYS_pubs_HIS
-
-usr&gt; dd
-&lt;&lt; echo dm answered msg
-
-CLI FW support:
-+ GET ll/fw list all fw status
-+ GET ll/fw/new list no-answer msg.
-+ PUT set/fw/a/:zip  as answer
-+ PUT set/fw/cc/:zip aa="" as answer the questin
-'''
+&lt;&lt;FW actions&gt;&gt;
 
 
 
@@ -4366,6 +4317,136 @@ for dump in BK.list():
         ))
 
 feed_back['msg'] = "all Storaged %s dumps"% count
+
+
+
+</t>
+<t tx="zoomq.20131226095232.5934">, "find/m":     "GET"       # 搜索用户
+, "del/usr":    "DELETE"    # 软删除所有用户 (包含tag 信息)
+, "reliv/usr":  "PUT"       # 恢复指定用户
+, "acl/usr":    "PUT"       # 设置用户权限
+, "ls/usr":   "GET"       # 列出指定级别用户
+
+</t>
+<t tx="zoomq.20131226095232.5935">, "fix/dm":     "PUT"       # 修订 大妈 信息
+, "fix/m":      "PUT"       # 修订 成员 信息
+, "fix/e":      "PUT"       # 增补 活动 信息
+, "fix/p/gb":   "PUT"       # 增补 gb文章 信息
+, "fix/p/dd":   "PUT"       # 增补 dd文章 信息
+, "fix/p/gt":   "PUT"       # 增补 gt文章 信息
+, "fix/p/dm":   "PUT"       # 增补 dm文章 信息
+, "fix/p/hd":   "PUT"       # 增补 hd文章 信息
+, "fix/p/ot":   "PUT"       # 增补 其它文章 信息
+, "fix/p/et":   "PUT"       # 增补 活动文章 文章
+
+, "sum/his":    "GET"       # 统计 历史 索引现状
+, "sum/db":     "GET"       # 统计 整体 信息现状
+, "sum/dm":     "GET"       # 统计 大妈 信息现状
+, "sum/m":      "GET"       # 统计 成员 信息现状
+, "sum/e":      "GET"       # 统计 活动 信息现状
+, "sum/p":      "GET"       # 统计 文章 信息现状
+, "sum/p/gb":   "GET"       # 统计 分类文章 信息现状
+, "sum/p/dd":   "GET"       # 统计 分类文章 信息现状
+, "sum/p/gt":   "GET"       # 统计 分类文章 信息现状
+, "sum/p/dm":   "GET"       # 统计 分类文章 信息现状
+, "sum/p/hd":   "GET"       # 统计 分类文章 信息现状
+, "sum/p/ot":   "GET"       # 统计 分类文章 信息现状
+, "sum/p/et":   "GET"       # 统计 分类文章 信息现状
+, "del/p":      "DELETE"    # 删除指定文章
+
+</t>
+<t tx="zoomq.20131226095232.5936">, "push/p":     "POST"      # 推送批量文章数据 可以根据 url 判定是否有重复 
+
+, "sum/bk":     "GET"       # 综合 备份 数据现状
+, "del/bk":     "DELETE"    # 删除指定备份 dump
+
+, "bk/db":    "POST"      # 备份整个 KVDB
+, "bk/dm":    "POST"      # 备份所有 大妈
+, "bk/m":     "POST"      # 备份所有 成员
+, "bk/e":     "POST"      # 备份所有 活动
+, "bk/p":     "POST"      # 备份所有 文章
+
+, "revert/db":  "PUT"      # 恢复整个 KVDB
+, "revert/dm":  "PUT"      # 恢复 大妈 数据
+, "revert/m":   "PUT"      # 恢复 成员 数据
+, "revert/e":   "PUT"      # 恢复 活动 数据
+, "revert/p":   "PUT"      # 恢复 文章 数据
+
+, "resolve/his":  "PUT"    # 重建 HIS 索引
+, "resolve/wx":  "PUT"     # 重建 wx_Passpord 索引
+</t>
+<t tx="zoomq.20131226095232.5937">, "wx/t":       "HTTPS"     # 获取 token
+, "wx/ls":      "HTTPS"    # 获取关注列表
+, "wx/usr":     "HTTPS"     # 获取 用户信息
+, "wx/msg":     "HTTPS"     # 获取 用户信息
+
+, "sum/fw":     "GET"     # 获取 转抄 状态
+, "fw/aa":      "GET"     # 模拟 大妈 刷转抄
+, "fw/dd":      "GET"     # 模拟 订户 刷回复
+, "fw/mm":  "PUT"     # 忽略 订户 消息
+, "fw/cc":  "PUT"     # 转复 订户 消息
+
+</t>
+<t tx="zoomq.20131226095232.5938">VERSION = "weknow v13.12.27.2"</t>
+<t tx="zoomq.20131226095232.5939">'''FW flow:
+ 0.
+usr&gt; msg
+&lt;&lt; if not cmd/number alert dd command.
+&gt;&gt; stored msg
+ 1.
+dm&gt; aa 
+&lt;&lt; list no-answer msg.
+dm&gt; mm[No.for msg]  ~ ingore point msg
+dm&gt; cc[No.for msg]  ~ answer sting
+&lt;&lt; storded answer
+&lt;&lt; mv UUID from SYS_fw_ALL -&gt; SYS_pubs_HIS
+ 2.
+usr&gt; dd
+&lt;&lt; echo dm answered msg
+
+CLI FW support:
++ GET sum/fw list all fw status
++ GET fw/aa  as DM flush member msg.s
++ GET fw/dd/:uuid  as member flush answer
++ PUT set/fw/mm/:zip  as DM cancel some msg.
++ PUT set/fw/cc/:zip aa="" as answer the questin
+
+'''
+
+</t>
+<t tx="zoomq.20131226095232.5940">if wxreq.FromUserName in XCFG.P__DM:    #XCFG.WX_DM:
+    print "FW2DM &gt;&gt;&gt; is ZQ self"
+    pass
+else:
+    print "FW2DM &gt;&gt;&gt; is usr"
+    #print cmd, type(cmd.decode('utf-8'))    #注意将一切字串,变成 unicode 统一储存
+    print __putFW(cmd.decode('utf-8'))
+    
+#pub[set_key] = set_var.decode('utf-8')
+</t>
+<t tx="zoomq.20131226095232.5942">def __putFW(msg):
+    '''chk or push usr msg.'s UUID into CFG.K4D['FW']:
+        - gen. UUID
+        - deepcopy tpl. for obj.
+        - return UUID and obj.
+    '''
+    uuid = GENID('fw')
+    # inti.
+    new_fw = deepcopy(CFG.K4FW)
+    new_fw['his_id'] = uuid # 创建时同主键
+    new_fw['qa'].append(msg)
+    #print uuid, new_fw
+    KV.add(uuid, new_fw)
+    ADD4SYS('fw', uuid)
+    return uuid, new_fw
+
+'''K4FW = {"his_id":""   # 更新戮
+    , "del":0
+    , "aa":0    # 是否回答了
+    , "dm":""   # 回答的大妈 uuid
+    , "qa":[]   # [0]&lt;- 消息,[1]&lt;-回答 
+    }
+'''
 
 
 
