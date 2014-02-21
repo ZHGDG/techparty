@@ -90,7 +90,7 @@
 </v>
 </v>
 <v t="zoomq.20120723102156.5543" a="E"><vh>web</vh>
-<v t="zoomq.20120723102156.5545"><vh>@nosent __init__.py</vh>
+<v t="zoomq.20120723102156.5545" a="E"><vh>@nosent __init__.py</vh>
 <v t="zoomq.20120723102156.5546"><vh>&lt;&lt;declarations&gt;&gt;</vh></v>
 <v t="zoomq.20120723102156.5548"><vh>/</vh></v>
 <v t="zoomq.20120727213305.14707"><vh>404+各种默认处理</vh></v>
@@ -104,10 +104,10 @@
 <v t="zoomq.20130923093950.8565"><vh>&lt;&lt;SEARCH&gt;&gt;</vh></v>
 <v t="zoomq.20130923093950.8566"><vh>&lt;&lt;THANKS&gt;&gt;</vh></v>
 </v>
-<v t="zoomq.20120723102156.5561" a="E"><vh>@nosent mana4api.py</vh>
+<v t="zoomq.20120723102156.5561"><vh>@nosent mana4api.py</vh>
 <v t="zoomq.20120723102156.5562"><vh>&lt;&lt;declarations&gt;&gt;</vh></v>
 <v t="zoomq.20130918155053.5760"><vh>GET  /echo</vh></v>
-<v t="zoomq.20130925103854.5007" a="E"><vh>CLI 远程管理&gt;&gt;&gt;</vh>
+<v t="zoomq.20130925103854.5007"><vh>CLI 远程管理&gt;&gt;&gt;</vh>
 <v t="zoomq.20131223160728.4904"><vh>GET info/:UUID</vh></v>
 <v t="zoomq.20130925103854.5049"><vh>GET sum/db|FW|dm|m|e|p</vh>
 <v t="zoomq.20131226095232.5953"><vh>&lt;&lt;sum fw&gt;&gt;</vh></v>
@@ -153,12 +153,12 @@
 <v t="zoomq.20130925103854.5034"><vh>GET sum/his</vh></v>
 <v t="zoomq.20130925103854.5035"><vh>GET his/last</vh></v>
 </v>
-<v t="zoomq.20131226095232.5946" a="E"><vh>FW 事务</vh>
+<v t="zoomq.20131226095232.5946"><vh>FW 事务</vh>
 <v t="zoomq.20131226095232.5939"></v>
-<v t="zoomq.20131226095232.5947" a="E"><vh>GET fw/ll</vh>
+<v t="zoomq.20131226095232.5947"><vh>GET fw/ll</vh>
 <v t="zoomq.20131226095232.5956"><vh>&lt;&lt;提示组织&gt;&gt;</vh></v>
 </v>
-<v t="zoomq.20131226095232.5952" a="E"><vh>PUT fw/mm/:zid</vh>
+<v t="zoomq.20131226095232.5952"><vh>PUT fw/mm/:zid</vh>
 <v t="zoomq.20131228000540.4029"><vh>&lt;&lt;mv FWmsg.&gt;&gt;</vh></v>
 <v t="zoomq.20131228000540.4028"><vh>&lt;&lt;mm FW&gt;&gt;</vh></v>
 </v>
@@ -171,7 +171,7 @@
 </v>
 <v t="zoomq.20130925103854.6427"><vh>__update_usr()</vh></v>
 <v t="zoomq.20130918155053.7083"><vh>POST /echo</vh></v>
-<v t="zoomq.20130925103854.6430" a="E"><vh>FSM 业务逻辑核心</vh>
+<v t="zoomq.20130925103854.6430"><vh>FSM 业务逻辑核心</vh>
 <v t="zoomq.20131226095232.5942" a="E"><vh>__putFW()</vh>
 <v t="zoomq.20131226095232.5955"><vh>&lt;&lt;init FW msg.&gt;&gt;</vh></v>
 </v>
@@ -621,10 +621,15 @@ from config import JINJA2TPL_PATH
 TEMPLATE_PATH.insert(0, JINJA2TPL_PATH)
 
 </t>
-<t tx="zoomq.20120723102156.5548">@APP.route('/')
-#@view('404.html')
-def index():
-    return template('index.html')
+<t tx="zoomq.20120723102156.5548">#@view('404.html')
+@APP.get('/')
+def index():    
+    #return template('index.html')
+    return """%s 
+    esp. support wechat public No.: GDG-ZhuHai 
+    ; only API service !-)
+    contact: support@zhgdg.org
+    """% CFG.VERSION
 
 </t>
 <t tx="zoomq.20120723102156.5561">@language py
@@ -4557,14 +4562,24 @@ def fw_ll(qstr):
         #print type(_seq), _seq
         tot = 0
         #print type(all_fw['sequence']) -&gt;&lt;type 'list'&gt;
+        
         for u in all_fw.keys():
             if 'sequence' == u:
                 pass
             else:
                 #print "%s as %s"% (u, _seq.index(u))
-                usr_as = "usr~%s"% _seq.index(u)
-                data[usr_as] = []
-                &lt;&lt;提示组织&gt;&gt;    
+                if u in _seq:
+                    usr_as = "usr~%s"% _seq.index(u)
+                    data[usr_as] = []
+                    print usr_as
+                    &lt;&lt;提示组织&gt;&gt;
+                else:
+                    print "需要清除的空 回复 容器" 
+                    all_fw.pop(u)
+                #break
+                
+        print all_fw
+        return None    
         return {'msg':";-) as DM aa FWmsg.s"
             , 'data': data
             , 'count': "FW %s users %s msg.s"% (
@@ -4620,24 +4635,21 @@ def fw_mm(zip_id):
     q_dict = request.forms
     if _chkQueryArgs("/cli/fw/mm/%s"% zip_id, q_dict, "PUT"):
         data = []
-        #print "fw_mm(zid)", zid
-        #print "q_dict['set'] ", base64.urlsafe_b64decode(q_dict['set'])
         usr_as = base64.urlsafe_b64decode(q_dict['set'])
+        _uid = int(usr_as)
         _zid = int(zip_id)
+        
         all_fw = KV.get(CFG.K4D['fw'])
         _seq = all_fw['sequence']
-        uuid_usr = _seq[_zid]
-        #print all_fw[_seq[_zid]]
-        uuid_fw = all_fw[_seq[_zid]][_zid]
-        #uuid_usr = all_fw[ int(zid) ]
-        #uuid_fw = all_fw[ int(zid) ]
+        uuid_usr = _seq[_uid]
+        uuid_fw = all_fw[uuid_usr][_zid]
         &lt;&lt;mm FW&gt;&gt;
         #&lt;&lt; storded answer
         #&lt;&lt; mv UUID from SYS_fw_ALL -&gt; SYS_pubs_HIS
         &lt;&lt;mv FWmsg.&gt;&gt;
         
-        return {'msg':";-) as DM mm msg.s:%s~%s"%("usr", 'uuid_fw')
-            , 'data': "%s =&gt; CFG.K4D['his']%s"% (uuid_fw, his_all.index(uuid_fw))
+        return {'msg':";-) as DM mm msg.s:%s~%s"%(_uid, uuid_fw)
+            , 'data': _fw
             }
     else:
         return "alert quary!-("
@@ -4681,13 +4693,24 @@ _fw['aa'] = 1
 _fw['del'] = 1
 _fw['his_id'] = GENID('his')#   stamp updated
 
+KV.set(uuid_fw, _fw)
+
 </t>
-<t tx="zoomq.20131228000540.4029">his_all = KV.get(CFG.K4D['his'])
+<t tx="zoomq.20131228000540.4029"># 从对应用户消息索引列表中清除
+all_fw[uuid_usr].remove(uuid_fw)
+if 0 == len(all_fw[uuid_usr]):
+    # 如果已经为空,则从 sequence 内部索引中清除用户ID
+    all_fw['sequence'].remove(uuid_usr)
+    # 再整个清除用户消息UUID 关系对结点
+    all_fw.pop(uuid_usr)
+#print all_fw
+#return None
+KV.set(CFG.K4D['fw'] ,all_fw)
+
+# 收录到历史全集索引
+his_all = KV.get(CFG.K4D['his'])
 his_all.append(uuid_fw)
 KV.set(CFG.K4D['his'] ,his_all)
-fw_keys.remove(uuid_fw)
-KV.set(CFG.K4D['fw'] ,fw_keys)
-#return None
 
 
 </t>

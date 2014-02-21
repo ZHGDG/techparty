@@ -791,23 +791,33 @@ def fw_ll(qstr):
         #print type(_seq), _seq
         tot = 0
         #print type(all_fw['sequence']) -><type 'list'>
+        
         for u in all_fw.keys():
             if 'sequence' == u:
                 pass
             else:
                 #print "%s as %s"% (u, _seq.index(u))
-                usr_as = "usr~%s"% _seq.index(u)
-                data[usr_as] = []
+                if u in _seq:
+                    usr_as = "usr~%s"% _seq.index(u)
+                    data[usr_as] = []
+                    print usr_as
 
-                tot += len(all_fw[u])
-                for k in all_fw[u]:
-                    _fw = KV.get(k)
-                    echo = "%s~%s %s"% ( all_fw[u].index(k)
-                        , _fw['qa'][0]
-                        , k )
-                    #print echo , type(echo)
-                    data[usr_as].append(echo)
+                    tot += len(all_fw[u])
+                    for k in all_fw[u]:
+                        _fw = KV.get(k)
+                        echo = "%s~%s %s"% ( all_fw[u].index(k)
+                            , _fw['qa'][0]
+                            , k )
+                        #print echo , type(echo)
+                        data[usr_as].append(echo)
 
+                else:
+                    print "需要清除的空 回复 容器" 
+                    all_fw.pop(u)
+                #break
+                
+        print all_fw
+        return None    
         return {'msg':";-) as DM aa FWmsg.s"
             , 'data': data
             , 'count': "FW %s users %s msg.s"% (
@@ -823,17 +833,14 @@ def fw_mm(zip_id):
     q_dict = request.forms
     if _chkQueryArgs("/cli/fw/mm/%s"% zip_id, q_dict, "PUT"):
         data = []
-        #print "fw_mm(zid)", zid
-        #print "q_dict['set'] ", base64.urlsafe_b64decode(q_dict['set'])
         usr_as = base64.urlsafe_b64decode(q_dict['set'])
+        _uid = int(usr_as)
         _zid = int(zip_id)
+        
         all_fw = KV.get(CFG.K4D['fw'])
         _seq = all_fw['sequence']
-        uuid_usr = _seq[_zid]
-        #print all_fw[_seq[_zid]]
-        uuid_fw = all_fw[_seq[_zid]][_zid]
-        #uuid_usr = all_fw[ int(zid) ]
-        #uuid_fw = all_fw[ int(zid) ]
+        uuid_usr = _seq[_uid]
+        uuid_fw = all_fw[uuid_usr][_zid]
         _fw = KV.get(uuid_fw)
         #print _fw
         _fw['dm'] = XCFG.AS_USR
@@ -841,19 +848,30 @@ def fw_mm(zip_id):
         _fw['del'] = 1
         _fw['his_id'] = GENID('his')#   stamp updated
 
+        KV.set(uuid_fw, _fw)
+
         #<< storded answer
         #<< mv UUID from SYS_fw_ALL -> SYS_pubs_HIS
+        # 从对应用户消息索引列表中清除
+        all_fw[uuid_usr].remove(uuid_fw)
+        if 0 == len(all_fw[uuid_usr]):
+            # 如果已经为空,则从 sequence 内部索引中清除用户ID
+            all_fw['sequence'].remove(uuid_usr)
+            # 再整个清除用户消息UUID 关系对结点
+            all_fw.pop(uuid_usr)
+        #print all_fw
+        #return None
+        KV.set(CFG.K4D['fw'] ,all_fw)
+
+        # 收录到历史全集索引
         his_all = KV.get(CFG.K4D['his'])
         his_all.append(uuid_fw)
         KV.set(CFG.K4D['his'] ,his_all)
-        fw_keys.remove(uuid_fw)
-        KV.set(CFG.K4D['fw'] ,fw_keys)
-        #return None
 
 
         
-        return {'msg':";-) as DM mm msg.s:%s~%s"%("usr", 'uuid_fw')
-            , 'data': "%s => CFG.K4D['his']%s"% (uuid_fw, his_all.index(uuid_fw))
+        return {'msg':";-) as DM mm msg.s:%s~%s"%(_uid, uuid_fw)
+            , 'data': _fw
             }
     else:
         return "alert quary!-("

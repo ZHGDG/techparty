@@ -18,10 +18,15 @@ APP.mount('/api', __import__('mana4api').APP)
 #APP.mount('/mana', __import__('mana4sys').APP)
 
 
-@APP.route('/')
 #@view('404.html')
-def index():
-    return template('index.html')
+@APP.get('/')
+def index():    
+    #return template('index.html')
+    return """%s 
+    esp. support wechat public No.: GDG-ZhuHai 
+    ; only API service !-)
+    contact: support@zhgdg.org
+    """% CFG.VERSION
 
 #@view('404.html')
 @APP.error(404)
