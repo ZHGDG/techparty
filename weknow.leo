@@ -21,7 +21,7 @@
 <v t="zoomq.20120710140424.5456" a="E"><vh>&lt;&lt;cfg4Borg&gt;&gt;</vh>
 <v t="zoomq.20130926092950.5432"><vh>环境切换</vh></v>
 <v t="zoomq.20130927104354.5456"><vh>storage</vh></v>
-<v t="zoomq.20130923093950.3647"><vh>KVDB</vh>
+<v t="zoomq.20130923093950.3647" a="E"><vh>KVDB</vh>
 <v t="zoomq.20131226095232.5939"><vh>&lt;&lt;FW actions&gt;&gt;</vh></v>
 <v t="zoomq.20131226095232.5929"><vh>&lt;&lt;FW POOL&gt;&gt;</vh></v>
 <v t="zoomq.20130923093950.5397"><vh>&lt;&lt;MEMBER&gt;&gt;</vh></v>
@@ -29,7 +29,7 @@
 <v t="zoomq.20130923093950.5395"><vh>&lt;&lt;CONTENT&gt;&gt;</vh></v>
 <v t="zoomq.20130923093950.5396"><vh>&lt;&lt;HISTORIC&gt;&gt;</vh></v>
 </v>
-<v t="zoomq.20130918155053.7084"><vh>4wechat</vh>
+<v t="zoomq.20130918155053.7084" a="E"><vh>4wechat</vh>
 <v t="zoomq.20130923093950.8818"><vh>&lt;&lt;ALIAS&gt;&gt;</vh></v>
 <v t="zoomq.20130923093950.7285"><vh>&lt;&lt;XML模板&gt;&gt;</vh></v>
 <v t="zoomq.20130925103854.6457"><vh>活动报名</vh></v>
@@ -46,7 +46,7 @@
 </v>
 </v>
 </v>
-<v t="zoomq.20130925103854.4957" a="E"><vh>@nosent CLI.py</vh>
+<v t="zoomq.20130925103854.4957"><vh>@nosent CLI.py</vh>
 <v t="zoomq.20130925103854.4958"><vh>&lt;&lt;docopt&gt;&gt;</vh></v>
 <v t="zoomq.20130925103854.4959"><vh>&lt;&lt;declarations&gt;&gt;</vh></v>
 <v t="zoomq.20130925103854.4961"><vh>smart_rest()</vh></v>
@@ -65,7 +65,7 @@
 <v t="zoomq.20130927104354.6053"><vh>&lt;&lt;POST&gt;&gt;</vh></v>
 </v>
 </v>
-<v t="zoomq.20120723102156.5541" a="E"><vh>module</vh>
+<v t="zoomq.20120723102156.5541"><vh>module</vh>
 <v t="zoomq.20130925103854.6406"><vh>@nosent __init__.py</vh></v>
 <v t="zoomq.20120820121523.7422"><vh>@nosent auth.py</vh>
 <v t="zoomq.20120820121523.7423"><vh>&lt;&lt;declarations&gt;&gt;</vh></v>
@@ -90,7 +90,7 @@
 </v>
 </v>
 <v t="zoomq.20120723102156.5543" a="E"><vh>web</vh>
-<v t="zoomq.20120723102156.5545" a="E"><vh>@nosent __init__.py</vh>
+<v t="zoomq.20120723102156.5545"><vh>@nosent __init__.py</vh>
 <v t="zoomq.20120723102156.5546"><vh>&lt;&lt;declarations&gt;&gt;</vh></v>
 <v t="zoomq.20120723102156.5548"><vh>/</vh></v>
 <v t="zoomq.20120727213305.14707"><vh>404+各种默认处理</vh></v>
@@ -104,7 +104,7 @@
 <v t="zoomq.20130923093950.8565"><vh>&lt;&lt;SEARCH&gt;&gt;</vh></v>
 <v t="zoomq.20130923093950.8566"><vh>&lt;&lt;THANKS&gt;&gt;</vh></v>
 </v>
-<v t="zoomq.20120723102156.5561"><vh>@nosent mana4api.py</vh>
+<v t="zoomq.20120723102156.5561" a="E"><vh>@nosent mana4api.py</vh>
 <v t="zoomq.20120723102156.5562"><vh>&lt;&lt;declarations&gt;&gt;</vh></v>
 <v t="zoomq.20130918155053.5760"><vh>GET  /echo</vh></v>
 <v t="zoomq.20130925103854.5007"><vh>CLI 远程管理&gt;&gt;&gt;</vh>
@@ -117,12 +117,12 @@
 <v t="zoomq.20131226095232.5932"><vh>&lt;&lt;sum others&gt;&gt;</vh></v>
 </v>
 <v t="zoomq.20130927104354.6049"><vh>GET st/kv</vh></v>
-<v t="zoomq.20131007093121.5602"><vh>数据管理</vh>
+<v t="zoomq.20131007093121.5602" a="E"><vh>数据管理</vh>
 <v t="zoomq.20130927104354.6051"><vh>POST bkup/db|dm|m|e|p</vh>
 <v t="zoomq.20131223160728.4905"><vh>&lt;&lt;dump 所有内容&gt;&gt;</vh></v>
 <v t="zoomq.20131223160728.4907"><vh>&lt;&lt;dump 指定内容&gt;&gt;</vh></v>
 </v>
-<v t="zoomq.20130927104354.6062"><vh>PUT revert/db|dm|m|e|p</vh>
+<v t="zoomq.20130927104354.6062" a="E"><vh>PUT revert/db|dm|m|e|p</vh>
 <v t="zoomq.20131223160728.4909"><vh>&lt;&lt;恢复KVDB&gt;&gt;</vh></v>
 <v t="zoomq.20131223160728.4908"><vh>&lt;&lt;恢复指定数据&gt;&gt;</vh></v>
 </v>
@@ -171,21 +171,21 @@
 </v>
 <v t="zoomq.20130925103854.6427"><vh>__update_usr()</vh></v>
 <v t="zoomq.20130918155053.7083"><vh>POST /echo</vh></v>
-<v t="zoomq.20130925103854.6430"><vh>FSM 业务逻辑核心</vh>
-<v t="zoomq.20131226095232.5942" a="E"><vh>__putFW()</vh>
+<v t="zoomq.20130925103854.6430" a="E"><vh>FSM 业务逻辑核心</vh>
+<v t="zoomq.20131226095232.5942"><vh>__putFW()</vh>
 <v t="zoomq.20131226095232.5955"><vh>&lt;&lt;init FW msg.&gt;&gt;</vh></v>
 </v>
-<v t="zoomq.20130925103854.6461" a="E"><vh>&lt;&lt;大妈联系&gt;&gt;</vh>
+<v t="zoomq.20130925103854.6461"><vh>&lt;&lt;大妈联系&gt;&gt;</vh>
 <v t="zoomq.20131226095232.5940"><vh>&lt;&lt;FW2DM&gt;&gt;</vh></v>
 <v t="zoomq.20131226095232.5939"></v>
 <v t="zoomq.20131225115522.4952"><vh>&lt;&lt;doc echo&gt;&gt;</vh></v>
 <v t="zoomq.20131225115522.4951"><vh>&lt;&lt;guess DM&gt;&gt;</vh></v>
 <v t="zoomq.20131225115522.4948"><vh>&lt;&lt;CC ZQ&gt;&gt;</vh></v>
 </v>
-<v t="zoomq.20130925103854.6431"><vh>s 查阅文章</vh>
+<v t="zoomq.20130925103854.6431" a="E"><vh>s 查阅文章</vh>
 <v t="zoomq.20130926092950.5443"><vh>&lt;&lt;seek&gt;&gt;</vh></v>
 <v t="zoomq.20130926092950.5444"><vh>&lt;&lt;tags&gt;&gt;</vh></v>
-<v t="zoomq.20130926092950.5445"><vh>&lt;&lt;no_paper&gt;&gt;</vh>
+<v t="zoomq.20130926092950.5445" a="E"><vh>&lt;&lt;no_paper&gt;&gt;</vh>
 <v t="zoomq.20131007093121.31624"><vh>&lt;&lt;tag paper No.&gt;&gt;</vh></v>
 </v>
 </v>
@@ -1570,7 +1570,14 @@ for k in K4D:
     , 'hd':u" ~ 海选文章 (得要相信,大妈法眼)"
     , 'et':u" ~ 活动报道 (快乐大趴,给力小会)"
     }
-    
+ESSAY_TAG_KEYS = ['gb'
+    , 'dd'
+    , 'gt'
+    , 'dm'
+    , 'hd'
+    , 'et'
+    , 'ot'
+    ]
 # 文章索引
 K4WD = {"his_id":""   # 更新戮
     , "del":0
@@ -1811,7 +1818,11 @@ LEVEL4USR = {"mana":0
 AS_LOCAL = "http://localhost:8080/api"
 
 @others
-
+'''chaos CLI
+益rz...
+  wx/ls             通过 服务号测试接口 获取关注列表 
+  wx/usr/:openid    通过 服务号测试接口 获取指定关注用户信息
+'''
 if __name__ == '__main__':
     '''为了简化 后台控制的界面开发,快速实现远程控制:
         - 通过 RESTful 接口,从本地使用工具脚本实施管理事务!
@@ -1836,27 +1847,25 @@ Usage:
   CLI.py [--debug] &lt;matter&gt; [&lt;sets&gt;]
   CLI.py -h | --help
   CLI.py -D | --debug    向本地接口发送请求
-  CLI.py -V | --version
 
 Options:
   -h --help     Show this screen.
   -V --version  Show version.
-  -D --debug    对本地系统测试时专用参数
+  -D --debug    对本地开发系统进行调/测试
   &lt;matter&gt;      事务URI
   &lt;sets&gt;        数据设定
 
 e.g:
   一般形式::
-  $ python CLI.py 事务指令 [可能的值设定 set=** 形式]
+$ python CLI.py 事务指令 [可能的值设定 set=** 形式]
   详细操作::
   echo set=i                模拟微信的消息交互
-
   info/:UUID                查阅指定 信息
   find/m/&lt;key word&gt;         搜索用户 [对 名称,描述 搜索]
   st/kv     查询 KVDB 整体现状
   sum/bk|db|dm|m|e|p|his|fw
             查询 备份|整体|大妈|成员|活动|文章|历史|转抄 现状
-    sum/p/:TAG 综合 分类文章 信息现状
+  sum/p/:TAG 综合 分类文章 信息现状
   fix/dm/:NM  nm=ZQ         修订/创建指定 大妈 的相关信息
   fix/m|e/:UUID nm=ZQ       修订指定 成员|活动 的相关信息
   fix/p/:TAG/:UUID url=***  增补|指定 文章 信息
@@ -1865,10 +1874,8 @@ e.g:
   del/p/:UUID   删除指定文章
   fw/ll         模拟 大妈 刷 成员抄发消息
   fw/dd/:UUID   模拟 指成员 刷 大妈回复
-  fw/mm/:ZIP set='订户编号'   
-                模拟 大妈 忽略指定消息
-  fw/aa/:ZIP set='回答内容'    
-                模拟 大妈 回复指定消息
+  fw/mm/:ZIP set='订户编号' ~ 忽略指定消息
+  fw/aa/:ZIP set='回答内容' ~ 回复指定消息
   
   !!! 小心:大规模数据I/O操作 !!!
   push/p json=path/2/x.json 提交批量文章数据文件
@@ -1879,10 +1886,6 @@ e.g:
      恢复 KVDB|大妈|成员|活动|文章 数据到Storage
   resolve/his|wx|fw        set=all       
     重建 HIS|Passpord|FW 全局索引内容
-
-益rz...
-  wx/ls             通过 服务号测试接口 获取关注列表 
-  wx/usr/:openid    通过 服务号测试接口 获取指定关注用户信息
 """
 </t>
 <t tx="zoomq.20130925103854.4959">import sys
@@ -2548,6 +2551,8 @@ TXT_VER = u'''珠海GDG 公众号应答系统当前版本:
 %s
 
 Changelog:
+- 140424 根据DevRel 运营经验增补:
+    - revert 实用化
 - 131224 同时绑定公众测试号,尝试更多可能
 - 130928 启用Storage 服务,数据可备份/下载/恢复
 - 130926 启用 Jeff 的SDK,配合运营CLI 工具简化代码
@@ -2660,7 +2665,7 @@ em:foo.bar@gmail.com
 更多细节,请惯性地输入 h 继续吧 :)
 '''</t>
 <t tx="zoomq.20130925103854.6458">PAPER_TAGS = ESSAY_TAG.keys()
-TXT_TAG_DEFINE = "    ".join([u"%s %s\n"%(k, ESSAY_TAG[k]) for k in ESSAY_TAG.keys()])
+TXT_TAG_DEFINE = "    ".join([u"%s %s\n"%(k, ESSAY_TAG[k]) for k in ESSAY_TAG_KEYS])
 
 TXT_PLS_TAG = u'''亲! 请输入文章类别编码(类似 dm 的2字母):
 然后,俺才能给出该类别的文章索引...
@@ -3266,7 +3271,8 @@ def revert_dump(matter):
         else:
             &lt;&lt;恢复指定数据&gt;&gt;
                     
-        feed_back['data'].append( BK.stat_object(set_var) )
+        feed_back['data'].append( KV.get_info())
+        #BK.stat_object(set_var) )
         #data.append(KV.get_info())
         return feed_back
     else:
@@ -3757,12 +3763,15 @@ for uuid in uuids:
 
 
 </t>
-<t tx="zoomq.20131223160728.4909">dumps = BK.get_object_contents(set_var)
+<t tx="zoomq.20131223160728.4909">dumps = open(set_var).read()#BK.get_object_contents(set_var)
 re_obj = cPickle.loads(dumps)
+print re_obj
 feed_back['msg'] = "reverted %s nodes for whole KVDB "% len(re_obj.keys())
 _INX_KEYS = [CFG.K4D[k] for k in CFG.K4D.keys()]
 # replace global idx K/V, maybe make ghost K/V
-_his = set()#KV.get(CFG.K4D['his'])            
+_his = set()#KV.get(CFG.K4D['his'])  
+print re_obj.keys()
+
 for k in re_obj.keys():
     if k in _INX_KEYS:
         # 索引键处理
@@ -3790,6 +3799,8 @@ for k in re_obj.keys():
             KV.replace(k, re_obj[k])
 KV.set(CFG.K4D['his'], list(_his) )
 #print KV.get(CFG.K4D['his'])
+
+print KV.get_info()
 
 
 
@@ -4462,7 +4473,7 @@ feed_back['msg'] = "all Storaged %s dumps"% count
 , "fw/aa":  "PUT"     # 转复 订户 消息
 
 </t>
-<t tx="zoomq.20131226095232.5938">VERSION = "weknow v13.12.27.2"</t>
+<t tx="zoomq.20131226095232.5938">VERSION = "weknow v14.04.24.11"</t>
 <t tx="zoomq.20131226095232.5939">'''FW flow:
  0.
 usr&gt; msg

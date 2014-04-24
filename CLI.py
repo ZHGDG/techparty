@@ -6,27 +6,25 @@ Usage:
   CLI.py [--debug] <matter> [<sets>]
   CLI.py -h | --help
   CLI.py -D | --debug    向本地接口发送请求
-  CLI.py -V | --version
 
 Options:
   -h --help     Show this screen.
   -V --version  Show version.
-  -D --debug    对本地系统测试时专用参数
+  -D --debug    对本地开发系统进行调/测试
   <matter>      事务URI
   <sets>        数据设定
 
 e.g:
   一般形式::
-  $ python CLI.py 事务指令 [可能的值设定 set=** 形式]
+$ python CLI.py 事务指令 [可能的值设定 set=** 形式]
   详细操作::
   echo set=i                模拟微信的消息交互
-
   info/:UUID                查阅指定 信息
   find/m/<key word>         搜索用户 [对 名称,描述 搜索]
   st/kv     查询 KVDB 整体现状
   sum/bk|db|dm|m|e|p|his|fw
             查询 备份|整体|大妈|成员|活动|文章|历史|转抄 现状
-    sum/p/:TAG 综合 分类文章 信息现状
+  sum/p/:TAG 综合 分类文章 信息现状
   fix/dm/:NM  nm=ZQ         修订/创建指定 大妈 的相关信息
   fix/m|e/:UUID nm=ZQ       修订指定 成员|活动 的相关信息
   fix/p/:TAG/:UUID url=***  增补|指定 文章 信息
@@ -35,10 +33,8 @@ e.g:
   del/p/:UUID   删除指定文章
   fw/ll         模拟 大妈 刷 成员抄发消息
   fw/dd/:UUID   模拟 指成员 刷 大妈回复
-  fw/mm/:ZIP set='订户编号'   
-                模拟 大妈 忽略指定消息
-  fw/aa/:ZIP set='回答内容'    
-                模拟 大妈 回复指定消息
+  fw/mm/:ZIP set='订户编号' ~ 忽略指定消息
+  fw/aa/:ZIP set='回答内容' ~ 回复指定消息
   
   !!! 小心:大规模数据I/O操作 !!!
   push/p json=path/2/x.json 提交批量文章数据文件
@@ -49,10 +45,6 @@ e.g:
      恢复 KVDB|大妈|成员|活动|文章 数据到Storage
   resolve/his|wx|fw        set=all       
     重建 HIS|Passpord|FW 全局索引内容
-
-益rz...
-  wx/ls             通过 服务号测试接口 获取关注列表 
-  wx/usr/:openid    通过 服务号测试接口 获取指定关注用户信息
 """
 import sys
 import os
@@ -376,7 +368,11 @@ def _rest_main(method, uri, args, host=AS_LOCAL):
     #print p.stderr
 
     
-
+'''chaos CLI
+益rz...
+  wx/ls             通过 服务号测试接口 获取关注列表 
+  wx/usr/:openid    通过 服务号测试接口 获取指定关注用户信息
+'''
 if __name__ == '__main__':
     '''为了简化 后台控制的界面开发,快速实现远程控制:
         - 通过 RESTful 接口,从本地使用工具脚本实施管理事务!

@@ -274,12 +274,15 @@ def revert_dump(matter):
         #print set_key, set_var
         if 'db' ==  matter:
             print "try revert ALL date from KVDB"
-            dumps = BK.get_object_contents(set_var)
+            dumps = open(set_var).read()#BK.get_object_contents(set_var)
             re_obj = cPickle.loads(dumps)
+            print re_obj
             feed_back['msg'] = "reverted %s nodes for whole KVDB "% len(re_obj.keys())
             _INX_KEYS = [CFG.K4D[k] for k in CFG.K4D.keys()]
             # replace global idx K/V, maybe make ghost K/V
-            _his = set()#KV.get(CFG.K4D['his'])            
+            _his = set()#KV.get(CFG.K4D['his'])  
+            print re_obj.keys()
+
             for k in re_obj.keys():
                 if k in _INX_KEYS:
                     # 索引键处理
@@ -307,6 +310,8 @@ def revert_dump(matter):
                         KV.replace(k, re_obj[k])
             KV.set(CFG.K4D['his'], list(_his) )
             #print KV.get(CFG.K4D['his'])
+
+            print KV.get_info()
 
 
 
@@ -336,7 +341,8 @@ def revert_dump(matter):
 
 
                     
-        feed_back['data'].append( BK.stat_object(set_var) )
+        feed_back['data'].append( KV.get_info())
+        #BK.stat_object(set_var) )
         #data.append(KV.get_info())
         return feed_back
     else:

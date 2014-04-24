@@ -26,7 +26,7 @@ class Borg():
     def __init__(self):
         self.__dict__ = self.__collective_mind
     
-    VERSION = "weknow v13.12.27.2"
+    VERSION = "weknow v14.04.24.11"
     
     #管理员邮箱列表
     ADMIN_EMAIL_LIST = ['zoomquiet+gdg@gmail.com']
@@ -147,7 +147,14 @@ class Borg():
         , 'hd':u" ~ 海选文章 (得要相信,大妈法眼)"
         , 'et':u" ~ 活动报道 (快乐大趴,给力小会)"
         }
-        
+    ESSAY_TAG_KEYS = ['gb'
+        , 'dd'
+        , 'gt'
+        , 'dm'
+        , 'hd'
+        , 'et'
+        , 'ot'
+        ]
     # 文章索引
     K4WD = {"his_id":""   # 更新戮
         , "del":0
@@ -225,6 +232,8 @@ class Borg():
     %s
 
     Changelog:
+    - 140424 根据DevRel 运营经验增补:
+        - revert 实用化
     - 131224 同时绑定公众测试号,尝试更多可能
     - 130928 启用Storage 服务,数据可备份/下载/恢复
     - 130926 启用 Jeff 的SDK,配合运营CLI 工具简化代码
@@ -331,7 +340,7 @@ class Borg():
 
 
     PAPER_TAGS = ESSAY_TAG.keys()
-    TXT_TAG_DEFINE = "    ".join([u"%s %s\n"%(k, ESSAY_TAG[k]) for k in ESSAY_TAG.keys()])
+    TXT_TAG_DEFINE = "    ".join([u"%s %s\n"%(k, ESSAY_TAG[k]) for k in ESSAY_TAG_KEYS])
 
     TXT_PLS_TAG = u'''亲! 请输入文章类别编码(类似 dm 的2字母):
     然后,俺才能给出该类别的文章索引...
