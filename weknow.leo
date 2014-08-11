@@ -21,7 +21,7 @@
 <v t="zoomq.20120710140424.5456" a="E"><vh>&lt;&lt;cfg4Borg&gt;&gt;</vh>
 <v t="zoomq.20130926092950.5432"><vh>环境切换</vh></v>
 <v t="zoomq.20130927104354.5456"><vh>storage</vh></v>
-<v t="zoomq.20130923093950.3647" a="E"><vh>KVDB</vh>
+<v t="zoomq.20130923093950.3647"><vh>KVDB</vh>
 <v t="zoomq.20131226095232.5939"><vh>&lt;&lt;FW actions&gt;&gt;</vh></v>
 <v t="zoomq.20131226095232.5929"><vh>&lt;&lt;FW POOL&gt;&gt;</vh></v>
 <v t="zoomq.20130923093950.5397"><vh>&lt;&lt;MEMBER&gt;&gt;</vh></v>
@@ -117,12 +117,12 @@
 <v t="zoomq.20131226095232.5932"><vh>&lt;&lt;sum others&gt;&gt;</vh></v>
 </v>
 <v t="zoomq.20130927104354.6049"><vh>GET st/kv</vh></v>
-<v t="zoomq.20131007093121.5602" a="E"><vh>数据管理</vh>
+<v t="zoomq.20131007093121.5602"><vh>数据管理</vh>
 <v t="zoomq.20130927104354.6051"><vh>POST bkup/db|dm|m|e|p</vh>
 <v t="zoomq.20131223160728.4905"><vh>&lt;&lt;dump 所有内容&gt;&gt;</vh></v>
 <v t="zoomq.20131223160728.4907"><vh>&lt;&lt;dump 指定内容&gt;&gt;</vh></v>
 </v>
-<v t="zoomq.20130927104354.6062" a="E"><vh>PUT revert/db|dm|m|e|p</vh>
+<v t="zoomq.20130927104354.6062"><vh>PUT revert/db|dm|m|e|p</vh>
 <v t="zoomq.20131223160728.4909"><vh>&lt;&lt;恢复KVDB&gt;&gt;</vh></v>
 <v t="zoomq.20131223160728.4908"><vh>&lt;&lt;恢复指定数据&gt;&gt;</vh></v>
 </v>
@@ -196,6 +196,9 @@
 <v t="zoomq.20130926092950.5435"><vh>&lt;&lt;info_mail&gt;&gt;</vh></v>
 </v>
 <v t="zoomq.20131024165032.5626"><vh>nn今天</vh></v>
+<v t="zoomq.20140811152221.4844" a="E"><vh>goo.gl</vh>
+<v t="zoomq.20140811152221.4845"><vh>&lt;&lt;shorturi&gt;&gt;</vh></v>
+</v>
 <v t="zoomq.20131225115522.4950"><vh>docechor</vh></v>
 <v t="zoomq.20130925103854.6437"><vh>e 活动查询</vh>
 <v t="zoomq.20131223160728.5957"><vh>&lt;&lt;reg_event&gt;&gt;</vh></v>
@@ -293,6 +296,11 @@
 - 查询历史报名情况
 - 查询社区关键信息
 - 自动发送提醒邮件
+
+## 本地运行
+
+$ dev_server.py --storage-path=logs/data \
+    --kvdb-file=logs/kv.db
 
 ## Change logging
 
@@ -1575,8 +1583,8 @@ ESSAY_TAG_KEYS = ['gb'
     , 'gt'
     , 'dm'
     , 'hd'
-    , 'et'
     , 'ot'
+    , 'et'
     ]
 # 文章索引
 K4WD = {"his_id":""   # 更新戮
@@ -2260,6 +2268,7 @@ return None
 @transition('st', 'status')
 @transition('stat', 'status')
 @transition('nn', 'niuniu')
+@transition('gg', 'googl')
 def setup(self, wxreq):
     print 'setup-&gt;{h V e re rc ir i ei s}|大妈信息'
     if wxreq.FSM == "send2":
@@ -2543,7 +2552,15 @@ def find_m(kword, qstr):
         return "alert quary!-("
 
 </t>
-<t tx="zoomq.20130925103854.6455">TXT_NN = u'''牛妞今天距离出生有
+<t tx="zoomq.20130925103854.6455">TXT_GG = u'''珠海GDG准备好了墙外主机,
+等你来问 ;-)
+输入你想转换的 链接吧!
+'''
+TXT_GL = u'''珠海GDG通过墙外主机,
+用 goo.gl 服务完成了缩址,墙内可用的:
+%s
+'''
+TXT_NN = u'''牛妞今天距离出生有
     %s
 天啦 !-)'''
 
@@ -2551,6 +2568,7 @@ TXT_VER = u'''珠海GDG 公众号应答系统当前版本:
 %s
 
 Changelog:
+- 140811 追加 goo 命令,加载 https://gitcafe.com/zhgdg/gdg4googl
 - 140424 根据DevRel 运营经验增补:
     - revert 实用化
 - 131224 同时绑定公众测试号,尝试更多可能
@@ -2567,11 +2585,13 @@ TXT_HELP = u'''GDG珠海 公众号目前支持以下命令:
 h   ~ 使用帮助
 V   ~ 系统版本
 s   ~ 查阅文章
+gg  ~ goo.gl 缩址代理
+'''
+
+'''暂时隐藏功能
 i   ~ 查阅成员资料
 ei  ~ 修订成员资料
 
-'''
-'''
 e   ~ 活动查询
 re  ~ 活动报名
 rc  ~ 放弃报名
@@ -4473,7 +4493,7 @@ feed_back['msg'] = "all Storaged %s dumps"% count
 , "fw/aa":  "PUT"     # 转复 订户 消息
 
 </t>
-<t tx="zoomq.20131226095232.5938">VERSION = "weknow v14.04.24.11"</t>
+<t tx="zoomq.20131226095232.5938">VERSION = "weknow v14.08.11_23"</t>
 <t tx="zoomq.20131226095232.5939">'''FW flow:
  0.
 usr&gt; msg
@@ -4723,6 +4743,51 @@ his_all = KV.get(CFG.K4D['his'])
 his_all.append(uuid_fw)
 KV.set(CFG.K4D['his'] ,his_all)
 
+
+</t>
+<t tx="zoomq.20140811152221.4844">@state('weknow')
+@transition('shorturi', 'shorturi')
+@transition('q', 'helpme')
+@transition('Q', 'helpme')
+@transition('h', 'helpme')
+@transition('H', 'helpme')
+def googl(self, wxreq):
+    print 'setup-&gt;googl-&gt;shorturi'
+    crt_usr = wxreq.crt_usr
+    crt_usr['fsm'] = "shorturi"
+    __update_usr(crt_usr)
+    #_today = datetime.now()
+    return WxTextResponse(CFG.TXT_GG, wxreq).as_xml()
+
+&lt;&lt;shorturi&gt;&gt;
+
+
+</t>
+<t tx="zoomq.20140811152221.4845">@state('weknow')
+@transition('end', 'end')
+def shorturi(self, wxreq):
+    print 'googl-&gt;shorturi-&gt;end'
+    crt_usr = wxreq.crt_usr
+    crt_usr['fsm'] = "setup"
+    __update_usr(crt_usr)
+    
+    _uri = wxreq.Content
+    
+    data = urllib.urlencode({'uri': _uri})
+    h = httplib.HTTPConnection('api.zhgdg.org')
+    headers = {"Content-type": "application/x-www-form-urlencoded"
+        , "Accept": "text/plain"}
+    h.request('POST', '/v0/goo', data, headers)
+    r = h.getresponse()
+    gdg_uris = r.read()
+    
+    return WxTextResponse(CFG.TXT_GL% gdg_uris, wxreq).as_xml()
+
+'''
+$ curl -d "uri=https://docs.google.com/forms/d/1TBJNar54XKhMu_nRaES5ByPv0078hh0GV0sD5JPCZGU/viewform" \
+    api.zhgdg.org/v0/goo
+
+'''
 
 </t>
 </tnodes>

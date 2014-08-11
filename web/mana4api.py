@@ -1031,6 +1031,7 @@ def wechat_post():
 @transition('st', 'status')
 @transition('stat', 'status')
 @transition('nn', 'niuniu')
+@transition('gg', 'googl')
 def setup(self, wxreq):
     print 'setup->{h V e re rc ir i ei s}|大妈信息'
     if wxreq.FSM == "send2":
@@ -1499,6 +1500,48 @@ def niuniu(self, wxreq):
     __update_usr(crt_usr)
     _today = datetime.now()
     return WxTextResponse(CFG.TXT_NN% (_today-CFG.NIUNIU).days, wxreq).as_xml()
+
+@state('weknow')
+@transition('shorturi', 'shorturi')
+@transition('q', 'helpme')
+@transition('Q', 'helpme')
+@transition('h', 'helpme')
+@transition('H', 'helpme')
+def googl(self, wxreq):
+    print 'setup->googl->shorturi'
+    crt_usr = wxreq.crt_usr
+    crt_usr['fsm'] = "shorturi"
+    __update_usr(crt_usr)
+    #_today = datetime.now()
+    return WxTextResponse(CFG.TXT_GG, wxreq).as_xml()
+
+@state('weknow')
+@transition('end', 'end')
+def shorturi(self, wxreq):
+    print 'googl->shorturi->end'
+    crt_usr = wxreq.crt_usr
+    crt_usr['fsm'] = "setup"
+    __update_usr(crt_usr)
+    
+    _uri = wxreq.Content
+    
+    data = urllib.urlencode({'uri': _uri})
+    h = httplib.HTTPConnection('api.zhgdg.org')
+    headers = {"Content-type": "application/x-www-form-urlencoded"
+        , "Accept": "text/plain"}
+    h.request('POST', '/v0/goo', data, headers)
+    r = h.getresponse()
+    gdg_uris = r.read()
+    
+    return WxTextResponse(CFG.TXT_GL% gdg_uris, wxreq).as_xml()
+
+'''
+$ curl -d "uri=https://docs.google.com/forms/d/1TBJNar54XKhMu_nRaES5ByPv0078hh0GV0sD5JPCZGU/viewform" \
+    api.zhgdg.org/v0/goo
+
+'''
+
+
 
 @state('weknow')
 @transition('end', 'end')

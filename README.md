@@ -13,6 +13,11 @@
 - 查询社区关键信息
 - 自动发送提醒邮件
 
+## 本地运行
+
+$ dev_server.py --storage-path=logs/data \
+    --kvdb-file=logs/kv.db
+
 ## Change logging
 
 - 130806 frok from gztechparty/techparty

@@ -26,7 +26,7 @@ class Borg():
     def __init__(self):
         self.__dict__ = self.__collective_mind
     
-    VERSION = "weknow v14.04.24.11"
+    VERSION = "weknow v14.08.11_23"
     
     #管理员邮箱列表
     ADMIN_EMAIL_LIST = ['zoomquiet+gdg@gmail.com']
@@ -152,8 +152,8 @@ class Borg():
         , 'gt'
         , 'dm'
         , 'hd'
-        , 'et'
         , 'ot'
+        , 'et'
         ]
     # 文章索引
     K4WD = {"his_id":""   # 更新戮
@@ -224,6 +224,14 @@ class Borg():
 
     更多细节,请惯性地输入 h 继续吧 :)
     '''
+    TXT_GG = u'''珠海GDG准备好了墙外主机,
+    等你来问 ;-)
+    输入你想转换的 链接吧!
+    '''
+    TXT_GL = u'''珠海GDG通过墙外主机,
+    用 goo.gl 服务完成了缩址,墙内可用的:
+    %s
+    '''
     TXT_NN = u'''牛妞今天距离出生有
         %s
     天啦 !-)'''
@@ -232,6 +240,7 @@ class Borg():
     %s
 
     Changelog:
+    - 140811 追加 goo 命令,加载 https://gitcafe.com/zhgdg/gdg4googl
     - 140424 根据DevRel 运营经验增补:
         - revert 实用化
     - 131224 同时绑定公众测试号,尝试更多可能
@@ -248,11 +257,13 @@ class Borg():
     h   ~ 使用帮助
     V   ~ 系统版本
     s   ~ 查阅文章
+    gg  ~ goo.gl 缩址代理
+    '''
+
+    '''暂时隐藏功能
     i   ~ 查阅成员资料
     ei  ~ 修订成员资料
 
-    '''
-    '''
     e   ~ 活动查询
     re  ~ 活动报名
     rc  ~ 放弃报名
