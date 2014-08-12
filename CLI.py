@@ -27,9 +27,11 @@ $ python CLI.py 事务指令 [可能的值设定 set=** 形式]
   sum/p/:TAG 综合 分类文章 信息现状
   fix/dm/:NM  nm=ZQ         修订/创建指定 大妈 的相关信息
   fix/m|e/:UUID nm=ZQ       修订指定 成员|活动 的相关信息
-  fix/p/:TAG/:UUID url=***  增补|指定 文章 信息
+  new/p/:TAG                创建 文章 信息
     TAG当前支持 ot|et|gt|dd|gb|dm|hd
-    UUID 为 null 时,指创建文章信息
+  fix/p/:TAG/:UUID KEY=***  增补|指定 文章 信息
+    KEY当前支持 url|title|code|picuri
+    (UUID 为 null 时,指创建文章信息)
   del/p/:UUID   删除指定文章
   fw/ll         模拟 大妈 刷 成员抄发消息
   fw/dd/:UUID   模拟 指成员 刷 大妈回复
@@ -37,7 +39,6 @@ $ python CLI.py 事务指令 [可能的值设定 set=** 形式]
   fw/aa/:ZIP set='回答内容' ~ 回复指定消息
   
   !!! 小心:大规模数据I/O操作 !!!
-  push/p json=path/2/x.json 提交批量文章数据文件
   bk/db|dm|m|e|p
      备份 KVDB|大妈|成员|活动|文章 数据到Storage
   del/bk/:UUID              删除指定备份 dump
@@ -46,21 +47,21 @@ $ python CLI.py 事务指令 [可能的值设定 set=** 形式]
   resolve/his|wx|fw        set=all       
     重建 HIS|Passpord|FW 全局索引内容
 """
+#push/p json=path/2/x.json 提交批量文章数据文件
 import sys
 import os
 import base64
 from subprocess import Popen
 from time import time, gmtime, strftime, localtime
-
+import json
+import pickle
 import httplib, urllib
 import urllib2
 # 打开urllib2的debug开关
 urllib2.install_opener(urllib2.build_opener(urllib2.HTTPSHandler(1)))
-
-import json
-
+#   3part mod
 from docopt import docopt
-
+#   local mod
 from config import CFG
 from xsettings import XCFG
 from module.auth import _genQueryArgs, _genArgsStr
@@ -74,12 +75,15 @@ def smart_rest(matter, sets):
     else:
         cmd = matter
         mess = matter.split("/")
+        #print matter, mess
         # 服务端的指令只有两节,其它的是动态数据,所以,进行净化
-        if 2 < len(mess):
-            matter = "/".join(mess[:-1])
-        elif 'info' == mess[0]:
+        if 'info' == mess[0]:
             matter = mess[0]
-        
+        elif 'new' == mess[0]:
+            matter = "/".join(mess)
+        elif 2 < len(mess):
+            matter = "/".join(mess[:-1])
+        #print matter
         # 然后进行分拣 协议情况生成请求
         if matter in CFG.CLI_MATTERS.keys():  
             method = CFG.CLI_MATTERS[matter]      
@@ -171,15 +175,58 @@ def _rest_main(method, uri, args, host=AS_LOCAL):
     '''
     if 'PUT' == method: 
         put_args = _genQueryArgs(uri, q=args, rest_method=method)
-        if not put_args:
-            print "_rest_main()\n\t参数错误,请先使用 -h 学习;-)"
-            return None
         #print "put_args\n\t", put_args
-        pur_vars = " ".join(["%s=%s"% (p[0], p[1]) for p in put_args])
         #print "pur_vars:\n\t", pur_vars
+        #print "args", args
+        if 'new' == uri.split('/')[0]:
+            p_info = {}
+            def raw_info(p_info):
+                #p_info = {}
+                p_info['title'] = raw_input("文章标题?\n>>> ")
+                p_info['code'] = raw_input("文章编号?\n>>> ")
+                p_info['uri'] = raw_input("文章链接?\n>>> ")
+                p_info['picurl'] = raw_input("图片链接?\n>>> ")
+                _confirm = raw_input("%s \n以上信息明确? [y]/n "% p_info)
+                if 0 == len(_confirm):
+                    _confirm = 'y'
+                if 'n' == _confirm:
+                    raw_info(p_info)
+                else:
+                    pass
+                    #print "raw_info()", p_info
+                    #return p_info
+
+            '''
+            p_title = raw_input("文章标题?\n>>> ")
+            p_code = raw_input("文章编号?\n>>> ")
+            p_uri = raw_input("文章链接?\n>>> ")
+            p_picuri = raw_input("图片链接?\n>>> ")
+            '''
+            raw_info(p_info)
+            print "_info", p_info
+
+            #return None
+            uri_pinfo = base64.b64encode(pickle.dumps(p_info))
+            args = "pinfo=%s"% uri_pinfo
+            #print "re-args", uri_pinfo , "<<<"
+            #print "pickle.loads\n\t", pickle.loads(base64.b64decode(uri_pinfo))
+            #put_args.insert(-1, ('pinfo'
+            #    ,base64.urlsafe_b64encode(pickle.dumps(p_info))
+            #    ))
+            #pur_vars = " ".join(["%s=%s"% (put_args[k][0], put_args[k][1]) for k in r_kv])
+        elif not put_args:
+            print "_rest_main(PUT)\n\t参数错误,请先使用 -h 学习;-)"
+            #put_args = _genQueryArgs(uri, q=args, rest_method=method)
+            return None
+        #else:
+        #    pur_vars = " ".join(["%s=%s"% (p[0], p[1]) for p in put_args])
+        put_args = _genQueryArgs(uri, q=args, rest_method=method)
+        pur_vars = " ".join(["%s=%s"% (p[0], p[1]) for p in put_args])
+            
         uri = "%s%s/%s %s"% (host, CFG.APIPRE, uri, pur_vars)
         cmd = "http -f -b %s %s "% (method, uri)
-
+        print cmd
+        #return None
 
 
 
@@ -205,9 +252,12 @@ def _rest_main(method, uri, args, host=AS_LOCAL):
         else:
             put_args = _genQueryArgs(uri, q=args, rest_method=method)
             pur_vars = " ".join(["%s=%s"% (p[0], p[1]) for p in put_args])
+            #print uri.split('/')[0]
             uri = "%s%s/%s %s"% (host, CFG.APIPRE, uri, pur_vars)
             cmd = "http -f -b %s %s "% (method, uri)
-            
+            #print cmd
+            #return None
+
 
 
     elif 'HTTPS' == method:

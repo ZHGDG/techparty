@@ -26,7 +26,7 @@ class Borg():
     def __init__(self):
         self.__dict__ = self.__collective_mind
     
-    VERSION = "weknow v14.08.11_23"
+    VERSION = "weknow v14.08.12_18"
     
     #管理员邮箱列表
     ADMIN_EMAIL_LIST = ['zoomquiet+gdg@gmail.com']
@@ -487,18 +487,32 @@ class Borg():
     STLIMI = 4.2    # 请求安全时限(秒)
     SECURE_ARGS = ('appkey', 'ts', 'sign')
     CLI_MATTERS = {     # 命令行响应方式速查字典
-        "his/last":   "GET"       # 最后一次节点(任意)修订
-        , "echo":       "GET"       # 模拟wechat 问答
+        "his/last": "GET"       # 最后一次节点(任意)修订
+        , "echo":   "GET"       # 模拟wechat 问答
         , "info":   "GET"          # 查阅 指定 信息
+        , "sum/dm":     "GET"       # 统计 大妈 信息现状
+        , "sum/m":      "GET"       # 统计 成员 信息现状
+        , "fix/dm":     "PUT"       # 修订 大妈 信息
+        , "fix/m":      "PUT"       # 修订 成员 信息
+
         , "find/m":     "GET"       # 搜索用户
         , "del/usr":    "DELETE"    # 软删除所有用户 (包含tag 信息)
         , "reliv/usr":  "PUT"       # 恢复指定用户
         , "acl/usr":    "PUT"       # 设置用户权限
-        , "ls/usr":   "GET"       # 列出指定级别用户
+        , "ls/usr":     "GET"       # 列出指定级别用户
 
-        , "fix/dm":     "PUT"       # 修订 大妈 信息
-        , "fix/m":      "PUT"       # 修订 成员 信息
+        , "sum/e":      "GET"       # 统计 活动 信息现状
         , "fix/e":      "PUT"       # 增补 活动 信息
+
+        , "new/p/gb":   "PUT"       # 创建 gb文章 信息
+        , "new/p/dd":   "PUT"       # 创建 dd文章 信息
+        , "new/p/gt":   "PUT"       # 创建 gt文章 信息
+        , "new/p/dm":   "PUT"       # 创建 dm文章 信息
+        , "new/p/hd":   "PUT"       # 创建 hd文章 信息
+        , "new/p/ot":   "PUT"       # 创建 其它文章 信息
+        , "new/p/et":   "PUT"       # 创建 活动文章 文章
+
+        , "del/p":      "DELETE"    # 删除指定文章
         , "fix/p/gb":   "PUT"       # 增补 gb文章 信息
         , "fix/p/dd":   "PUT"       # 增补 dd文章 信息
         , "fix/p/gt":   "PUT"       # 增补 gt文章 信息
@@ -507,11 +521,6 @@ class Borg():
         , "fix/p/ot":   "PUT"       # 增补 其它文章 信息
         , "fix/p/et":   "PUT"       # 增补 活动文章 文章
 
-        , "sum/his":    "GET"       # 统计 历史 索引现状
-        , "sum/db":     "GET"       # 统计 整体 信息现状
-        , "sum/dm":     "GET"       # 统计 大妈 信息现状
-        , "sum/m":      "GET"       # 统计 成员 信息现状
-        , "sum/e":      "GET"       # 统计 活动 信息现状
         , "sum/p":      "GET"       # 统计 文章 信息现状
         , "sum/p/gb":   "GET"       # 统计 分类文章 信息现状
         , "sum/p/dd":   "GET"       # 统计 分类文章 信息现状
@@ -520,13 +529,13 @@ class Borg():
         , "sum/p/hd":   "GET"       # 统计 分类文章 信息现状
         , "sum/p/ot":   "GET"       # 统计 分类文章 信息现状
         , "sum/p/et":   "GET"       # 统计 分类文章 信息现状
-        , "del/p":      "DELETE"    # 删除指定文章
 
         
-        , "st/kv":      "GET"       # 查阅 KVDB 信息
+        , "st/kv":   "GET"       # 查阅 KVDB 信息
         
         , "push/p":     "POST"      # 推送批量文章数据 可以根据 url 判定是否有重复 
 
+        , "sum/db":     "GET"       # 统计 整体 信息现状
         , "sum/bk":     "GET"       # 综合 备份 数据现状
         , "del/bk":     "DELETE"    # 删除指定备份 dump
 
@@ -542,6 +551,7 @@ class Borg():
         , "revert/e":   "PUT"      # 恢复 活动 数据
         , "revert/p":   "PUT"      # 恢复 文章 数据
 
+        , "sum/his":    "GET"       # 统计 历史 索引现状
         , "resolve/his": "PUT"     # 重建 HIS 索引
         , "resolve/wx":  "PUT"     # 重建 wx_Passpord-->UUID 索引
         , "resolve/fw": "PUT"      # 重建 FW 索引容器,从旧的 [] -> {}

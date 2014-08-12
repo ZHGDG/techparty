@@ -104,21 +104,32 @@ def _genQueryArgs(api_matter, q="", rest_method="GET"):
     args = []
     args.append(("appkey", XCFG.APPKEY ))
     args.append(("ts", "%.3f" % (time()) ))
+    #print api_matter,q
     if 'PUT' == rest_method:
-        if not q:
-            print "缺少 set=*** 设定值"
-            return None
-        q_args = q.split("=")   
-        #对于值中包含类似 appmsg/show?__biz=MjM$sign=sdfsfd .. 形式就失常了!
-        #print "=".join(q_args[1:])
-        #args.append((q_args[0], base64.urlsafe_b64encode(q_args[1])))
-        args.append((q_args[0], base64.urlsafe_b64encode(
-                        "=".join(q_args[1:]) 
-                        )
-                    ))
+        #print args
+        if 'new' == api_matter.split('/')[0]:
+            if q:
+                q_args = q.split("=")   
+                #print "new", q_args
+                args.append((q_args[0],q_args[1]))
+        else:
+            if not q:
+                print "缺少 set=*** 设定值"
+                return None
+            else:
+                q_args = q.split("=")   
+                #print "set::", q_args
+                #对于值中包含类似 appmsg/show?__biz=MjM$sign=sdfsfd .. 形式就失常了!
+                #args.append((q_args[0], base64.urlsafe_b64encode(q_args[1])))
+                #print "urlsafe_b64encode", "=".join(q_args[1:])
+                args.append((q_args[0], base64.urlsafe_b64encode(
+                                "=".join(q_args[1:]) 
+                                )
+                            ))
         
     # GET|POST|DELETE 一般不提交额外数据
     sign_base_string = _genArgsStr(matter, args)
+    #print "\nsign_base_string", sign_base_string
     args.append(("sign"
         , md5(sign_base_string + XCFG.SECRET).hexdigest()))
     return args
@@ -182,13 +193,15 @@ def _chkQueryArgs(api_matter, q, rest_method="GET"):
         chk_time = (CFG.STLIMI>float("%.3f" % (time())) - float(q['ts']))
     else:
         # POST PUT
+        #print "PUT", q.keys()
         for k in q.keys():
             if k not in ['appkey', 'ts', 'sign']:
                 args.append((k, q[k] ))
+        #print args
         sign_base_string = _genArgsStr(matter, args)
         re_sign = md5(sign_base_string + XCFG.SECRET).hexdigest()
-        #print "getsign\t", q['sign']
-        #print "re_sign\t", re_sign
+        print "getsign\t", q['sign']
+        print "re_sign\t", re_sign
         chk_sign = (re_sign == q['sign'])
         chk_time = (CFG.STLIMI>float("%.3f" % (time())) - float(q['ts']))
         #print api_matter, q

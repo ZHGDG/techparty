@@ -18,7 +18,7 @@
 <v t="zoomq.20120723102156.5544" a="E"><vh>@nosent config.py</vh>
 <v t="zoomq.20131226095232.5938"></v>
 <v t="zoomq.20120727213305.14750"><vh>&lt;&lt;declarations&gt;&gt;</vh></v>
-<v t="zoomq.20120710140424.5456" a="E"><vh>&lt;&lt;cfg4Borg&gt;&gt;</vh>
+<v t="zoomq.20120710140424.5456"><vh>&lt;&lt;cfg4Borg&gt;&gt;</vh>
 <v t="zoomq.20130926092950.5432"><vh>环境切换</vh></v>
 <v t="zoomq.20130927104354.5456"><vh>storage</vh></v>
 <v t="zoomq.20130923093950.3647"><vh>KVDB</vh>
@@ -29,7 +29,7 @@
 <v t="zoomq.20130923093950.5395"><vh>&lt;&lt;CONTENT&gt;&gt;</vh></v>
 <v t="zoomq.20130923093950.5396"><vh>&lt;&lt;HISTORIC&gt;&gt;</vh></v>
 </v>
-<v t="zoomq.20130918155053.7084" a="E"><vh>4wechat</vh>
+<v t="zoomq.20130918155053.7084"><vh>4wechat</vh>
 <v t="zoomq.20130923093950.8818"><vh>&lt;&lt;ALIAS&gt;&gt;</vh></v>
 <v t="zoomq.20130923093950.7285"><vh>&lt;&lt;XML模板&gt;&gt;</vh></v>
 <v t="zoomq.20130925103854.6457"><vh>活动报名</vh></v>
@@ -46,14 +46,20 @@
 </v>
 </v>
 </v>
-<v t="zoomq.20130925103854.4957"><vh>@nosent CLI.py</vh>
+<v t="zoomq.20130925103854.4957" a="E"><vh>@nosent CLI.py</vh>
 <v t="zoomq.20130925103854.4958"><vh>&lt;&lt;docopt&gt;&gt;</vh></v>
 <v t="zoomq.20130925103854.4959"><vh>&lt;&lt;declarations&gt;&gt;</vh></v>
 <v t="zoomq.20130925103854.4961"><vh>smart_rest()</vh></v>
 <v t="zoomq.20131223160728.4902"><vh>_https_get()</vh></v>
 <v t="zoomq.20131224083725.5909"><vh>_https_post()</vh></v>
 <v t="zoomq.20131224083725.5906"><vh>_wx_token_get()</vh></v>
-<v t="zoomq.20130925103854.4960"><vh>_rest_main()</vh>
+<v t="zoomq.20130925103854.4960" a="E"><vh>_rest_main()</vh>
+<v t="zoomq.20130925103854.6451" a="E"><vh>&lt;&lt;PUT&gt;&gt;</vh>
+<v t="zoomq.20140811152221.5899"><vh>&lt;&lt;问答式创建文章&gt;&gt;</vh>
+<v t="zoomq.20140811152221.5900"><vh>&lt;&lt;raw_info(p_info)&gt;&gt;</vh></v>
+</v>
+</v>
+<v t="zoomq.20130927104354.6053"><vh>&lt;&lt;POST&gt;&gt;</vh></v>
 <v t="zoomq.20130925103854.6452"><vh>&lt;&lt;HTTPS&gt;&gt;</vh>
 <v t="zoomq.20131224083725.5907"><vh>&lt;&lt;消息发送&gt;&gt;</vh></v>
 <v t="zoomq.20131224083725.5904"><vh>&lt;&lt;获取指定用户信息&gt;&gt;</vh></v>
@@ -61,13 +67,11 @@
 </v>
 <v t="zoomq.20130925103854.6450"><vh>&lt;&lt;echo matters&gt;&gt;</vh></v>
 <v t="zoomq.20131223160728.4901"><vh>&lt;&lt;GET DEL&gt;&gt;</vh></v>
-<v t="zoomq.20130925103854.6451"><vh>&lt;&lt;PUT&gt;&gt;</vh></v>
-<v t="zoomq.20130927104354.6053"><vh>&lt;&lt;POST&gt;&gt;</vh></v>
 </v>
 </v>
-<v t="zoomq.20120723102156.5541"><vh>module</vh>
+<v t="zoomq.20120723102156.5541" a="E"><vh>module</vh>
 <v t="zoomq.20130925103854.6406"><vh>@nosent __init__.py</vh></v>
-<v t="zoomq.20120820121523.7422"><vh>@nosent auth.py</vh>
+<v t="zoomq.20120820121523.7422" a="E"><vh>@nosent auth.py</vh>
 <v t="zoomq.20120820121523.7423"><vh>&lt;&lt;declarations&gt;&gt;</vh></v>
 <v t="zoomq.20120820121523.7426"><vh>sha256_uhex</vh></v>
 <v t="zoomq.20120820121523.7424"><vh>check_login</vh></v>
@@ -107,7 +111,7 @@
 <v t="zoomq.20120723102156.5561" a="E"><vh>@nosent mana4api.py</vh>
 <v t="zoomq.20120723102156.5562"><vh>&lt;&lt;declarations&gt;&gt;</vh></v>
 <v t="zoomq.20130918155053.5760"><vh>GET  /echo</vh></v>
-<v t="zoomq.20130925103854.5007"><vh>CLI 远程管理&gt;&gt;&gt;</vh>
+<v t="zoomq.20130925103854.5007" a="E"><vh>CLI 远程管理&gt;&gt;&gt;</vh>
 <v t="zoomq.20131223160728.4904"><vh>GET info/:UUID</vh></v>
 <v t="zoomq.20130925103854.5049"><vh>GET sum/db|FW|dm|m|e|p</vh>
 <v t="zoomq.20131226095232.5953"><vh>&lt;&lt;sum fw&gt;&gt;</vh></v>
@@ -118,7 +122,7 @@
 </v>
 <v t="zoomq.20130927104354.6049"><vh>GET st/kv</vh></v>
 <v t="zoomq.20131007093121.5602"><vh>数据管理</vh>
-<v t="zoomq.20130927104354.6051"><vh>POST bkup/db|dm|m|e|p</vh>
+<v t="zoomq.20130927104354.6051"><vh>POST bk/db|dm|m|e|p</vh>
 <v t="zoomq.20131223160728.4905"><vh>&lt;&lt;dump 所有内容&gt;&gt;</vh></v>
 <v t="zoomq.20131223160728.4907"><vh>&lt;&lt;dump 指定内容&gt;&gt;</vh></v>
 </v>
@@ -132,14 +136,15 @@
 </v>
 <v t="zoomq.20130927104354.6055"><vh>DELETE del/bk/:UUID</vh></v>
 </v>
-<v t="zoomq.20131007093121.5601"><vh>文章管理</vh>
-<v t="zoomq.20131010225811.3726"><vh>GET sum/p/:TAG</vh></v>
-<v t="zoomq.20131010225811.3728"><vh>DELETE del/p/:UUID</vh></v>
-<v t="zoomq.20130929203117.3712" a="E"><vh>POST push/p</vh>
+<v t="zoomq.20131007093121.5601" a="E"><vh>文章管理</vh>
+<v t="zoomq.20140811152221.5901"><vh>PUT new/p/:tag</vh></v>
+<v t="zoomq.20130926092950.5447"><vh>PUT fix/p/:tag/:UUID</vh></v>
+<v t="zoomq.20130929203117.3712"><vh>POST push/p</vh>
 <v t="zoomq.20131007093121.31623"><vh>&lt;&lt;检验导入&gt;&gt;</vh></v>
 </v>
-<v t="zoomq.20130926092950.5447"><vh>PUT fix/p/:tag/:UUID</vh></v>
 <v t="zoomq.20130926092950.5449"><vh>__chkPAPER()</vh></v>
+<v t="zoomq.20131010225811.3726"><vh>GET sum/p/:TAG</vh></v>
+<v t="zoomq.20131010225811.3728"><vh>DELETE del/p/:UUID</vh></v>
 <v t="zoomq.20130926092950.5438"><vh>PUT fix/e/:CODE</vh></v>
 </v>
 <v t="zoomq.20130925103854.5041"><vh>用户管理</vh>
@@ -170,8 +175,8 @@
 <v t="zoomq.20131224083725.4931"><vh>&lt;&lt;chk USR2PP&gt;&gt;</vh></v>
 </v>
 <v t="zoomq.20130925103854.6427"><vh>__update_usr()</vh></v>
-<v t="zoomq.20130918155053.7083"><vh>POST /echo</vh></v>
-<v t="zoomq.20130925103854.6430" a="E"><vh>FSM 业务逻辑核心</vh>
+<v t="zoomq.20130918155053.7083"><vh>POST /echo 接口认证</vh></v>
+<v t="zoomq.20130925103854.6430"><vh>FSM 业务逻辑核心</vh>
 <v t="zoomq.20131226095232.5942"><vh>__putFW()</vh>
 <v t="zoomq.20131226095232.5955"><vh>&lt;&lt;init FW msg.&gt;&gt;</vh></v>
 </v>
@@ -1782,13 +1787,13 @@ DM_ALIAS = {"LXC": ['Bonnie', 'liuxinchen', 'lxc', 'LXC', u'刘星辰']
 STLIMI = 4.2    # 请求安全时限(秒)
 SECURE_ARGS = ('appkey', 'ts', 'sign')
 CLI_MATTERS = {     # 命令行响应方式速查字典
-    "his/last":   "GET"       # 最后一次节点(任意)修订
-    , "echo":       "GET"       # 模拟wechat 问答
+    "his/last": "GET"       # 最后一次节点(任意)修订
+    , "echo":   "GET"       # 模拟wechat 问答
     , "info":   "GET"          # 查阅 指定 信息
     &lt;&lt;CLI4usr&gt;&gt;
     &lt;&lt;CLI4pub&gt;&gt;
     
-    , "st/kv":      "GET"       # 查阅 KVDB 信息
+    , "st/kv":   "GET"       # 查阅 KVDB 信息
     
     &lt;&lt;CLI4sys&gt;&gt;
     &lt;&lt;CLI4wx&gt;&gt;    
@@ -1876,9 +1881,11 @@ $ python CLI.py 事务指令 [可能的值设定 set=** 形式]
   sum/p/:TAG 综合 分类文章 信息现状
   fix/dm/:NM  nm=ZQ         修订/创建指定 大妈 的相关信息
   fix/m|e/:UUID nm=ZQ       修订指定 成员|活动 的相关信息
-  fix/p/:TAG/:UUID url=***  增补|指定 文章 信息
+  new/p/:TAG                创建 文章 信息
     TAG当前支持 ot|et|gt|dd|gb|dm|hd
-    UUID 为 null 时,指创建文章信息
+  fix/p/:TAG/:UUID KEY=***  增补|指定 文章 信息
+    KEY当前支持 url|title|code|picuri
+    (UUID 为 null 时,指创建文章信息)
   del/p/:UUID   删除指定文章
   fw/ll         模拟 大妈 刷 成员抄发消息
   fw/dd/:UUID   模拟 指成员 刷 大妈回复
@@ -1886,7 +1893,6 @@ $ python CLI.py 事务指令 [可能的值设定 set=** 形式]
   fw/aa/:ZIP set='回答内容' ~ 回复指定消息
   
   !!! 小心:大规模数据I/O操作 !!!
-  push/p json=path/2/x.json 提交批量文章数据文件
   bk/db|dm|m|e|p
      备份 KVDB|大妈|成员|活动|文章 数据到Storage
   del/bk/:UUID              删除指定备份 dump
@@ -1895,22 +1901,22 @@ $ python CLI.py 事务指令 [可能的值设定 set=** 形式]
   resolve/his|wx|fw        set=all       
     重建 HIS|Passpord|FW 全局索引内容
 """
+#push/p json=path/2/x.json 提交批量文章数据文件
 </t>
 <t tx="zoomq.20130925103854.4959">import sys
 import os
 import base64
 from subprocess import Popen
 from time import time, gmtime, strftime, localtime
-
+import json
+import pickle
 import httplib, urllib
 import urllib2
 # 打开urllib2的debug开关
 urllib2.install_opener(urllib2.build_opener(urllib2.HTTPSHandler(1)))
-
-import json
-
+#   3part mod
 from docopt import docopt
-
+#   local mod
 from config import CFG
 from xsettings import XCFG
 from module.auth import _genQueryArgs, _genArgsStr
@@ -1948,12 +1954,15 @@ from module.auth import _genQueryArgs, _genArgsStr
     else:
         cmd = matter
         mess = matter.split("/")
+        #print matter, mess
         # 服务端的指令只有两节,其它的是动态数据,所以,进行净化
-        if 2 &lt; len(mess):
-            matter = "/".join(mess[:-1])
-        elif 'info' == mess[0]:
+        if 'info' == mess[0]:
             matter = mess[0]
-        
+        elif 'new' == mess[0]:
+            matter = "/".join(mess)
+        elif 2 &lt; len(mess):
+            matter = "/".join(mess[:-1])
+        #print matter
         # 然后进行分拣 协议情况生成请求
         if matter in CFG.CLI_MATTERS.keys():  
             method = CFG.CLI_MATTERS[matter]      
@@ -2391,13 +2400,15 @@ def events(self, wxreq):
         chk_time = (CFG.STLIMI&gt;float("%.3f" % (time())) - float(q['ts']))
     else:
         # POST PUT
+        #print "PUT", q.keys()
         for k in q.keys():
             if k not in ['appkey', 'ts', 'sign']:
                 args.append((k, q[k] ))
+        #print args
         sign_base_string = _genArgsStr(matter, args)
         re_sign = md5(sign_base_string + XCFG.SECRET).hexdigest()
-        #print "getsign\t", q['sign']
-        #print "re_sign\t", re_sign
+        print "getsign\t", q['sign']
+        print "re_sign\t", re_sign
         chk_sign = (re_sign == q['sign'])
         chk_time = (CFG.STLIMI&gt;float("%.3f" % (time())) - float(q['ts']))
         #print api_matter, q
@@ -2430,21 +2441,32 @@ def events(self, wxreq):
     args = []
     args.append(("appkey", XCFG.APPKEY ))
     args.append(("ts", "%.3f" % (time()) ))
+    #print api_matter,q
     if 'PUT' == rest_method:
-        if not q:
-            print "缺少 set=*** 设定值"
-            return None
-        q_args = q.split("=")   
-        #对于值中包含类似 appmsg/show?__biz=MjM$sign=sdfsfd .. 形式就失常了!
-        #print "=".join(q_args[1:])
-        #args.append((q_args[0], base64.urlsafe_b64encode(q_args[1])))
-        args.append((q_args[0], base64.urlsafe_b64encode(
-                        "=".join(q_args[1:]) 
-                        )
-                    ))
+        #print args
+        if 'new' == api_matter.split('/')[0]:
+            if q:
+                q_args = q.split("=")   
+                #print "new", q_args
+                args.append((q_args[0],q_args[1]))
+        else:
+            if not q:
+                print "缺少 set=*** 设定值"
+                return None
+            else:
+                q_args = q.split("=")   
+                #print "set::", q_args
+                #对于值中包含类似 appmsg/show?__biz=MjM$sign=sdfsfd .. 形式就失常了!
+                #args.append((q_args[0], base64.urlsafe_b64encode(q_args[1])))
+                #print "urlsafe_b64encode", "=".join(q_args[1:])
+                args.append((q_args[0], base64.urlsafe_b64encode(
+                                "=".join(q_args[1:]) 
+                                )
+                            ))
         
     # GET|POST|DELETE 一般不提交额外数据
     sign_base_string = _genArgsStr(matter, args)
+    #print "\nsign_base_string", sign_base_string
     args.append(("sign"
         , md5(sign_base_string + XCFG.SECRET).hexdigest()))
     return args
@@ -2489,15 +2511,32 @@ cmd = "curl -d '%s' %s/%s "% (xml, AS_LOCAL, uri)
 
 </t>
 <t tx="zoomq.20130925103854.6451">put_args = _genQueryArgs(uri, q=args, rest_method=method)
-if not put_args:
-    print "_rest_main()\n\t参数错误,请先使用 -h 学习;-)"
-    return None
 #print "put_args\n\t", put_args
-pur_vars = " ".join(["%s=%s"% (p[0], p[1]) for p in put_args])
 #print "pur_vars:\n\t", pur_vars
+#print "args", args
+if 'new' == uri.split('/')[0]:
+    &lt;&lt;问答式创建文章&gt;&gt;
+    uri_pinfo = base64.b64encode(pickle.dumps(p_info))
+    args = "pinfo=%s"% uri_pinfo
+    #print "re-args", uri_pinfo , "&lt;&lt;&lt;"
+    #print "pickle.loads\n\t", pickle.loads(base64.b64decode(uri_pinfo))
+    #put_args.insert(-1, ('pinfo'
+    #    ,base64.urlsafe_b64encode(pickle.dumps(p_info))
+    #    ))
+    #pur_vars = " ".join(["%s=%s"% (put_args[k][0], put_args[k][1]) for k in r_kv])
+elif not put_args:
+    print "_rest_main(PUT)\n\t参数错误,请先使用 -h 学习;-)"
+    #put_args = _genQueryArgs(uri, q=args, rest_method=method)
+    return None
+#else:
+#    pur_vars = " ".join(["%s=%s"% (p[0], p[1]) for p in put_args])
+put_args = _genQueryArgs(uri, q=args, rest_method=method)
+pur_vars = " ".join(["%s=%s"% (p[0], p[1]) for p in put_args])
+    
 uri = "%s%s/%s %s"% (host, CFG.APIPRE, uri, pur_vars)
 cmd = "http -f -b %s %s "% (method, uri)
-
+print cmd
+#return None
 
 
 
@@ -3111,14 +3150,13 @@ resp = WxNewsResponse([WxArticle(Title="iPhone 6 is here!",
 <t tx="zoomq.20130926092950.5447">@APP.put('/cli/fix/p/&lt;tag&gt;/&lt;uuid&gt;')
 def fix_paper(tag, uuid):
     q_dict = request.forms
+    print q_dict.keys()
     if _chkQueryArgs("/cli/fix/p/%s/%s"% (tag, uuid), q_dict, "PUT"):
         feed_back = {'data':[]}
         set_key = list(set(q_dict.keys())-set(CFG.SECURE_ARGS))[0]
         set_var = base64.urlsafe_b64decode(request.forms[set_key])
-        print "\t", set_key
-        print set_var
+        #print "\nset_key:set_var", set_key, set_var
         #return None
-        
         if set_key in CFG.K4WD.keys():
             print set_key, set_var
             uuid, pub = __chkPAPER(tag, uuid)
@@ -3137,8 +3175,6 @@ def fix_paper(tag, uuid):
         return feed_back
     else:
         return "alert quary!-("
-
-
 
 
 </t>
@@ -3252,9 +3288,12 @@ def bkup_dump(matter):
 else:
     put_args = _genQueryArgs(uri, q=args, rest_method=method)
     pur_vars = " ".join(["%s=%s"% (p[0], p[1]) for p in put_args])
+    #print uri.split('/')[0]
     uri = "%s%s/%s %s"% (host, CFG.APIPRE, uri, pur_vars)
     cmd = "http -f -b %s %s "% (method, uri)
-    
+    #print cmd
+    #return None
+
 
 
 </t>
@@ -4425,16 +4464,30 @@ feed_back['msg'] = "all Storaged %s dumps"% count
 
 
 </t>
-<t tx="zoomq.20131226095232.5934">, "find/m":     "GET"       # 搜索用户
+<t tx="zoomq.20131226095232.5934">, "sum/dm":     "GET"       # 统计 大妈 信息现状
+, "sum/m":      "GET"       # 统计 成员 信息现状
+, "fix/dm":     "PUT"       # 修订 大妈 信息
+, "fix/m":      "PUT"       # 修订 成员 信息
+
+, "find/m":     "GET"       # 搜索用户
 , "del/usr":    "DELETE"    # 软删除所有用户 (包含tag 信息)
 , "reliv/usr":  "PUT"       # 恢复指定用户
 , "acl/usr":    "PUT"       # 设置用户权限
-, "ls/usr":   "GET"       # 列出指定级别用户
+, "ls/usr":     "GET"       # 列出指定级别用户
 
 </t>
-<t tx="zoomq.20131226095232.5935">, "fix/dm":     "PUT"       # 修订 大妈 信息
-, "fix/m":      "PUT"       # 修订 成员 信息
+<t tx="zoomq.20131226095232.5935">, "sum/e":      "GET"       # 统计 活动 信息现状
 , "fix/e":      "PUT"       # 增补 活动 信息
+
+, "new/p/gb":   "PUT"       # 创建 gb文章 信息
+, "new/p/dd":   "PUT"       # 创建 dd文章 信息
+, "new/p/gt":   "PUT"       # 创建 gt文章 信息
+, "new/p/dm":   "PUT"       # 创建 dm文章 信息
+, "new/p/hd":   "PUT"       # 创建 hd文章 信息
+, "new/p/ot":   "PUT"       # 创建 其它文章 信息
+, "new/p/et":   "PUT"       # 创建 活动文章 文章
+
+, "del/p":      "DELETE"    # 删除指定文章
 , "fix/p/gb":   "PUT"       # 增补 gb文章 信息
 , "fix/p/dd":   "PUT"       # 增补 dd文章 信息
 , "fix/p/gt":   "PUT"       # 增补 gt文章 信息
@@ -4443,11 +4496,6 @@ feed_back['msg'] = "all Storaged %s dumps"% count
 , "fix/p/ot":   "PUT"       # 增补 其它文章 信息
 , "fix/p/et":   "PUT"       # 增补 活动文章 文章
 
-, "sum/his":    "GET"       # 统计 历史 索引现状
-, "sum/db":     "GET"       # 统计 整体 信息现状
-, "sum/dm":     "GET"       # 统计 大妈 信息现状
-, "sum/m":      "GET"       # 统计 成员 信息现状
-, "sum/e":      "GET"       # 统计 活动 信息现状
 , "sum/p":      "GET"       # 统计 文章 信息现状
 , "sum/p/gb":   "GET"       # 统计 分类文章 信息现状
 , "sum/p/dd":   "GET"       # 统计 分类文章 信息现状
@@ -4456,11 +4504,11 @@ feed_back['msg'] = "all Storaged %s dumps"% count
 , "sum/p/hd":   "GET"       # 统计 分类文章 信息现状
 , "sum/p/ot":   "GET"       # 统计 分类文章 信息现状
 , "sum/p/et":   "GET"       # 统计 分类文章 信息现状
-, "del/p":      "DELETE"    # 删除指定文章
 
 </t>
 <t tx="zoomq.20131226095232.5936">, "push/p":     "POST"      # 推送批量文章数据 可以根据 url 判定是否有重复 
 
+, "sum/db":     "GET"       # 统计 整体 信息现状
 , "sum/bk":     "GET"       # 综合 备份 数据现状
 , "del/bk":     "DELETE"    # 删除指定备份 dump
 
@@ -4476,6 +4524,7 @@ feed_back['msg'] = "all Storaged %s dumps"% count
 , "revert/e":   "PUT"      # 恢复 活动 数据
 , "revert/p":   "PUT"      # 恢复 文章 数据
 
+, "sum/his":    "GET"       # 统计 历史 索引现状
 , "resolve/his": "PUT"     # 重建 HIS 索引
 , "resolve/wx":  "PUT"     # 重建 wx_Passpord--&gt;UUID 索引
 , "resolve/fw": "PUT"      # 重建 FW 索引容器,从旧的 [] -&gt; {}
@@ -4493,7 +4542,7 @@ feed_back['msg'] = "all Storaged %s dumps"% count
 , "fw/aa":  "PUT"     # 转复 订户 消息
 
 </t>
-<t tx="zoomq.20131226095232.5938">VERSION = "weknow v14.08.11_23"</t>
+<t tx="zoomq.20131226095232.5938">VERSION = "weknow v14.08.12_18"</t>
 <t tx="zoomq.20131226095232.5939">'''FW flow:
  0.
 usr&gt; msg
@@ -4789,6 +4838,52 @@ $ curl -d "uri=https://docs.google.com/forms/d/1TBJNar54XKhMu_nRaES5ByPv0078hh0G
 
 '''
 
+</t>
+<t tx="zoomq.20140811152221.5899">p_info = {}
+&lt;&lt;raw_info(p_info)&gt;&gt;
+raw_info(p_info)
+print "_info", p_info
+
+#return None</t>
+<t tx="zoomq.20140811152221.5900">def raw_info(p_info):
+    #p_info = {}
+    p_info['title'] = raw_input("文章标题?\n&gt;&gt;&gt; ")
+    p_info['code'] = raw_input("文章编号?\n&gt;&gt;&gt; ")
+    p_info['uri'] = raw_input("文章链接?\n&gt;&gt;&gt; ")
+    p_info['picurl'] = raw_input("图片链接?\n&gt;&gt;&gt; ")
+    _confirm = raw_input("%s \n以上信息明确? [y]/n "% p_info)
+    if 0 == len(_confirm):
+        _confirm = 'y'
+    if 'n' == _confirm:
+        raw_info(p_info)
+    else:
+        pass
+        #print "raw_info()", p_info
+        #return p_info
+
+'''
+p_title = raw_input("文章标题?\n&gt;&gt;&gt; ")
+p_code = raw_input("文章编号?\n&gt;&gt;&gt; ")
+p_uri = raw_input("文章链接?\n&gt;&gt;&gt; ")
+p_picuri = raw_input("图片链接?\n&gt;&gt;&gt; ")
+'''
+</t>
+<t tx="zoomq.20140811152221.5901">@APP.put('/cli/new/p/&lt;tag&gt;')
+def new_paper(tag):
+    q_dict = request.forms
+    print "q_dict.keys", q_dict.keys()
+    if _chkQueryArgs("/cli/new/p/%s"% tag, q_dict, "PUT"):
+        feed_back = {'data':[]}
+        print "\n", q_dict['pinfo'], "\n" 
+        print type(q_dict['pinfo'])
+        
+        print base64.b64decode(q_dict['pinfo'])
+        print pickle.loads(base64.b64decode(q_dict['pinfo']))
+        
+        return None
+    else:
+        return "alert quary!-("
+        
 </t>
 </tnodes>
 </leo_file>
