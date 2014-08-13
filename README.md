@@ -20,6 +20,7 @@ $ dev_server.py --storage-path=logs/data \
 
 ## Change logging
 
+- 140813 增补应答式交互文章增补支持
 - 130806 frok from gztechparty/techparty
 
 

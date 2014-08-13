@@ -26,7 +26,7 @@ class Borg():
     def __init__(self):
         self.__dict__ = self.__collective_mind
     
-    VERSION = "weknow v14.08.12_18"
+    VERSION = "weknow v14.08.13_11"
     
     #管理员邮箱列表
     ADMIN_EMAIL_LIST = ['zoomquiet+gdg@gmail.com']

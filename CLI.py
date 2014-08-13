@@ -178,15 +178,31 @@ def _rest_main(method, uri, args, host=AS_LOCAL):
         #print "put_args\n\t", put_args
         #print "pur_vars:\n\t", pur_vars
         #print "args", args
-        if 'new' == uri.split('/')[0]:
+        uri_matters = uri.split('/')
+        if 'new' == uri_matters[0]:
             p_info = {}
+            #print "%s/cli/lc/p/%s"% (XCFG.SAE_HOST, uri_matters[-1])
+            _uri_lc_p = "/api/cli/lc/p/%s"% uri_matters[-1]
+            #print _uri_lc_p
+            conn = httplib.HTTPConnection(XCFG.SAE_HOST)
+            conn.request("GET", _uri_lc_p)
+            r1 = conn.getresponse()
+            print XCFG.SAE_HOST, _uri_lc_p, r1.status, r1.reason
+            data1 = r1.read()
+            #print json.loads(data1)['the_last_code']
+            the_last_code = int(json.loads(data1)['the_last_code']) + 1
+
             def raw_info(p_info):
                 #p_info = {}
                 p_info['title'] = raw_input("文章标题?\n>>> ")
-                p_info['code'] = raw_input("文章编号?\n>>> ")
+                p_info['code'] = raw_input("文章编号([%s]/x)?\n>>> "% the_last_code )
+                #print "p_info['code']", len(p_info['code'])
+                if 0 == len(p_info['code']):
+                    p_info['code'] = the_last_code
+                #return None
                 p_info['uri'] = raw_input("文章链接?\n>>> ")
                 p_info['picurl'] = raw_input("图片链接?\n>>> ")
-                _confirm = raw_input("%s \n以上信息明确? [y]/n "% p_info)
+                _confirm = raw_input("%s \n以上信息明确([y]/n)?>>> "% p_info)
                 if 0 == len(_confirm):
                     _confirm = 'y'
                 if 'n' == _confirm:
@@ -205,10 +221,12 @@ def _rest_main(method, uri, args, host=AS_LOCAL):
             raw_info(p_info)
             print "_info", p_info
 
-            #return None
-            uri_pinfo = base64.b64encode(pickle.dumps(p_info))
+
+
+            uri_pinfo = base64.b16encode(pickle.dumps(p_info))
             args = "pinfo=%s"% uri_pinfo
-            #print "re-args", uri_pinfo , "<<<"
+            print "re-args", uri_pinfo , "<<<"
+            #return None
             #print "pickle.loads\n\t", pickle.loads(base64.b64decode(uri_pinfo))
             #put_args.insert(-1, ('pinfo'
             #    ,base64.urlsafe_b64encode(pickle.dumps(p_info))
@@ -225,7 +243,7 @@ def _rest_main(method, uri, args, host=AS_LOCAL):
             
         uri = "%s%s/%s %s"% (host, CFG.APIPRE, uri, pur_vars)
         cmd = "http -f -b %s %s "% (method, uri)
-        print cmd
+        #print cmd
         #return None
 
 

@@ -18,10 +18,10 @@
 <v t="zoomq.20120723102156.5544" a="E"><vh>@nosent config.py</vh>
 <v t="zoomq.20131226095232.5938"></v>
 <v t="zoomq.20120727213305.14750"><vh>&lt;&lt;declarations&gt;&gt;</vh></v>
-<v t="zoomq.20120710140424.5456"><vh>&lt;&lt;cfg4Borg&gt;&gt;</vh>
+<v t="zoomq.20120710140424.5456" a="E"><vh>&lt;&lt;cfg4Borg&gt;&gt;</vh>
 <v t="zoomq.20130926092950.5432"><vh>环境切换</vh></v>
 <v t="zoomq.20130927104354.5456"><vh>storage</vh></v>
-<v t="zoomq.20130923093950.3647"><vh>KVDB</vh>
+<v t="zoomq.20130923093950.3647" a="E"><vh>KVDB</vh>
 <v t="zoomq.20131226095232.5939"><vh>&lt;&lt;FW actions&gt;&gt;</vh></v>
 <v t="zoomq.20131226095232.5929"><vh>&lt;&lt;FW POOL&gt;&gt;</vh></v>
 <v t="zoomq.20130923093950.5397"><vh>&lt;&lt;MEMBER&gt;&gt;</vh></v>
@@ -55,8 +55,9 @@
 <v t="zoomq.20131224083725.5906"><vh>_wx_token_get()</vh></v>
 <v t="zoomq.20130925103854.4960" a="E"><vh>_rest_main()</vh>
 <v t="zoomq.20130925103854.6451" a="E"><vh>&lt;&lt;PUT&gt;&gt;</vh>
-<v t="zoomq.20140811152221.5899"><vh>&lt;&lt;问答式创建文章&gt;&gt;</vh>
+<v t="zoomq.20140811152221.5899" a="E"><vh>&lt;&lt;问答式创建文章&gt;&gt;</vh>
 <v t="zoomq.20140811152221.5900"><vh>&lt;&lt;raw_info(p_info)&gt;&gt;</vh></v>
+<v t="zoomq.20140811152221.5904"><vh>&lt;&lt;get the last code&gt;&gt;</vh></v>
 </v>
 </v>
 <v t="zoomq.20130927104354.6053"><vh>&lt;&lt;POST&gt;&gt;</vh></v>
@@ -69,9 +70,9 @@
 <v t="zoomq.20131223160728.4901"><vh>&lt;&lt;GET DEL&gt;&gt;</vh></v>
 </v>
 </v>
-<v t="zoomq.20120723102156.5541" a="E"><vh>module</vh>
+<v t="zoomq.20120723102156.5541"><vh>module</vh>
 <v t="zoomq.20130925103854.6406"><vh>@nosent __init__.py</vh></v>
-<v t="zoomq.20120820121523.7422" a="E"><vh>@nosent auth.py</vh>
+<v t="zoomq.20120820121523.7422"><vh>@nosent auth.py</vh>
 <v t="zoomq.20120820121523.7423"><vh>&lt;&lt;declarations&gt;&gt;</vh></v>
 <v t="zoomq.20120820121523.7426"><vh>sha256_uhex</vh></v>
 <v t="zoomq.20120820121523.7424"><vh>check_login</vh></v>
@@ -112,6 +113,20 @@
 <v t="zoomq.20120723102156.5562"><vh>&lt;&lt;declarations&gt;&gt;</vh></v>
 <v t="zoomq.20130918155053.5760"><vh>GET  /echo</vh></v>
 <v t="zoomq.20130925103854.5007" a="E"><vh>CLI 远程管理&gt;&gt;&gt;</vh>
+<v t="zoomq.20140811152221.5903"><vh>GET lc/p/:TAG</vh></v>
+<v t="zoomq.20131007093121.5601" a="E"><vh>文章管理</vh>
+<v t="zoomq.20140811152221.5901"><vh>PUT new/p/:tag</vh></v>
+<v t="zoomq.20130926092950.5447"><vh>PUT fix/p/:tag/:UUID</vh></v>
+<v t="zoomq.20130926092950.5449"><vh>__chkPAPER()</vh></v>
+<v t="zoomq.20131010225811.3726" a="E"><vh>GET sum/p/:TAG</vh>
+<v t="zoomq.20140811152221.5905"><vh>&lt;&lt;整数顺序输出文章列表&gt;&gt;</vh></v>
+</v>
+<v t="zoomq.20130929203117.3712"><vh>POST push/p</vh>
+<v t="zoomq.20131007093121.31623"><vh>&lt;&lt;检验导入&gt;&gt;</vh></v>
+</v>
+<v t="zoomq.20131010225811.3728"><vh>DELETE del/p/:UUID</vh></v>
+<v t="zoomq.20130926092950.5438"><vh>PUT fix/e/:CODE</vh></v>
+</v>
 <v t="zoomq.20131223160728.4904"><vh>GET info/:UUID</vh></v>
 <v t="zoomq.20130925103854.5049"><vh>GET sum/db|FW|dm|m|e|p</vh>
 <v t="zoomq.20131226095232.5953"><vh>&lt;&lt;sum fw&gt;&gt;</vh></v>
@@ -135,17 +150,6 @@
 <v t="zoomq.20131224083725.4930"><vh>&lt;&lt;重并 HIS&gt;&gt;</vh></v>
 </v>
 <v t="zoomq.20130927104354.6055"><vh>DELETE del/bk/:UUID</vh></v>
-</v>
-<v t="zoomq.20131007093121.5601" a="E"><vh>文章管理</vh>
-<v t="zoomq.20140811152221.5901"><vh>PUT new/p/:tag</vh></v>
-<v t="zoomq.20130926092950.5447"><vh>PUT fix/p/:tag/:UUID</vh></v>
-<v t="zoomq.20130929203117.3712"><vh>POST push/p</vh>
-<v t="zoomq.20131007093121.31623"><vh>&lt;&lt;检验导入&gt;&gt;</vh></v>
-</v>
-<v t="zoomq.20130926092950.5449"><vh>__chkPAPER()</vh></v>
-<v t="zoomq.20131010225811.3726"><vh>GET sum/p/:TAG</vh></v>
-<v t="zoomq.20131010225811.3728"><vh>DELETE del/p/:UUID</vh></v>
-<v t="zoomq.20130926092950.5438"><vh>PUT fix/e/:CODE</vh></v>
 </v>
 <v t="zoomq.20130925103854.5041"><vh>用户管理</vh>
 <v t="zoomq.20130925103854.6454"><vh>GET find/m</vh></v>
@@ -176,7 +180,7 @@
 </v>
 <v t="zoomq.20130925103854.6427"><vh>__update_usr()</vh></v>
 <v t="zoomq.20130918155053.7083"><vh>POST /echo 接口认证</vh></v>
-<v t="zoomq.20130925103854.6430"><vh>FSM 业务逻辑核心</vh>
+<v t="zoomq.20130925103854.6430" a="E"><vh>FSM 业务逻辑核心</vh>
 <v t="zoomq.20131226095232.5942"><vh>__putFW()</vh>
 <v t="zoomq.20131226095232.5955"><vh>&lt;&lt;init FW msg.&gt;&gt;</vh></v>
 </v>
@@ -189,7 +193,9 @@
 </v>
 <v t="zoomq.20130925103854.6431" a="E"><vh>s 查阅文章</vh>
 <v t="zoomq.20130926092950.5443"><vh>&lt;&lt;seek&gt;&gt;</vh></v>
-<v t="zoomq.20130926092950.5444"><vh>&lt;&lt;tags&gt;&gt;</vh></v>
+<v t="zoomq.20130926092950.5444" a="E"><vh>&lt;&lt;tags&gt;&gt;</vh>
+<v t="zoomq.20140811152221.5906"><vh>&lt;&lt;整数顺序输出文章列表&gt;&gt;</vh></v>
+</v>
 <v t="zoomq.20130926092950.5445" a="E"><vh>&lt;&lt;no_paper&gt;&gt;</vh>
 <v t="zoomq.20131007093121.31624"><vh>&lt;&lt;tag paper No.&gt;&gt;</vh></v>
 </v>
@@ -309,6 +315,7 @@ $ dev_server.py --storage-path=logs/data \
 
 ## Change logging
 
+- 140813 增补应答式交互文章增补支持
 - 130806 frok from gztechparty/techparty
 
 
@@ -2514,11 +2521,13 @@ cmd = "curl -d '%s' %s/%s "% (xml, AS_LOCAL, uri)
 #print "put_args\n\t", put_args
 #print "pur_vars:\n\t", pur_vars
 #print "args", args
-if 'new' == uri.split('/')[0]:
+uri_matters = uri.split('/')
+if 'new' == uri_matters[0]:
     &lt;&lt;问答式创建文章&gt;&gt;
-    uri_pinfo = base64.b64encode(pickle.dumps(p_info))
+    uri_pinfo = base64.b16encode(pickle.dumps(p_info))
     args = "pinfo=%s"% uri_pinfo
-    #print "re-args", uri_pinfo , "&lt;&lt;&lt;"
+    print "re-args", uri_pinfo , "&lt;&lt;&lt;"
+    #return None
     #print "pickle.loads\n\t", pickle.loads(base64.b64decode(uri_pinfo))
     #put_args.insert(-1, ('pinfo'
     #    ,base64.urlsafe_b64encode(pickle.dumps(p_info))
@@ -2535,7 +2544,7 @@ pur_vars = " ".join(["%s=%s"% (p[0], p[1]) for p in put_args])
     
 uri = "%s%s/%s %s"% (host, CFG.APIPRE, uri, pur_vars)
 cmd = "http -f -b %s %s "% (method, uri)
-print cmd
+#print cmd
 #return None
 
 
@@ -3055,29 +3064,7 @@ def papers(self, wxreq):
     papers4tag = []
     if tag in CFG.ESSAY_TAG.keys():
         # right tag switch
-        uuid_all_paper = KV.get(CFG.K4D['p'])
-        for uuid in uuid_all_paper:
-            # sometime reg. uuid as None
-            if uuid and uuid[:2] == tag:
-                paper =  KV.get(uuid)
-                if 0 == paper['del']:
-                    count += 1
-                    #print paper['title']
-                    #papers4tag.append((str(paper['code']),paper['title']))
-                    #print paper['title']
-                    #print type(paper['title'])
-                    if isinstance(paper['title'], unicode):
-                        #print '%s is a unicode object'%paper['title']
-                        crt_title = paper['title'].encode('utf-8')
-                        #print type(crt_title)
-                    else:
-                        #print '%s is a str object'%paper['title']
-                        crt_title = paper['title']
-                    papers4tag.append((int(paper['code']), crt_title))
-                    #print paper['title'].enconde('utf-8')
-                    #AttributeError: 'str' object has no attribute 'encode'
-        #return None
-        #print "count ", count
+        &lt;&lt;整数顺序输出文章列表&gt;&gt;
         if 0 == count:
             # not paper in the tag yet
             crt_usr['fsm'] = "setup"
@@ -3086,27 +3073,24 @@ def papers(self, wxreq):
             return WxTextResponse(CFG.TXT_PUB_WAIT, wxreq).as_xml()
         else:
             # waiting paper Number code, jump into FSM:number_paper
-            #for p in papers4tag: print p
             papers4tag.sort()
-            #return None
             p_list = "    ".join(["%s: %s\n"%(p[0], p[1]) for p in papers4tag])
             crt_usr['fsm'] = "number_paper"
             crt_usr['buffer'] = tag
             __update_usr(crt_usr)
             return WxTextResponse(CFG.TXT_TAG_PAPERS% (CFG.ESSAY_TAG[tag]
                 , p_list.decode('utf-8')), wxreq).as_xml()
-            
     else:    
         crt_usr['fsm'] = "papers"
         __update_usr(crt_usr)
         return WxTextResponse(CFG.TXT_PLS_TAG, wxreq).as_xml()
-
+'''
     return None
-    
+
     crt_usr['fsm'] = "setup"
     __update_usr(crt_usr)
     return WxTextResponse(CFG.TXT_PUB_WAIT, wxreq).as_xml()
-
+'''
 
 </t>
 <t tx="zoomq.20130926092950.5445">@state('weknow')
@@ -3636,26 +3620,10 @@ def st_p_tag(tag, qstr):
     if _chkQueryArgs("/cli/sum/p/%s"% tag, q_dict, "GET"):
         feed_back = {'data':[]}
         #print tag
-        all_papers = KV.get(CFG.K4D['p'])
         #print type(all_papers)
-        all_papers.sort()
-        tmp = {}
-        for puuid in KV.get(CFG.K4D['p']):
-            #print puuid, " --&gt; ", KV.get(puuid)
-            if tag ==  puuid[:2]:
-                p = KV.get(puuid)
-                #print p
-                if 0 == p['del']:
-                    exp = "%s:%-28s"%(p['code'], puuid)
-                    tmp[exp] = p['title']
-                    feed_back['data'].append(exp) 
-        feed_back['data'].sort()
-        for i in range(len(feed_back['data'])):
-            k = feed_back['data'][i]
-            feed_back['data'][i] = "%s%s"% (k, tmp[k])
-        feed_back['msg'] = "%s papers had %s ."% (tag, len(feed_back['data']))
+        &lt;&lt;整数顺序输出文章列表&gt;&gt;        
+        feed_back['msg'] = "%s papers had %s ."% (tag, _count)
         return feed_back
-        
     else:
         return "alert quary !-("
 
@@ -4542,7 +4510,7 @@ feed_back['msg'] = "all Storaged %s dumps"% count
 , "fw/aa":  "PUT"     # 转复 订户 消息
 
 </t>
-<t tx="zoomq.20131226095232.5938">VERSION = "weknow v14.08.12_18"</t>
+<t tx="zoomq.20131226095232.5938">VERSION = "weknow v14.08.13_11"</t>
 <t tx="zoomq.20131226095232.5939">'''FW flow:
  0.
 usr&gt; msg
@@ -4840,18 +4808,27 @@ $ curl -d "uri=https://docs.google.com/forms/d/1TBJNar54XKhMu_nRaES5ByPv0078hh0G
 
 </t>
 <t tx="zoomq.20140811152221.5899">p_info = {}
+#print "%s/cli/lc/p/%s"% (XCFG.SAE_HOST, uri_matters[-1])
+&lt;&lt;get the last code&gt;&gt;
+
 &lt;&lt;raw_info(p_info)&gt;&gt;
 raw_info(p_info)
 print "_info", p_info
 
-#return None</t>
+
+
+</t>
 <t tx="zoomq.20140811152221.5900">def raw_info(p_info):
     #p_info = {}
     p_info['title'] = raw_input("文章标题?\n&gt;&gt;&gt; ")
-    p_info['code'] = raw_input("文章编号?\n&gt;&gt;&gt; ")
+    p_info['code'] = raw_input("文章编号([%s]/x)?\n&gt;&gt;&gt; "% the_last_code )
+    #print "p_info['code']", len(p_info['code'])
+    if 0 == len(p_info['code']):
+        p_info['code'] = the_last_code
+    #return None
     p_info['uri'] = raw_input("文章链接?\n&gt;&gt;&gt; ")
     p_info['picurl'] = raw_input("图片链接?\n&gt;&gt;&gt; ")
-    _confirm = raw_input("%s \n以上信息明确? [y]/n "% p_info)
+    _confirm = raw_input("%s \n以上信息明确([y]/n)?&gt;&gt;&gt; "% p_info)
     if 0 == len(_confirm):
         _confirm = 'y'
     if 'n' == _confirm:
@@ -4871,19 +4848,124 @@ p_picuri = raw_input("图片链接?\n&gt;&gt;&gt; ")
 <t tx="zoomq.20140811152221.5901">@APP.put('/cli/new/p/&lt;tag&gt;')
 def new_paper(tag):
     q_dict = request.forms
-    print "q_dict.keys", q_dict.keys()
+    #print "q_dict.keys", q_dict.keys()
     if _chkQueryArgs("/cli/new/p/%s"% tag, q_dict, "PUT"):
         feed_back = {'data':[]}
-        print "\n", q_dict['pinfo'], "\n" 
-        print type(q_dict['pinfo'])
-        
-        print base64.b64decode(q_dict['pinfo'])
-        print pickle.loads(base64.b64decode(q_dict['pinfo']))
-        
-        return None
+        #print "\n", q_dict['pinfo'], "\n" 
+        #print type(q_dict['pinfo'])
+        #print pickle.loads(base64.b16decode(q_dict['pinfo']))
+        _pinfo = pickle.loads(base64.b16decode(q_dict['pinfo']))
+        uuid = 'null'
+        uuid, new_paper = __chkPAPER(tag, uuid)
+        if not uuid:
+            feed_back['msg'] = "BAD tag: %s out pre-defined"% tag
+        else:
+            #注意将一切字串,变成 unicode 统一储存
+            new_paper['title'] = _pinfo['title'].decode('utf-8')
+            new_paper['uri'] = _pinfo['uri']
+            new_paper['picurl'] = _pinfo['picurl']
+            new_paper['code'] = _pinfo['code']
+            KV.replace(uuid, new_paper)
+            #print new_paper
+            feed_back['data'] = new_paper
+            feed_back['uuid'] = uuid
+            feed_back['msg'] = "one NEW paper created complete ;-)"
+        return feed_back
     else:
         return "alert quary!-("
         
+'''K4WD = {"his_id":""   # 更新戮
+    , "del":0
+    , "type":"txt"  # 信息类型 txt|uri|pic
+    , "tag":"ot"
+    , 'title':''
+    , "desc":""     # 解释
+    , "code":""     # 文章,分类序号
+    , "picurl":''
+    , "url":""
+    } 
+'''
+</t>
+<t tx="zoomq.20140811152221.5903">@APP.get('/cli/lc/p/&lt;tag&gt;')
+def get_last_code(tag):
+    '''开放应答,供给远程工具,智能判定参数
+    '''
+    feed_back = {}
+    #print tag
+    all_papers = KV.get(CFG.K4D['p'])
+    _codes = []
+    _count = 0
+    for puuid in KV.get(CFG.K4D['p']):
+        #print puuid, " --&gt; ", KV.get(puuid)
+        if tag ==  puuid[:2]:
+            p = KV.get(puuid)
+            if 0 == p['del']:
+                _count += 1
+                _codes.append(int(p['code']))
+    _codes.sort()
+    feed_back['the_last_code'] = _codes[-1]
+    feed_back['msg'] = "%s papers had %s ."% (tag, _count)
+    return feed_back
+
+    </t>
+<t tx="zoomq.20140811152221.5904">_uri_lc_p = "/api/cli/lc/p/%s"% uri_matters[-1]
+#print _uri_lc_p
+conn = httplib.HTTPConnection(XCFG.SAE_HOST)
+conn.request("GET", _uri_lc_p)
+r1 = conn.getresponse()
+print XCFG.SAE_HOST, _uri_lc_p, r1.status, r1.reason
+data1 = r1.read()
+#print json.loads(data1)['the_last_code']
+the_last_code = int(json.loads(data1)['the_last_code']) + 1
+</t>
+<t tx="zoomq.20140811152221.5905">all_papers = KV.get(CFG.K4D['p'])
+#all_papers.sort()
+papers4tag = []
+_codes = []
+_count = 0
+for puuid in KV.get(CFG.K4D['p']):
+    if tag ==  puuid[:2]:
+        p = KV.get(puuid)
+        if 0 == p['del']:
+            _count += 1
+            _int_code = int(p['code'])
+            _codes.append(_int_code)
+            exp = "%s:%-28s %s"%(p['code'], puuid, p['title'])
+            papers4tag.append((_int_code, exp))
+            #feed_back['data'].append(exp) 
+#feed_back['data'].sort()
+papers4tag.sort()
+feed_back['data'] = [i[1] for i in papers4tag]
+_codes.sort()
+print _codes
+feed_back['the_last_code'] = _codes[-1]
+'''
+for i in range(len(feed_back['data'])):
+    k = feed_back['data'][i]
+    feed_back['data'][i] = "%s%s"% (k, tmp[k])
+'''
+</t>
+<t tx="zoomq.20140811152221.5906">uuid_all_paper = KV.get(CFG.K4D['p'])
+for uuid in uuid_all_paper:
+    # sometime reg. uuid as None
+    if uuid and uuid[:2] == tag:
+        paper =  KV.get(uuid)
+        if 0 == paper['del']:
+            count += 1
+            #papers4tag.append((str(paper['code']),paper['title']))
+            if isinstance(paper['title'], unicode):
+                #print '%s is a unicode object'%paper['title']
+                crt_title = paper['title'].encode('utf-8')
+            else:
+                #print '%s is a str object'%paper['title']
+                crt_title = paper['title']
+            papers4tag.append((int(paper['code']), crt_title))
+            #print paper['title'].enconde('utf-8')
+            #AttributeError: 'str' object has no attribute 'encode'
+
+
+
+
 </t>
 </tnodes>
 </leo_file>

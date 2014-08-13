@@ -78,6 +78,248 @@ def wechat(request):
 query_string 
 '''
 
+@APP.get('/cli/lc/p/<tag>')
+def get_last_code(tag):
+    '''开放应答,供给远程工具,智能判定参数
+    '''
+    feed_back = {}
+    #print tag
+    all_papers = KV.get(CFG.K4D['p'])
+    _codes = []
+    _count = 0
+    for puuid in KV.get(CFG.K4D['p']):
+        #print puuid, " --> ", KV.get(puuid)
+        if tag ==  puuid[:2]:
+            p = KV.get(puuid)
+            if 0 == p['del']:
+                _count += 1
+                _codes.append(int(p['code']))
+    _codes.sort()
+    feed_back['the_last_code'] = _codes[-1]
+    feed_back['msg'] = "%s papers had %s ."% (tag, _count)
+    return feed_back
+
+    
+# collection wechat papers mana. matters
+'''
+'''
+@APP.put('/cli/new/p/<tag>')
+def new_paper(tag):
+    q_dict = request.forms
+    #print "q_dict.keys", q_dict.keys()
+    if _chkQueryArgs("/cli/new/p/%s"% tag, q_dict, "PUT"):
+        feed_back = {'data':[]}
+        #print "\n", q_dict['pinfo'], "\n" 
+        #print type(q_dict['pinfo'])
+        #print pickle.loads(base64.b16decode(q_dict['pinfo']))
+        _pinfo = pickle.loads(base64.b16decode(q_dict['pinfo']))
+        uuid = 'null'
+        uuid, new_paper = __chkPAPER(tag, uuid)
+        if not uuid:
+            feed_back['msg'] = "BAD tag: %s out pre-defined"% tag
+        else:
+            #注意将一切字串,变成 unicode 统一储存
+            new_paper['title'] = _pinfo['title'].decode('utf-8')
+            new_paper['uri'] = _pinfo['uri']
+            new_paper['picurl'] = _pinfo['picurl']
+            new_paper['code'] = _pinfo['code']
+            KV.replace(uuid, new_paper)
+            #print new_paper
+            feed_back['data'] = new_paper
+            feed_back['uuid'] = uuid
+            feed_back['msg'] = "one NEW paper created complete ;-)"
+        return feed_back
+    else:
+        return "alert quary!-("
+        
+'''K4WD = {"his_id":""   # 更新戮
+    , "del":0
+    , "type":"txt"  # 信息类型 txt|uri|pic
+    , "tag":"ot"
+    , 'title':''
+    , "desc":""     # 解释
+    , "code":""     # 文章,分类序号
+    , "picurl":''
+    , "url":""
+    } 
+'''
+@APP.put('/cli/fix/p/<tag>/<uuid>')
+def fix_paper(tag, uuid):
+    q_dict = request.forms
+    print q_dict.keys()
+    if _chkQueryArgs("/cli/fix/p/%s/%s"% (tag, uuid), q_dict, "PUT"):
+        feed_back = {'data':[]}
+        set_key = list(set(q_dict.keys())-set(CFG.SECURE_ARGS))[0]
+        set_var = base64.urlsafe_b64decode(request.forms[set_key])
+        #print "\nset_key:set_var", set_key, set_var
+        #return None
+        if set_key in CFG.K4WD.keys():
+            print set_key, set_var
+            uuid, pub = __chkPAPER(tag, uuid)
+            if not uuid:
+                feed_back['msg'] = "BAD tag: %s out pre-defined"% tag
+            else:
+                pub[set_key] = set_var.decode('utf-8')#注意将一切字串,变成 unicode 统一储存
+                KV.replace(uuid, pub)
+                #print pub
+                feed_back['data'].append(pub)
+                feed_back['uuid'] = uuid
+        else:
+            feed_back['msg'] = "out keys, NULL fixed!" 
+            feed_back['can_fix_keys'] = CFG.K4WD.keys()
+        #data.append(KV.get_info())
+        return feed_back
+    else:
+        return "alert quary!-("
+
+
+def __chkPAPER(tag, uuid):
+    '''chk or init. webchat paper:
+        - if uuid == null init. node
+        - else try get it
+    '''
+    paper = KV.get(uuid)
+    if paper:
+        print uuid, paper
+        ADD4SYS('p', uuid)  # for old sys, collected uuid into idx node!
+        return uuid, paper
+    else:
+        # inti.
+        if tag not in CFG.ESSAY_TAG.keys():
+            return None, None
+        uuid = GENID(tag)
+        if not uuid:
+            print "tag out GENID() accept area!"
+            return None, None
+        ADD4SYS('p', uuid)
+        new_paper = deepcopy(CFG.K4WD)
+        new_paper['uuid'] = uuid
+        new_paper['tag'] = tag
+        new_paper['his_id'] = GENID('his')
+        new_paper['lasttm'] = time.time()
+        new_paper['title'] = "waiting set..."
+        KV.add(uuid, new_paper)
+        print uuid, new_paper
+        return uuid, new_paper
+
+
+
+        
+        
+@APP.get('/cli/sum/p/<tag>/<qstr>')
+def st_p_tag(tag, qstr):
+    q_dict = _query2dict(qstr)
+    if _chkQueryArgs("/cli/sum/p/%s"% tag, q_dict, "GET"):
+        feed_back = {'data':[]}
+        #print tag
+        #print type(all_papers)
+        all_papers = KV.get(CFG.K4D['p'])
+        #all_papers.sort()
+        papers4tag = []
+        _codes = []
+        _count = 0
+        for puuid in KV.get(CFG.K4D['p']):
+            if tag ==  puuid[:2]:
+                p = KV.get(puuid)
+                if 0 == p['del']:
+                    _count += 1
+                    _int_code = int(p['code'])
+                    _codes.append(_int_code)
+                    exp = "%s:%-28s %s"%(p['code'], puuid, p['title'])
+                    papers4tag.append((_int_code, exp))
+                    #feed_back['data'].append(exp) 
+        #feed_back['data'].sort()
+        papers4tag.sort()
+        feed_back['data'] = [i[1] for i in papers4tag]
+        _codes.sort()
+        print _codes
+        feed_back['the_last_code'] = _codes[-1]
+        '''
+        for i in range(len(feed_back['data'])):
+            k = feed_back['data'][i]
+            feed_back['data'][i] = "%s%s"% (k, tmp[k])
+        '''
+        feed_back['msg'] = "%s papers had %s ."% (tag, _count)
+        return feed_back
+    else:
+        return "alert quary !-("
+
+@APP.post('/cli/push/p/<qstr>')
+def push_papers(qstr):
+    q_dict = _query2dict(qstr)
+    q_form = request.forms
+    q_file = request.files.get('json')
+    #f_name, f_ext = os_splitext(q_file.filename)
+    #print f_name, f_ext
+    set_var = q_file.file.read()
+    if _chkQueryArgs("/cli/push/p", q_dict, "POST"):
+        feed_back = {'data':[]}
+        #set_key = list(set(q_form.keys())-set(CFG.SECURE_ARGS))[0]
+        #set_var = base64.urlsafe_b64decode(request.forms[set_key])
+        j = eval(set_var) #, set_var
+        p_tag = j.keys()[0]
+        #print j.keys()
+        #return None
+        for paper in j[p_tag]:
+            uuid = GENID(p_tag)
+            feed_back['data'].append(uuid)
+            #print uuid
+            new_paper = deepcopy(CFG.K4WD)
+            new_paper['uuid'] = uuid # 对象创建时, 变更时间戳同 UUID
+            new_paper['his_id'] = uuid
+            new_paper['lasttm'] = time.time()
+            new_paper['tag'] = p_tag
+            new_paper['title'] = paper['title']
+            new_paper['url'] = paper['uri']
+            new_paper['picurl'] = paper['picuri']
+            new_paper['code'] = paper['code']
+            KV.add(uuid, new_paper)
+            ADD4SYS('p', uuid)
+            #print uuid, new_paper
+
+        #feed_back['data'].append( BK.stat_object(sid) )
+        feed_back['msg'] = "uploaded %s papers info."% len(j[p_tag])
+        #data.append(KV.get_info())
+        return feed_back
+    else:
+        return "alert quary!-("
+
+
+
+@APP.delete('/cli/del/p/<uuid>/<qstr>')
+def del_p(uuid, qstr):
+    q_dict = _query2dict(qstr)
+    if _chkQueryArgs("/cli/del/p/%s"% uuid, q_dict, "DELETE"):
+        feed_back = {'data':[]}
+        p = KV.get(uuid)
+        p['del'] = 1
+        KV.replace(uuid, p)
+        feed_back['data'].append("%s:%s"% (p['code'],p['title']))
+        feed_back['msg'] = "deleted: %s"% uuid
+        return feed_back
+    else:
+        return "alert quary!-("
+
+@APP.put('/cli/fix/e/<code>')
+def fix_event(code):
+    '''events info. editor
+    '''
+    q_dict = request.forms
+    if _chkQueryArgs("/cli/fix/e/%s"% code, q_dict, "PUT"):
+        feed_back = {'data':[]}
+        set_key = list(set(q_dict.keys())-set(CFG.SECURE_ARGS))[0]
+        set_var = base64.urlsafe_b64decode(request.forms[set_key])
+        if set_key in CFG.K4DM.keys():
+            print set_key, set_var
+            feed_back['msg'] = "func. not working now..." 
+        else:
+            feed_back['msg'] = "out keys, NULL fixed!" 
+            feed_back['can_fix_keys'] = CFG.K4DM.keys()
+        #data.append(KV.get_info())
+        return feed_back
+    else:
+        return "alert quary!-("
+
 @APP.get('/cli/info/<uuid>/<qstr>')
 def info_kv(uuid, qstr):
     '''查询 UUID 的信息
@@ -425,193 +667,6 @@ def del_bk(uuid, qstr):
         feed_back['msg'] = "deleted: %s"% uuid
         feed_back['data'].append( BK.stat_object(uuid) )
         BK.delete_object(uuid)
-        return feed_back
-    else:
-        return "alert quary!-("
-
-# collection wechat papers mana. matters
-'''
-'''
-@APP.put('/cli/new/p/<tag>')
-def new_paper(tag):
-    q_dict = request.forms
-    print "q_dict.keys", q_dict.keys()
-    if _chkQueryArgs("/cli/new/p/%s"% tag, q_dict, "PUT"):
-        feed_back = {'data':[]}
-        print "\n", q_dict['pinfo'], "\n" 
-        print type(q_dict['pinfo'])
-        
-        print base64.b64decode(q_dict['pinfo'])
-        print pickle.loads(base64.b64decode(q_dict['pinfo']))
-        
-        return None
-    else:
-        return "alert quary!-("
-        
-@APP.put('/cli/fix/p/<tag>/<uuid>')
-def fix_paper(tag, uuid):
-    q_dict = request.forms
-    print q_dict.keys()
-    if _chkQueryArgs("/cli/fix/p/%s/%s"% (tag, uuid), q_dict, "PUT"):
-        feed_back = {'data':[]}
-        set_key = list(set(q_dict.keys())-set(CFG.SECURE_ARGS))[0]
-        set_var = base64.urlsafe_b64decode(request.forms[set_key])
-        #print "\nset_key:set_var", set_key, set_var
-        #return None
-        if set_key in CFG.K4WD.keys():
-            print set_key, set_var
-            uuid, pub = __chkPAPER(tag, uuid)
-            if not uuid:
-                feed_back['msg'] = "BAD tag: %s out pre-defined"% tag
-            else:
-                pub[set_key] = set_var.decode('utf-8')#注意将一切字串,变成 unicode 统一储存
-                KV.replace(uuid, pub)
-                #print pub
-                feed_back['data'].append(pub)
-                feed_back['uuid'] = uuid
-        else:
-            feed_back['msg'] = "out keys, NULL fixed!" 
-            feed_back['can_fix_keys'] = CFG.K4WD.keys()
-        #data.append(KV.get_info())
-        return feed_back
-    else:
-        return "alert quary!-("
-
-
-@APP.post('/cli/push/p/<qstr>')
-def push_papers(qstr):
-    q_dict = _query2dict(qstr)
-    q_form = request.forms
-    q_file = request.files.get('json')
-    #f_name, f_ext = os_splitext(q_file.filename)
-    #print f_name, f_ext
-    set_var = q_file.file.read()
-    if _chkQueryArgs("/cli/push/p", q_dict, "POST"):
-        feed_back = {'data':[]}
-        #set_key = list(set(q_form.keys())-set(CFG.SECURE_ARGS))[0]
-        #set_var = base64.urlsafe_b64decode(request.forms[set_key])
-        j = eval(set_var) #, set_var
-        p_tag = j.keys()[0]
-        #print j.keys()
-        #return None
-        for paper in j[p_tag]:
-            uuid = GENID(p_tag)
-            feed_back['data'].append(uuid)
-            #print uuid
-            new_paper = deepcopy(CFG.K4WD)
-            new_paper['uuid'] = uuid # 对象创建时, 变更时间戳同 UUID
-            new_paper['his_id'] = uuid
-            new_paper['lasttm'] = time.time()
-            new_paper['tag'] = p_tag
-            new_paper['title'] = paper['title']
-            new_paper['url'] = paper['uri']
-            new_paper['picurl'] = paper['picuri']
-            new_paper['code'] = paper['code']
-            KV.add(uuid, new_paper)
-            ADD4SYS('p', uuid)
-            #print uuid, new_paper
-
-        #feed_back['data'].append( BK.stat_object(sid) )
-        feed_back['msg'] = "uploaded %s papers info."% len(j[p_tag])
-        #data.append(KV.get_info())
-        return feed_back
-    else:
-        return "alert quary!-("
-
-
-
-def __chkPAPER(tag, uuid):
-    '''chk or init. webchat paper:
-        - if uuid == null init. node
-        - else try get it
-    '''
-    paper = KV.get(uuid)
-    if paper:
-        print uuid, paper
-        ADD4SYS('p', uuid)  # for old sys, collected uuid into idx node!
-        return uuid, paper
-    else:
-        # inti.
-        if tag not in CFG.ESSAY_TAG.keys():
-            return None, None
-        uuid = GENID(tag)
-        if not uuid:
-            print "tag out GENID() accept area!"
-            return None, None
-        ADD4SYS('p', uuid)
-        new_paper = deepcopy(CFG.K4WD)
-        new_paper['uuid'] = uuid
-        new_paper['tag'] = tag
-        new_paper['his_id'] = GENID('his')
-        new_paper['lasttm'] = time.time()
-        new_paper['title'] = "waiting set..."
-        KV.add(uuid, new_paper)
-        print uuid, new_paper
-        return uuid, new_paper
-
-
-
-        
-        
-@APP.get('/cli/sum/p/<tag>/<qstr>')
-def st_p_tag(tag, qstr):
-    q_dict = _query2dict(qstr)
-    if _chkQueryArgs("/cli/sum/p/%s"% tag, q_dict, "GET"):
-        feed_back = {'data':[]}
-        #print tag
-        all_papers = KV.get(CFG.K4D['p'])
-        #print type(all_papers)
-        all_papers.sort()
-        tmp = {}
-        for puuid in KV.get(CFG.K4D['p']):
-            #print puuid, " --> ", KV.get(puuid)
-            if tag ==  puuid[:2]:
-                p = KV.get(puuid)
-                #print p
-                if 0 == p['del']:
-                    exp = "%s:%-28s"%(p['code'], puuid)
-                    tmp[exp] = p['title']
-                    feed_back['data'].append(exp) 
-        feed_back['data'].sort()
-        for i in range(len(feed_back['data'])):
-            k = feed_back['data'][i]
-            feed_back['data'][i] = "%s%s"% (k, tmp[k])
-        feed_back['msg'] = "%s papers had %s ."% (tag, len(feed_back['data']))
-        return feed_back
-        
-    else:
-        return "alert quary !-("
-
-@APP.delete('/cli/del/p/<uuid>/<qstr>')
-def del_p(uuid, qstr):
-    q_dict = _query2dict(qstr)
-    if _chkQueryArgs("/cli/del/p/%s"% uuid, q_dict, "DELETE"):
-        feed_back = {'data':[]}
-        p = KV.get(uuid)
-        p['del'] = 1
-        KV.replace(uuid, p)
-        feed_back['data'].append("%s:%s"% (p['code'],p['title']))
-        feed_back['msg'] = "deleted: %s"% uuid
-        return feed_back
-    else:
-        return "alert quary!-("
-
-@APP.put('/cli/fix/e/<code>')
-def fix_event(code):
-    '''events info. editor
-    '''
-    q_dict = request.forms
-    if _chkQueryArgs("/cli/fix/e/%s"% code, q_dict, "PUT"):
-        feed_back = {'data':[]}
-        set_key = list(set(q_dict.keys())-set(CFG.SECURE_ARGS))[0]
-        set_var = base64.urlsafe_b64decode(request.forms[set_key])
-        if set_key in CFG.K4DM.keys():
-            print set_key, set_var
-            feed_back['msg'] = "func. not working now..." 
-        else:
-            feed_back['msg'] = "out keys, NULL fixed!" 
-            feed_back['can_fix_keys'] = CFG.K4DM.keys()
-        #data.append(KV.get_info())
         return feed_back
     else:
         return "alert quary!-("
@@ -1260,22 +1315,20 @@ def papers(self, wxreq):
                 paper =  KV.get(uuid)
                 if 0 == paper['del']:
                     count += 1
-                    #print paper['title']
                     #papers4tag.append((str(paper['code']),paper['title']))
-                    #print paper['title']
-                    #print type(paper['title'])
                     if isinstance(paper['title'], unicode):
                         #print '%s is a unicode object'%paper['title']
                         crt_title = paper['title'].encode('utf-8')
-                        #print type(crt_title)
                     else:
                         #print '%s is a str object'%paper['title']
                         crt_title = paper['title']
                     papers4tag.append((int(paper['code']), crt_title))
                     #print paper['title'].enconde('utf-8')
                     #AttributeError: 'str' object has no attribute 'encode'
-        #return None
-        #print "count ", count
+
+
+
+
         if 0 == count:
             # not paper in the tag yet
             crt_usr['fsm'] = "setup"
@@ -1284,27 +1337,24 @@ def papers(self, wxreq):
             return WxTextResponse(CFG.TXT_PUB_WAIT, wxreq).as_xml()
         else:
             # waiting paper Number code, jump into FSM:number_paper
-            #for p in papers4tag: print p
             papers4tag.sort()
-            #return None
             p_list = "    ".join(["%s: %s\n"%(p[0], p[1]) for p in papers4tag])
             crt_usr['fsm'] = "number_paper"
             crt_usr['buffer'] = tag
             __update_usr(crt_usr)
             return WxTextResponse(CFG.TXT_TAG_PAPERS% (CFG.ESSAY_TAG[tag]
                 , p_list.decode('utf-8')), wxreq).as_xml()
-            
     else:    
         crt_usr['fsm'] = "papers"
         __update_usr(crt_usr)
         return WxTextResponse(CFG.TXT_PLS_TAG, wxreq).as_xml()
-
+'''
     return None
-    
+
     crt_usr['fsm'] = "setup"
     __update_usr(crt_usr)
     return WxTextResponse(CFG.TXT_PUB_WAIT, wxreq).as_xml()
-
+'''
 
 @state('weknow')
 @transition('end', 'end')
